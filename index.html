@@ -1,41 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light" data-size="md" data-dyslexic="false">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Year 9 Diseases — Interactive Learning</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Year 9 Science · NSW Stage 5</title>
+  <meta name="description" content="Interactive Year 9 Science: Diseases, Energy, Environmental Sustainability, and Materials."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/kit.css"/>
+  <link rel="stylesheet" href="shared/hub.css"/>
 </head>
 <body>
   <div id="root"></div>
-
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
-  <script type="text/babel" src="src/shared.jsx"></script>
-  <script type="text/babel" src="src/glossary.jsx"></script>
-  <script type="text/babel" src="src/interactives/feedback-loop.jsx"></script>
-  <script type="text/babel" src="src/interactives/reaction-timer.jsx"></script>
-  <script type="text/babel" src="src/interactives/pathogen-sorter.jsx"></script>
-  <script type="text/babel" src="src/interactives/epidemic-curves.jsx"></script>
-  <script type="text/babel" src="src/interactives/spread-sim.jsx"></script>
-  <script type="text/babel" src="src/interactives/chain-infection.jsx"></script>
-  <script type="text/babel" src="src/interactives/three-lines.jsx"></script>
-  <script type="text/babel" src="src/interactives/vaccine-response.jsx"></script>
-  <script type="text/babel" src="src/interactives/herd-immunity.jsx"></script>
-  <script type="text/babel" src="src/interactives/bush-medicine-map.jsx"></script>
-  <script type="text/babel" src="src/interactives/innovations-explorer.jsx"></script>
-
-  <script type="text/babel" src="src/home.jsx"></script>
-  <script type="text/babel" src="src/topic-2-1.jsx"></script>
-  <script type="text/babel" src="src/topic-2-2.jsx"></script>
-  <script type="text/babel" src="src/topic-2-3.jsx"></script>
-  <script type="text/babel" src="src/topic-2-4.jsx"></script>
-
-  <script type="text/babel" src="src/app.jsx"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script type="text/babel" src="shared/kit.jsx"></script>
+  <script type="text/babel" src="shared/hub.jsx"></script>
+  <script type="text/babel">
+    mountYearHub({
+      year: 9, stage: 5, accent: "blue",
+      schoolTitle: "Junior Science", syllabus: "NSW Stage 5",
+      title: "Year 9 Science",
+      lede: "How your body defends itself, where energy comes from, how we look after the planet, and what everything is made of. Four topics, all interactive, all at your own pace.",
+      topics: [
+        { n: 1, kicker: "Topic 1", emoji: "🦠", title: "Diseases", accent: "red",
+          blurb: "How the body keeps itself stable, what happens when pathogens get in, and how we stop disease spreading.",
+          tags: ["Immunity", "Pathogens", "Prevention"], href: "diseases/" },
+        { n: 2, kicker: "Topic 2", emoji: "⚡", title: "Energy", accent: "blue",
+          blurb: "Energy transfers and transformations, electric circuits, efficiency and the choices behind how we power our lives.",
+          tags: ["Energy", "Electricity", "Efficiency"], href: "energy/",
+          storageKey: "y9.energy", points: ["1.1.1","1.1.2","1.1.3","1.2.1","1.2.2","1.2.3","1.3.1","1.3.2","1.3.3","1.3.4","1.3.5","1.3.6","1.4.1","1.4.2","1.4.3","1.6.1"] },
+        { n: 3, kicker: "Topic 3", emoji: "🌏", title: "Environmental Sustainability", accent: "green",
+          blurb: "Ecosystems and the cycles of matter, the science of climate, and the choices that keep our planet liveable.",
+          tags: ["Ecosystems", "Climate", "Sustainability"], href: "environmental-sustainability/",
+          storageKey: "y9.envsustainability", points: ["4.1.1","4.1.2","4.2.1","4.2.2","4.2.3","4.2.4","4.2.5","4.2.6","4.3.1","4.3.2","4.3.3","4.3.4","4.4.1","4.4.2","4.4.3","4.4.4","4.4.5","4.5.1"] },
+        { n: 4, kicker: "Topic 4", emoji: "⚗️", title: "Materials", accent: "violet",
+          blurb: "Atoms, bonding and the periodic table, plus the chemistry that decides why we build things from the materials we do.",
+          tags: ["Atoms", "Bonding", "Chemistry"], href: "materials/",
+          storageKey: "y9.materials", points: ["3.1.1","3.1.2","3.1.3","3.1.4","3.2.1","3.2.2","3.2.3","3.2.4","3.2.5","3.2.6","3.2.7","3.3.1","3.3.2","3.3.3","3.3.4","3.3.5","3.3.6","3.4.1","3.4.2","3.4.3","3.4.4","3.4.5","3.5.1"] },
+      ],
+    });
+  </script>
 </body>
 </html>
