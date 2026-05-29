@@ -305,6 +305,7 @@ function Section2({ progress, setProgress }) {
         <p className="lead">From daily weather to centuries of warming, the atmosphere shapes life on Earth.</p>
       </div>
 
+      <Figure src="img/greenhouse.png" caption="Greenhouse gases trap some of the heat radiating from Earth." />
       <DotPoint id="4.2.1" title="Distinguish between climate and weather" progress={progress} setProgress={setProgress}>
         <p>
           <Term def="The short-term atmospheric conditions at a specific place and time, including temperature, rainfall, wind, and cloud cover. Changes hour to hour.">Weather</Term> is what is happening in the atmosphere right now or over the next few days. It is often unpredictable beyond about two weeks. <Term def="The long-term average pattern of weather conditions typical for a region, calculated over at least 30 years of data.">Climate</Term> is the long-term pattern built from decades of weather records. A handy way to remember: weather is what you wear today; climate is what you keep in your wardrobe.
@@ -742,6 +743,7 @@ function Section4({ progress, setProgress }) {
         <p className="lead">From eutrophication to enzyme-powered recycling, science is reshaping how we handle pollution and waste.</p>
       </div>
 
+      <Figure src="img/waste-hierarchy.png" caption="The waste hierarchy, from most preferred (reduce) to least (dispose)." />
       <DotPoint id="4.4.1" title="Describe the causes of environmental pollution and discuss its implications" progress={progress} setProgress={setProgress}>
         <p>
           <Term def="The introduction of substances into the natural environment at concentrations or rates that cause harmful effects on living organisms, ecosystems, or human health.">Environmental pollution</Term> occurs in air, water, and soil. Air pollution from burning fossil fuels produces <Term def="Sulfur dioxide, a gas produced by burning coal and smelting metals that reacts with water vapour to form acid rain.">sulfur dioxide (SO2)</Term>, nitrogen oxides (NOx), and <Term def="Fine particulate matter smaller than 2.5 micrometres that penetrates deep into the lungs and causes cardiovascular and respiratory disease.">PM2.5</Term>. Water pollution comes from agricultural runoff containing fertilisers and pesticides, industrial discharge of heavy metals, sewage, and plastic waste. Soil contamination results from industrial spills, mining waste, and landfill leachate.
@@ -981,6 +983,7 @@ function Section5({ progress, setProgress }) {
         <p className="lead">Plastic in the ocean is one of the clearest examples of human activity driving a measurable environmental crisis, and one that science can help us solve.</p>
       </div>
 
+      <Figure src="img/marine-plastic.png" caption="Marine plastic pollution threatens ocean life such as sea turtles." />
       <DotPoint id="4.5.1" title="Discuss the link between human activity and one specific environmental pollution concern" progress={progress} setProgress={setProgress}>
         <p>
           Humans produce approximately 400 million tonnes of plastic each year globally, of which an estimated 8 to 14 million tonnes enters the ocean annually. The primary human activities responsible include single-use plastic production and consumption, inadequate waste management (uncollected plastic, landfill near waterways, stormwater drains), industrial <Term def="Small pre-production plastic pellets about 3 to 5 mm in diameter used as feedstock for manufacturing plastic products. Spilled during transport, they are mistaken for food by marine wildlife.">nurdle</Term> spillage, and the washing of synthetic textiles which releases <Term def="Plastic fibres under 5 mm shed from synthetic clothing during washing, which pass through wastewater treatment and enter waterways.">microplastic fibres</Term> into wastewater.
@@ -1016,6 +1019,7 @@ function Section5({ progress, setProgress }) {
 mountTopicApp({
   year: 9,
   topicTitle: "Environmental Sustainability",
+  heroImage: "img/hero.png",
   strand: "Stage 5 · NSW Science",
   accent: "green",
   storageKey: "y9.envsustainability",

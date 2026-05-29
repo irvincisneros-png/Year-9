@@ -544,6 +544,7 @@ function Section32({ progress, setProgress }) {
         <p className="lead">Valency, noble gas configurations and three types of chemical bond explain the properties of every material from table salt to diamond.</p>
       </div>
 
+      <Figure src="img/bonding.png" caption="Atoms share or transfer electrons to form chemical bonds." />
       <DotPoint id="3.2.1" title="Valency and electron configuration" progress={progress} setProgress={setProgress}>
         <p>The <Term def="The number of electrons an atom must gain, lose or share to reach a stable (full outer shell) electron configuration.">valency</Term> of an element tells you how many electrons it needs to gain, lose or share to become stable. Stability means reaching a full outer shell, matching the electron arrangement of a noble gas. This is called the <Term def="The tendency of atoms to seek 8 electrons in their outer shell, matching noble gas configurations.">octet rule</Term> (or the duet rule for hydrogen, which needs only 2 electrons to match helium).</p>
         <p>Valency is directly linked to an element's group in the periodic table. Group 1 elements (like sodium) have one outer electron and a valency of 1. Group 17 elements (like chlorine) have seven outer electrons and also a valency of 1, but they gain rather than lose electrons. Carbon, in Group 14, has four outer electrons and a valency of 4. It shares all four to form covalent bonds with other atoms.</p>
@@ -848,6 +849,7 @@ function Section34({ progress, setProgress }) {
         <p className="lead">From the bag in your lunch box to the fibres in your sportswear, polymers are built from thousands of repeating small units called monomers.</p>
       </div>
 
+      <Figure src="img/polymers.png" caption="Many small monomers join into a long polymer chain." />
       <DotPoint id="3.4.1" title="Raw materials for polymer production" progress={progress} setProgress={setProgress}>
         <p>A <Term def="A large molecule made of many repeating smaller units (monomers) joined by covalent bonds.">polymer</Term> is a giant molecule built from thousands of small, identical (or similar) units called <Term def="The small, reactive molecules that join together to form a polymer chain.">monomers</Term>. Most synthetic polymers come from monomers derived from crude oil. Cracking of petroleum produces reactive alkenes, especially <Term def="The simplest alkene, CH2=CH2, used as the monomer for polyethylene.">ethene</Term>, which polymerises to make polyethylene (PE), one of the world's most-used plastics. Propene becomes polypropylene (PP), vinyl chloride becomes PVC, and styrene becomes polystyrene.</p>
         <p>Not all polymers come from petroleum. Natural polymers have always existed in living organisms: <Term def="A natural polymer of glucose forming the structural material in plant cell walls.">cellulose</Term>, starch, proteins, DNA and natural rubber are all biological polymers. Bio-based synthetic polymers are a growing category. <Term def="Polylactic acid: a bio-based, potentially compostable polymer made from lactic acid derived from fermenting plant sugars.">PLA (polylactic acid)</Term> is made from sugarcane or corn starch. As society moves away from petroleum dependency, these renewable monomers offer lower-carbon alternatives.</p>
@@ -973,6 +975,7 @@ function Section35({ progress, setProgress }) {
 mountTopicApp({
   year: 9,
   topicTitle: "Materials",
+  heroImage: "img/hero.png",
   strand: "Stage 5 · NSW Science",
   accent: "violet",
   storageKey: "y9.materials",

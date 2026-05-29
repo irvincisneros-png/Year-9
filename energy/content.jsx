@@ -523,6 +523,7 @@ function Section1({ progress, setProgress }) {
         <p className="lead">No matter how dramatic the explosion or how quiet the glow, the total energy in a closed system stays exactly the same.</p>
       </div>
 
+      <Figure src="img/efficiency.png" caption="Input energy splits into useful output and wasted heat." />
       <DotPoint id="1.1.1" title="Conservation of energy and calculations" progress={progress} setProgress={setProgress}>
         <p>The <Term def="Energy cannot be created or destroyed; it can only change form or transfer between objects. Total energy in a closed system is constant.">law of conservation of energy</Term> is one of physics's most powerful ideas. Energy does not pop into existence and it does not vanish. It simply changes form or moves from one object to another.</p>
         <p>A <Term def="A system in which no energy or matter is exchanged with the surroundings.">closed system</Term> is one where nothing leaks in or out. Drop a ball from rest and all the <Term def="Energy stored due to an object's position in a gravitational field. GPE = mgh.">gravitational potential energy (GPE)</Term> converts to <Term def="Energy of a moving object. KE = 0.5 x mass x speed squared.">kinetic energy (KE)</Term> by the time it hits the ground. Even with air resistance, the total energy is still conserved; some just ends up as thermal energy in the air instead of KE in the ball.</p>
@@ -573,6 +574,7 @@ function Section2({ progress, setProgress }) {
         <p className="lead">From ancient sunlight locked in coal to today's silicon solar panels, energy sources differ enormously in where they come from and what they cost the planet.</p>
       </div>
 
+      <Figure src="img/sources.png" caption="Renewable sources (sun, wind, water) compared with non-renewable fuels." />
       <DotPoint id="1.2.1" title="Types of energy sources" progress={progress} setProgress={setProgress}>
         <p>An <Term def="Any store of energy that humans can extract and use to do useful work, generate heat, or produce electricity.">energy source</Term> is classified as <Term def="An energy source formed over millions of years that is consumed faster than it is replenished; once used, it is effectively gone.">non-renewable</Term> or <Term def="An energy source replenished naturally on human timescales; theoretically inexhaustible as long as the natural process driving it continues.">renewable</Term>. The three main <Term def="Coal, petroleum, and natural gas: formed from ancient organisms buried and compressed over hundreds of millions of years.">fossil fuels</Term> are coal, petroleum, and natural gas, all storing <Term def="Energy stored in chemical bonds, released by combustion or other chemical reactions.">chemical potential energy</Term> released by combustion. Renewable sources include solar, wind, hydroelectric, geothermal, tidal, wave, and biomass energy.</p>
         <p>Nuclear energy sits in its own category: it uses finite uranium ore, but a tiny mass of fuel releases an enormous amount of energy and produces no direct combustion emissions. Understanding which category each source belongs to helps you evaluate its long-term sustainability.</p>
@@ -619,6 +621,7 @@ function Section3({ progress, setProgress }) {
         <p className="lead">Electricity flows in loops. Understanding voltage, current, and resistance lets you predict and control how any circuit behaves.</p>
       </div>
 
+      <Figure src="img/circuit.png" caption="A simple circuit — battery, switch and globe connected by wires." />
       <DotPoint id="1.3.1" title="Elements of a complete circuit" progress={progress} setProgress={setProgress}>
         <p>An <Term def="A flow of charged particles (electrons) through a conductor.">electric current</Term> needs a complete, unbroken conducting path to flow. Break it anywhere and current stops instantly, everywhere in the circuit. A complete circuit has four essentials: an energy source (battery or power supply), conducting wires, at least one <Term def="A component that converts electrical energy into another form, such as a lamp (light) or motor (kinetic energy).">load</Term>, and usually a switch.</p>
         <p>A <Term def="A single electrochemical unit that converts chemical potential energy into electrical energy.">cell</Term> is a single unit; a battery is two or more cells joined together. Current flows from the positive terminal, through the external circuit, back to the negative terminal. Inside the battery, chemical reactions push charge from negative to positive, maintaining the <Term def="Potential difference: the energy transferred per unit of charge between two points in a circuit, measured in volts (V).">potential difference</Term> that drives the current.</p>
@@ -761,6 +764,7 @@ function Section4({ progress, setProgress }) {
 mountTopicApp({
   year: 9,
   topicTitle: "Energy",
+  heroImage: "img/hero.png",
   strand: "Stage 5 · NSW Science",
   accent: "blue",
   storageKey: "y9.energy",
