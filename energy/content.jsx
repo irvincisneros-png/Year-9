@@ -110,7 +110,7 @@ function PendulumSim() {
   }, [running, mass]);
 
   return (
-    <Interactive title="Pendulum: KE and PE swap" subtitle="Watch kinetic energy (blue) and potential energy (green) trade back and forth while the total (purple) stays constant.">
+    <Interactive title="Pendulum: KE and PE swap" subtitle="Watch kinetic energy (blue) and potential energy (green) trade back and forth while the total (purple) stays constant." takeaway="As the pendulum swings, kinetic and potential energy continually convert into each other, but the total energy stays constant throughout.">
       <div className="ctrl-row">
         <Slider label="Starting angle" min={5} max={80} step={1} value={angle} onChange={v => { setAngle(v); if (!running) draw(v * Math.PI / 180, 0); }} unit="deg"/>
         <Slider label="Bob mass" min={0.2} max={3.0} step={0.1} value={mass} onChange={v => { setMass(v); if (!running) draw(stateRef.current.theta, stateRef.current.omega); }} unit=" kg"/>
@@ -146,7 +146,7 @@ function EfficiencyCalc() {
   }
 
   return (
-    <Interactive title="Efficiency calculator" subtitle="Set the input and useful output energy to calculate efficiency. Or pick a common device.">
+    <Interactive title="Efficiency calculator" subtitle="Set the input and useful output energy to calculate efficiency. Or pick a common device." takeaway="No real device is 100% efficient; some input energy is always wasted, usually as heat, and efficiency = (useful output / total input) x 100.">
       <div className="ctrl-row" style={{ flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
         {devices.map(d => (
           <button key={d.name} className="btn btn-ghost" style={{ fontSize: 12, padding: "4px 10px" }} onClick={() => loadDevice(d)}>{d.name}</button>
@@ -177,7 +177,7 @@ function EfficiencyCalc() {
 
 function EnergySourceSorter() {
   return (
-    <Interactive title="Sort the energy sources" subtitle="Drag or click each source into the correct category.">
+    <Interactive title="Sort the energy sources" subtitle="Drag or click each source into the correct category." takeaway="Energy sources are classified as renewable (naturally replenished), non-renewable (finite fossil fuels), or nuclear, which sits in its own category.">
       <MatchBuckets
         items={[
           { id: "coal", label: "Coal", bucket: "nonrenewable" },
@@ -212,7 +212,7 @@ function PowerStationFlow() {
   };
   const f = flows[source];
   return (
-    <Interactive title="Energy transformation chains" subtitle="Select a power source to see how energy changes form on the way to becoming electricity.">
+    <Interactive title="Energy transformation chains" subtitle="Select a power source to see how energy changes form on the way to becoming electricity." takeaway="Every power source transforms energy through a chain of steps to produce electricity, and solar PV has the fewest steps because it converts light directly to electricity with no turbine.">
       <SegToggle
         options={[
           { value: "coal", label: "Coal" },
@@ -280,7 +280,7 @@ function CircuitBuilder() {
   }
 
   return (
-    <Interactive title="Circuit builder" subtitle="Switch between series and parallel, adjust resistances, and watch the bulbs respond. Toggle the switch to break the circuit.">
+    <Interactive title="Circuit builder" subtitle="Switch between series and parallel, adjust resistances, and watch the bulbs respond. Toggle the switch to break the circuit." takeaway="In a series circuit the same current flows through all components, while in a parallel circuit each branch gets the full supply voltage and operates independently.">
       <div className="ctrl-row" style={{ flexWrap: "wrap" }}>
         <SegToggle options={[{ value: "series", label: "Series" }, { value: "parallel", label: "Parallel" }]} value={mode} onChange={setMode}/>
         <button className="btn btn-ghost" style={{ fontSize: 13 }} onClick={() => setSwitchOpen(!switchOpen)}>
@@ -338,7 +338,7 @@ function OhmsLawExplorer() {
   const power = (vVal * iVal).toFixed(1);
 
   return (
-    <Interactive title="Ohm's law explorer" subtitle="Lock one quantity and adjust the other two. V = I x R is always satisfied.">
+    <Interactive title="Ohm's law explorer" subtitle="Lock one quantity and adjust the other two. V = I x R is always satisfied." takeaway="Ohm's law (V = I x R) means that for a fixed resistance, doubling the voltage doubles the current, and increasing resistance reduces the current for a given voltage.">
       <div style={{ marginBottom: 8 }}>
         <span style={{ fontSize: 13, fontWeight: 600, marginRight: 8 }}>Calculate:</span>
         <SegToggle options={[{ value: "V", label: "Find V" }, { value: "I", label: "Find I" }, { value: "R", label: "Find R" }]} value={knob} onChange={setKnob}/>
@@ -372,7 +372,7 @@ function PowerEnergyCalc() {
   const cost = (parseFloat(energyKwh) * costPerKwh).toFixed(4);
 
   return (
-    <Interactive title="Power and energy calculator" subtitle="Adjust voltage, current and time to see power, energy and running cost.">
+    <Interactive title="Power and energy calculator" subtitle="Adjust voltage, current and time to see power, energy and running cost." takeaway="Electrical power (P = V x I) tells you how fast energy is used, and total energy (E = P x t) determines the running cost of an appliance.">
       <div className="ctrl-row">
         <Slider label="Voltage" min={1} max={240} step={1} value={voltage} onChange={setVoltage} unit=" V"/>
         <Slider label="Current" min={0.01} max={15} step={0.01} value={current} onChange={setCurrent} unit=" A" fmt={v => v.toFixed(2)}/>
@@ -401,7 +401,7 @@ function StarRatingCompare() {
   const maxKwh = 850;
 
   return (
-    <Interactive title="Energy star rating: refrigerator" subtitle="Move the star slider to see how annual energy and cost change. Compare against the best (6-star) model.">
+    <Interactive title="Energy star rating: refrigerator" subtitle="Move the star slider to see how annual energy and cost change. Compare against the best (6-star) model." takeaway="Higher star-rated appliances use significantly less energy per year, so paying more upfront for a higher-rated model can save money over the appliance's lifetime.">
       <div className="ctrl-row">
         <Slider label="Star rating" min={1} max={6} step={1} value={stars} onChange={setStars} unit=" stars"/>
       </div>
@@ -444,7 +444,7 @@ function EnergyTrendsChart() {
   const bw = (W - padL - padR) / data.length;
 
   return (
-    <Interactive title="Global energy consumption trends" subtitle="Toggle between total energy and per-person energy to see how demand has changed.">
+    <Interactive title="Global energy consumption trends" subtitle="Toggle between total energy and per-person energy to see how demand has changed." takeaway="Global total energy roughly doubled from 1970 to 2020, but per-person use grew much more slowly, showing that efficiency improvements have partially offset population-driven demand growth.">
       <SegToggle
         options={[{ value: "total", label: "Total (EJ)" }, { value: "person", label: "Per person (GJ)" }]}
         value={view}
@@ -486,7 +486,7 @@ function EnergyCriteriaEval() {
   const [sel, setSel] = useState("Solar PV");
 
   return (
-    <Interactive title="Evaluate alternative energy sources" subtitle="Select a source to see how it scores on five key criteria for Australia (1 = poor, 5 = excellent).">
+    <Interactive title="Evaluate alternative energy sources" subtitle="Select a source to see how it scores on five key criteria for Australia (1 = poor, 5 = excellent)." takeaway="No single energy source scores perfectly on all criteria, so a mix of complementary sources is a more robust strategy than relying on just one.">
       <SegToggle
         options={sources.map(s => ({ value: s, label: s }))}
         value={sel}
@@ -764,6 +764,7 @@ function Section4({ progress, setProgress }) {
 mountTopicApp({
   year: 9,
   topicTitle: "Energy",
+  branch: "physics",
   heroImage: "img/hero.png",
   strand: "Stage 5 · NSW Science",
   accent: "blue",
