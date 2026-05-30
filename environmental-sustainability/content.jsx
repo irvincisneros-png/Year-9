@@ -1019,6 +1019,7 @@ function Section5({ progress, setProgress }) {
 mountTopicApp({
   year: 9,
   topicTitle: "Environmental Sustainability",
+  branch: "environmental",
   heroImage: "img/hero.png",
   strand: "Stage 5 · NSW Science",
   accent: "green",

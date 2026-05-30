@@ -975,6 +975,7 @@ function Section35({ progress, setProgress }) {
 mountTopicApp({
   year: 9,
   topicTitle: "Materials",
+  branch: "chemistry",
   heroImage: "img/hero.png",
   strand: "Stage 5 · NSW Science",
   accent: "violet",
