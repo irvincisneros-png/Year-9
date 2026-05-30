@@ -29,7 +29,7 @@ function PillarsExplorer() {
   ];
   const sel = active ? pillars.find(p => p.id === active) : null;
   return (
-    <Interactive title="Three Pillars of Sustainability" subtitle="Tap a pillar to explore its goals and examples.">
+    <Interactive title="Three Pillars of Sustainability" subtitle="Tap a pillar to explore its goals and examples." takeaway="True sustainability requires balancing environmental, economic, and social goals together, because neglecting any one pillar undermines the others.">
       <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
         {pillars.map(p => (
           <button key={p.id} onClick={() => setActive(active === p.id ? null : p.id)}
@@ -108,7 +108,7 @@ function SolutionEvaluator() {
     </div>
   );
   return (
-    <Interactive title="Sustainability Solution Evaluator" subtitle="Pick a real-world scenario and see how it scores across all three pillars.">
+    <Interactive title="Sustainability Solution Evaluator" subtitle="Pick a real-world scenario and see how it scores across all three pillars." takeaway="A valid sustainability solution must score reasonably well across environmental, economic, and social criteria, not just one of them.">
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18, justifyContent: "center" }}>
         {scenarios.map((sc, i) => (
           <button key={i} onClick={() => setIdx(i)}
@@ -192,7 +192,7 @@ function WeatherClimateSorter() {
     { id: "f", label: "Central Australia has an arid climate with hot summers", bucket: "climate" },
   ];
   return (
-    <Interactive title="Weather or Climate?" subtitle="Sort each statement into the correct category.">
+    <Interactive title="Weather or Climate?" subtitle="Sort each statement into the correct category." takeaway="Weather describes short-term conditions at a specific place and time, while climate is the long-term average pattern built from at least 30 years of data.">
       <MatchBuckets
         items={items}
         buckets={[{ id: "weather", label: "Weather" }, { id: "climate", label: "Climate" }]}
@@ -210,7 +210,7 @@ function GreenhouseSimulator() {
   const anomaly = (surfaceTemp - 15).toFixed(1);
   const col = anomaly > 0.5 ? "#ef4444" : anomaly > 0 ? "#f59e0b" : "#22c55e";
   return (
-    <Interactive title="Greenhouse Effect Simulator" subtitle="Drag the CO2 slider and see how atmospheric concentration affects surface temperature.">
+    <Interactive title="Greenhouse Effect Simulator" subtitle="Drag the CO2 slider and see how atmospheric concentration affects surface temperature." takeaway="Increasing CO2 above the pre-industrial level of 280 ppm enhances the natural greenhouse effect and raises Earth's surface temperature above its natural baseline.">
       <div className="ctrl-row">
         <Slider label="Atmospheric CO2" min={180} max={560} step={10} value={co2Level} onChange={setCo2Level} unit=" ppm" />
       </div>
@@ -258,7 +258,7 @@ function EmissionsBreakdown() {
     return { ...s, d: `M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2} Z`, idx: i };
   });
   return (
-    <Interactive title="Global Emissions by Sector" subtitle="Hover or tap a slice to see the sector's contribution. Energy and industry together account for 58% of emissions.">
+    <Interactive title="Global Emissions by Sector" subtitle="Hover or tap a slice to see the sector's contribution. Energy and industry together account for 58% of emissions." takeaway="Energy generation and industry together produce more than half of all global greenhouse gas emissions, making these sectors the highest priority for reducing the enhanced greenhouse effect.">
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "flex-start", justifyContent: "center" }}>
         <svg viewBox="0 0 180 180" width={180} height={180} style={{ flexShrink: 0 }}>
           {slices.map(sl => (
@@ -421,7 +421,7 @@ function Section2({ progress, setProgress }) {
         <Callout kind="tip" title="No single solution is enough">
           Reducing emissions fast enough requires combining renewable energy, efficiency, electrifying transport, better land use, and where necessary, CCS. Each method has genuine trade-offs.
         </Callout>
-        <Interactive title="Emission Reduction Method Comparison" subtitle="Compare four key strategies by their key strengths and weaknesses.">
+        <Interactive title="Emission Reduction Method Comparison" subtitle="Compare four key strategies by their key strengths and weaknesses." takeaway="Each emission reduction method has genuine trade-offs, so reducing emissions fast enough requires combining multiple strategies rather than relying on one alone.">
           <div className="grid-2" style={{ gap: 12 }}>
             {[
               { name: "Solar PV", pro: "Cheapest new electricity; rapidly scalable; near-zero emissions.", con: "Intermittent; needs storage or backup to be reliable around the clock." },
@@ -471,7 +471,7 @@ function SeaLevelRiseModel() {
   const meltContrib = (landIceMelt * 0.035).toFixed(2);
   const total = (parseFloat(thermalExpansion) + parseFloat(meltContrib)).toFixed(2);
   return (
-    <Interactive title="Sea Level Rise Mechanisms" subtitle="Adjust the two main drivers of sea level rise and see how each contributes to the total.">
+    <Interactive title="Sea Level Rise Mechanisms" subtitle="Adjust the two main drivers of sea level rise and see how each contributes to the total." takeaway="Sea level rise has two causes: melting land ice adds water to the ocean, while thermal expansion occurs because warmer water takes up more space.">
       <div className="ctrl-row">
         <Slider label="Land ice melt (Gt/yr)" min={0} max={500} step={10} value={landIceMelt} onChange={setLandIceMelt} unit=" Gt/yr" />
         <Slider label="Ocean warming" min={0} max={2} step={0.1} value={tempRise} onChange={setTempRise} unit=" C" />
@@ -495,7 +495,7 @@ function WaterCycleImpact() {
   const drierRisk = (warming * 15).toFixed(0);
   const glacierLoss = (warming * 12).toFixed(0);
   return (
-    <Interactive title="Climate Change and the Water Cycle" subtitle="As global temperature rises, the water cycle intensifies. Explore the impacts.">
+    <Interactive title="Climate Change and the Water Cycle" subtitle="As global temperature rises, the water cycle intensifies. Explore the impacts." takeaway="Warming intensifies the water cycle: evaporation increases, wet regions receive more intense rainfall, and dry regions face greater drought risk, following the principle that 'wet gets wetter, dry gets drier'.">
       <div className="ctrl-row">
         <Slider label="Global temperature rise" min={0.5} max={4} step={0.1} value={warming} onChange={setWarming} unit=" C" />
       </div>
@@ -542,7 +542,7 @@ function Section3({ progress, setProgress }) {
         <Callout kind="key" title="Four key climate change characteristics">
           Rising temperatures (global, +1.1 C). Sea level rise (+20 cm since 1900, now 3.7 mm/yr). Declining Arctic sea ice (13% per decade since 1979). More frequent and intense extreme heat events.
         </Callout>
-        <Interactive title="Climate Change Characteristics Summary" subtitle="Key measurable indicators of current climate change and their observed trends.">
+        <Interactive title="Climate Change Characteristics Summary" subtitle="Key measurable indicators of current climate change and their observed trends." takeaway="Multiple independent indicators, including rising temperatures, sea level, and declining Arctic ice, all show the same direction of change, providing strong evidence that climate change is real and ongoing.">
           <div style={{ overflowX: "auto" }}>
             <table className="data-table" style={{ width: "100%" }}>
               <thead><tr><th>Characteristic</th><th>Observed Change</th><th>Rate</th></tr></thead>
@@ -604,7 +604,7 @@ function Section3({ progress, setProgress }) {
         <Callout kind="fact" title="Why satellites beat ground stations">
           A single satellite pass can cover more ground in minutes than thousands of weather stations. Passive microwave sensors can even detect sea ice through clouds, which are always present over polar regions.
         </Callout>
-        <Interactive title="Satellite Climate Monitoring: Key Missions" subtitle="Satellites measure variables that cannot be observed globally from the ground.">
+        <Interactive title="Satellite Climate Monitoring: Key Missions" subtitle="Satellites measure variables that cannot be observed globally from the ground." takeaway="Satellites can continuously monitor the entire planet's temperature, sea level, ice, and CO2 in ways that ground-based stations cannot, making them essential tools for tracking climate change.">
           <div style={{ overflowX: "auto" }}>
             <table className="data-table" style={{ width: "100%" }}>
               <thead><tr><th>Mission</th><th>Variable</th><th>Use</th></tr></thead>
@@ -644,7 +644,7 @@ function PollutionChain() {
     { icon: "🔬", title: "Scientists measure: eutrophication confirmed", desc: "Water sampling confirms elevated nutrients, depleted oxygen, and ecological collapse." },
   ];
   return (
-    <Interactive title="Eutrophication: From Farm to Fish Kill" subtitle="Step through the sequence of events linking agricultural pollution to ecosystem collapse.">
+    <Interactive title="Eutrophication: From Farm to Fish Kill" subtitle="Step through the sequence of events linking agricultural pollution to ecosystem collapse." takeaway="Eutrophication is a chain reaction: excess nutrients from fertiliser runoff trigger algal blooms, whose decomposition depletes dissolved oxygen and can cause a complete fish kill.">
       <div style={{ display: "flex", gap: 6, marginBottom: 16, justifyContent: "center", flexWrap: "wrap" }}>
         {steps.map((s, i) => (
           <button key={i} onClick={() => setStep(i)}
@@ -682,7 +682,7 @@ function WasteHierarchyGame() {
     { id: "h", label: "Sort glass bottles into the recycling bin", bucket: "recycle" },
   ];
   return (
-    <Interactive title="Waste Hierarchy Sorter" subtitle="Sort each action into its correct level of the waste hierarchy, from most to least preferred.">
+    <Interactive title="Waste Hierarchy Sorter" subtitle="Sort each action into its correct level of the waste hierarchy, from most to least preferred." takeaway="The waste hierarchy ranks strategies from most preferred (reduce) to least preferred (dispose), because preventing waste at the source avoids more environmental impact than treating it later.">
       <MatchBuckets
         items={items}
         buckets={[
@@ -707,7 +707,7 @@ function RecyclingEnergyComparison() {
   ];
   const [sel, setSel] = useState(null);
   return (
-    <Interactive title="Recycling Energy Savings" subtitle="Energy saved by recycling versus producing from virgin raw materials. Tap a bar to see details.">
+    <Interactive title="Recycling Energy Savings" subtitle="Energy saved by recycling versus producing from virgin raw materials. Tap a bar to see details." takeaway="Recycling materials like aluminium saves a large proportion of the energy needed to produce them from raw materials, which is why recycling has significant environmental and economic benefits.">
       <svg viewBox="0 0 460 180" width="100%" style={{ maxWidth: 460 }}>
         {materials.map((m, i) => {
           const barW = (m.saving / 100) * 300;
@@ -771,7 +771,7 @@ function Section4({ progress, setProgress }) {
         <Callout kind="key" title="IEK and sustainability principles">
           Cultural burning directly embodies intergenerational equity (practised for 65,000 years for future generations) and biodiversity conservation (habitat mosaics support greater species diversity than unmanaged land). IEK is not separate from science; it is a form of systematic, evidence-based knowledge accumulated over thousands of years.
         </Callout>
-        <Interactive title="Indigenous Sustainable Practices" subtitle="Three key examples of Indigenous ecological knowledge applied to sustainable resource management.">
+        <Interactive title="Indigenous Sustainable Practices" subtitle="Three key examples of Indigenous ecological knowledge applied to sustainable resource management." takeaway="Aboriginal and Torres Strait Islander peoples developed sustainable resource management practices over tens of thousands of years, and these embody the same principles of intergenerational equity and biodiversity conservation used in modern sustainability science.">
           <div className="grid-2" style={{ gap: 12 }}>
             {[
               { title: "Cultural Burning", icon: "🔥", body: "Low-intensity, timed burns managed biodiversity and reduced fuel loads for tens of thousands of years. Now being reintegrated into modern land management across Australia." },
@@ -830,7 +830,7 @@ function Section4({ progress, setProgress }) {
         <Callout kind="tip" title="Innovation does not replace reduction">
           Even the best recycling technology cannot achieve 100% recovery. Innovative recycling complements but does not replace the reduce and reuse steps at the top of the waste hierarchy. If chemical recycling is used to justify continued single-use plastic production, total plastic waste may still increase.
         </Callout>
-        <Interactive title="Innovative Recycling: Comparison" subtitle="Four emerging technologies that go beyond conventional mechanical recycling.">
+        <Interactive title="Innovative Recycling: Comparison" subtitle="Four emerging technologies that go beyond conventional mechanical recycling." takeaway="Emerging recycling technologies such as enzymatic and chemical recycling can process materials that conventional mechanical recycling cannot, but they complement rather than replace the higher-priority steps of reducing and reusing.">
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {[
               { name: "Chemical Recycling (Pyrolysis)", detail: "Heats mixed plastics at 300 to 700 C without oxygen. Breaks polymers into oil and gas. Can handle contaminated, mixed plastics that cannot be mechanically recycled. Products used as fuel or feedstocks for new plastic." },
@@ -882,7 +882,7 @@ function PlasticPathwayMap() {
   ];
   const W = 360, H = 220;
   return (
-    <Interactive title="Marine Plastic Pollution Pathway" subtitle="Tap a node to explore how plastic travels from production to ocean accumulation.">
+    <Interactive title="Marine Plastic Pollution Pathway" subtitle="Tap a node to explore how plastic travels from production to ocean accumulation." takeaway="Marine plastic pollution follows a multi-step pathway from production to ocean accumulation, and intervening at any early stage, especially waste management, prevents far more harm than trying to clean up the ocean.">
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: W }}>
         {edges.map(([a, b]) => {
           const n1 = nodes[a], n2 = nodes[b];
@@ -947,7 +947,7 @@ function PlasticSolutionAnalyser() {
     </div>
   );
   return (
-    <Interactive title="Marine Plastic: Solution Analyser" subtitle="Select a solution strategy and see how it rates across four sustainability criteria.">
+    <Interactive title="Marine Plastic: Solution Analyser" subtitle="Select a solution strategy and see how it rates across four sustainability criteria." takeaway="Improving waste management infrastructure scores highest on both environmental effectiveness and scalability, making it the most impactful single strategy for reducing marine plastic pollution.">
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
         {solutions.map((sol, i) => (
           <button key={i} onClick={() => setSel(i)}

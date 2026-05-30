@@ -18,7 +18,7 @@ function ResourceExplorer() {
   const r = resources[sel];
   const maxProd = 895;
   return (
-    <Interactive title="Australian Resource Explorer" subtitle="Tap a resource to see where it comes from, what it makes, and how much is produced.">
+    <Interactive title="Australian Resource Explorer" subtitle="Tap a resource to see where it comes from, what it makes, and how much is produced." takeaway="Australia's mineral resources are finite: each deposit formed over millions of years and cannot be replaced on a human timescale, making responsible use and recycling essential.">
       <div className="row" style={{ flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
         {resources.map((res, i) => (
           <button key={res.name} onClick={() => setSel(i)}
@@ -74,7 +74,7 @@ function AtomShellBuilder() {
     });
   }
   return (
-    <Interactive title="Atom Shell Builder" subtitle="Select an element to see its electron shells and valency.">
+    <Interactive title="Atom Shell Builder" subtitle="Select an element to see its electron shells and valency." takeaway="An element's valency is determined by the number of electrons in its outer shell, and atoms bond to gain, lose, or share electrons until they reach the stable full-shell arrangement of a noble gas.">
       <div className="row" style={{ flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
         {elements.map((e, i) => (
           <button key={e.sym} onClick={() => setSelIdx(i)}
@@ -155,7 +155,7 @@ function BondVisualiser() {
   };
   const sc = scenes[type];
   return (
-    <Interactive title="Bond Type Visualiser" subtitle="Switch between bond types to compare electron behaviour.">
+    <Interactive title="Bond Type Visualiser" subtitle="Switch between bond types to compare electron behaviour." takeaway="Ionic bonds transfer electrons between metal and non-metal atoms, covalent bonds share electrons between non-metals, and metallic bonds involve a 'sea' of delocalised electrons, and each bond type produces materials with very different properties.">
       <SegToggle
         options={[{value:"ionic",label:"Ionic"},{value:"covalent",label:"Covalent"},{value:"metallic",label:"Metallic"}]}
         value={type} onChange={setType}/>
@@ -221,7 +221,7 @@ function FractionColumn() {
   ];
   const [sel, setSel] = useState(null);
   return (
-    <Interactive title="Fractional Distillation Column" subtitle="Tap a fraction to learn its boiling point range, chain length and uses.">
+    <Interactive title="Fractional Distillation Column" subtitle="Tap a fraction to learn its boiling point range, chain length and uses." takeaway="Fractional distillation separates crude oil by boiling point: shorter carbon chains have lower boiling points and condense near the top of the column, while longer chains condense lower down.">
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "flex-start" }}>
         <div style={{ position: "relative", width: 160, flexShrink: 0 }}>
           <svg viewBox="0 0 160 210" width="160" height="210">
@@ -282,7 +282,7 @@ function AlkaneBuilder() {
   const pct = (al.bp - bpMin) / (bpMax - bpMin);
   const cx = 20 + pct * 280;
   return (
-    <Interactive title="Alkane Builder" subtitle="Use the slider to build alkanes from C1 (methane) to C8 (octane) and watch the formula, boiling point and state change.">
+    <Interactive title="Alkane Builder" subtitle="Use the slider to build alkanes from C1 (methane) to C8 (octane) and watch the formula, boiling point and state change." takeaway="As alkane chain length increases, boiling point rises and state changes from gas to liquid because larger molecules have stronger intermolecular forces.">
       <Slider label="Carbon atoms (n)" min={1} max={8} step={1} value={n} onChange={v => setN(v)} unit=""/>
       <div className="stat-readout">
         <Stat value={al.name} label="IUPAC name"/>
@@ -335,7 +335,7 @@ function PolymerComparison() {
   ];
   const colours = ["#7c3aed","#2563eb","#059669","#d97706","#e11d48","#84cc16","#374151"];
   return (
-    <Interactive title="Polymer Properties Comparison" subtitle="Select a polymer to compare its key properties.">
+    <Interactive title="Polymer Properties Comparison" subtitle="Select a polymer to compare its key properties." takeaway="Different polymers have very different combinations of flexibility, strength, heat resistance, and recyclability depending on their chain structure, so selecting the right polymer requires matching its properties to the intended use.">
       <div className="row" style={{ flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
         {polymers.map((po, i) => (
           <button key={po.name} onClick={() => setSel(i)}
@@ -409,7 +409,7 @@ function LCATool() {
   const pair = pairs[pairIdx];
   const colours = { alt: "#7c3aed", conv: "#e11d48" };
   return (
-    <Interactive title="Life Cycle Assessment (LCA) Tool" subtitle="Compare the environmental impact of two packaging options at each life cycle stage. Lower score = lower impact.">
+    <Interactive title="Life Cycle Assessment (LCA) Tool" subtitle="Compare the environmental impact of two packaging options at each life cycle stage. Lower score = lower impact." takeaway="A material that looks environmentally friendly at one stage, such as end-of-life, may have much higher impacts at another stage such as manufacturing, so a full life cycle assessment across all stages is needed for an honest comparison.">
       <SegToggle options={pairs.map((p, i) => ({ value: i, label: p.label.split(" vs ")[0] + " vs..." }))}
         value={pairIdx} onChange={v => setPairIdx(Number(v))}/>
       <div style={{ marginTop: 12, fontWeight: 600, fontSize: "0.9rem", marginBottom: 8 }}>{pair.label}</div>
