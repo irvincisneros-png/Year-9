@@ -31,7 +31,7 @@ const GLOSSARY = {
   "vaccine": "A preparation that stimulates the immune system to develop immunity to a specific pathogen.",
   "herd immunity": "Indirect protection when a high proportion of a population is immune.",
   "vector": "An organism (often an insect) that transmits a pathogen from one host to another.",
-  "chronic disease": "A long-lasting, non-infectious disease.",
+  "chronic disease": "A disease that lasts a long time (months to years or for life). Most non-infectious diseases are chronic, but some infections (e.g. HIV) can be too.",
   "cilia": "Tiny hair-like projections on cells lining the airways that sweep mucus out.",
   "lymphocyte": "A white blood cell (B-cell or T-cell) involved in specific immunity.",
   "adaptive immunity": "The specific immune response involving B- and T-cells that targets a specific pathogen and remembers it.",

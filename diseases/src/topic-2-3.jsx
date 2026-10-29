@@ -26,7 +26,7 @@ function Topic23({ progress, setProgress }) {
       <SubNav items={items} progress={progress} activeId={active} />
 
       <DotPoint id="2.3.1" title={items[0].title} progress={progress} setProgress={setProgress}>
-        <p>Around half the risk of the most common chronic diseases in Australia is linked to modifiable lifestyle factors. Genetic factors can't be changed; lifestyle and environmental ones can.</p>
+        <p>A large share of the risk of the most common chronic diseases in Australia is linked to modifiable lifestyle factors. Genetic factors can't be changed; lifestyle and environmental ones can.</p>
         <h3>Individual action</h3>
         <ul>
           <li><strong>Eat a balanced diet</strong> — vegetables, fruit, wholegrains; limit saturated fat, sugar, salt.</li>
@@ -137,8 +137,8 @@ function Topic23({ progress, setProgress }) {
           <thead><tr><th>Disease</th><th>Before vaccination (Australia)</th><th>Now (Australia)</th></tr></thead>
           <tbody>
             <tr><td>Smallpox</td><td>Major epidemics 18–19th century</td><td>Eradicated globally (1980)</td></tr>
-            <tr><td>Polio</td><td>Hundreds of cases/year, many paralytic</td><td>No locally acquired cases since 2000</td></tr>
-            <tr><td>Measles</td><td>Tens of thousands of cases/year</td><td>&lt; 200 cases/year (mostly travel-linked)</td></tr>
+            <tr><td>Polio</td><td>Hundreds of cases/year, many paralytic</td><td>No locally acquired wild polio since the 1970s; Australia declared polio-free in 2000</td></tr>
+            <tr><td>Measles</td><td>Tens of thousands of cases/year</td><td>Usually under 300 cases/year (mostly travel-linked)</td></tr>
             <tr><td>Diphtheria</td><td>A leading killer of children</td><td>&lt; 10 cases/year</td></tr>
             <tr><td>Whooping cough</td><td>Thousands of cases; infant deaths</td><td>Outbreaks in unvaccinated communities</td></tr>
           </tbody>

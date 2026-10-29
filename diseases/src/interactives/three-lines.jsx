@@ -34,7 +34,7 @@ function ThreeLines() {
         { name: "B-cells", detail: "Produce antibodies that bind to a specific antigen." },
         { name: "Helper T-cells", detail: "Activate other immune cells." },
         { name: "Killer T-cells", detail: "Destroy body cells infected with a virus." },
-        { name: "Memory cells", detail: "Persist for years — why you only get chickenpox once." },
+        { name: "Memory cells", detail: "Persist for years — why you usually only get chickenpox once." },
       ]
     }
   };

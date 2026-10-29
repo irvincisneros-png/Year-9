@@ -161,7 +161,7 @@ function Section1({ progress, setProgress }) {
 
       <DotPoint id="4.1.2" title="Apply scientific understanding to propose valid solutions to identified problems" progress={progress} setProgress={setProgress}>
         <p>
-          Scientists play a central role in identifying sustainability problems and developing evidence-based solutions. A valid scientific solution must be supported by data, feasible with available technology, and evaluated for both benefits and <Term def="Effects of a solution that were not intended and may create new problems.">unintended consequences</Term>. The process starts with defining the problem clearly, gathering data, generating possible solutions, then evaluating each against environmental, economic, and social criteria.
+          Scientists play a central role in identifying sustainability problems and developing evidence-based solutions. A valid scientific solution must be supported by data, feasible with available technology, and evaluated for both benefits and <Term def="Effects of a solution that were not intended and may create new problems.">unintended consequences</Term>. The process starts with defining the problem clearly, gathering data, generating possible solutions, then evaluating each against environmental, economic, and social criteria, and finally implementing the best option and monitoring the results.
         </p>
         <p>
           Take over-extraction of freshwater as an example. Monitoring shows many rivers worldwide no longer reach the sea during dry seasons. Valid solutions include <Term def="A method of delivering water directly to plant roots through small tubes, reducing evaporation and runoff by up to 50% compared with flood irrigation.">drip irrigation</Term>, treating and reusing wastewater, rainwater harvesting, and restoring <Term def="Vegetation growing along river banks that slows runoff and recharges groundwater.">riparian vegetation</Term>. Each involves trade-offs between cost, ease of implementation, and effectiveness, which is why evidence-based comparison is essential.
@@ -331,18 +331,18 @@ function Section2({ progress, setProgress }) {
           Beyond temperature, scientists have documented sea levels rising approximately 20 centimetres since 1900, Arctic summer sea ice declining about 13 percent per decade since satellite records began in 1979, and extreme heat events increasing in frequency. These changes appear consistently across multiple <Term def="Sets of data collected and analysed independently by different organisations, which strengthen confidence when they show the same result.">independent data sets</Term> from organisations worldwide.
         </p>
 
-        <Figure caption="Global average surface temperature anomaly by decade above the 1850 to 1900 pre-industrial baseline, showing an accelerating warming trend.">
+        <Figure caption="Global average surface temperature anomaly by decade above the 1850 to 1900 pre-industrial baseline (approximate values), showing an accelerating warming trend.">
           <svg viewBox="0 0 520 200" width="100%" style={{ maxWidth: 520 }}>
             {(() => {
               const data = [
-                { label: "1880s", val: -0.15 }, { label: "1910s", val: -0.20 },
-                { label: "1940s", val: 0.05 }, { label: "1970s", val: 0.05 },
-                { label: "1990s", val: 0.35 }, { label: "2010s", val: 0.87 }
+                { label: "1880s", val: 0.0 }, { label: "1910s", val: -0.10 },
+                { label: "1940s", val: 0.20 }, { label: "1970s", val: 0.20 },
+                { label: "1990s", val: 0.55 }, { label: "2010s", val: 1.10 }
               ];
               const pad = { l: 52, r: 16, t: 20, b: 36 };
               const W = 520 - pad.l - pad.r;
               const H = 200 - pad.t - pad.b;
-              const minV = -0.3, maxV = 1.0;
+              const minV = -0.3, maxV = 1.2;
               const scaleY = v => pad.t + H - ((v - minV) / (maxV - minV)) * H;
               const bw = W / data.length - 8;
               const zero = scaleY(0);
@@ -350,13 +350,13 @@ function Section2({ progress, setProgress }) {
                 <g>
                   <line x1={pad.l} y1={pad.t} x2={pad.l} y2={pad.t + H} stroke="var(--border)" strokeWidth={1} />
                   <line x1={pad.l} y1={zero} x2={pad.l + W} y2={zero} stroke="var(--muted)" strokeWidth={1} strokeDasharray="4 3" />
-                  {[-0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0].map(v => (
+                  {[-0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2].map(v => (
                     <text key={v} x={pad.l - 4} y={scaleY(v) + 4} textAnchor="end" fontSize={10} fill="var(--muted)">{v.toFixed(1)}</text>
                   ))}
                   <text x={12} y={pad.t + H / 2} textAnchor="middle" fontSize={10} fill="var(--muted)" transform={`rotate(-90,12,${pad.t + H / 2})`}>Anomaly (C)</text>
                   {data.map((d, i) => {
                     const x = pad.l + i * (W / data.length) + 4;
-                    const col = d.val > 0 ? "#ef4444" : "#3b82f6";
+                    const col = d.val >= 0 ? "#ef4444" : "#3b82f6";
                     const barH = Math.abs(d.val) / (maxV - minV) * H;
                     const y = d.val >= 0 ? zero - barH : zero;
                     return (
@@ -372,7 +372,7 @@ function Section2({ progress, setProgress }) {
           </svg>
         </Figure>
         <Callout kind="fact" title="Key data point">
-          The 2010s had a temperature anomaly of +0.87 C above pre-industrial levels, the highest decade on record at the time.
+          The 2010s had a temperature anomaly of about +1.1 C above pre-industrial levels, the warmest decade on record at the time.
         </Callout>
         <QGroup title="Check yourself">
           <MCQ num={3} question="By approximately how much has global average temperature risen above pre-industrial levels?" options={["0.3 C","1.1 C","2.0 C","3.5 C"]} correct={1} explain="Global average surface temperature has risen approximately 1.1 degrees Celsius above the pre-industrial (1850 to 1900) baseline." />
@@ -425,7 +425,7 @@ function Section2({ progress, setProgress }) {
           <div className="grid-2" style={{ gap: 12 }}>
             {[
               { name: "Solar PV", pro: "Cheapest new electricity; rapidly scalable; near-zero emissions.", con: "Intermittent; needs storage or backup to be reliable around the clock." },
-              { name: "Wind Power", pro: "Large capacity available offshore and onshore; commercial proven.", con: "Intermittent; visual impact; requires grid integration and transmission." },
+              { name: "Wind Power", pro: "Large capacity available offshore and onshore; commercially proven.", con: "Intermittent; visual impact; requires grid integration and transmission." },
               { name: "Carbon Capture (CCS)", pro: "Can decarbonise hard-to-abate industry like steel and cement.", con: "Very expensive; large-scale geological storage not yet proven reliably." },
               { name: "Reforestation", pro: "Low cost; biodiversity co-benefits; widely deployable.", con: "Slow; land competition; forests can burn, releasing stored carbon." },
             ].map(m => (
@@ -467,8 +467,8 @@ function Section2({ progress, setProgress }) {
 function SeaLevelRiseModel() {
   const [landIceMelt, setLandIceMelt] = useState(0);
   const [tempRise, setTempRise] = useState(0);
-  const thermalExpansion = (tempRise * 0.18).toFixed(2);
-  const meltContrib = (landIceMelt * 0.035).toFixed(2);
+  const thermalExpansion = (tempRise * 0.65).toFixed(2);
+  const meltContrib = (landIceMelt / 361).toFixed(2); // about 361 Gt of ice melt raises global sea level by 1 mm
   const total = (parseFloat(thermalExpansion) + parseFloat(meltContrib)).toFixed(2);
   return (
     <Interactive title="Sea Level Rise Mechanisms" subtitle="Adjust the two main drivers of sea level rise and see how each contributes to the total." takeaway="Sea level rise has two causes: melting land ice adds water to the ocean, while thermal expansion occurs because warmer water takes up more space.">
@@ -482,7 +482,7 @@ function SeaLevelRiseModel() {
         <Stat value={total} label="Total rise (mm/yr)" />
       </div>
       <p className="muted" style={{ fontSize: 13, marginBottom: 0 }}>
-        Currently the world loses about 280 Gt of land ice per year from Greenland and 150 Gt from Antarctica. Ocean warming has contributed roughly 1 mm/yr of thermal expansion. Today's observed total is about 3.7 mm/yr.
+        Currently the world loses about 280 Gt of land ice per year from Greenland and 150 Gt from Antarctica. Ocean warming has contributed roughly 1 mm/yr of thermal expansion. Mountain glaciers and changes in land water storage (not modelled here) add to this. Today's observed total is about 3.7 mm/yr.
       </p>
     </Interactive>
   );
@@ -491,7 +491,7 @@ function SeaLevelRiseModel() {
 function WaterCycleImpact() {
   const [warming, setWarming] = useState(1.1);
   const evapIncrease = (warming * 7).toFixed(0);
-  const wetterIntensity = (warming * 8).toFixed(0);
+  const wetterIntensity = (warming * 7).toFixed(0);
   const drierRisk = (warming * 15).toFixed(0);
   const glacierLoss = (warming * 12).toFixed(0);
   return (
@@ -501,7 +501,7 @@ function WaterCycleImpact() {
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 8 }}>
         {[
-          { label: "Evaporation increase", val: evapIncrease + "%", col: "#f97316", desc: "Warmer air holds more water vapour." },
+          { label: "Water vapour in the air", val: "+" + evapIncrease + "%", col: "#f97316", desc: "Warmer air can hold about 7% more water vapour for each 1 C of warming." },
           { label: "Heavy rain intensity", val: "+" + wetterIntensity + "%", col: "#3b82f6", desc: "More atmospheric moisture fuels intense storms." },
           { label: "Drought risk (subtropical)", val: "+" + drierRisk + "%", col: "#eab308", desc: "Increased evaporation dries soils in mid-latitudes." },
           { label: "Glacier retreat risk", val: glacierLoss + "%", col: "#06b6d4", desc: "Reduced dry-season river flows downstream." },
@@ -585,7 +585,7 @@ function Section3({ progress, setProgress }) {
           The <Term def="The continuous movement of water between the ocean, atmosphere, and land through evaporation, condensation, precipitation, and runoff.">water cycle (hydrological cycle)</Term> is being altered by climate change. Higher temperatures increase evaporation rates, putting more water vapour into the atmosphere. More atmospheric water vapour means more energy is available for intense precipitation events. However, in regions where evaporation exceeds precipitation, soils become drier, leading to drought. The principle of <Term def="The tendency for wet regions to receive more rainfall and dry regions to receive less as the climate warms, amplifying existing rainfall patterns.">"wet gets wetter, dry gets drier"</Term> broadly describes this redistribution.
         </p>
         <p>
-          Coral reef ecosystems are especially vulnerable. When ocean temperatures rise even 1 to 2 degrees above normal seasonal maxima for several weeks, corals expel their <Term def="Microscopic photosynthetic algae that live in coral tissue, providing up to 90% of coral energy through photosynthesis and giving coral its colour.">zooxanthellae</Term>, causing bleaching. Australia's Great Barrier Reef has experienced five mass bleaching events since 1998, with four occurring between 2016 and 2022. Freshwater ecosystems, alpine meadows, and Arctic tundra are also being transformed as temperature and moisture patterns shift.
+          Coral reef ecosystems are especially vulnerable. When ocean temperatures rise even 1 to 2 degrees above normal seasonal maxima for several weeks, corals expel their <Term def="Microscopic photosynthetic algae that live in coral tissue, providing up to 90% of coral energy through photosynthesis and giving coral its colour.">zooxanthellae</Term>, causing bleaching. Australia's Great Barrier Reef has experienced seven mass bleaching events since 1998, with five of them between 2016 and 2024. Freshwater ecosystems, alpine meadows, and Arctic tundra are also being transformed as temperature and moisture patterns shift.
         </p>
         <WaterCycleImpact />
         <QGroup title="Check yourself">
@@ -602,7 +602,7 @@ function Section3({ progress, setProgress }) {
           <Term def="Sea surface temperature, measured by infrared sensors on satellites, providing daily global maps used to track coral bleaching risk and marine heat waves.">Sea surface temperature (SST)</Term> data from MODIS satellites lets scientists issue coral bleaching alerts weeks in advance. <Term def="Radar altimetry satellites that measure ocean surface height by timing how long radar pulses take to bounce back, detecting sea level change to within about 1 centimetre.">Radar altimetry</Term> satellites (Jason series, Sentinel-6) measure global sea level rise. The Landsat series has tracked deforestation since 1972 using <Term def="Normalised Difference Vegetation Index, a measure of vegetation health calculated from near-infrared and visible light reflectance detected by satellites.">NDVI</Term>. The GRACE mission detects ice mass loss by measuring tiny changes in Earth's gravitational field as ice sheets shrink.
         </p>
         <Callout kind="fact" title="Why satellites beat ground stations">
-          A single satellite pass can cover more ground in minutes than thousands of weather stations. Passive microwave sensors can even detect sea ice through clouds, which are always present over polar regions.
+          A single satellite pass can cover more ground in minutes than thousands of weather stations. Passive microwave sensors can even detect sea ice through clouds, which are often present over polar regions.
         </Callout>
         <Interactive title="Satellite Climate Monitoring: Key Missions" subtitle="Satellites measure variables that cannot be observed globally from the ground." takeaway="Satellites can continuously monitor the entire planet's temperature, sea level, ice, and CO2 in ways that ground-based stations cannot, making them essential tools for tracking climate change.">
           <div style={{ overflowX: "auto" }}>
@@ -749,7 +749,7 @@ function Section4({ progress, setProgress }) {
           <Term def="The introduction of substances into the natural environment at concentrations or rates that cause harmful effects on living organisms, ecosystems, or human health.">Environmental pollution</Term> occurs in air, water, and soil. Air pollution from burning fossil fuels produces <Term def="Sulfur dioxide, a gas produced by burning coal and smelting metals that reacts with water vapour to form acid rain.">sulfur dioxide (SO2)</Term>, nitrogen oxides (NOx), and <Term def="Fine particulate matter smaller than 2.5 micrometres that penetrates deep into the lungs and causes cardiovascular and respiratory disease.">PM2.5</Term>. Water pollution comes from agricultural runoff containing fertilisers and pesticides, industrial discharge of heavy metals, sewage, and plastic waste. Soil contamination results from industrial spills, mining waste, and landfill leachate.
         </p>
         <p>
-          The implications are wide-ranging. <Term def="The over-enrichment of a water body with nutrients (usually nitrogen and phosphorus from fertiliser runoff), causing algal blooms that deplete oxygen and kill aquatic life.">Eutrophication</Term> of waterways from nitrogen runoff causes algal blooms, oxygen depletion, and fish kills. <Term def="Acidic precipitation formed when SO2 and NOx react with water vapour in the atmosphere to produce sulfuric and nitric acid.">Acid rain</Term> damages forests and acidifies lakes. Heavy metals such as lead and mercury <Term def="The accumulation of a substance in organisms at increasing concentrations through successive levels of a food chain.">bioaccumulate</Term> in food chains. <Term def="Tiny plastic particles less than 5 mm in diameter, produced by fragmentation of larger plastic items or released directly from cosmetics and synthetic textiles.">Microplastics</Term> are now found in marine organisms at every trophic level.
+          The implications are wide-ranging. <Term def="The over-enrichment of a water body with nutrients (usually nitrogen and phosphorus from fertiliser runoff), causing algal blooms that deplete oxygen and kill aquatic life.">Eutrophication</Term> of waterways from nitrogen runoff causes algal blooms, oxygen depletion, and fish kills. <Term def="Acidic precipitation formed when SO2 and NOx react with water vapour in the atmosphere to produce sulfuric and nitric acid.">Acid rain</Term> damages forests and acidifies lakes. Heavy metals such as lead and mercury <Term def="The build-up of a substance in an organism faster than it is broken down or removed. When it becomes more concentrated at each higher level of a food chain, this is called biomagnification.">bioaccumulate</Term> in food chains. <Term def="Tiny plastic particles less than 5 mm in diameter, produced by fragmentation of larger plastic items or released directly from cosmetics and synthetic textiles.">Microplastics</Term> are now found in marine organisms at every trophic level.
         </p>
         <PollutionChain />
         <QGroup title="Check yourself">
@@ -811,7 +811,7 @@ function Section4({ progress, setProgress }) {
           Recycling involves collecting used materials, processing them to remove contaminants, and remanufacturing into new products. All processes start with collection, sorting at a <Term def="A specialised plant that receives, sorts, and processes recyclable materials collected from households and businesses, using mechanical systems, magnetic separators, and optical sorters.">materials recovery facility (MRF)</Term>, cleaning, and reprocessing. <Term def="The presence of non-recyclable items or food-soiled materials in recycling bins, which can spoil entire batches of recyclable material and increase processing costs.">Contamination</Term> is a significant challenge.
         </p>
         <p>
-          Aluminium is the most economically and environmentally valuable recycling stream. Recycling aluminium uses only about 5 percent of the energy needed to produce new aluminium from bauxite ore, making it 95 percent more energy-efficient. An aluminium can can be recycled and back on a supermarket shelf within 60 days. Paper recycling involves pulping in water, removing inks, and reforming fibres, though fibre length degrades with each cycle. Glass is crushed into <Term def="Crushed, cleaned recycled glass used as feedstock in furnaces; melts at lower temperature than virgin materials, saving energy.">cullet</Term>, melted, and reformed. Plastics are the most complex stream due to the many different polymer types that cannot be mixed.
+          Aluminium is the most economically and environmentally valuable recycling stream. Recycling aluminium uses only about 5 percent of the energy needed to produce new aluminium from bauxite ore, saving about 95 percent of the energy. An aluminium can can be recycled and back on a supermarket shelf within 60 days. Paper recycling involves pulping in water, removing inks, and reforming fibres, though fibre length degrades with each cycle. Glass is crushed into <Term def="Crushed, cleaned recycled glass used as feedstock in furnaces; melts at lower temperature than virgin materials, saving energy.">cullet</Term>, melted, and reformed. Plastics are the most complex stream due to the many different polymer types that cannot be mixed.
         </p>
         <RecyclingEnergyComparison />
         <QGroup title="Check yourself">
@@ -825,7 +825,7 @@ function Section4({ progress, setProgress }) {
           Traditional mechanical recycling has limitations: it cannot process all materials, often produces lower quality output than virgin inputs, and cannot handle highly mixed or contaminated waste. Scientists are developing new approaches. <Term def="A recycling process that breaks plastic polymers into their constituent monomers or smaller molecules using heat, solvents, or catalysts, without the limitations of mechanical sorting.">Chemical recycling</Term> includes pyrolysis (heating mixed plastics without oxygen to produce oil and gas feedstocks) and depolymerisation (breaking PET back to its original monomers for virgin-quality output).
         </p>
         <p>
-          Biological approaches include the use of <Term def="An enzyme discovered in 2016 in bacteria found at a Japanese plastic recycling facility, which naturally breaks down PET plastic. Engineered versions can do this much faster.">PETase</Term>, an enzyme that can break down PET plastic. Engineered PETase versions break down PET far faster than natural degradation and could enable industrial-scale enzymatic recycling that produces high-purity monomers. <Term def="The recovery of valuable metals (gold, silver, rare earth elements) from electronic waste using chemical processes. E-waste often contains metals at concentrations far exceeding natural ore grades.">Urban mining</Term> recovers gold, silver, copper, and rare earth elements from e-waste, with circuit boards containing 200 to 300 times more gold per tonne than natural ore.
+          Biological approaches include the use of <Term def="An enzyme discovered in 2016 in bacteria found at a Japanese plastic recycling facility, which naturally breaks down PET plastic. Engineered versions can do this much faster.">PETase</Term>, an enzyme that can break down PET plastic. Engineered PETase versions break down PET far faster than natural degradation and could enable industrial-scale enzymatic recycling that produces high-purity monomers. <Term def="The recovery of valuable metals (gold, silver, rare earth elements) from electronic waste using chemical processes. E-waste often contains metals at concentrations far exceeding natural ore grades.">Urban mining</Term> recovers gold, silver, copper, and rare earth elements from e-waste, with circuit boards containing tens to hundreds of times more gold per tonne than natural ore.
         </p>
         <Callout kind="tip" title="Innovation does not replace reduction">
           Even the best recycling technology cannot achieve 100% recovery. Innovative recycling complements but does not replace the reduce and reuse steps at the top of the waste hierarchy. If chemical recycling is used to justify continued single-use plastic production, total plastic waste may still increase.
@@ -836,7 +836,7 @@ function Section4({ progress, setProgress }) {
               { name: "Chemical Recycling (Pyrolysis)", detail: "Heats mixed plastics at 300 to 700 C without oxygen. Breaks polymers into oil and gas. Can handle contaminated, mixed plastics that cannot be mechanically recycled. Products used as fuel or feedstocks for new plastic." },
               { name: "Enzymatic Recycling (PETase)", detail: "PETase enzyme discovered 2016 breaks PET back to monomers at near room temperature. Engineered versions are faster. Produces virgin-quality PET monomers with lower energy than pyrolysis." },
               { name: "Urban Mining (E-waste)", detail: "Circuit boards contain gold at 200 to 300 g/tonne versus 1 to 5 g/tonne in best gold ores. Chemical extraction recovers gold, silver, copper, and rare earth elements at higher efficiency than mining primary ores." },
-              { name: "Textile-to-Fibre Recycling", detail: "Chemical dissolution breaks cotton or polyester fibres back to monomers. Enables true fibre-to-fibre recycling of clothing without quality loss, addressing the fashion industry's large waste problem." },
+              { name: "Textile-to-Fibre Recycling", detail: "Chemical processes dissolve cotton into cellulose or break polyester back into monomers. This enables fibre-to-fibre recycling of clothing with little quality loss, addressing the fashion industry's large waste problem." },
             ].map(item => (
               <details key={item.name} style={{ background: "var(--surface-alt)", borderRadius: 10, padding: "10px 14px" }}>
                 <summary style={{ fontWeight: 700, cursor: "pointer" }}>{item.name}</summary>
@@ -872,7 +872,7 @@ function PlasticPathwayMap() {
   const edges = [[0,1],[1,2],[1,3],[1,4],[2,5],[3,5],[4,5],[5,6],[5,7]];
   const infos = [
     "Humans produce approximately 400 million tonnes of plastic each year globally.",
-    "Single-use plastic is consumed and discarded within minutes to hours of manufacture.",
+    "Single-use plastic is often used for only minutes to hours before it is thrown away.",
     "Inadequate waste management; littering; plastic blown from landfill sites near waterways.",
     "Urban plastic waste is carried via stormwater drains directly to rivers and the coast.",
     "Agricultural plastic, industrial packaging, and containers enter rivers as floodwater runoff.",
@@ -947,7 +947,7 @@ function PlasticSolutionAnalyser() {
     </div>
   );
   return (
-    <Interactive title="Marine Plastic: Solution Analyser" subtitle="Select a solution strategy and see how it rates across four sustainability criteria." takeaway="Improving waste management infrastructure scores highest on both environmental effectiveness and scalability, making it the most impactful single strategy for reducing marine plastic pollution.">
+    <Interactive title="Marine Plastic: Solution Analyser" subtitle="Select a solution strategy and see how it rates across four sustainability criteria." takeaway="Improving waste management infrastructure scores top marks on both environmental effectiveness and scalability, making it one of the most impactful single strategy for reducing marine plastic pollution.">
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
         {solutions.map((sol, i) => (
           <button key={i} onClick={() => setSel(i)}

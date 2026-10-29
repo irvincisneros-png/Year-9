@@ -12,17 +12,17 @@ function FeedbackLoopSim() {
     const id = setInterval(() => {
       setBodyTemp(t => {
         // heat exchange with environment (small drift toward ambient)
-        const drift = (ambient - t) * 0.04;
+        const drift = (ambient - t) * 0.01;
         let corr = 0;
         let response = null;
         if (feedbackOn) {
           if (t < 36.8) {
             // too cold: shiver, constrict → warm up
-            corr = (37 - t) * 0.18;
+            corr = (37 - t) * 0.5;
             response = "cold";
           } else if (t > 37.2) {
             // too hot: sweat, vasodilate → cool down
-            corr = (37 - t) * 0.18;
+            corr = (37 - t) * 0.5;
             response = "hot";
           } else {
             response = "stable";

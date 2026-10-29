@@ -30,7 +30,7 @@ function Topic22({ progress, setProgress }) {
 
       <DotPoint id="2.2.1" title={items[0].title} progress={progress} setProgress={setProgress}>
         <p><G term="infectious disease">Infectious diseases</G> are caused by a <G term="pathogen">pathogen</G> — a living organism (or virus) that enters the body and causes harm. Because the pathogen can move to another person, infectious diseases can spread. Examples: influenza, COVID-19, chickenpox, tuberculosis, food poisoning.</p>
-        <p><G term="non-infectious disease">Non-infectious diseases</G> are not caused by a pathogen and cannot be passed from person to person. They are caused by genetics, lifestyle, environment or age. Examples: type 2 diabetes, most cancers, cardiovascular disease, asthma, dementia. Also called <G term="chronic disease">chronic</G> or non-communicable diseases (NCDs).</p>
+        <p><G term="non-infectious disease">Non-infectious diseases</G> are not caused by a pathogen and cannot be passed from person to person. They are caused by genetics, lifestyle, environment or age. Examples: type 2 diabetes, most cancers, cardiovascular disease, asthma, dementia. Most are <G term="chronic disease">chronic</G> (long-lasting) and are also called non-communicable diseases (NCDs).</p>
 
         <table className="data-table">
           <thead><tr><th>Feature</th><th>Infectious</th><th>Non-infectious</th></tr></thead>
@@ -38,7 +38,7 @@ function Topic22({ progress, setProgress }) {
             <tr><td>Cause</td><td>Pathogen</td><td>Genetic, lifestyle, environment, age</td></tr>
             <tr><td>Contagious?</td><td>Yes</td><td>No</td></tr>
             <tr><td>Onset</td><td>Often sudden (hours–days)</td><td>Often slow (months–years)</td></tr>
-            <tr><td>Duration</td><td>Short (days–weeks)</td><td>Long-term or lifelong</td></tr>
+            <tr><td>Duration</td><td>Often short (days–weeks)</td><td>Long-term or lifelong</td></tr>
             <tr><td>Examples</td><td>Influenza, COVID-19, measles</td><td>Heart disease, type 2 diabetes, asthma</td></tr>
           </tbody>
         </table>
@@ -68,7 +68,7 @@ function Topic22({ progress, setProgress }) {
           <tbody>
             <tr><td><G term="bacteria">Bacteria</G></td><td>Living, single-celled</td><td>Tuberculosis, strep throat, Salmonella food poisoning</td></tr>
             <tr><td><G term="virus">Viruses</G></td><td>Non-living (need a host cell)</td><td>Influenza, COVID-19, measles, HIV</td></tr>
-            <tr><td>Fungi</td><td>Living, uni/multicellular</td><td>Tinea, thrush, ringworm</td></tr>
+            <tr><td>Fungi</td><td>Living, uni/multicellular</td><td>Tinea (ringworm, athlete's foot), thrush</td></tr>
             <tr><td>Protozoa</td><td>Living, single-celled</td><td>Malaria, giardia</td></tr>
             <tr><td>Parasitic worms</td><td>Living, multicellular</td><td>Tapeworm, hookworm</td></tr>
           </tbody>
@@ -98,7 +98,7 @@ function Topic22({ progress, setProgress }) {
 
       <DotPoint id="2.2.3" title={items[2].title} progress={progress} setProgress={setProgress}>
         <p>Three terms describe disease spread: <G term="endemic">endemic</G>, <G term="epidemic">epidemic</G>, <G term="pandemic">pandemic</G>. The same disease can be described differently depending on where and when you look — flu is <em>endemic</em> in Australia most years, <em>epidemic</em> in a bad winter, and was <em>pandemic</em> in 2009 (H1N1).</p>
-        <p><strong><G term="incidence">Incidence</G></strong> = new cases in a period. <strong><G term="prevalence">Prevalence</G></strong> = total existing cases. HIV has low incidence but high prevalence because it lasts a long time.</p>
+        <p><strong><G term="incidence">Incidence</G></strong> = new cases in a period. <strong><G term="prevalence">Prevalence</G></strong> = total existing cases. In Australia, HIV has low incidence (few new cases each year) but a relatively high prevalence because people live with it for a long time.</p>
 
         <Interactive title="Endemic vs epidemic vs pandemic" subtitle="Watch the case curves evolve over time.">
           <EpidemicCurves />

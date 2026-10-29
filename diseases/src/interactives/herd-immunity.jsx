@@ -5,8 +5,8 @@ function HerdImmunity() {
   const N = 200;
   const diseases = {
     measles: { name: "Measles", r0: 15, thresh: 95 },
-    covid: { name: "COVID-19", r0: 3, thresh: 75 },
-    flu: { name: "Influenza", r0: 1.5, thresh: 40 },
+    covid: { name: "COVID-19 (original strain)", r0: 3, thresh: 67 },
+    flu: { name: "Influenza", r0: 1.5, thresh: 33 },
     polio: { name: "Polio", r0: 6, thresh: 85 },
   };
   const d = diseases[disease];
@@ -41,7 +41,7 @@ function HerdImmunity() {
           ? <><strong>✓ Herd immunity achieved.</strong> The pathogen cannot find enough hosts to spread — even unvaccinated people (orange) are indirectly protected. This is why vaccination programs protect newborns, chemo patients, and people with severe allergies who can't be vaccinated.</>
           : <><strong>⚠ Below threshold.</strong> An outbreak is possible. Unvaccinated people (orange) are at risk, and so are vulnerable people who can't be vaccinated. Slide up to {d.thresh}%.</>}
       </div>
-      <div style={{fontSize:11,color:"var(--ink-muted)",marginTop:8}}>R₀ = the average number of people one infected person would infect in a fully susceptible population. Higher R₀ needs higher coverage for herd immunity.</div>
+      <div style={{fontSize:11,color:"var(--ink-muted)",marginTop:8}}>R₀ = the average number of people one infected person would infect in a fully susceptible population. Higher R₀ needs higher coverage for herd immunity (threshold ≈ 1 − 1/R₀; measles is rounded up to the 95% target because the vaccine is not 100% effective).</div>
     </div>
   );
 }

@@ -42,7 +42,7 @@ function Topic21({ progress, setProgress }) {
           </tbody>
         </table>
 
-        <div className="callout"><strong>The big idea:</strong> every organ is working together to keep the internal environment constant enough for cells to survive. When this system breaks down, we call it a disease.</div>
+        <div className="callout"><strong>The big idea:</strong> every organ is working together to keep the internal environment constant enough for cells to survive. When this system breaks down, disease can result.</div>
 
         <Figure num="2.1" src="images/raw-01.jpg" alt="Homeostasis infographic showing body temperature, blood glucose and water balance regulation" caption="The body controls many variables at once — temperature, blood glucose, and water balance are three of the most important. Each has its own set point and its own correction mechanism, but they all share the same basic feedback-loop design." />
 
@@ -74,8 +74,8 @@ function Topic21({ progress, setProgress }) {
             <tr><td>Loud sound</td><td>Hair cells in cochlea</td><td>Head turns; startle</td></tr>
             <tr><td>Cold air on skin</td><td>Thermoreceptors in skin</td><td>Shivering; goose bumps; vasoconstriction</td></tr>
             <tr><td>Pinprick</td><td>Nociceptors</td><td>Hand pulls away (reflex arc)</td></tr>
-            <tr><td>Light on leaves (plant)</td><td>Phytochromes</td><td>Stem grows towards light (phototropism)</td></tr>
-            <tr><td>Touch on Venus flytrap</td><td>Trigger hairs</td><td>Leaf snaps shut (thigmotropism)</td></tr>
+            <tr><td>Light on leaves (plant)</td><td>Phototropins (light-sensitive proteins)</td><td>Stem grows towards light (phototropism)</td></tr>
+            <tr><td>Touch on Venus flytrap</td><td>Trigger hairs</td><td>Leaf snaps shut (a touch response called thigmonasty)</td></tr>
           </tbody>
         </table>
 

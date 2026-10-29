@@ -9,10 +9,10 @@ function ResourceExplorer() {
   const resources = [
     { name: "Iron ore", location: "Pilbara, WA", product: "Steel", prod: 895, unit: "Mt/yr", colour: "#b45309", fact: "Australia exports more iron ore than any other nation on Earth." },
     { name: "Bauxite", location: "Qld, NT, WA", product: "Aluminium", prod: 101, unit: "Mt/yr", colour: "#92400e", fact: "Bauxite must be refined twice before it becomes aluminium metal." },
-    { name: "Coal", location: "NSW, Qld", product: "Electricity + steel", prod: 480, unit: "Mt/yr", colour: "#374151", fact: "Coal is a finite fossil resource formed over 300 million years." },
+    { name: "Coal", location: "NSW, Qld", product: "Electricity + steel", prod: 480, unit: "Mt/yr", colour: "#374151", fact: "Coal is a finite fossil fuel, formed from plant material that was buried about 300 million years ago." },
     { name: "Copper", location: "SA, Qld", product: "Wiring + pipes", prod: 0.96, unit: "Mt/yr", colour: "#b45309", fact: "Copper has been used by humans for over 10,000 years." },
-    { name: "Lithium", location: "WA", product: "EV batteries", prod: 0.31, unit: "Mt/yr", colour: "#6d28d9", fact: "Lithium demand is surging due to electric vehicles and phones." },
-    { name: "Gold", location: "WA, Vic, NSW", product: "Electronics + jewellery", prod: 0.32, unit: "Mt/yr", colour: "#d97706", fact: "Gold is one of the best electrical conductors and never corrodes." },
+    { name: "Lithium", location: "WA", product: "EV batteries", prod: 0.09, unit: "Mt/yr", colour: "#6d28d9", fact: "Lithium demand is surging due to electric vehicles and phones." },
+    { name: "Gold", location: "WA, Vic, NSW", product: "Electronics + jewellery", prod: 320, unit: "t/yr", mt: 0.00032, colour: "#d97706", fact: "Gold is an excellent electrical conductor and resists corrosion." },
   ];
   const [sel, setSel] = useState(0);
   const r = resources[sel];
@@ -32,8 +32,8 @@ function ResourceExplorer() {
         <div style={{ marginBottom: 8 }}>Key product: <strong>{r.product}</strong></div>
         <div style={{ marginBottom: 12 }}>
           <div style={{ fontSize: "0.8rem", marginBottom: 4 }} className="muted">Annual production: {r.prod} {r.unit}</div>
-          <div style={{ background: "var(--surface-2)", borderRadius: 8, height: 14, overflow: "hidden" }}>
-            <div style={{ width: `${Math.max(2, (r.prod / maxProd) * 100)}%`, height: "100%", background: r.colour, borderRadius: 8, transition: "width 0.5s" }}/>
+          <div style={{ background: "var(--bg-2)", borderRadius: 8, height: 14, overflow: "hidden" }}>
+            <div style={{ width: `${Math.max(2, ((r.mt ?? r.prod) / maxProd) * 100)}%`, height: "100%", background: r.colour, borderRadius: 8, transition: "width 0.5s" }}/>
           </div>
         </div>
         <Callout kind="fact" title="Did you know?">{r.fact}</Callout>
@@ -155,7 +155,7 @@ function BondVisualiser() {
   };
   const sc = scenes[type];
   return (
-    <Interactive title="Bond Type Visualiser" subtitle="Switch between bond types to compare electron behaviour." takeaway="Ionic bonds transfer electrons between metal and non-metal atoms, covalent bonds share electrons between non-metals, and metallic bonds involve a 'sea' of delocalised electrons, and each bond type produces materials with very different properties.">
+    <Interactive title="Bond Type Visualiser" subtitle="Switch between bond types to compare electron behaviour." takeaway="Ionic bonds transfer electrons between metal and non-metal atoms, covalent bonds share electrons between non-metals, and metallic bonds involve a 'sea' of delocalised electrons. Each bond type produces materials with very different properties.">
       <SegToggle
         options={[{value:"ionic",label:"Ionic"},{value:"covalent",label:"Covalent"},{value:"metallic",label:"Metallic"}]}
         value={type} onChange={setType}/>
@@ -173,7 +173,7 @@ function BondVisualiser() {
             <circle cx={270} cy={34} r={7} fill="#fbbf24" stroke="#fff" strokeWidth="2"/>
             <text x={90} y={118} textAnchor="middle" fontSize="13" fill="var(--ink)">Na+</text>
             <text x={270} y={118} textAnchor="middle" fontSize="13" fill="var(--ink)">Cl-</text>
-            <text x={180} y={118} textAnchor="middle" fontSize="11" fill="var(--muted)">electron transferred</text>
+            <text x={180} y={118} textAnchor="middle" fontSize="11" fill="var(--ink-muted)">electron transferred</text>
           </>}
           {type === "covalent" && <>
             <circle cx={180} cy={65} r={38} fill="#e11d48" opacity={0.85}/>
@@ -185,7 +185,7 @@ function BondVisualiser() {
             <text x={280} y={65} textAnchor="middle" dominantBaseline="middle" fontSize="15" fontWeight="700" fill="#fff">H</text>
             <line x1={104} y1={65} x2={142} y2={65} stroke="#fbbf24" strokeWidth="5" strokeLinecap="round"/>
             <line x1={218} y1={65} x2={256} y2={65} stroke="#fbbf24" strokeWidth="5" strokeLinecap="round"/>
-            <text x={180} y={118} textAnchor="middle" fontSize="11" fill="var(--muted)">shared electron pairs (bonds)</text>
+            <text x={180} y={118} textAnchor="middle" fontSize="11" fill="var(--ink-muted)">shared electron pairs (bonds)</text>
           </>}
           {type === "metallic" && <>
             {[[80,50],[180,50],[280,50],[80,110],[180,110],[280,110]].map(([cx,cy],i) => (
@@ -197,7 +197,7 @@ function BondVisualiser() {
             {[50,110,170,230,290,130,195,255,145,245].map((x,i) => (
               <circle key={i} cx={x} cy={20 + (i%3)*40} r={4} fill="#fbbf24" opacity={0.9}/>
             ))}
-            <text x={180} y={134} textAnchor="middle" fontSize="11" fill="var(--muted)">delocalised electrons (sea)</text>
+            <text x={180} y={134} textAnchor="middle" fontSize="11" fill="var(--ink-muted)">delocalised electrons (sea)</text>
           </>}
         </svg>
         <p style={{ margin: "12px 0 0", fontSize: "0.9rem" }}>{sc.desc}</p>
@@ -211,23 +211,23 @@ function BondVisualiser() {
    ============================================================ */
 function FractionColumn() {
   const fractions = [
-    { name: "Refinery gas (LPG)", bp: "Below 40 C", chain: "C1 to C4", use: "Cooking, plastics", y: 12, height: 22, colour: "#e11d48" },
-    { name: "Petrol",            bp: "40 to 175 C",  chain: "C5 to C10", use: "Car fuel",         y: 36, height: 26, colour: "#f97316" },
-    { name: "Naphtha",           bp: "40 to 180 C",  chain: "C5 to C10", use: "Chemical feedstock", y: 64, height: 20, colour: "#eab308" },
-    { name: "Kerosene",          bp: "175 to 325 C", chain: "C10 to C16", use: "Aviation fuel",    y: 86, height: 24, colour: "#84cc16" },
-    { name: "Diesel",            bp: "250 to 350 C", chain: "C14 to C20", use: "Trucks, trains",   y: 112, height: 24, colour: "#22d3ee" },
-    { name: "Fuel oil",          bp: "350 to 500 C", chain: "C20 to C50", use: "Ships, boilers",   y: 138, height: 24, colour: "#6366f1" },
-    { name: "Bitumen",           bp: "Above 500 C",  chain: "Above C70", use: "Road surfaces",     y: 164, height: 28, colour: "#374151" },
+    { name: "Refinery gas (LPG)", bp: "Below 40  °C", chain: "C1 to C4", use: "Cooking, plastics", y: 12, height: 22, colour: "#e11d48" },
+    { name: "Petrol",            bp: "40 to 175  °C",  chain: "C5 to C10", use: "Car fuel",         y: 36, height: 26, colour: "#f97316" },
+    { name: "Naphtha",           bp: "40 to 180  °C",  chain: "C5 to C10", use: "Chemical feedstock", y: 64, height: 20, colour: "#eab308" },
+    { name: "Kerosene",          bp: "175 to 325  °C", chain: "C10 to C16", use: "Aviation fuel",    y: 86, height: 24, colour: "#84cc16" },
+    { name: "Diesel",            bp: "250 to 350  °C", chain: "C14 to C20", use: "Trucks, trains",   y: 112, height: 24, colour: "#22d3ee" },
+    { name: "Fuel oil",          bp: "350 to 500  °C", chain: "C20 to C50", use: "Ships, boilers",   y: 138, height: 24, colour: "#6366f1" },
+    { name: "Bitumen",           bp: "Above 500  °C",  chain: "Above C70", use: "Road surfaces",     y: 164, height: 28, colour: "#374151" },
   ];
   const [sel, setSel] = useState(null);
   return (
     <Interactive title="Fractional Distillation Column" subtitle="Tap a fraction to learn its boiling point range, chain length and uses." takeaway="Fractional distillation separates crude oil by boiling point: shorter carbon chains have lower boiling points and condense near the top of the column, while longer chains condense lower down.">
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "flex-start" }}>
         <div style={{ position: "relative", width: 160, flexShrink: 0 }}>
-          <svg viewBox="0 0 160 210" width="160" height="210">
-            <rect x={40} y={8} width={80} height={196} rx="6" fill="var(--surface-2)" stroke="var(--border)" strokeWidth="2"/>
-            <text x={80} y={215} textAnchor="middle" fontSize="10" fill="var(--muted)">Cooler top</text>
-            <text x={80} y={4} textAnchor="middle" fontSize="10" fill="var(--muted)">Hotter bottom</text>
+          <svg viewBox="0 -10 160 232" width="160" height="232">
+            <rect x={40} y={8} width={80} height={196} rx="6" fill="var(--bg-2)" stroke="var(--border)" strokeWidth="2"/>
+            <text x={80} y={2} textAnchor="middle" fontSize="10" fill="var(--ink-muted)">Cooler top</text>
+            <text x={80} y={217} textAnchor="middle" fontSize="10" fill="var(--ink-muted)">Hotter bottom</text>
             {fractions.map((f, i) => (
               <g key={f.name} style={{ cursor: "pointer" }} onClick={() => setSel(i === sel ? null : i)}>
                 <rect x={42} y={f.y} width={76} height={f.height} rx="3"
@@ -237,7 +237,7 @@ function FractionColumn() {
                   fontSize="9" fill="#fff" fontWeight="600">{f.name.split(" ")[0]}</text>
               </g>
             ))}
-            <text x={20} y={16} textAnchor="middle" fontSize="9" fill="var(--muted)" transform="rotate(-90,20,110)">Temperature</text>
+            <text x={20} y={110} textAnchor="middle" fontSize="9" fill="var(--ink-muted)" transform="rotate(-90,20,110)">Temperature</text>
           </svg>
         </div>
         <div style={{ flex: 1, minWidth: 160 }}>
@@ -267,7 +267,7 @@ function FractionColumn() {
 function AlkaneBuilder() {
   const alkanes = [
     { n: 1, name: "Methane",  bp: -161, state: "Gas",    use: "Natural gas fuel" },
-    { n: 2, name: "Ethane",   bp: -89,  state: "Gas",    use: "LPG component" },
+    { n: 2, name: "Ethane",   bp: -89,  state: "Gas",    use: "Natural gas component; used to make ethene for plastics" },
     { n: 3, name: "Propane",  bp: -42,  state: "Gas",    use: "BBQ gas" },
     { n: 4, name: "Butane",   bp: -1,   state: "Gas",    use: "Lighter fuel" },
     { n: 5, name: "Pentane",  bp: 36,   state: "Liquid", use: "Solvent" },
@@ -293,7 +293,7 @@ function AlkaneBuilder() {
       <div style={{ marginTop: 12 }}>
         <div style={{ fontSize: "0.8rem", marginBottom: 4 }} className="muted">Boiling point trend: methane to octane</div>
         <svg viewBox="0 0 320 56" width="100%" style={{ maxWidth: 320 }}>
-          <rect x={20} y={20} width={280} height={16} rx={8} fill="var(--surface-2)" stroke="var(--border)"/>
+          <rect x={20} y={20} width={280} height={16} rx={8} fill="var(--bg-2)" stroke="var(--border)"/>
           <defs>
             <linearGradient id="bpGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#60a5fa"/>
@@ -302,9 +302,9 @@ function AlkaneBuilder() {
           </defs>
           <rect x={20} y={20} width={pct * 280} height={16} rx={8} fill="url(#bpGrad)"/>
           <circle cx={cx} cy={28} r={9} fill="var(--accent-deep)" stroke="#fff" strokeWidth="2"/>
-          <text x={cx} y={52} textAnchor="middle" fontSize="11" fill="var(--ink)">{al.bp} C</text>
-          <text x={20} y={12} fontSize="10" fill="var(--muted)">-161 C</text>
-          <text x={280} y={12} textAnchor="end" fontSize="10" fill="var(--muted)">126 C</text>
+          <text x={cx} y={52} textAnchor="middle" fontSize="11" fill="var(--ink)">{al.bp} °C</text>
+          <text x={20} y={12} fontSize="10" fill="var(--ink-muted)">-161 °C</text>
+          <text x={280} y={12} textAnchor="end" fontSize="10" fill="var(--ink-muted)">126 °C</text>
         </svg>
       </div>
       <p style={{ margin: "8px 0 0", fontSize: "0.85rem" }}>Use: {al.use}</p>
@@ -321,7 +321,7 @@ function PolymerComparison() {
     { name: "HDPE",  full: "High-density polyethylene", flex: 3, strength: 4, heatRes: 3, waterRes: 5, conduct: 1, recyclable: true,  type: "Thermoplastic", use: "Milk bottles, pipes" },
     { name: "PET",   full: "Polyethylene terephthalate", flex: 3, strength: 4, heatRes: 3, waterRes: 5, conduct: 1, recyclable: true,  type: "Thermoplastic", use: "Drink bottles, food trays" },
     { name: "PP",    full: "Polypropylene",              flex: 3, strength: 4, heatRes: 4, waterRes: 5, conduct: 1, recyclable: true,  type: "Thermoplastic", use: "Food containers, rope" },
-    { name: "Nylon", full: "Polyamide (Nylon)",          flex: 4, strength: 5, heatRes: 4, waterRes: 3, conduct: 1, recyclable: false, type: "Thermoplastic", use: "Clothing fibres, gears" },
+    { name: "Nylon", full: "Polyamide (Nylon)",          flex: 4, strength: 5, heatRes: 4, waterRes: 3, conduct: 1, recyclable: true,  type: "Thermoplastic", use: "Clothing fibres, gears" },
     { name: "PLA",   full: "Polylactic acid",            flex: 2, strength: 3, heatRes: 2, waterRes: 3, conduct: 1, recyclable: false, type: "Bio-based",     use: "Compostable packaging" },
     { name: "Epoxy", full: "Epoxy resin (thermoset)",   flex: 1, strength: 5, heatRes: 5, waterRes: 5, conduct: 1, recyclable: false, type: "Thermoset",     use: "Adhesives, circuit boards" },
   ];
@@ -345,14 +345,14 @@ function PolymerComparison() {
       </div>
       <div className="card" style={{ padding: "0.75rem", borderLeft: `4px solid ${colours[sel]}` }}>
         <div style={{ fontWeight: 700, fontSize: "1.05rem", marginBottom: 2 }}>{p.full}</div>
-        <div style={{ fontSize: "0.8rem", marginBottom: 10 }} className="muted">Type: {p.type} | {p.recyclable ? "Recyclable" : "Not recyclable by melting"}</div>
+        <div style={{ fontSize: "0.8rem", marginBottom: 10 }} className="muted">Type: {p.type} | {p.recyclable ? "Recyclable by melting" : "Not easily recycled"}</div>
         {props.map(pr => (
           <div key={pr.key} style={{ marginBottom: 8 }}>
             <div style={{ fontSize: "0.8rem", display: "flex", justifyContent: "space-between" }}>
               <span>{pr.label}</span>
               <span className="muted">{p[pr.key]}/5</span>
             </div>
-            <div style={{ background: "var(--surface-2)", borderRadius: 6, height: 10, marginTop: 2 }}>
+            <div style={{ background: "var(--bg-2)", borderRadius: 6, height: 10, marginTop: 2 }}>
               <div style={{ width: `${p[pr.key] * 20}%`, height: "100%", background: colours[sel], borderRadius: 6, transition: "width 0.4s" }}/>
             </div>
           </div>
@@ -401,7 +401,7 @@ function LCATool() {
         { stage: "Manufacturing",  alt: 2, conv: 2, note: "Both require processing; PLA uses fermentation." },
         { stage: "Transport",      alt: 2, conv: 2, note: "Both lightweight; similar distances." },
         { stage: "Use",            alt: 2, conv: 2, note: "Both single-use; similar function." },
-        { stage: "End of life",    alt: 2, conv: 4, note: "PLA composts industrially; PS is not recyclable." },
+        { stage: "End of life",    alt: 2, conv: 4, note: "PLA composts industrially; PS is rarely recycled." },
       ],
     },
   ];
@@ -422,14 +422,14 @@ function LCATool() {
           <div style={{ fontSize: "0.8rem", fontWeight: 600, marginBottom: 3 }}>{st.stage}</div>
           <div style={{ display: "flex", gap: 4, alignItems: "center", marginBottom: 2 }}>
             <span style={{ fontSize: "0.7rem", width: 80, color: colours.alt }}>{pair.alt}</span>
-            <div style={{ flex: 1, background: "var(--surface-2)", borderRadius: 4, height: 10 }}>
+            <div style={{ flex: 1, background: "var(--bg-2)", borderRadius: 4, height: 10 }}>
               <div style={{ width: `${st.alt * 20}%`, height: "100%", background: colours.alt, borderRadius: 4, transition: "width 0.4s" }}/>
             </div>
             <span style={{ fontSize: "0.7rem", width: 20, textAlign: "right" }}>{st.alt}/5</span>
           </div>
           <div style={{ display: "flex", gap: 4, alignItems: "center", marginBottom: 2 }}>
             <span style={{ fontSize: "0.7rem", width: 80, color: colours.conv }}>{pair.conv}</span>
-            <div style={{ flex: 1, background: "var(--surface-2)", borderRadius: 4, height: 10 }}>
+            <div style={{ flex: 1, background: "var(--bg-2)", borderRadius: 4, height: 10 }}>
               <div style={{ width: `${st.conv * 20}%`, height: "100%", background: colours.conv, borderRadius: 4, transition: "width 0.4s" }}/>
             </div>
             <span style={{ fontSize: "0.7rem", width: 20, textAlign: "right" }}>{st.conv}/5</span>
@@ -487,8 +487,8 @@ function Section31({ progress, setProgress }) {
       <DotPoint id="3.1.2" title="Products produced from Australian minerals and resources" progress={progress} setProgress={setProgress}>
         <p>Raw minerals are rarely useful as dug from the ground. They must pass through a chain of chemical and physical steps before they become the steel in a building or the aluminium in a can. Iron ore, for example, is <Term def="The chemical removal of oxygen from an ore using carbon or hydrogen at high temperatures.">smelted</Term> with <Term def="A nearly pure form of carbon made by heating coal without air; used as a reducing agent in blast furnaces.">coke</Term> and limestone in a blast furnace at temperatures above 1500 degrees Celsius to produce molten iron, which is then refined to produce steel.</p>
         <p>Bauxite follows a different path. First the <Term def="A process that dissolves aluminium oxide from bauxite using hot sodium hydroxide solution, leaving impurities behind.">Bayer process</Term> purifies it into alumina (aluminium oxide, Al2O3). Then electrolysis, using enormous amounts of electricity, reduces alumina to aluminium metal. Because this second step is so energy-hungry, recycling aluminium cans saves about 95% of the energy compared with making aluminium from scratch.</p>
-        <p>Lithium is processed into <Term def="A lithium compound used as a cathode material in lithium-ion batteries.">lithium hydroxide</Term> or lithium carbonate, exported to battery manufacturers, and ends up in the phone in your pocket. Every step from mine to product involves chemistry you are learning in this course.</p>
-        <Callout kind="fact" title="Energy saving">Recycling aluminium uses about 95% less energy than producing aluminium from bauxite. That is the equivalent of leaving your TV on for over 3 hours versus 3 minutes for every can.</Callout>
+        <p>Lithium is processed into <Term def="A lithium compound used to make the cathodes of lithium-ion batteries.">lithium hydroxide</Term> or lithium carbonate, exported to battery manufacturers, and ends up in the phone in your pocket. Every step from mine to product involves chemistry you are learning in this course.</p>
+        <Callout kind="fact" title="Energy saving">Recycling aluminium uses about 95% less energy than producing aluminium from bauxite. Recycling a single can saves enough energy to run a TV for about 3 hours.</Callout>
         <QGroup title="Check yourself">
           <MCQ num={3} question="Which process converts bauxite (aluminium ore) into alumina (Al2O3)?" options={["Blast furnace smelting","The Bayer process","Fractional distillation","The Haber process"]} correct={1} explain="The Bayer process uses hot sodium hydroxide to dissolve aluminium oxide out of bauxite. Blast furnaces are used for iron."/>
           <WrittenQ num={4} question="Trace the journey of lithium from an Australian mine to a battery in a smartphone." model="Lithium spodumene ore is mined in Western Australia, then chemically processed to produce battery-grade lithium hydroxide or lithium carbonate. These compounds are exported (commonly to East Asia), where they are used to manufacture cathode materials for lithium-ion cells. The cells are assembled into battery packs and placed inside smartphones by device manufacturers."/>
@@ -496,7 +496,7 @@ function Section31({ progress, setProgress }) {
       </DotPoint>
 
       <DotPoint id="3.1.3" title="Aboriginal and Torres Strait Islander Peoples' use of minerals and resources" progress={progress} setProgress={setProgress}>
-        <p>Aboriginal and Torres Strait Islander Peoples developed deep, sophisticated knowledge of minerals, rocks and natural materials over tens of thousands of years. This knowledge was grounded in careful observation of Country and passed across generations through oral tradition, ceremony and practical teaching. <Term def="Iron oxide minerals (haematite and goethite) occurring in shades of red, yellow and white, used as pigments.">Ochres</Term> were among the most widely used minerals: ground to fine powder and mixed with water, animal fats or plant resins to create pigments for body decoration, rock art and ceremony. Evidence of ochre use in Australia extends back at least 50,000 years, making it one of the earliest known uses of a mineral pigment anywhere on Earth.</p>
+        <p>Aboriginal and Torres Strait Islander Peoples developed deep, sophisticated knowledge of minerals, rocks and natural materials over tens of thousands of years. This knowledge was grounded in careful observation of Country and passed across generations through oral tradition, ceremony and practical teaching. <Term def="Earth pigments made mostly of iron oxide minerals (haematite and goethite), occurring in shades of red and yellow.">Ochres</Term> were among the most widely used minerals: ground to fine powder and mixed with water, animal fats or plant resins to create pigments for body decoration, rock art and ceremony. Evidence of ochre use in Australia extends back at least 50,000 years, making it one of the earliest known uses of a mineral pigment anywhere on Earth.</p>
         <p>Hard, fine-grained rocks such as <Term def="A fine-grained silica-rich rock that fractures with a sharp, curved (conchoidal) surface, ideal for making cutting tools.">silcrete</Term>, chert and quartzite were <Term def="The process of shaping stone by striking it with another stone or hard object to produce sharp-edged flakes.">knapped</Term> into cutting tools, scrapers and spear points. Quarry sites were culturally significant places where groups met, traded tools and maintained relationships over hundreds of kilometres. Clay was used for waterproofing, cooking methods and skin treatments. Torres Strait Islander Peoples used coral and shell for tools, ornaments and navigational purposes. This knowledge represents a rich scientific tradition built on millennia of systematic observation.</p>
         <Callout kind="tip" title="Cultural respect">When learning about traditional uses of minerals, recognise these as part of living cultures, not historical artefacts. Many communities continue these practices today.</Callout>
         <MatchBuckets
@@ -757,7 +757,7 @@ function Section33({ progress, setProgress }) {
                 <th style={{ padding: "5px 8px", textAlign: "left" }}>Common use</th>
               </tr></thead>
               <tbody>
-                {[["Methane","CH4","Alkane","Natural gas, heating"],["Ethane","C2H6","Alkane","LPG component"],["Propane","C3H8","Alkane","BBQ gas"],["Butane","C4H10","Alkane","Lighter fuel"],["Ethene","C2H4","Alkene","Plastics feedstock"],["Methanol","CH3OH","Alcohol","Solvent, antifreeze"],["Ethanol","C2H5OH","Alcohol","Beverages, sanitiser"]].map(row => (
+                {[["Methane","CH4","Alkane","Natural gas, heating"],["Ethane","C2H6","Alkane","Natural gas component; makes ethene"],["Propane","C3H8","Alkane","BBQ gas"],["Butane","C4H10","Alkane","Lighter fuel"],["Ethene","C2H4","Alkene","Plastics feedstock"],["Methanol","CH3OH","Alcohol","Solvent, antifreeze"],["Ethanol","C2H5OH","Alcohol","Beverages, sanitiser"]].map(row => (
                   <tr key={row[0]} style={{ borderBottom: "1px solid var(--border)" }}>
                     {row.map((cell, i) => <td key={i} style={{ padding: "4px 8px", textAlign: i === 0 || i === 3 ? "left" : "center" }}>{cell}</td>)}
                   </tr>
@@ -824,7 +824,7 @@ function Section33({ progress, setProgress }) {
                 {i < arr.length - 1 && <line x1={step.x + 20} y1={26} x2={arr[i+1].x - 10} y2={26} stroke="var(--accent-deep)" strokeWidth="2"/>}
                 <circle cx={step.x} cy={26} r={9} fill="var(--accent-deep)"/>
                 <text x={step.x} y={48} textAnchor="middle" fontSize="10" fontWeight="600" fill="var(--ink)">{step.label}</text>
-                <text x={step.x} y={62} textAnchor="middle" fontSize="9" fill="var(--muted)">{step.desc}</text>
+                <text x={step.x} y={62} textAnchor="middle" fontSize="9" fill="var(--ink-muted)">{step.desc}</text>
               </g>
             ))}
           </svg>
@@ -878,19 +878,19 @@ function Section34({ progress, setProgress }) {
       </DotPoint>
 
       <DotPoint id="3.4.4" title="Biodegradability of packaging materials" progress={progress} setProgress={setProgress}>
-        <p>Biodegradability is the ability of a material to be broken down by microorganisms (bacteria and fungi) into water, carbon dioxide and organic matter within a reasonable timeframe. Paper and cardboard biodegrade in weeks to months in moist soil because microorganisms have enzymes to break down cellulose. Most synthetic plastics take decades to centuries because their long carbon-chain structure is not recognised by any natural enzyme.</p>
+        <p>Biodegradability is the ability of a material to be broken down by microorganisms (bacteria and fungi) into water, carbon dioxide and organic matter within a reasonable timeframe. Paper and cardboard biodegrade in weeks to months in moist soil because microorganisms have enzymes to break down cellulose. Most synthetic plastics take decades to centuries because their long carbon-chain structure is not recognised by most natural enzymes.</p>
         <p>A classroom biodegradation investigation buries samples of different packaging materials in moist soil and measures percentage mass loss over 2 to 4 weeks. Controlling variables such as soil moisture and temperature ensures differences in mass loss reflect the material's properties, not the conditions. Photographing samples before and after burial provides qualitative evidence alongside the quantitative mass data.</p>
         <p>PLA is marketed as biodegradable, but only under <Term def="Industrial composting conditions: sustained temperatures above 58 degrees Celsius with high humidity and specific microbial populations.">industrial composting</Term> conditions (above 58 degrees Celsius). In home compost bins, normal soil or seawater, PLA degrades very slowly. Labelling a material "biodegradable" without specifying the conditions needed can mislead consumers and policy makers.</p>
         <Callout kind="key" title="Biodegradation needs conditions">PLA will not biodegrade usefully in landfill, cold soil or seawater. It needs an industrial composting facility. Always ask: biodegradable WHERE and HOW FAST?</Callout>
         <QGroup title="Check yourself">
-          <MCQ num={4} question="Why does a synthetic plastic bag show little or no mass loss when buried in moist soil for 4 weeks?" options={["It is too wet in the soil","Soil microorganisms do not have the enzymes needed to break down the long carbon-chain polymer backbone","It is too cold for any reaction","The bag floats to the surface"]} correct={1} explain="Synthetic plastics like LDPE have a long polycarbon backbone with no sites that microbial enzymes can attack. Without microbial degradation, negligible mass is lost in a short period."/>
+          <MCQ num={4} question="Why does a synthetic plastic bag show little or no mass loss when buried in moist soil for 4 weeks?" options={["It is too wet in the soil","Soil microorganisms do not have the enzymes needed to break down the long carbon-chain polymer backbone","It is too cold for any reaction","The bag floats to the surface"]} correct={1} explain="Synthetic plastics like LDPE have a long carbon-chain backbone with no sites that microbial enzymes can attack. Without microbial degradation, negligible mass is lost in a short period."/>
         </QGroup>
       </DotPoint>
 
       <DotPoint id="3.4.5" title="Bioaccumulation of microplastics in the environment" progress={progress} setProgress={setProgress}>
         <p><Term def="Plastic particles smaller than 5 mm in diameter.">Microplastics</Term> enter the environment from two sources. Primary microplastics are manufactured at small size: nurdles (industrial plastic pellets), microbeads in cosmetics, and fibres shed from synthetic clothing during washing. Secondary microplastics form when larger plastic items break down through UV exposure, weathering and abrasion. Microplastics are now found everywhere: ocean water, deep sea sediments, freshwater, soil, air, and even in human blood, lungs and placentas.</p>
-        <p><Term def="The buildup of a substance in an organism's tissues at a concentration higher than in its surrounding environment.">Bioaccumulation</Term> occurs when an organism takes in microplastics faster than it can eliminate them. <Term def="The increase in concentration of a pollutant at each successive level of a food chain.">Biomagnification</Term> amplifies this at each level of a food chain: phytoplankton absorb microplastics, small fish eat many phytoplankton and accumulate higher concentrations, larger fish eat many small fish, and apex predators (including humans) at the top face the highest concentrations. The chemicals adsorbed onto plastic surfaces (persistent organic pollutants, or POPs) also biomagnify and are known toxins.</p>
-        <Figure caption="Biomagnification of microplastics through a simplified marine food chain.">
+        <p><Term def="The buildup of a substance in an organism's tissues at a concentration higher than in its surrounding environment.">Bioaccumulation</Term> occurs when an organism takes in microplastics faster than it can eliminate them. <Term def="The increase in concentration of a pollutant at each successive level of a food chain.">Biomagnification</Term> can amplify the chemical pollutants carried by microplastics at each level of a food chain: plankton ingest microplastics, small fish eat many plankton and accumulate higher concentrations, larger fish eat many small fish, and apex predators (including humans) at the top can face the highest concentrations. The chemicals that stick to plastic surfaces (persistent organic pollutants, or POPs) biomagnify up food chains, and many are known toxins.</p>
+        <Figure caption="Biomagnification of microplastic-associated pollutants through a simplified marine food chain.">
           <svg viewBox="0 0 560 80" width="100%" style={{ maxWidth: 560 }}>
             {[
               { x: 20,  w: 60,  label: "Ocean water", sub: "Low conc.", colour: "#bfdbfe" },
@@ -902,7 +902,7 @@ function Section34({ progress, setProgress }) {
               <g key={s.label}>
                 <rect x={s.x} y={20} width={s.w} height={30} rx="6" fill={s.colour}/>
                 <text x={s.x + s.w/2} y={38} textAnchor="middle" fontSize="9.5" fontWeight="600" fill={i > 2 ? "#fff" : "#1e40af"}>{s.label}</text>
-                <text x={s.x + s.w/2} y={62} textAnchor="middle" fontSize="8.5" fill="var(--muted)">{s.sub}</text>
+                <text x={s.x + s.w/2} y={62} textAnchor="middle" fontSize="8.5" fill="var(--ink-muted)">{s.sub}</text>
                 {i < arr.length - 1 && <text x={s.x + s.w + 4} y={38} fontSize="13" fill="var(--accent-deep)">&#8594;</text>}
               </g>
             ))}

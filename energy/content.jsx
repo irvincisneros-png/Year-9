@@ -30,7 +30,7 @@ function PendulumSim() {
     const px = cx + Math.sin(theta) * scale;
     const py = cy + Math.cos(theta) * scale;
     const h = L * (1 - Math.cos(theta));
-    const v = Math.sqrt(2 * g * h) * Math.sign(-omega || 0);
+    const v = L * omega;
     const ke = 0.5 * mass * v * v;
     const pe = mass * g * h;
     const total = ke + pe;
@@ -58,7 +58,7 @@ function PendulumSim() {
     const maxE = mass * g * L;
     const keH = maxE > 0 ? Math.round(barH * ke / maxE) : 0;
     const peH = maxE > 0 ? Math.round(barH * pe / maxE) : 0;
-    const labels = [["KE", keH, "#3b82f6"], ["PE", peH, "#10b981"], ["Total", barH, "#8b5cf6"]];
+    const labels = [["KE", keH, "#3b82f6"], ["PE", peH, "#10b981"], ["Total", maxE > 0 ? Math.min(barH, Math.round(barH * total / maxE)) : 0, "#8b5cf6"]];
     labels.forEach(([label, fillH, col], i) => {
       const bx = barX + i * 44;
       ctx.fillStyle = "#e5e7eb";
@@ -99,7 +99,6 @@ function PendulumSim() {
       const s = stateRef.current;
       const alpha = -(g / L) * Math.sin(s.theta);
       s.omega += alpha * dt;
-      s.omega *= 0.9995;
       s.theta += s.omega * dt;
       stateRef.current = s;
       draw(s.theta, s.omega);
@@ -177,7 +176,7 @@ function EfficiencyCalc() {
 
 function EnergySourceSorter() {
   return (
-    <Interactive title="Sort the energy sources" subtitle="Drag or click each source into the correct category." takeaway="Energy sources are classified as renewable (naturally replenished), non-renewable (finite fossil fuels), or nuclear, which sits in its own category.">
+    <Interactive title="Sort the energy sources" subtitle="Drag or click each source into the correct category." takeaway="Energy sources are classified as renewable (naturally replenished) or non-renewable (finite). Fossil fuels and nuclear fuel (uranium) are both non-renewable.">
       <MatchBuckets
         items={[
           { id: "coal", label: "Coal", bucket: "nonrenewable" },
@@ -187,14 +186,13 @@ function EnergySourceSorter() {
           { id: "hydro", label: "Hydroelectric", bucket: "renewable" },
           { id: "oil", label: "Petroleum", bucket: "nonrenewable" },
           { id: "geo", label: "Geothermal", bucket: "renewable" },
-          { id: "nuclear", label: "Nuclear (fission)", bucket: "nuclear" },
+          { id: "nuclear", label: "Nuclear (fission)", bucket: "nonrenewable" },
           { id: "biomass", label: "Biomass", bucket: "renewable" },
           { id: "tidal", label: "Tidal", bucket: "renewable" },
         ]}
         buckets={[
           { id: "nonrenewable", label: "Non-renewable" },
           { id: "renewable", label: "Renewable" },
-          { id: "nuclear", label: "Nuclear (its own category)" },
         ]}
       />
     </Interactive>
@@ -204,15 +202,15 @@ function EnergySourceSorter() {
 function PowerStationFlow() {
   const [source, setSource] = useState("coal");
   const flows = {
-    coal: { steps: ["Chemical PE (coal burned)", "Thermal energy (steam)", "KE (turbine spins)", "Electrical energy (generator)"], colours: ["#f59e0b","#ef4444","#3b82f6","#8b5cf6"], note: "Four transformation steps. Most energy lost as heat at each stage." },
+    coal: { steps: ["Chemical PE (coal burned)", "Thermal energy (steam)", "KE (turbine spins)", "Electrical energy (generator)"], colours: ["#f59e0b","#ef4444","#3b82f6","#8b5cf6"], note: "Three energy transformations. Most energy is lost as heat at each stage." },
     hydro: { steps: ["Gravitational PE (water at height)", "KE (falling water)", "KE (turbine)", "Electrical energy (generator)"], colours: ["#10b981","#3b82f6","#3b82f6","#8b5cf6"], note: "No combustion, no steam. Water falling directly spins turbines." },
-    solar: { steps: ["Radiant energy (sunlight)", "DC electrical energy (PV cell)", "AC electrical energy (inverter)"], colours: ["#f59e0b","#8b5cf6","#8b5cf6"], note: "Only three steps. No turbine or steam. Most direct path to electricity." },
+    solar: { steps: ["Radiant energy (sunlight)", "DC electrical energy (PV cell)", "AC electrical energy (inverter)"], colours: ["#f59e0b","#8b5cf6","#8b5cf6"], note: "Only one energy transformation (light to electricity); the inverter just changes DC to AC. No turbine or steam. Most direct path to electricity." },
     wind: { steps: ["KE (moving air)", "KE (turbine blades)", "Electrical energy (generator)"], colours: ["#06b6d4","#3b82f6","#8b5cf6"], note: "Three steps. Moving air directly drives blades. No combustion or steam." },
     nuclear: { steps: ["Nuclear binding energy (fission)", "Thermal energy (steam)", "KE (turbine)", "Electrical energy (generator)"], colours: ["#a3e635","#ef4444","#3b82f6","#8b5cf6"], note: "Same turbine-generator step as coal, but heat comes from splitting uranium atoms." },
   };
   const f = flows[source];
   return (
-    <Interactive title="Energy transformation chains" subtitle="Select a power source to see how energy changes form on the way to becoming electricity." takeaway="Every power source transforms energy through a chain of steps to produce electricity, and solar PV has the fewest steps because it converts light directly to electricity with no turbine.">
+    <Interactive title="Energy transformation chains" subtitle="Select a power source to see how energy changes form on the way to becoming electricity." takeaway="Every power source transforms energy through a chain of steps to produce electricity, and solar PV is the most direct because it converts light straight to electricity with no turbine.">
       <SegToggle
         options={[
           { value: "coal", label: "Coal" },
@@ -320,16 +318,19 @@ function OhmsLawExplorer() {
   const [rVal, setRVal] = useState(3);
 
   function handleV(v) {
+    if (knob === "V") return;
     setVVal(v);
     if (knob === "I") setIVal(parseFloat((v / rVal).toFixed(3)));
     if (knob === "R") setRVal(parseFloat((v / iVal).toFixed(3)));
   }
   function handleI(v) {
+    if (knob === "I") return;
     setIVal(v);
     if (knob === "V") setVVal(parseFloat((v * rVal).toFixed(3)));
     if (knob === "R") setRVal(parseFloat((vVal / v).toFixed(3)));
   }
   function handleR(v) {
+    if (knob === "R") return;
     setRVal(v);
     if (knob === "V") setVVal(parseFloat((iVal * v).toFixed(3)));
     if (knob === "I") setIVal(parseFloat((vVal / v).toFixed(3)));
@@ -338,7 +339,7 @@ function OhmsLawExplorer() {
   const power = (vVal * iVal).toFixed(1);
 
   return (
-    <Interactive title="Ohm's law explorer" subtitle="Lock one quantity and adjust the other two. V = I x R is always satisfied." takeaway="Ohm's law (V = I x R) means that for a fixed resistance, doubling the voltage doubles the current, and increasing resistance reduces the current for a given voltage.">
+    <Interactive title="Ohm's law explorer" subtitle="Pick the quantity to find, then adjust the other two sliders. The sliders for the quantity being found do not move it; it is calculated for you." takeaway="Ohm's law (V = I x R) means that for a fixed resistance, doubling the voltage doubles the current, and increasing resistance reduces the current for a given voltage.">
       <div style={{ marginBottom: 8 }}>
         <span style={{ fontSize: 13, fontWeight: 600, marginRight: 8 }}>Calculate:</span>
         <SegToggle options={[{ value: "V", label: "Find V" }, { value: "I", label: "Find I" }, { value: "R", label: "Find R" }]} value={knob} onChange={setKnob}/>
@@ -444,7 +445,7 @@ function EnergyTrendsChart() {
   const bw = (W - padL - padR) / data.length;
 
   return (
-    <Interactive title="Global energy consumption trends" subtitle="Toggle between total energy and per-person energy to see how demand has changed." takeaway="Global total energy roughly doubled from 1970 to 2020, but per-person use grew much more slowly, showing that efficiency improvements have partially offset population-driven demand growth.">
+    <Interactive title="Global energy consumption trends" subtitle="Toggle between total energy and per-person energy to see how demand has changed." takeaway="Global total energy more than doubled from 1970 to 2020, but per-person use grew much more slowly, showing that efficiency improvements have partially offset population-driven demand growth.">
       <SegToggle
         options={[{ value: "total", label: "Total (EJ)" }, { value: "person", label: "Per person (GJ)" }]}
         value={view}
@@ -468,7 +469,7 @@ function EnergyTrendsChart() {
         <line x1={padL} y1={padT + H} x2={W - padR} y2={padT + H} stroke="var(--ink)" strokeWidth="1.5"/>
         <text x={padL - 4} y={padT + H / 2} textAnchor="middle" fontSize="10" fill="var(--muted)" transform={`rotate(-90,${padL - 14},${padT + H / 2})`}>{view === "total" ? "EJ" : "GJ"}</text>
       </svg>
-      <p className="muted" style={{ marginBottom: 0 }}>Global primary energy roughly doubled from 1970 to 2020. Per-person use grew more slowly, showing efficiency gains offset some demand growth.</p>
+      <p className="muted" style={{ marginBottom: 0 }}>Global primary energy more than doubled from 1970 to 2020. Per-person use grew more slowly, showing efficiency gains offset some demand growth.</p>
     </Interactive>
   );
 }
@@ -577,7 +578,7 @@ function Section2({ progress, setProgress }) {
       <Figure src="img/sources.png" caption="Renewable sources (sun, wind, water) compared with non-renewable fuels." />
       <DotPoint id="1.2.1" title="Types of energy sources" progress={progress} setProgress={setProgress}>
         <p>An <Term def="Any store of energy that humans can extract and use to do useful work, generate heat, or produce electricity.">energy source</Term> is classified as <Term def="An energy source formed over millions of years that is consumed faster than it is replenished; once used, it is effectively gone.">non-renewable</Term> or <Term def="An energy source replenished naturally on human timescales; theoretically inexhaustible as long as the natural process driving it continues.">renewable</Term>. The three main <Term def="Coal, petroleum, and natural gas: formed from ancient organisms buried and compressed over hundreds of millions of years.">fossil fuels</Term> are coal, petroleum, and natural gas, all storing <Term def="Energy stored in chemical bonds, released by combustion or other chemical reactions.">chemical potential energy</Term> released by combustion. Renewable sources include solar, wind, hydroelectric, geothermal, tidal, wave, and biomass energy.</p>
-        <p>Nuclear energy sits in its own category: it uses finite uranium ore, but a tiny mass of fuel releases an enormous amount of energy and produces no direct combustion emissions. Understanding which category each source belongs to helps you evaluate its long-term sustainability.</p>
+        <p>Nuclear energy is non-renewable because it uses finite uranium ore, but it is not a fossil fuel: a tiny mass of fuel releases an enormous amount of energy and produces no direct combustion emissions. Understanding which category each source belongs to helps you evaluate its long-term sustainability.</p>
         <Callout kind="fact" title="Fossil fuels and the Sun">All fossil fuels ultimately trace their energy back to the Sun. Ancient plants and marine organisms captured solar energy through photosynthesis and stored it as chemical energy. Millions of years later, that ancient sunlight is what you release when you burn coal or petrol.</Callout>
         <EnergySourceSorter/>
         <QGroup title="Check yourself">
@@ -589,7 +590,7 @@ function Section2({ progress, setProgress }) {
       <DotPoint id="1.2.2" title="Producing electrical energy from different sources" progress={progress} setProgress={setProgress}>
         <p>Almost all large-scale electricity generation relies on <Term def="The process by which a changing magnetic field through a conductor induces an electric current in that conductor.">electromagnetic induction</Term>: a coil of wire rotating in a magnetic field produces an alternating current (AC). A <Term def="A set of large blades connected to a generator shaft, spun by steam, water, or wind to generate electricity.">turbine</Term> drives the generator shaft. Whatever the energy source, the final step to electricity is usually the same rotating coil in a magnetic field.</p>
         <p>Solar <Term def="Photovoltaic: a technology that directly converts light (photons) into electrical energy using semiconductor materials such as silicon.">PV</Term> panels are the exception. They convert light directly to DC electricity using semiconductor materials, with no turbine or moving parts. DC is then converted to AC by an inverter for grid use. Solar PV has far fewer transformation steps than thermal power stations, which is part of why it can be so efficient and low-cost to operate.</p>
-        <Callout kind="key" title="Transformation chains matter">A coal station: Chemical PE to Thermal to KE to Electrical (4 steps, large losses). Hydro: GPE to KE to Electrical (3 steps, small losses). Solar PV: Radiant to Electrical DC to Electrical AC (2 steps, minimal losses).</Callout>
+        <Callout kind="key" title="Transformation chains matter">A coal station: Chemical PE to Thermal to KE to Electrical (3 energy transformations, large losses). Hydro: GPE to KE to Electrical (2 transformations, small losses). Solar PV: Radiant to Electrical (1 transformation; the inverter only changes DC to AC, so losses are small).</Callout>
         <PowerStationFlow/>
         <QGroup title="Check yourself">
           <MCQ num={9} question="How is solar PV electricity generation fundamentally different from a coal, wind, or hydroelectric power station?" options={["It produces DC instead of AC at the generator","It has no turbine; photons directly release electrons in a semiconductor","It burns hydrogen instead of carbon","It uses the magnetic field of the Earth"]} correct={1} explain="Solar PV generates electricity directly from light striking semiconductor material, with no turbine or moving parts. All other listed methods use a spinning turbine connected to a generator."/>
@@ -725,11 +726,11 @@ function Section4({ progress, setProgress }) {
       </DotPoint>
 
       <DotPoint id="1.4.2" title="Past trends and future energy demand" progress={progress} setProgress={setProgress}>
-        <p>Global energy consumption roughly doubled from 1970 to 2020, rising from about 230 to 570 <Term def="Exajoule: one billion billion (10 to the power of 18) joules. Used to measure national or global energy consumption.">exajoules (EJ)</Term> per year. Population growth was the dominant driver; per-person energy use grew only modestly, from about 62 to 73 GJ, showing that efficiency gains in developed countries partially offset rising consumption in developing nations.</p>
+        <p>Global energy consumption more than doubled from 1970 to 2020, rising from about 230 to 570 <Term def="Exajoule: one billion billion (10 to the power of 18) joules. Used to measure national or global energy consumption.">exajoules (EJ)</Term> per year. Population growth was the dominant driver; per-person energy use grew only modestly, from about 62 to 73 GJ, showing that efficiency gains in developed countries partially offset rising consumption in developing nations.</p>
         <p>In Australia, <Term def="Energy used per dollar of economic output (GDP). It has been declining as the Australian economy becomes more service-oriented and efficiency improves.">energy intensity</Term> has been declining even as total energy use grows. NSW and Victoria are the largest electricity consumers due to their population size. The <Term def="International Energy Agency: a Paris-based organisation that provides data and analysis on global energy.">IEA</Term> projects that global energy demand will continue to grow, particularly in Asia and Africa. Understanding past trends helps planners model future demand and ensure sufficient generating capacity, transmission, and storage are built in time.</p>
         <EnergyTrendsChart/>
         <QGroup title="Check yourself">
-          <MCQ num={22} question="Using the data table, what was the percentage increase in global energy consumption from 1970 to 2020?" options={["About 50%","About 148%","About 300%","About 18%"]} correct={1} explain="(570 - 230) / 230 x 100 = 340 / 230 x 100 = approximately 148%."/>
+          <MCQ num={22} question="Using the chart data, what was the percentage increase in global energy consumption from 1970 to 2020?" options={["About 50%","About 148%","About 300%","About 18%"]} correct={1} explain="(570 - 230) / 230 x 100 = 340 / 230 x 100 = approximately 148%."/>
         </QGroup>
       </DotPoint>
 
