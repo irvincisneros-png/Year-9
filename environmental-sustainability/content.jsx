@@ -447,7 +447,7 @@ function Section2({ progress, setProgress }) {
           The <Term def="The period beginning around 1750 in Britain, during which coal-powered machinery and large-scale fossil fuel combustion began, producing a steep rise in CO2 emissions.">Industrial Revolution</Term> began the steep rise in fossil fuel use. Ice core records show CO2 remained between 180 and 280 ppm for the past 800,000 years before 1750. The rapid increase to over 420 ppm today is entirely outside the natural range for at least 800,000 years and coincides precisely with industrial civilisation.
         </p>
         <p>
-          Global temperature records from NASA, NOAA, the UK Met Office, and the Japanese Meteorological Agency all show the same pattern: stable temperatures from 1850 to roughly 1900, then slow rise, then accelerating warming from the mid-20th century as post-war industrial expansion and fossil fuel use surged. Statistical analysis shows a <Term def="A statistical measure of how closely two variables are related. A value of 0.97 indicates a very strong positive relationship.">correlation coefficient</Term> of approximately 0.97 between cumulative CO2 emissions and global mean temperature since 1850. Climate models that include only natural forcing factors cannot reproduce the observed warming; adding human emissions does.
+          Global temperature records from NASA, NOAA, the UK Met Office, and the Japanese Meteorological Agency all show the same pattern: stable temperatures from 1850 to roughly 1900, then slow rise, then accelerating warming from the mid-20th century as post-war industrial expansion and fossil fuel use surged. Cumulative CO2 emissions and global mean temperature since 1850 show a very strong, almost straight-line <Term def="A statistical measure of how closely two variables are related. A value close to 1 indicates a very strong positive relationship.">correlation</Term>. Climate models that include only natural forcing factors cannot reproduce the observed warming; adding human emissions does.
         </p>
         <Callout kind="fact" title="Ice core evidence">
           Antarctic ice cores extend climate records back approximately 800,000 years. Trapped air bubbles preserve ancient atmosphere, allowing scientists to measure past CO2 concentrations and infer temperature from oxygen isotope ratios.
@@ -514,7 +514,7 @@ function WaterCycleImpact() {
         ))}
       </div>
       <p className="muted" style={{ fontSize: 12, marginTop: 8 }}>
-        Values are simplified indicators based on atmospheric science principles. Actual impacts vary significantly by region.
+        Water vapour follows the measured rule of about 7% per 1 °C. The drought and glacier figures are illustrative only, to show the direction of change. Actual impacts vary a lot by region.
       </p>
     </Interactive>
   );
@@ -552,7 +552,7 @@ function Section3({ progress, setProgress }) {
                   ["Sea level", "+20 cm since 1900", "3.7 mm/yr currently"],
                   ["Arctic sea ice (summer)", "13% decline per decade", "Consistent since 1979"],
                   ["Ocean heat content", "Increasing all basins", "Continuous since 1960s"],
-                  ["Extreme heat events", "More frequent, hotter", "Frequency roughly doubled since 1950"],
+                  ["Extreme heat events", "More frequent, hotter", "Increasing in most regions since 1950 (IPCC)"],
                 ].map(([c, o, r]) => <tr key={c}><td>{c}</td><td>{o}</td><td>{r}</td></tr>)}
               </tbody>
             </table>

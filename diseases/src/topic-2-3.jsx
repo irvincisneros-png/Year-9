@@ -121,7 +121,7 @@ function Topic23({ progress, setProgress }) {
       <DotPoint id="2.3.4" title={items[3].title} progress={progress} setProgress={setProgress}>
         <p>Immunisation programs have transformed the pattern of infectious disease in Australia. Measles cases were very high before 1969, fell sharply after vaccination began, and dropped further once the MMR vaccine was added. High coverage (around 95% for two doses) is needed to stop the spread.</p>
 
-        <Figure num="2.12" src="images/raw-24.jpg" alt="Stop Measles poster with vaccination and community protection" caption="Measles is one of the most contagious diseases known. Australia eliminated endemic measles in 2014, but outbreaks still happen when coverage falls below the herd-immunity threshold (~95%)." />
+        <Figure num="2.12" src="images/raw-24.jpg" alt="Stop Measles poster with vaccination and community protection" caption="Measles is one of the most contagious diseases known. It spreads mainly through the air: the virus can hang in a room for up to two hours after an infected person leaves. Australia eliminated endemic measles in 2014, but outbreaks still happen when coverage falls below the herd-immunity threshold (~95%)." />
 
         <h3>How to analyse disease-and-vaccination data</h3>
         <ol>

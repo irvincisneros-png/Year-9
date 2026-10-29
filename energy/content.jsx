@@ -487,7 +487,7 @@ function EnergyCriteriaEval() {
   const [sel, setSel] = useState("Solar PV");
 
   return (
-    <Interactive title="Evaluate alternative energy sources" subtitle="Select a source to see how it scores on five key criteria for Australia (1 = poor, 5 = excellent)." takeaway="No single energy source scores perfectly on all criteria, so a mix of complementary sources is a more robust strategy than relying on just one.">
+    <Interactive title="Evaluate alternative energy sources" subtitle="Select a source to see how it scores on five key criteria for Australia (1 = poor, 5 = excellent). Scores are simplified judgements for discussion, not measured data." takeaway="No single energy source scores perfectly on all criteria, so a mix of complementary sources is a more robust strategy than relying on just one.">
       <SegToggle
         options={sources.map(s => ({ value: s, label: s }))}
         value={sel}
