@@ -426,11 +426,11 @@ function BondVisualiser() {
       label: "Ionic: NaCl",
       desc: "The sodium atom (1 outer electron) transfers that electron to chlorine (7 outer electrons). Each ion now has a full outer shell. Opposite charges attract, forming a crystal lattice.",
       colours: ["#7c3aed", "#16a34a"],
-      labels: ["Na+", "Cl-"],
+      labels: ["Na⁺", "Cl⁻"],
       arrow: true
     },
     covalent: {
-      label: "Covalent: H2O",
+      label: "Covalent: H₂O",
       desc: "Oxygen shares one electron pair with each hydrogen. Both shared pairs count for each atom, giving oxygen 8 outer electrons and each hydrogen 2 (matching helium).",
       colours: ["#2563eb", "#e11d48", "#e11d48"],
       labels: ["O", "H", "H"],
@@ -440,7 +440,7 @@ function BondVisualiser() {
       label: "Metallic: Copper",
       desc: "Positive copper ions sit in a regular lattice. Outer electrons are delocalised, forming a 'sea' of free electrons. This sea holds the lattice together and makes copper an excellent conductor.",
       colours: ["#d97706", "#d97706", "#d97706", "#d97706"],
-      labels: ["Cu+", "Cu+", "Cu+", "Cu+"],
+      labels: ["Cu⁺", "Cu⁺", "Cu⁺", "Cu⁺"],
       arrow: false
     }
   };
@@ -538,13 +538,13 @@ function BondVisualiser() {
     textAnchor: "middle",
     fontSize: "13",
     fill: "var(--ink)"
-  }, "Na+"), /*#__PURE__*/React.createElement("text", {
+  }, "Na\u207A"), /*#__PURE__*/React.createElement("text", {
     x: 270,
     y: 118,
     textAnchor: "middle",
     fontSize: "13",
     fill: "var(--ink)"
-  }, "Cl-"), /*#__PURE__*/React.createElement("text", {
+  }, "Cl\u207B"), /*#__PURE__*/React.createElement("text", {
     x: 180,
     y: 118,
     textAnchor: "middle",
@@ -645,7 +645,7 @@ function BondVisualiser() {
       fontSize: "13",
       fontWeight: "700",
       fill: "#fff"
-    }, "Cu+");
+    }, "Cu\u207A");
   }), [50, 110, 170, 230, 290, 130, 195, 255, 145, 245].map(function (x, i) {
     return /*#__PURE__*/React.createElement("circle", {
       key: i,
@@ -675,56 +675,56 @@ function BondVisualiser() {
 function FractionColumn() {
   var fractions = [{
     name: "Refinery gas (LPG)",
-    bp: "Below 40  °C",
-    chain: "C1 to C4",
+    bp: "Below 40 °C",
+    chain: "C₁ to C₄",
     use: "Cooking, plastics",
     y: 12,
     height: 22,
     colour: "#e11d48"
   }, {
     name: "Petrol",
-    bp: "40 to 175  °C",
-    chain: "C5 to C10",
+    bp: "40 to 175 °C",
+    chain: "C₅ to C₁₀",
     use: "Car fuel",
     y: 36,
     height: 26,
     colour: "#f97316"
   }, {
     name: "Naphtha",
-    bp: "40 to 180  °C",
-    chain: "C5 to C10",
+    bp: "40 to 180 °C",
+    chain: "C₅ to C₁₀",
     use: "Chemical feedstock",
     y: 64,
     height: 20,
     colour: "#eab308"
   }, {
     name: "Kerosene",
-    bp: "175 to 325  °C",
-    chain: "C10 to C16",
+    bp: "175 to 325 °C",
+    chain: "C₁₀ to C₁₆",
     use: "Aviation fuel",
     y: 86,
     height: 24,
     colour: "#84cc16"
   }, {
     name: "Diesel",
-    bp: "250 to 350  °C",
-    chain: "C14 to C20",
+    bp: "250 to 350 °C",
+    chain: "C₁₄ to C₂₀",
     use: "Trucks, trains",
     y: 112,
     height: 24,
     colour: "#22d3ee"
   }, {
     name: "Fuel oil",
-    bp: "350 to 500  °C",
-    chain: "C20 to C50",
+    bp: "350 to 500 °C",
+    chain: "C₂₀ to C₅₀",
     use: "Ships, boilers",
     y: 138,
     height: 24,
     colour: "#6366f1"
   }, {
     name: "Bitumen",
-    bp: "Above 500  °C",
-    chain: "Above C70",
+    bp: "Above 500 °C",
+    chain: "Above C₇₀",
     use: "Road surfaces",
     y: 164,
     height: 28,
@@ -928,14 +928,19 @@ function AlkaneBuilder() {
     n = _useState0[0],
     setN = _useState0[1];
   var al = alkanes[n - 1];
-  var formula = "C".concat(n, "H").concat(2 * n + 2);
+  var sub = function sub(v) {
+    return String(v).split("").map(function (c) {
+      return "₀₁₂₃₄₅₆₇₈₉"[+c];
+    }).join("");
+  };
+  var formula = "C".concat(n > 1 ? sub(n) : "", "H").concat(sub(2 * n + 2));
   var bpMin = -161,
     bpMax = 126;
   var pct = (al.bp - bpMin) / (bpMax - bpMin);
   var cx = 20 + pct * 280;
   return /*#__PURE__*/React.createElement(Interactive, {
     title: "Alkane Builder",
-    subtitle: "Use the slider to build alkanes from C1 (methane) to C8 (octane) and watch the formula, boiling point and state change.",
+    subtitle: "Use the slider to build alkanes from C\u2081 (methane) to C\u2088 (octane) and watch the formula, boiling point and state change.",
     takeaway: "As alkane chain length increases, boiling point rises and state changes from gas to liquid because larger molecules have stronger intermolecular forces."
   }, /*#__PURE__*/React.createElement(Slider, {
     label: "Carbon atoms (n)",
@@ -1548,7 +1553,7 @@ function Section31(_ref5) {
     def: "A nearly pure form of carbon made by heating coal without air; used as a reducing agent in blast furnaces."
   }, "coke"), " and limestone in a blast furnace at temperatures above 1500 degrees Celsius to produce molten iron, which is then refined to produce steel."), /*#__PURE__*/React.createElement("p", null, "Bauxite follows a different path. First the ", /*#__PURE__*/React.createElement(Term, {
     def: "A process that dissolves aluminium oxide from bauxite using hot sodium hydroxide solution, leaving impurities behind."
-  }, "Bayer process"), " purifies it into alumina (aluminium oxide, Al2O3). Then electrolysis, using enormous amounts of electricity, reduces alumina to aluminium metal. Because this second step is so energy-hungry, recycling aluminium cans saves about 95% of the energy compared with making aluminium from scratch."), /*#__PURE__*/React.createElement("p", null, "Lithium is processed into ", /*#__PURE__*/React.createElement(Term, {
+  }, "Bayer process"), " purifies it into alumina (aluminium oxide, Al\u2082O\u2083). Then electrolysis, using enormous amounts of electricity, reduces alumina to aluminium metal. Because this second step is so energy-hungry, recycling aluminium cans saves about 95% of the energy compared with making aluminium from scratch."), /*#__PURE__*/React.createElement("p", null, "Lithium is processed into ", /*#__PURE__*/React.createElement(Term, {
     def: "A lithium compound used to make the cathodes of lithium-ion batteries."
   }, "lithium hydroxide"), " or lithium carbonate, exported to battery manufacturers, and ends up in the phone in your pocket. Every step from mine to product involves chemistry you are learning in this course."), /*#__PURE__*/React.createElement(Callout, {
     kind: "fact",
@@ -1636,7 +1641,7 @@ function Section31(_ref5) {
     def: "The flow of acidic, metal-contaminated water from exposed mine waste that leaches into streams and groundwater."
   }, "acid mine drainage"), ", which poisons local waterways."), /*#__PURE__*/React.createElement("p", null, "The use of extracted resources also has consequences. Burning coal releases ", /*#__PURE__*/React.createElement(Term, {
     def: "A greenhouse gas produced by burning fossil fuels; a major driver of climate change."
-  }, "carbon dioxide"), " and sulfur dioxide. Steel production accounts for approximately 7 to 9 percent of global CO2 emissions. Aluminium smelting, if powered by coal-fired electricity, has a very large carbon footprint. These downstream impacts extend the environmental assessment far beyond the mine gate. In Australia, mining companies must legally rehabilitate mined land after closure, restoring topsoil and replanting native vegetation, though full ecological recovery takes decades."), /*#__PURE__*/React.createElement(Callout, {
+  }, "carbon dioxide"), " and sulfur dioxide. Steel production accounts for approximately 7 to 9 percent of global CO\u2082 emissions. Aluminium smelting, if powered by coal-fired electricity, has a very large carbon footprint. These downstream impacts extend the environmental assessment far beyond the mine gate. In Australia, mining companies must legally rehabilitate mined land after closure, restoring topsoil and replanting native vegetation, though full ecological recovery takes decades."), /*#__PURE__*/React.createElement(Callout, {
     kind: "warn",
     title: "Life cycle thinking"
   }, "Assessing only extraction impacts misses the full picture. A complete evaluation covers raw material extraction, processing, use, and disposal or recycling. This is called a life cycle approach."), /*#__PURE__*/React.createElement(QGroup, {
@@ -1650,7 +1655,7 @@ function Section31(_ref5) {
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 7,
     question: "Evaluate whether the environmental cost of coal mining and use outweighs the economic benefit. Use evidence from both sides.",
-    model: "Economic benefits include export income, jobs, taxes, and energy generation. Environmental costs include habitat destruction from open-cut mining, acid mine drainage, large CO2 and SO2 emissions from combustion, and contribution to climate change. Both are real and significant. The weight given to each depends on values and time frame, but the accumulating environmental damage and international pressure to reduce emissions suggest the costs are becoming harder to justify economically in the long term."
+    model: "Economic benefits include export income, jobs, taxes, and energy generation. Environmental costs include habitat destruction from open-cut mining, acid mine drainage, large CO\u2082 and SO\u2082 emissions from combustion, and contribution to climate change. Both are real and significant. The weight given to each depends on values and time frame, but the accumulating environmental damage and international pressure to reduce emissions suggest the costs are becoming harder to justify economically in the long term."
   }))));
 }
 
@@ -1667,9 +1672,355 @@ function Section32(_ref6) {
   }, "3.2 Bonding"), /*#__PURE__*/React.createElement("h1", null, "How atoms stick together"), /*#__PURE__*/React.createElement("p", {
     className: "lead"
   }, "Valency, noble gas configurations and three types of chemical bond explain the properties of every material from table salt to diamond.")), /*#__PURE__*/React.createElement(Figure, {
-    src: "img/bonding.png",
-    caption: "Atoms share or transfer electrons to form chemical bonds."
-  }), /*#__PURE__*/React.createElement(DotPoint, {
+    caption: "Two ways atoms bond to reach a full outer shell. Left: in a covalent bond two non-metal atoms share a pair of electrons. Right: in an ionic bond a metal atom (sodium) transfers its outer electron to a non-metal atom (chlorine), forming oppositely charged ions.",
+    maxWidth: 640
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 620 240",
+    width: "100%",
+    role: "img",
+    "aria-label": "Electron shell diagrams. Covalent: two hydrogen atoms share a pair of electrons. Ionic: sodium, with electrons 2,8,1, gives its one outer electron to chlorine, 2,8,7, forming Na plus (2,8) and Cl minus (2,8,8)."
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: "250",
+    y1: "20",
+    x2: "250",
+    y2: "230",
+    stroke: "var(--border)",
+    strokeWidth: "1.5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "95",
+    cy: "125",
+    r: "38",
+    fill: "none",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "1.5",
+    strokeDasharray: "4 3"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "95",
+    cy: "125",
+    r: "12",
+    fill: "var(--teal)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "95",
+    y: "130",
+    textAnchor: "middle",
+    fontSize: "13",
+    fontWeight: "700",
+    fill: "#fff"
+  }, "H"), /*#__PURE__*/React.createElement("circle", {
+    cx: "155",
+    cy: "125",
+    r: "38",
+    fill: "none",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "1.5",
+    strokeDasharray: "4 3"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "155",
+    cy: "125",
+    r: "12",
+    fill: "var(--teal)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "155",
+    y: "130",
+    textAnchor: "middle",
+    fontSize: "13",
+    fontWeight: "700",
+    fill: "#fff"
+  }, "H"), /*#__PURE__*/React.createElement("circle", {
+    cx: "125",
+    cy: "115",
+    r: "5",
+    fill: "var(--amber)",
+    stroke: "var(--ink)",
+    strokeWidth: "1"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "125",
+    cy: "135",
+    r: "5",
+    fill: "var(--amber)",
+    stroke: "var(--ink)",
+    strokeWidth: "1"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "330",
+    cy: "125",
+    r: "16",
+    fill: "none",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "1.2"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "520",
+    cy: "125",
+    r: "16",
+    fill: "none",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "1.2"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "330",
+    cy: "125",
+    r: "30",
+    fill: "none",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "1.2"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "520",
+    cy: "125",
+    r: "30",
+    fill: "none",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "1.2"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "330",
+    cy: "125",
+    r: "44",
+    fill: "none",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "1.2"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "520",
+    cy: "125",
+    r: "44",
+    fill: "none",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "1.2"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "330",
+    cy: "125",
+    r: "10",
+    fill: "var(--purple)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "330",
+    y: "129",
+    textAnchor: "middle",
+    fontSize: "10",
+    fontWeight: "700",
+    fill: "#fff"
+  }, "Na"), /*#__PURE__*/React.createElement("circle", {
+    cx: "520",
+    cy: "125",
+    r: "10",
+    fill: "var(--green)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "520",
+    y: "129",
+    textAnchor: "middle",
+    fontSize: "10",
+    fontWeight: "700",
+    fill: "#fff"
+  }, "Cl"), /*#__PURE__*/React.createElement("circle", {
+    cx: "330.0",
+    cy: "141.0",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "330.0",
+    cy: "109.0",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "357.7",
+    cy: "136.5",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "341.5",
+    cy: "152.7",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "318.5",
+    cy: "152.7",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "302.3",
+    cy: "136.5",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "302.3",
+    cy: "113.5",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "318.5",
+    cy: "97.3",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "341.5",
+    cy: "97.3",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "357.7",
+    cy: "113.5",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "520.0",
+    cy: "141.0",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "520.0",
+    cy: "109.0",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "547.7",
+    cy: "136.5",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "531.5",
+    cy: "152.7",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "508.5",
+    cy: "152.7",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "492.3",
+    cy: "136.5",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "492.3",
+    cy: "113.5",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "508.5",
+    cy: "97.3",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "531.5",
+    cy: "97.3",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "547.7",
+    cy: "113.5",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "374",
+    cy: "125",
+    r: "5.5",
+    fill: "var(--red)",
+    stroke: "var(--ink)",
+    strokeWidth: "1"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "564.0",
+    cy: "125.0",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "551.1",
+    cy: "156.1",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "520.0",
+    cy: "169.0",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "488.9",
+    cy: "156.1",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "488.9",
+    cy: "93.9",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "520.0",
+    cy: "81.0",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "551.1",
+    cy: "93.9",
+    r: "4.5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "476",
+    cy: "125",
+    r: "5.5",
+    fill: "none",
+    stroke: "var(--red)",
+    strokeWidth: "2",
+    strokeDasharray: "3 2"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M382,119 Q425.0,75 466,117",
+    fill: "none",
+    stroke: "var(--red)",
+    strokeWidth: "2.5"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M470,123 L456,119 L465,108 Z",
+    fill: "var(--red)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "125",
+    y: "30",
+    textAnchor: "middle",
+    fontSize: "15",
+    fontWeight: "800",
+    fill: "var(--ink)"
+  }, "Sharing (covalent): H\u2082"), /*#__PURE__*/React.createElement("text", {
+    x: "125",
+    y: "196",
+    textAnchor: "middle",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "The two atoms share a pair"), /*#__PURE__*/React.createElement("text", {
+    x: "125",
+    y: "212",
+    textAnchor: "middle",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "of electrons (yellow), so each"), /*#__PURE__*/React.createElement("text", {
+    x: "125",
+    y: "228",
+    textAnchor: "middle",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "H has 2, like helium."), /*#__PURE__*/React.createElement("text", {
+    x: "425",
+    y: "30",
+    textAnchor: "middle",
+    fontSize: "15",
+    fontWeight: "800",
+    fill: "var(--ink)"
+  }, "Transfer (ionic): NaCl"), /*#__PURE__*/React.createElement("text", {
+    x: "425",
+    y: "66",
+    textAnchor: "middle",
+    fontSize: "12",
+    fill: "var(--red)"
+  }, "1 electron moves"), /*#__PURE__*/React.createElement("text", {
+    x: "330",
+    y: "196",
+    textAnchor: "middle",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "Na 2,8,1 \u2192 Na\u207A 2,8"), /*#__PURE__*/React.createElement("text", {
+    x: "520",
+    y: "196",
+    textAnchor: "middle",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "Cl 2,8,7 \u2192 Cl\u207B 2,8,8"), /*#__PURE__*/React.createElement("text", {
+    x: "425",
+    y: "222",
+    textAnchor: "middle",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "The oppositely charged ions attract: an ionic bond."))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.2.1",
     title: "Valency and electron configuration",
     progress: progress,
@@ -1746,7 +2097,7 @@ function Section32(_ref6) {
     setProgress: setProgress
   }, /*#__PURE__*/React.createElement("p", null, "Noble gases (Group 18: helium, neon, argon, krypton, xenon and radon) are almost completely unreactive. Their outer electron shells are already full, helium with 2 electrons and all others with 8. This complete arrangement is the most stable possible for any element. Because they are already stable, noble gases have virtually no tendency to gain, lose or share electrons, which is why they rarely form compounds under normal conditions."), /*#__PURE__*/React.createElement("p", null, "When other atoms bond, they rearrange their electrons to reach these same ", /*#__PURE__*/React.createElement(Term, {
     def: "An electron arrangement identical to that of a noble gas, with a completely filled outer electron shell."
-  }, "noble gas configurations"), ". Sodium (configuration 2, 8, 1) loses its one outer electron to become Na+ with the configuration 2, 8 (matching neon). Chlorine (2, 8, 7) gains that electron to become Cl- with configuration 2, 8, 8 (matching argon). In covalent bonding, atoms share electrons rather than transfer them, but each atom counts the shared electrons as its own, giving the same stable full-shell result."), /*#__PURE__*/React.createElement(Callout, {
+  }, "noble gas configurations"), ". Sodium (configuration 2, 8, 1) loses its one outer electron to become Na\u207A with the configuration 2, 8 (matching neon). Chlorine (2, 8, 7) gains that electron to become Cl\u207B with configuration 2, 8, 8 (matching argon). In covalent bonding, atoms share electrons rather than transfer them, but each atom counts the shared electrons as its own, giving the same stable full-shell result."), /*#__PURE__*/React.createElement(Callout, {
     kind: "key",
     title: "Key idea"
   }, "All chemical bonding is driven by atoms trying to reach the stable, full-shell electron arrangement of a noble gas."), /*#__PURE__*/React.createElement(QGroup, {
@@ -1756,7 +2107,7 @@ function Section32(_ref6) {
     question: "When sodium bonds with chlorine, the resulting Na+ ion has the same electron configuration as which noble gas?",
     options: ["Helium", "Neon", "Argon", "Krypton"],
     correct: 1,
-    explain: "Na+ has 10 electrons arranged as 2, 8. Neon also has 10 electrons in a 2, 8 arrangement. Na+ matches neon."
+    explain: "Na\u207A has 10 electrons arranged as 2, 8. Neon also has 10 electrons in a 2, 8 arrangement. Na\u207A matches neon."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.2.3",
     title: "Types of chemical bonds: ionic, covalent and metallic",
@@ -1812,7 +2163,7 @@ function Section32(_ref6) {
       padding: "5px 8px",
       textAlign: "left"
     }
-  }, "Typical properties"))), /*#__PURE__*/React.createElement("tbody", null, [["Ionic", "Metal + non-metal", "Transferred", "NaCl, MgO", "High melting point; conducts when dissolved"], ["Covalent (molecular)", "Non-metal + non-metal", "Shared", "H2O, CO2, CH4", "Low melting point; poor conductor"], ["Covalent (network)", "Non-metal + non-metal", "Shared throughout", "Diamond, SiO2", "Very high melting point; very hard"], ["Metallic", "Metal + metal", "Delocalised (sea)", "Cu, Fe, Al", "Conducts; malleable; ductile"]].map(function (row) {
+  }, "Typical properties"))), /*#__PURE__*/React.createElement("tbody", null, [["Ionic", "Metal + non-metal", "Transferred", "NaCl, MgO", "High melting point; conducts when dissolved"], ["Covalent (molecular)", "Non-metal + non-metal", "Shared", "H₂O, CO₂, CH₄", "Low melting point; poor conductor"], ["Covalent (network)", "Non-metal + non-metal", "Shared throughout", "Diamond, SiO₂", "Very high melting point; very hard"], ["Metallic", "Metal + metal", "Delocalised (sea)", "Cu, Fe, Al", "Conducts; malleable; ductile"]].map(function (row) {
     return /*#__PURE__*/React.createElement("tr", {
       key: row[0],
       style: {
@@ -1847,11 +2198,11 @@ function Section32(_ref6) {
     def: "Charged atoms or groups of atoms formed by gaining or losing electrons."
   }, "ions"), ". A ", /*#__PURE__*/React.createElement(Term, {
     def: "A positively charged ion formed when an atom loses one or more electrons."
-  }, "cation"), " forms when an atom loses electrons. Because electrons carry negative charge, removing them leaves more protons than electrons, giving a net positive charge. Metal atoms typically form cations. Sodium (11 protons, 11 electrons) loses one electron to become Na+ with 11 protons and 10 electrons."), /*#__PURE__*/React.createElement("p", null, "An ", /*#__PURE__*/React.createElement(Term, {
+  }, "cation"), " forms when an atom loses electrons. Because electrons carry negative charge, removing them leaves more protons than electrons, giving a net positive charge. Metal atoms typically form cations. Sodium (11 protons, 11 electrons) loses one electron to become Na\u207A with 11 protons and 10 electrons."), /*#__PURE__*/React.createElement("p", null, "An ", /*#__PURE__*/React.createElement(Term, {
     def: "A negatively charged ion formed when an atom gains one or more electrons."
-  }, "anion"), " forms when an atom gains electrons. Extra electrons mean more negative charge than protons, giving a net negative charge. Non-metal atoms typically form anions. Chlorine (17 protons, 17 electrons) gains one electron to become Cl- with 17 protons and 18 electrons."), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Term, {
+  }, "anion"), " forms when an atom gains electrons. Extra electrons mean more negative charge than protons, giving a net negative charge. Non-metal atoms typically form anions. Chlorine (17 protons, 17 electrons) gains one electron to become Cl\u207B with 17 protons and 18 electrons."), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Term, {
     def: "A diagram using dots and crosses to represent outer-shell electrons, showing which electrons are transferred in ionic bonding."
-  }, "Dot-and-cross diagrams"), " are models that make this process visible. They show which electrons belong to which atom and how the charges on the resulting ions arise from the electron transfers. The key point is that the positive charge on Na+ comes not from gaining protons, but from losing electrons."), /*#__PURE__*/React.createElement(Figure, {
+  }, "Dot-and-cross diagrams"), " are models that make this process visible. They show which electrons belong to which atom and how the charges on the resulting ions arise from the electron transfers. The key point is that the positive charge on Na\u207A comes not from gaining protons, but from losing electrons."), /*#__PURE__*/React.createElement(Figure, {
     caption: "Cation and anion formation showing proton and electron counts, resulting charge and noble gas configuration achieved."
   }, /*#__PURE__*/React.createElement("div", {
     className: "data-table",
@@ -1896,7 +2247,7 @@ function Section32(_ref6) {
     style: {
       padding: "5px 8px"
     }
-  }, "Charge"))), /*#__PURE__*/React.createElement("tbody", null, [["Na", "11", "11", "Loses 1", "Na+", "10", "+1"], ["Mg", "12", "12", "Loses 2", "Mg2+", "10", "+2"], ["Al", "13", "13", "Loses 3", "Al3+", "10", "+3"], ["Cl", "17", "17", "Gains 1", "Cl-", "18", "-1"], ["O", "8", "8", "Gains 2", "O2-", "10", "-2"], ["N", "7", "7", "Gains 3", "N3-", "10", "-3"]].map(function (row) {
+  }, "Charge"))), /*#__PURE__*/React.createElement("tbody", null, [["Na", "11", "11", "Loses 1", "Na⁺", "10", "+1"], ["Mg", "12", "12", "Loses 2", "Mg²⁺", "10", "+2"], ["Al", "13", "13", "Loses 3", "Al³⁺", "10", "+3"], ["Cl", "17", "17", "Gains 1", "Cl⁻", "18", "-1"], ["O", "8", "8", "Gains 2", "O²⁻", "10", "-2"], ["N", "7", "7", "Gains 3", "N³⁻", "10", "-3"]].map(function (row) {
     return /*#__PURE__*/React.createElement("tr", {
       key: row[0],
       style: {
@@ -1918,21 +2269,21 @@ function Section32(_ref6) {
     question: "A magnesium atom has 12 protons and 12 electrons. How many electrons does the Mg2+ ion have?",
     options: ["14", "12", "10", "8"],
     correct: 2,
-    explain: "Mg2+ loses 2 electrons: 12 minus 2 equals 10 electrons. The ion still has 12 protons, giving a net charge of plus 2."
+    explain: "Mg\xB2\u207A loses 2 electrons: 12 minus 2 equals 10 electrons. The ion still has 12 protons, giving a net charge of plus 2."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.2.5",
     title: "Diatomic elements",
     progress: progress,
     setProgress: setProgress
-  }, /*#__PURE__*/React.createElement("p", null, "Most elements exist as single atoms at standard conditions, but seven non-metals are only stable as pairs. These ", /*#__PURE__*/React.createElement(Term, {
+  }, /*#__PURE__*/React.createElement("p", null, "Under standard conditions, seven non-metal elements exist as molecules made of two atoms joined together. These ", /*#__PURE__*/React.createElement(Term, {
     def: "Molecules consisting of exactly two atoms of the same element bonded by a covalent bond."
-  }, "diatomic elements"), " are hydrogen (H2), nitrogen (N2), oxygen (O2), fluorine (F2), chlorine (Cl2), bromine (Br2) and iodine (I2). A handy mnemonic is \"Have No Fear Of Ice Cold Bears\" for H, N, F, O, I, Cl, Br."), /*#__PURE__*/React.createElement("p", null, "Each pair shares electron pairs so both atoms achieve a full outer shell. Nitrogen (N2) forms a triple bond (three shared pairs), making it exceptionally stable and unreactive. This is why nitrogen makes up 78% of the atmosphere but rarely takes part in reactions under normal conditions. Recognising diatomic elements is essential for writing correct chemical equations: when oxygen is involved, write O2, not O, or your equations will not balance."), /*#__PURE__*/React.createElement(Callout, {
+  }, "diatomic elements"), " are hydrogen (H\u2082), nitrogen (N\u2082), oxygen (O\u2082), fluorine (F\u2082), chlorine (Cl\u2082), bromine (Br\u2082) and iodine (I\u2082). A handy mnemonic is \"Have No Fear Of Ice Cold Bears\" for H, N, F, O, I, Cl, Br."), /*#__PURE__*/React.createElement("p", null, "Each pair shares electron pairs so both atoms achieve a full outer shell. Nitrogen (N\u2082) forms a triple bond (three shared pairs), making it exceptionally stable and unreactive. This is why nitrogen makes up 78% of the atmosphere but rarely takes part in reactions under normal conditions. Recognising diatomic elements is essential for writing correct chemical equations: when oxygen is involved, write O\u2082, not O, or your equations will not balance."), /*#__PURE__*/React.createElement(Callout, {
     kind: "tip",
     title: "Mnemonic"
-  }, "Have No Fear Of Ice Cold Bears: H2, N2, F2, O2, I2, Cl2, Br2. Learn this list and you will never forget a diatomic element."), /*#__PURE__*/React.createElement(MatchBuckets, {
+  }, "Have No Fear Of Ice Cold Bears: H\u2082, N\u2082, F\u2082, O\u2082, I\u2082, Cl\u2082, Br\u2082. Learn this list and you will never forget a diatomic element."), /*#__PURE__*/React.createElement(MatchBuckets, {
     items: [{
       id: "h2",
-      label: "H2 (hydrogen)",
+      label: "H₂ (hydrogen)",
       bucket: "diatomic"
     }, {
       id: "na",
@@ -1940,7 +2291,7 @@ function Section32(_ref6) {
       bucket: "monatomic"
     }, {
       id: "o2",
-      label: "O2 (oxygen)",
+      label: "O₂ (oxygen)",
       bucket: "diatomic"
     }, {
       id: "fe",
@@ -1948,7 +2299,7 @@ function Section32(_ref6) {
       bucket: "monatomic"
     }, {
       id: "cl",
-      label: "Cl2 (chlorine)",
+      label: "Cl₂ (chlorine)",
       bucket: "diatomic"
     }, {
       id: "cu",
@@ -1956,7 +2307,7 @@ function Section32(_ref6) {
       bucket: "monatomic"
     }, {
       id: "n2",
-      label: "N2 (nitrogen)",
+      label: "N₂ (nitrogen)",
       bucket: "diatomic"
     }],
     buckets: [{
@@ -1964,16 +2315,16 @@ function Section32(_ref6) {
       label: "Diatomic element"
     }, {
       id: "monatomic",
-      label: "Monatomic element"
+      label: "Not diatomic (written as one symbol)"
     }]
   }), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 6,
     question: "Which of the following is the correct formula for chlorine gas?",
-    options: ["Cl", "Cl2", "2Cl", "Cl3"],
+    options: ["Cl", "Cl₂", "2Cl", "Cl₃"],
     correct: 1,
-    explain: "Chlorine is a diatomic element. Its correct formula is Cl2, showing two chlorine atoms bonded together."
+    explain: "Chlorine is a diatomic element. Its correct formula is Cl\u2082, showing two chlorine atoms bonded together."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.2.6",
     title: "Chemical formulas of ionic compounds and covalent molecules",
@@ -1983,9 +2334,9 @@ function Section32(_ref6) {
     def: "A representation using element symbols and subscript numbers showing the types and ratios of atoms in a substance."
   }, "chemical formula"), " tells you what atoms are in a substance and in what ratio. For ionic compounds, you must balance the charges of each ion so the overall compound is electrically neutral. The ", /*#__PURE__*/React.createElement(Term, {
     def: "A method for finding the formula of an ionic compound by swapping the charge numbers of each ion to become the subscript of the other."
-  }, "cross-over rule"), " makes this straightforward: write the charge of each ion as the subscript of the other, then simplify."), /*#__PURE__*/React.createElement("p", null, "For example, calcium (Ca2+) and chloride (Cl-): swap to get CaCl2. Check: +2 + 2(-1) = 0. For aluminium oxide: Al3+ and O2-, swap to get Al2O3. Check: 2(+3) + 3(-2) = 0. For covalent molecules, the formula reflects how many atoms share electrons to satisfy each element's valency. Water (H2O) has two hydrogen atoms (valency 1) and one oxygen atom (valency 2). For ", /*#__PURE__*/React.createElement(Term, {
-    def: "Charged groups of atoms that act as a single unit in a formula, such as sulfate (SO42-) and nitrate (NO3-)."
-  }, "polyatomic ions"), " like nitrate (NO3-), use brackets when more than one group is needed: calcium nitrate is Ca(NO3)2."), /*#__PURE__*/React.createElement(Callout, {
+  }, "cross-over rule"), " makes this straightforward: write the charge of each ion as the subscript of the other, then simplify."), /*#__PURE__*/React.createElement("p", null, "For example, calcium (Ca\xB2\u207A) and chloride (Cl\u207B): swap to get CaCl\u2082. Check: +2 + 2(-1) = 0. For aluminium oxide: Al\xB3\u207A and O\xB2\u207B, swap to get Al\u2082O\u2083. Check: 2(+3) + 3(-2) = 0. For covalent molecules, the formula reflects how many atoms share electrons to satisfy each element's valency. Water (H\u2082O) has two hydrogen atoms (valency 1) and one oxygen atom (valency 2). For ", /*#__PURE__*/React.createElement(Term, {
+    def: "Charged groups of atoms that act as a single unit in a formula, such as sulfate (SO\u2084\xB2\u207B) and nitrate (NO\u2083\u207B)."
+  }, "polyatomic ions"), " like nitrate (NO\u2083\u207B), use brackets when more than one group is needed: calcium nitrate is Ca(NO\u2083)\u2082."), /*#__PURE__*/React.createElement(Callout, {
     kind: "key",
     title: "Cross-over rule"
   }, "To find an ionic formula: write the charge of the cation as the subscript of the anion, and the charge of the anion as the subscript of the cation. Simplify if both subscripts share a common factor. Always check that charges sum to zero."), /*#__PURE__*/React.createElement(Figure, {
@@ -2026,7 +2377,7 @@ function Section32(_ref6) {
     style: {
       padding: "5px 8px"
     }
-  }, "Type"))), /*#__PURE__*/React.createElement("tbody", null, [["Sodium chloride", "Na+ (+1)", "Cl- (-1)", "NaCl", "Ionic"], ["Magnesium oxide", "Mg2+ (+2)", "O2- (-2)", "MgO", "Ionic"], ["Calcium chloride", "Ca2+ (+2)", "Cl- (-1)", "CaCl2", "Ionic"], ["Aluminium oxide", "Al3+ (+3)", "O2- (-2)", "Al2O3", "Ionic"], ["Water", "H (val. 1)", "O (val. 2)", "H2O", "Covalent"], ["Carbon dioxide", "C (val. 4)", "O (val. 2)", "CO2", "Covalent"], ["Ammonia", "N (val. 3)", "H (val. 1)", "NH3", "Covalent"]].map(function (row) {
+  }, "Type"))), /*#__PURE__*/React.createElement("tbody", null, [["Sodium chloride", "Na⁺ (+1)", "Cl⁻ (-1)", "NaCl", "Ionic"], ["Magnesium oxide", "Mg²⁺ (+2)", "O²⁻ (-2)", "MgO", "Ionic"], ["Calcium chloride", "Ca²⁺ (+2)", "Cl⁻ (-1)", "CaCl₂", "Ionic"], ["Aluminium oxide", "Al³⁺ (+3)", "O²⁻ (-2)", "Al₂O₃", "Ionic"], ["Water", "H (val. 1)", "O (val. 2)", "H₂O", "Covalent"], ["Carbon dioxide", "C (val. 4)", "O (val. 2)", "CO₂", "Covalent"], ["Ammonia", "N (val. 3)", "H (val. 1)", "NH₃", "Covalent"]].map(function (row) {
     return /*#__PURE__*/React.createElement("tr", {
       key: row[0],
       style: {
@@ -2046,9 +2397,9 @@ function Section32(_ref6) {
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 7,
     question: "Using the cross-over rule, what is the formula for the ionic compound formed between aluminium (Al3+) and oxide (O2-)?",
-    options: ["AlO", "Al2O3", "Al3O2", "AlO3"],
+    options: ["AlO", "Al₂O₃", "Al₃O₂", "AlO₃"],
     correct: 1,
-    explain: "Al3+ has charge +3 and O2- has charge -2. Cross over: Al2O3. Check: 2(+3) + 3(-2) = +6 - 6 = 0."
+    explain: "Al\xB3\u207A has charge +3 and O\xB2\u207B has charge -2. Cross over: Al\u2082O\u2083. Check: 2(+3) + 3(-2) = +6 - 6 = 0."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.2.7",
     title: "Properties of ionic, covalent and metallic substances",
@@ -2094,9 +2445,9 @@ function Section33(_ref7) {
     setProgress: setProgress
   }, /*#__PURE__*/React.createElement("p", null, "Modern chemistry defines ", /*#__PURE__*/React.createElement(Term, {
     def: "Compounds that contain carbon atoms bonded to hydrogen (C-H bonds), often also bonded to oxygen, nitrogen and other elements."
-  }, "organic compounds"), " as those containing carbon bonded to hydrogen. The carbon skeleton can chain, branch and ring in countless ways because carbon has a valency of 4. This structural flexibility explains why over 60 million organic compounds are known. By contrast, ", /*#__PURE__*/React.createElement(Term, {
+  }, "organic compounds"), " as those containing carbon bonded to hydrogen. The carbon skeleton can chain, branch and ring in countless ways because carbon has a valency of 4. This structural flexibility explains why many millions of organic compounds are known. By contrast, ", /*#__PURE__*/React.createElement(Term, {
     def: "Compounds that generally do not contain C-H bonds; includes minerals, salts, oxides and most acids."
-  }, "inorganic compounds"), " do not contain C-H bonds. Sodium chloride, iron oxide, and water are all inorganic."), /*#__PURE__*/React.createElement("p", null, "A few carbon-containing compounds are classified as inorganic because they lack C-H bonds: carbon dioxide (CO2), carbon monoxide (CO) and carbonates are treated as inorganic by convention. All living organisms are built from organic molecules, and so are most fuels and plastics, making organic chemistry central to understanding both life and modern materials."), /*#__PURE__*/React.createElement(Callout, {
+  }, "inorganic compounds"), " do not contain C-H bonds. Sodium chloride, iron oxide, and water are all inorganic."), /*#__PURE__*/React.createElement("p", null, "A few carbon-containing compounds are classified as inorganic because they lack C-H bonds: carbon dioxide (CO\u2082), carbon monoxide (CO) and carbonates are treated as inorganic by convention. All living organisms are built from organic molecules, and so are most fuels and plastics, making organic chemistry central to understanding both life and modern materials."), /*#__PURE__*/React.createElement(Callout, {
     kind: "fact",
     title: "Why so many organic compounds?"
   }, "Carbon's valency of 4 lets it chain to itself in straight lines, branches, and rings of almost any length. No other element matches this versatility, which is why life is carbon-based."), /*#__PURE__*/React.createElement(QGroup, {
@@ -2104,9 +2455,9 @@ function Section33(_ref7) {
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 1,
     question: "Which of the following is classified as an organic compound?",
-    options: ["NaCl", "CO2", "CH4", "H2O"],
+    options: ["NaCl", "CO₂", "CH₄", "H₂O"],
     correct: 2,
-    explain: "CH4 (methane) contains C-H bonds, making it organic. CO2 has no C-H bonds and is classified as inorganic by convention."
+    explain: "CH\u2084 (methane) contains C-H bonds, making it organic. CO\u2082 has no C-H bonds and is classified as inorganic by convention."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.3.2",
     title: "Hydrocarbons from crude oil and their uses",
@@ -2140,7 +2491,7 @@ function Section33(_ref7) {
   }, "IUPAC"), " developed a universal naming system so every organic compound has one unique, internationally recognised name. Without it, the same compound might have dozens of trivial names in different countries, causing confusion in science."), /*#__PURE__*/React.createElement("p", null, "IUPAC names combine a ", /*#__PURE__*/React.createElement(Term, {
     def: "A word fragment indicating the number of carbon atoms in the longest chain: meth=1, eth=2, prop=3, but=4, pent=5, hex=6, hept=7, oct=8."
   }, "carbon-count prefix"), " with a family suffix: \"-ane\" for ", /*#__PURE__*/React.createElement(Term, {
-    def: "Hydrocarbons with only single carbon-carbon bonds; general formula CnH(2n+2)."
+    def: "Hydrocarbons with only single carbon-carbon bonds; general formula C\u2099H\u2082\u2099\u208A\u2082."
   }, "alkanes"), ", \"-ene\" for ", /*#__PURE__*/React.createElement(Term, {
     def: "Hydrocarbons containing at least one carbon-carbon double bond."
   }, "alkenes"), ", and \"-ol\" for alcohols. So the alkane with three carbons is propane (prop- + -ane), the two-carbon alcohol is ethanol (eth- + -anol). These rules work internationally for anyone who knows them."), /*#__PURE__*/React.createElement(Figure, {
@@ -2178,7 +2529,7 @@ function Section33(_ref7) {
       padding: "5px 8px",
       textAlign: "left"
     }
-  }, "Common use"))), /*#__PURE__*/React.createElement("tbody", null, [["Methane", "CH4", "Alkane", "Natural gas, heating"], ["Ethane", "C2H6", "Alkane", "Natural gas component; makes ethene"], ["Propane", "C3H8", "Alkane", "BBQ gas"], ["Butane", "C4H10", "Alkane", "Lighter fuel"], ["Ethene", "C2H4", "Alkene", "Plastics feedstock"], ["Methanol", "CH3OH", "Alcohol", "Solvent, antifreeze"], ["Ethanol", "C2H5OH", "Alcohol", "Beverages, sanitiser"]].map(function (row) {
+  }, "Common use"))), /*#__PURE__*/React.createElement("tbody", null, [["Methane", "CH₄", "Alkane", "Natural gas, heating"], ["Ethane", "C₂H₆", "Alkane", "Natural gas component; makes ethene"], ["Propane", "C₃H₈", "Alkane", "BBQ gas"], ["Butane", "C₄H₁₀", "Alkane", "Lighter fuel"], ["Ethene", "C₂H₄", "Alkene", "Plastics feedstock"], ["Methanol", "CH₃OH", "Alcohol", "Solvent, antifreeze"], ["Ethanol", "C₂H₅OH", "Alcohol", "Beverages, sanitiser"]].map(function (row) {
     return /*#__PURE__*/React.createElement("tr", {
       key: row[0],
       style: {
@@ -2200,26 +2551,26 @@ function Section33(_ref7) {
     question: "What is the IUPAC name for a 4-carbon alkane (C4H10)?",
     options: ["Butene", "Propane", "Butane", "Pentane"],
     correct: 2,
-    explain: "4 carbons = but-; single bonds only = -ane; so butane (C4H10)."
+    explain: "4 carbons = but-; single bonds only = -ane; so butane (C\u2084H\u2081\u2080)."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.3.4",
-    title: "Structures of simple alkanes C1 to C8",
+    title: "Structures of simple alkanes C\u2081 to C\u2088",
     progress: progress,
     setProgress: setProgress
   }, /*#__PURE__*/React.createElement("p", null, "Alkanes are a ", /*#__PURE__*/React.createElement(Term, {
-    def: "A family of organic compounds with the same general formula and similar chemical properties, where each member differs by one CH2 unit."
-  }, "homologous series"), " following the general formula CnH(2n+2). All carbon-carbon bonds are single, and each carbon forms exactly four bonds. As chain length increases by one CH2 unit, boiling point rises because larger molecules have stronger ", /*#__PURE__*/React.createElement(Term, {
+    def: "A family of organic compounds with the same general formula and similar chemical properties, where each member differs by one CH\u2082 unit."
+  }, "homologous series"), " following the general formula C\u2099H\u2082\u2099\u208A\u2082. All carbon-carbon bonds are single, and each carbon forms exactly four bonds. As chain length increases by one CH\u2082 unit, boiling point rises because larger molecules have stronger ", /*#__PURE__*/React.createElement(Term, {
     def: "Weak attractive forces between molecules that arise from temporary uneven distribution of electrons; stronger in larger molecules."
-  }, "London dispersion forces"), " between them. Methane to butane are gases at 25 degrees Celsius; pentane upwards are liquids."), /*#__PURE__*/React.createElement("p", null, "From butane (C4H10) onward, alkanes can also be ", /*#__PURE__*/React.createElement(Term, {
+  }, "London dispersion forces"), " between them. Methane to butane are gases at 25 degrees Celsius; pentane upwards are liquids."), /*#__PURE__*/React.createElement("p", null, "From butane (C\u2084H\u2081\u2080) onward, alkanes can also be ", /*#__PURE__*/React.createElement(Term, {
     def: "Molecules with the same molecular formula but different arrangements of atoms, giving different structures and slightly different properties."
-  }, "structural isomers"), ". n-Butane has a straight chain while isobutane has a branched structure. Both are C4H10 but isobutane's more compact shape means slightly weaker intermolecular forces and a lower boiling point."), /*#__PURE__*/React.createElement(AlkaneBuilder, null), /*#__PURE__*/React.createElement(QGroup, {
+  }, "structural isomers"), ". n-Butane has a straight chain while isobutane has a branched structure. Both are C\u2084H\u2081\u2080 but isobutane's more compact shape means slightly weaker intermolecular forces and a lower boiling point."), /*#__PURE__*/React.createElement(AlkaneBuilder, null), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 4,
     question: "Using the general formula CnH(2n+2), how many hydrogen atoms are in octane (C8H18)?",
     options: ["16", "18", "20", "10"],
     correct: 1,
-    explain: "For n=8: H = 2(8)+2 = 18. Octane is C8H18 with 18 hydrogen atoms."
+    explain: "For n=8: H = 2(8)+2 = 18. Octane is C\u2088H\u2081\u2088 with 18 hydrogen atoms."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.3.5",
     title: "Complete and incomplete combustion of hydrocarbons",
@@ -2228,10 +2579,10 @@ function Section33(_ref7) {
   }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Term, {
     def: "The chemical reaction between a fuel and oxygen that releases energy as heat and light."
   }, "Combustion"), " of a hydrocarbon in a plentiful oxygen supply produces only carbon dioxide and water. This is ", /*#__PURE__*/React.createElement(Term, {
-    def: "Combustion in excess oxygen; produces only CO2 and H2O; releases maximum energy."
-  }, "complete combustion"), " and it releases the maximum possible energy from the fuel. The complete combustion of methane is: CH4 + 2O2 produces CO2 + 2H2O. Complete combustion gives a blue flame in a Bunsen burner or gas stove."), /*#__PURE__*/React.createElement("p", null, "When oxygen is limited, ", /*#__PURE__*/React.createElement(Term, {
+    def: "Combustion in excess oxygen; produces only CO\u2082 and H\u2082O; releases maximum energy."
+  }, "complete combustion"), " and it releases the maximum possible energy from the fuel. The complete combustion of methane is: CH\u2084 + 2O2 produces CO\u2082 + 2H2O. Complete combustion gives a blue flame in a Bunsen burner or gas stove."), /*#__PURE__*/React.createElement("p", null, "When oxygen is limited, ", /*#__PURE__*/React.createElement(Term, {
     def: "Combustion in a restricted oxygen supply; produces carbon monoxide (CO) and/or soot (C) as well as water; releases less energy."
-  }, "incomplete combustion"), " occurs. Instead of all carbon becoming CO2, some becomes ", /*#__PURE__*/React.createElement(Term, {
+  }, "incomplete combustion"), " occurs. Instead of all carbon becoming CO\u2082, some becomes ", /*#__PURE__*/React.createElement(Term, {
     def: "A colourless, odourless, highly toxic gas that prevents oxygen transport in the blood by binding to haemoglobin 200 times more strongly than oxygen."
   }, "carbon monoxide (CO)"), " or solid carbon (soot). Incomplete combustion releases less energy, produces a yellow or orange flame, and deposits black soot. Carbon monoxide is particularly dangerous: it is colourless, odourless, and binds to haemoglobin 200 times more strongly than oxygen, preventing oxygen delivery to cells."), /*#__PURE__*/React.createElement(Figure, {
     caption: "Comparison of complete and incomplete combustion: oxygen supply, products, energy and safety."
@@ -2262,7 +2613,7 @@ function Section33(_ref7) {
     style: {
       padding: "5px 8px"
     }
-  }, "Incomplete combustion"))), /*#__PURE__*/React.createElement("tbody", null, [["Oxygen supply", "Plentiful", "Limited"], ["Carbon products", "CO2 only", "CO and/or soot (C)"], ["Hydrogen products", "H2O", "H2O"], ["Energy released", "Maximum", "Less than maximum"], ["Flame colour", "Blue", "Yellow/orange"], ["Safety concern", "CO2 (greenhouse gas)", "CO (toxic); soot (air pollution)"]].map(function (row) {
+  }, "Incomplete combustion"))), /*#__PURE__*/React.createElement("tbody", null, [["Oxygen supply", "Plentiful", "Limited"], ["Carbon products", "CO₂ only", "CO and/or soot (C)"], ["Hydrogen products", "H₂O", "H₂O"], ["Energy released", "Maximum", "Less than maximum"], ["Flame colour", "Blue", "Yellow/orange"], ["Safety concern", "CO₂ (greenhouse gas)", "CO (toxic); soot (air pollution)"]].map(function (row) {
     return /*#__PURE__*/React.createElement("tr", {
       key: row[0],
       style: {
@@ -2287,11 +2638,11 @@ function Section33(_ref7) {
     question: "What are the only products of the complete combustion of a hydrocarbon?",
     options: ["Carbon monoxide and water", "Carbon dioxide and water", "Carbon and water", "Carbon monoxide and carbon dioxide"],
     correct: 1,
-    explain: "Complete combustion (in excess oxygen) oxidises all carbon to CO2 and all hydrogen to H2O. No CO or soot is produced."
+    explain: "Complete combustion (in excess oxygen) oxidises all carbon to CO\u2082 and all hydrogen to H\u2082O. No CO or soot is produced."
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 6,
     question: "Write a balanced chemical equation for the complete combustion of propane (C3H8) and explain how you know it is balanced.",
-    model: "Balanced equation: C3H8 + 5O2 produces 3CO2 + 4H2O. Check: C: 3=3; H: 8=8; O: 10=10. The equation is balanced because the number of each type of atom is the same on both sides."
+    model: "Balanced equation: C\u2083H\u2088 + 5O2 produces 3CO2 + 4H2O. Check: C: 3=3; H: 8=8; O: 10=10. The equation is balanced because the number of each type of atom is the same on both sides."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.3.6",
     title: "Changing uses of hydrocarbon compounds over time",
@@ -2363,9 +2714,9 @@ function Section33(_ref7) {
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 7,
     question: "Why is natural gas sometimes called a 'transition fuel'?",
-    options: ["It can be converted directly into solar energy", "It produces less CO2 per unit of energy than coal or oil, making it a bridging fuel while renewable capacity is built", "It is a renewable resource", "It produces no greenhouse gases at all"],
+    options: ["It can be converted directly into solar energy", "It produces less CO₂ per unit of energy than coal or oil, making it a bridging fuel while renewable capacity is built", "It is a renewable resource", "It produces no greenhouse gases at all"],
     correct: 1,
-    explain: "Natural gas (methane) releases less CO2 per unit of energy than coal or oil when burned, but it is still a fossil fuel. It is a short-term bridge while renewable energy capacity is developed."
+    explain: "Natural gas (methane) releases less CO\u2082 per unit of energy than coal or oil when burned, but it is still a fossil fuel. It is a short-term bridge while renewable energy capacity is developed."
   }))));
 }
 
@@ -2394,7 +2745,7 @@ function Section34(_ref8) {
   }, "polymer"), " is a giant molecule built from thousands of small, identical (or similar) units called ", /*#__PURE__*/React.createElement(Term, {
     def: "The small, reactive molecules that join together to form a polymer chain."
   }, "monomers"), ". Most synthetic polymers come from monomers derived from crude oil. Cracking of petroleum produces reactive alkenes, especially ", /*#__PURE__*/React.createElement(Term, {
-    def: "The simplest alkene, CH2=CH2, used as the monomer for polyethylene."
+    def: "The simplest alkene, CH\u2082=CH\u2082, used as the monomer for polyethylene."
   }, "ethene"), ", which polymerises to make polyethylene (PE), one of the world's most-used plastics. Propene becomes polypropylene (PP), vinyl chloride becomes PVC, and styrene becomes polystyrene."), /*#__PURE__*/React.createElement("p", null, "Not all polymers come from petroleum. Natural polymers have always existed in living organisms: ", /*#__PURE__*/React.createElement(Term, {
     def: "A natural polymer of glucose forming the structural material in plant cell walls."
   }, "cellulose"), ", starch, proteins, DNA and natural rubber are all biological polymers. Bio-based synthetic polymers are a growing category. ", /*#__PURE__*/React.createElement(Term, {
@@ -2409,7 +2760,7 @@ function Section34(_ref8) {
     question: "What is the monomer used to make polyethylene?",
     options: ["Propene", "Ethene", "Styrene", "Vinyl chloride"],
     correct: 1,
-    explain: "Polyethylene is made by polymerising ethene (CH2=CH2). The name confirms this: poly + ethene = polyethylene."
+    explain: "Polyethylene is made by polymerising ethene (CH\u2082=CH\u2082). The name confirms this: poly + ethene = polyethylene."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.4.2",
     title: "Properties of a range of polymers",
@@ -2472,7 +2823,7 @@ function Section34(_ref8) {
     question: "Why does a synthetic plastic bag show little or no mass loss when buried in moist soil for 4 weeks?",
     options: ["It is too wet in the soil", "Soil microorganisms do not have the enzymes needed to break down the long carbon-chain polymer backbone", "It is too cold for any reaction", "The bag floats to the surface"],
     correct: 1,
-    explain: "Synthetic plastics like LDPE have a long carbon-chain backbone with no sites that microbial enzymes can attack. Without microbial degradation, negligible mass is lost in a short period."
+    explain: "Synthetic plastics like LDPE have a long carbon-chain backbone with almost no sites that common soil microbes' enzymes can attack. Without microbial degradation, negligible mass is lost in a short period."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "3.4.5",
     title: "Bioaccumulation of microplastics in the environment",
@@ -2501,7 +2852,7 @@ function Section34(_ref8) {
   }, {
     x: 110,
     w: 70,
-    label: "Phytoplankton",
+    label: "Zooplankton",
     sub: "Higher",
     colour: "#93c5fd"
   }, {
@@ -2622,7 +2973,7 @@ function Section35(_ref9) {
       padding: "5px 8px",
       textAlign: "left"
     }
-  }, "Environmental concern"))), /*#__PURE__*/React.createElement("tbody", null, [["PLA", "PET plastic", "Bio-based; potentially compostable", "Needs industrial composting; land and water for crops"], ["Recycled polyester", "Virgin polyester", "Reduces oil use; diverts plastic waste", "Still releases microplastic fibres in washing"], ["Cotton fabric", "Synthetic fleece", "Biodegradable; renewable", "High water and pesticide use"], ["Bamboo products", "Timber and plastic", "Rapid growth; sequesters CO2", "Processing chemicals; transport emissions"], ["Glass (reusable)", "Single-use plastic", "Infinitely recyclable; no microplastics", "Heavier; more energy to manufacture"], ["Aluminium (reusable)", "Single-use plastic", "Highly recyclable; durable", "Energy-intensive primary production"]].map(function (row) {
+  }, "Environmental concern"))), /*#__PURE__*/React.createElement("tbody", null, [["PLA", "PET plastic", "Bio-based; potentially compostable", "Needs industrial composting; land and water for crops"], ["Recycled polyester", "Virgin polyester", "Reduces oil use; diverts plastic waste", "Still releases microplastic fibres in washing"], ["Cotton fabric", "Synthetic fleece", "Biodegradable; renewable", "High water and pesticide use"], ["Bamboo products", "Timber and plastic", "Rapid growth; sequesters CO₂", "Processing chemicals; transport emissions"], ["Glass (reusable)", "Single-use plastic", "Infinitely recyclable; no microplastics", "Heavier; more energy to manufacture"], ["Aluminium (reusable)", "Single-use plastic", "Highly recyclable; durable", "Energy-intensive primary production"]].map(function (row) {
     return /*#__PURE__*/React.createElement("tr", {
       key: row[0],
       style: {
@@ -2680,17 +3031,17 @@ mountTopicApp({
     "metallic bond": "A bond in metals where positive metal ions are held together by a surrounding sea of delocalised (mobile) electrons.",
     "cation": "A positively charged ion formed when an atom loses one or more electrons.",
     "anion": "A negatively charged ion formed when an atom gains one or more electrons.",
-    "diatomic molecule": "A molecule consisting of exactly two atoms of the same element bonded by a covalent bond; e.g. H2, N2, O2.",
+    "diatomic molecule": "A molecule consisting of exactly two atoms of the same element bonded by a covalent bond; e.g. H₂, N₂, O₂.",
     "cross-over rule": "A method for finding the formula of an ionic compound: swap the charge numbers of each ion to become the subscripts of the other, then simplify.",
     "crystal lattice": "A regular three-dimensional arrangement of ions or atoms held together by electrostatic forces.",
     "organic compound": "A compound containing carbon atoms bonded to hydrogen (C-H bonds), often also bonded to other elements.",
     "hydrocarbon": "A compound containing only carbon and hydrogen atoms.",
     "crude oil": "A complex mixture of hydrocarbons formed from ancient marine organisms over millions of years.",
     "fractional distillation": "An industrial process that separates crude oil into fractions based on their different boiling points in a tall fractionating column.",
-    "alkane": "A hydrocarbon with only single carbon-carbon bonds; follows the general formula CnH(2n+2).",
+    "alkane": "A hydrocarbon with only single carbon-carbon bonds; follows the general formula CₙH₂ₙ₊₂.",
     "IUPAC": "The International Union of Pure and Applied Chemistry, which develops systematic naming rules for chemical compounds.",
-    "complete combustion": "Combustion in excess oxygen producing only CO2 and H2O; releases maximum energy.",
-    "incomplete combustion": "Combustion in restricted oxygen producing CO and/or soot as well as H2O; releases less energy.",
+    "complete combustion": "Combustion in excess oxygen producing only CO₂ and H₂O; releases maximum energy.",
+    "incomplete combustion": "Combustion in restricted oxygen producing CO and/or soot as well as H₂O; releases less energy.",
     "carbon monoxide": "A colourless, odourless, highly toxic gas produced by incomplete combustion; binds to haemoglobin preventing oxygen transport.",
     "polymer": "A large molecule made of many repeating smaller units (monomers) joined by covalent bonds.",
     "monomer": "The small, reactive molecule that joins with many others to form a polymer chain.",

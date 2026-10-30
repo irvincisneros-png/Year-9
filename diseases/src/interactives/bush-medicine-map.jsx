@@ -13,7 +13,7 @@ function BushMedicineMap() {
   const [sel, setSel] = useState(plants[0].id);
   const cur = plants.find(p => p.id === sel);
   return (
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:16}}>
       <div style={{position:"relative",background:"var(--bg-elev)",borderRadius:"var(--radius)",border:"1px solid var(--border)",padding:12}}>
         <svg viewBox="0 0 100 80" style={{width:"100%",height:"auto"}}>
           {/* simplified AU outline */}

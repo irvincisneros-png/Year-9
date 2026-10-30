@@ -65,7 +65,7 @@ function Topic23({ progress, setProgress }) {
 
         <div className="figure-row">
           <Figure num="2.11a" src="images/raw-17.jpg" alt="Break the chain of infection poster showing six prevention actions" caption="Each everyday action targets a different link in the chain. You don't have to stop all of them — breaking any one link stops the spread." />
-          <Figure num="2.11b" src="images/raw-22.jpg" alt="Quarantine and isolation illustration with sick students going to an isolation area" caption="Quarantine and isolation remove infected or exposed people from the transmission pathway. A small cost to the individual for a much bigger benefit to the community." />
+          <Figure num="2.11b" src="images/raw-22.jpg" alt="Isolation poster with sick students in masks going to an isolation area" caption="Isolation and quarantine remove infected or exposed people from the transmission pathway. Careful with the words: isolation separates people who are already sick (like the students in this poster), while quarantine separates people who have been exposed but are not sick yet. A small cost to the individual for a much bigger benefit to the community." />
         </div>
 
         <h3>Layers of defence</h3>

@@ -28,17 +28,17 @@ function Topic21({ progress, setProgress }) {
 
       <DotPoint id="2.1.1" title={items[0].title} progress={progress} setProgress={setProgress}>
         <p>The cells of the human body are delicate chemical factories. The <G>enzymes</G> that drive metabolism only work within a narrow range of temperature and pH. If conditions drift too far from their set point, cells stop working and the organism can become very unwell, very quickly.</p>
-        <p>The process of keeping internal conditions stable is called <G term="homeostasis">homeostasis</G> (from Greek <em>homios</em> — same, and <em>stasis</em> — standing still). 'Stable' doesn't mean 'never changing'; conditions always fluctuate a little. Homeostasis means the fluctuations stay within a safe range.</p>
+        <p>The process of keeping internal conditions stable is called <G term="homeostasis">homeostasis</G> (from Greek <em>homoios</em> — same, and <em>stasis</em> — standing still). 'Stable' doesn't mean 'never changing'; conditions always fluctuate a little. Homeostasis means the fluctuations stay within a safe range.</p>
 
         <h3>Key variables controlled by homeostasis</h3>
         <table className="data-table">
           <thead><tr><th>Variable</th><th>Set point</th><th>What happens if it drifts too far</th></tr></thead>
           <tbody>
-            <tr><td>Core body temperature</td><td>~37 °C</td><td>&lt;35 °C: hypothermia. &gt;40 °C: enzymes denature, seizures.</td></tr>
+            <tr><td>Core body temperature</td><td>~37 °C</td><td>&lt;35 °C: hypothermia. &gt;40 °C: heat stroke (confusion, seizures); above about 42 °C proteins and enzymes start to denature.</td></tr>
             <tr><td>Blood glucose</td><td>4–8 mmol/L</td><td>Low: confusion, coma. High: thirst, long-term organ damage.</td></tr>
             <tr><td>Blood pH</td><td>7.35–7.45</td><td>Small changes disrupt enzymes; life-threatening below 6.9 or above 7.8.</td></tr>
             <tr><td>Water / salt balance</td><td>~60% body mass water</td><td>Dehydration or over-hydration can both be dangerous.</td></tr>
-            <tr><td>Blood O₂ / CO₂</td><td>O₂ ≥ 95%</td><td>Low O₂: cells can't respire. High CO₂: blood acidic.</td></tr>
+            <tr><td>Blood O₂ / CO₂</td><td>O₂ saturation ≥ 95%</td><td>Low O₂: cells can't respire. High CO₂: blood acidic.</td></tr>
           </tbody>
         </table>
 
@@ -57,7 +57,7 @@ function Topic21({ progress, setProgress }) {
             explain="Homeostasis means stable — not unchanging. Values fluctuate within a safe range."/>
           <MCQ num="C2" question="Normal core body temperature is approximately:" correct={1}
             options={["35 °C","37 °C","39 °C","41 °C"]}
-            explain="37 °C is the set point; normal range is about 35.5–37.5 °C."/>
+            explain="37 °C is the set point; the normal range is about 36–37.5 °C."/>
           <WrittenQ num="A1" question="A marathon runner's core temp rises to 38.5 °C during a race but returns to 37 °C overnight. Does this count as homeostasis?"
             model="Yes. Homeostasis means fluctuations return to the set point. Temperature rose briefly with exercise, then effectors (sweating, vasodilation) and rest brought it back — a successful negative feedback response."/>
           <WrittenQ num="R1" question="Research: name one disease that occurs when homeostasis fails (e.g. Type 1 diabetes, heat stroke). Describe the variable that is no longer being controlled."
@@ -82,7 +82,7 @@ function Topic21({ progress, setProgress }) {
         <h3>Reflexes vs. conscious responses</h3>
         <p>Some responses are <G term="reflex">reflexes</G>: fast, automatic, handled by the spinal cord — touching something sharp and pulling your hand away. Others are conscious: you see a ball coming and decide to catch it. Different pathways, both still triggered by a stimulus.</p>
 
-        <Figure num="2.2" src="images/raw-02.jpg" alt="Two students doing the ruler-drop reaction-time experiment in a science lab" caption="The ruler-drop practical. A shorter catch distance means a faster reaction. The stimulus is seeing the ruler move; the receptor is the retina; the effector is the muscles of the hand." />
+        <Figure num="2.2" src="images/raw-02.jpg" alt="Two students doing the ruler-drop reaction-time experiment in a science lab" caption="The ruler-drop practical. A shorter catch distance means a faster reaction. Catching the ruler is a conscious response, not a reflex: the stimulus is seeing the ruler move, the receptor is the retina, the brain decides, and the effector is the muscles of the hand." />
 
         <Interactive title="Practical 2.1.2 — Reaction time tester" subtitle="Measures your conscious response to a visual stimulus — just like the ruler-drop practical.">
           <ReactionTimer />

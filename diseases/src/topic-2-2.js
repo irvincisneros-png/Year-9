@@ -86,8 +86,8 @@ function Topic22(_ref) {
   }, /*#__PURE__*/React.createElement(PathogenSorter, null)), /*#__PURE__*/React.createElement(Figure, {
     num: "2.7",
     src: "images/raw-12.jpg",
-    alt: "Immune system illustration showing white blood cells, antibodies, T cells defending against germs",
-    caption: "The immune system as a defence team: white blood cells patrol for invaders, antibodies lock onto specific pathogens, and T cells coordinate the response. Non-infectious diseases sit outside this story \u2014 there is no pathogen to attack."
+    alt: "Immune system illustration: white blood cells, B cells releasing Y-shaped antibodies that lock on to germs, and T cells",
+    caption: "The immune system as a defence team: white blood cells patrol for invaders, B cells release antibodies (Y-shaped proteins, not cells) that lock onto specific pathogens, and T cells coordinate the response. Non-infectious diseases sit outside this story \u2014 there is no pathogen to attack."
   }), /*#__PURE__*/React.createElement(Questions, {
     title: "2.2.1"
   }, /*#__PURE__*/React.createElement(MCQ, {
@@ -244,7 +244,7 @@ function Topic22(_ref) {
     setProgress: setProgress
   }, /*#__PURE__*/React.createElement("p", null, "A ", /*#__PURE__*/React.createElement(G, {
     term: "vaccine"
-  }, "vaccine"), " contains a weakened, inactive or fragmentary form of a pathogen. The immune system mounts a full specific response and forms ", /*#__PURE__*/React.createElement(G, {
+  }, "vaccine"), " contains a weakened or killed form of a pathogen, a harmless piece of it, or (in mRNA and viral-vector vaccines) the instructions for making one of its proteins. The immune system mounts a full specific response and forms ", /*#__PURE__*/React.createElement(G, {
     term: "memory cell"
   }, "memory cells"), ", but the person doesn't get sick."), /*#__PURE__*/React.createElement(Interactive, {
     title: "Primary vs secondary immune response",
@@ -270,7 +270,7 @@ function Topic22(_ref) {
     num: "2.10b",
     src: "images/raw-26.jpg",
     alt: "Graph showing vaccination rate rising while disease rate falls over time",
-    caption: "The real-world evidence. As vaccination rate rises, the disease rate falls. This is the pattern seen for measles, polio, whooping cough and many others."
+    caption: "An illustrative graph (made-up numbers, not real data): as vaccination rate rises, the disease rate falls. Real data for measles, polio, Hib and whooping cough show this same pattern; you will analyse real data in 2.3.4."
   })), /*#__PURE__*/React.createElement(Questions, {
     title: "2.2.7"
   }, /*#__PURE__*/React.createElement(MCQ, {

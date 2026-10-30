@@ -71,7 +71,7 @@ function SpreadSim() {
 
   return (
     <div>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:20}}>
         <div>
           <label style={{fontSize:13,fontWeight:500,display:"block",marginBottom:4}}>Vaccination rate: <strong>{vaxRate}%</strong></label>
           <input type="range" min="0" max="100" step="5" value={vaxRate} onChange={e => setVaxRate(+e.target.value)} style={{width:"100%"}}/>

@@ -42,7 +42,7 @@ function ThreeLines() {
   const cur = info[line];
 
   return (
-    <div style={{display:"grid",gridTemplateColumns:"200px 1fr",gap:16}}>
+    <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:16}}>
       <div>
         <svg viewBox="0 0 120 220" style={{width:"100%"}}>
           {/* body silhouette */}

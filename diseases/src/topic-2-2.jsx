@@ -47,7 +47,7 @@ function Topic22({ progress, setProgress }) {
           <PathogenSorter />
         </Interactive>
 
-        <Figure num="2.7" src="images/raw-12.jpg" alt="Immune system illustration showing white blood cells, antibodies, T cells defending against germs" caption="The immune system as a defence team: white blood cells patrol for invaders, antibodies lock onto specific pathogens, and T cells coordinate the response. Non-infectious diseases sit outside this story — there is no pathogen to attack." />
+        <Figure num="2.7" src="images/raw-12.jpg" alt="Immune system illustration: white blood cells, B cells releasing Y-shaped antibodies that lock on to germs, and T cells" caption="The immune system as a defence team: white blood cells patrol for invaders, B cells release antibodies (Y-shaped proteins, not cells) that lock onto specific pathogens, and T cells coordinate the response. Non-infectious diseases sit outside this story — there is no pathogen to attack." />
 
         <Questions title="2.2.1">
           <MCQ num="C1" question="Which disease is INFECTIOUS?" correct={1}
@@ -190,7 +190,7 @@ function Topic22({ progress, setProgress }) {
       </DotPoint>
 
       <DotPoint id="2.2.7" title={items[6].title} progress={progress} setProgress={setProgress}>
-        <p>A <G term="vaccine">vaccine</G> contains a weakened, inactive or fragmentary form of a pathogen. The immune system mounts a full specific response and forms <G term="memory cell">memory cells</G>, but the person doesn't get sick.</p>
+        <p>A <G term="vaccine">vaccine</G> contains a weakened or killed form of a pathogen, a harmless piece of it, or (in mRNA and viral-vector vaccines) the instructions for making one of its proteins. The immune system mounts a full specific response and forms <G term="memory cell">memory cells</G>, but the person doesn't get sick.</p>
 
         <Interactive title="Primary vs secondary immune response" subtitle="Press play to see why the second response is much larger and faster.">
           <VaccineResponse />
@@ -216,7 +216,7 @@ function Topic22({ progress, setProgress }) {
 
         <div className="figure-row">
           <Figure num="2.10a" src="images/raw-21.jpg" alt="Herd immunity poster showing a ring of vaccinated people protecting a baby" caption="Herd immunity: when enough of the surrounding population is immune, the pathogen cannot find enough susceptible hosts to spread. The vulnerable person in the middle is protected by the ring." />
-          <Figure num="2.10b" src="images/raw-26.jpg" alt="Graph showing vaccination rate rising while disease rate falls over time" caption="The real-world evidence. As vaccination rate rises, the disease rate falls. This is the pattern seen for measles, polio, whooping cough and many others." />
+          <Figure num="2.10b" src="images/raw-26.jpg" alt="Graph showing vaccination rate rising while disease rate falls over time" caption="An illustrative graph (made-up numbers, not real data): as vaccination rate rises, the disease rate falls. Real data for measles, polio, Hib and whooping cough show this same pattern; you will analyse real data in 2.3.4." />
         </div>
 
         <Questions title="2.2.7">

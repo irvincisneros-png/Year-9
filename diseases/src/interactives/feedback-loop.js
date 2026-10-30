@@ -85,7 +85,7 @@ function FeedbackLoopSim() {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
+      gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
       gap: 20,
       alignItems: "start"
     }
@@ -190,7 +190,7 @@ function FeedbackLoopSim() {
     x: "0",
     y: y(37.5),
     width: W,
-    height: y(35.5) - y(37.5),
+    height: y(36) - y(37.5),
     fill: "var(--emerald-soft)",
     opacity: "0.7"
   }), /*#__PURE__*/React.createElement("line", {
@@ -242,7 +242,7 @@ function FeedbackLoopSim() {
     fontSize: "9",
     fill: "#dc2626",
     fontFamily: "var(--font-mono)"
-  }, "enzymes denature")), /*#__PURE__*/React.createElement("div", {
+  }, "heat stroke")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
       color: "var(--ink-muted)",

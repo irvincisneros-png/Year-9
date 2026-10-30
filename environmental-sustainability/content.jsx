@@ -46,7 +46,7 @@ function PillarsExplorer() {
         ))}
       </div>
       {sel && (
-        <div style={{ background: "var(--surface-alt)", borderRadius: 12, padding: 18, border: `2px solid ${sel.colour}` }}>
+        <div style={{ background: "var(--bg-2)", borderRadius: 12, padding: 18, border: `2px solid ${sel.colour}` }}>
           <p style={{ fontWeight: 700, fontSize: 16, marginBottom: 8, color: sel.colour }}>{sel.label} Sustainability</p>
           <p style={{ marginBottom: 12 }}>{sel.desc}</p>
           <p style={{ fontWeight: 600, marginBottom: 6 }}>Real-world examples:</p>
@@ -101,10 +101,10 @@ function SolutionEvaluator() {
         <span style={{ fontWeight: 600 }}>{label}</span>
         <span style={{ fontWeight: 700, color: barColour(value) }}>{value}/5</span>
       </div>
-      <div style={{ height: 14, background: "var(--surface-alt)", borderRadius: 7, overflow: "hidden" }}>
+      <div style={{ height: 14, background: "var(--bg-2)", borderRadius: 7, overflow: "hidden" }}>
         <div style={{ height: "100%", width: `${value * 20}%`, background: barColour(value), borderRadius: 7, transition: "width .5s" }} />
       </div>
-      <p style={{ fontSize: 13, color: "var(--muted)", marginTop: 4 }}>{note}</p>
+      <p style={{ fontSize: 13, color: "var(--ink-muted)", marginTop: 4 }}>{note}</p>
     </div>
   );
   return (
@@ -184,7 +184,7 @@ function Section1({ progress, setProgress }) {
    ============================================================ */
 function WeatherClimateSorter() {
   const items = [
-    { id: "a", label: "It is 34 degrees in Sydney today", bucket: "weather" },
+    { id: "a", label: "It is 34 °C in Sydney today", bucket: "weather" },
     { id: "b", label: "Darwin has a tropical climate with a distinct wet season", bucket: "climate" },
     { id: "c", label: "A thunderstorm hit Melbourne this afternoon", bucket: "weather" },
     { id: "d", label: "Perth receives about 730 mm of rain per year on average", bucket: "climate" },
@@ -210,18 +210,18 @@ function GreenhouseSimulator() {
   const anomaly = (surfaceTemp - 15).toFixed(1);
   const col = anomaly > 0.5 ? "#ef4444" : anomaly > 0 ? "#f59e0b" : "#22c55e";
   return (
-    <Interactive title="Greenhouse Effect Simulator" subtitle="Drag the CO2 slider and see how atmospheric concentration affects surface temperature." takeaway="Increasing CO2 above the pre-industrial level of 280 ppm enhances the natural greenhouse effect and raises Earth's surface temperature above its natural baseline.">
+    <Interactive title="Greenhouse Effect Simulator" subtitle="Drag the CO₂ slider and see how atmospheric concentration affects surface temperature." takeaway="Increasing CO₂ above the pre-industrial level of 280 ppm enhances the natural greenhouse effect and raises Earth's surface temperature above its natural baseline.">
       <div className="ctrl-row">
-        <Slider label="Atmospheric CO2" min={180} max={560} step={10} value={co2Level} onChange={setCo2Level} unit=" ppm" />
+        <Slider label="Atmospheric CO₂" min={180} max={560} step={10} value={co2Level} onChange={setCo2Level} unit=" ppm" />
       </div>
       <div className="stat-readout">
-        <Stat value={co2Level} label="CO2 (ppm)" />
-        <Stat value={surfaceTemp} label="Surface Temp (C)" />
-        <Stat value={anomaly > 0 ? "+" + anomaly : anomaly} label="Anomaly vs +15 C" />
+        <Stat value={co2Level} label="CO₂ (ppm)" />
+        <Stat value={surfaceTemp} label="Surface Temp (°C)" />
+        <Stat value={anomaly > 0 ? "+" + anomaly : anomaly} label="Anomaly vs +15 °C" />
       </div>
-      <div style={{ background: "var(--surface-alt)", borderRadius: 10, padding: 12, marginTop: 8 }}>
+      <div style={{ background: "var(--bg-2)", borderRadius: 10, padding: 12, marginTop: 8 }}>
         <p style={{ margin: 0, fontSize: 14 }}>
-          Pre-industrial CO2 was <strong>280 ppm</strong>. Without any greenhouse effect Earth would be <strong>-18 C</strong>. The natural greenhouse effect adds <strong>+33 C</strong> of warming. Each additional 280 ppm above baseline adds roughly <strong>+2.5 C</strong> of enhanced warming in this model.
+          Pre-industrial CO₂ was <strong>280 ppm</strong>. Without any greenhouse effect Earth would be <strong>-18 °C</strong>. The natural greenhouse effect adds <strong>+33 °C</strong> of warming. Each additional 280 ppm above baseline adds roughly <strong>+2.5 °C</strong> of enhanced warming in this model.
         </p>
         {co2Level > 280 && <p style={{ margin: "8px 0 0", fontSize: 14, color: col }}>
           At {co2Level} ppm, the enhanced greenhouse effect adds approximately {extraWarming.toFixed(1)} C above natural baseline.
@@ -305,7 +305,41 @@ function Section2({ progress, setProgress }) {
         <p className="lead">From daily weather to centuries of warming, the atmosphere shapes life on Earth.</p>
       </div>
 
-      <Figure src="img/greenhouse.png" caption="Greenhouse gases trap some of the heat radiating from Earth." />
+      <Figure caption="The natural greenhouse effect. Sunlight (mostly short-wavelength visible light) passes through the atmosphere and warms Earth's surface. The warm surface gives off longer-wavelength infrared radiation. Some escapes to space, but greenhouse gases absorb some and re-emit it in all directions, including back down to the surface, keeping Earth about 33 °C warmer than it would otherwise be." maxWidth={620}>
+        <svg viewBox="0 0 640 320" width="100%" role="img" aria-label="Diagram of the greenhouse effect: sunlight passes through the atmosphere to the surface; the surface emits infrared; some infrared escapes to space; greenhouse gases absorb some infrared and re-emit it, partly back down to the surface.">
+          <rect x="0" y="95" width="640" height="115" fill="var(--blue-soft)"/>
+          <rect x="0" y="262" width="640" height="58" fill="var(--green)"/>
+          <text x="630" y="22" textAnchor="end" fontSize="14" fill="var(--ink-muted)">Space</text>
+          <text x="630" y="160" textAnchor="end" fontSize="13" fontWeight="700" fill="#34589c">Atmosphere with</text>
+          <text x="630" y="176" textAnchor="end" fontSize="13" fontWeight="700" fill="#34589c">greenhouse gases</text>
+          <text x="630" y="194" textAnchor="end" fontSize="12" fill="#34589c">(CO₂, H₂O, CH₄, N₂O)</text>
+          <text x="20" y="298" fontSize="15" fontWeight="700" fill="#fff">Earth's surface</text>
+          <g fill="#4b7bc9" opacity="0.75">
+            <circle cx="120" cy="150" r="5"/><circle cx="185" cy="118" r="5"/><circle cx="220" cy="190" r="5"/><circle cx="318" cy="128" r="5"/><circle cx="376" cy="158" r="8"/><circle cx="470" cy="122" r="5"/><circle cx="545" cy="112" r="5"/><circle cx="60" cy="190" r="5"/>
+          </g>
+          <circle cx="62" cy="48" r="32" fill="var(--amber)"/>
+          <line x1="98" y1="74" x2="209" y2="246" stroke="var(--amber)" strokeWidth="6"/>
+          <path d="M215.0,258.0 L196.2,248.6 L214.5,237.0 Z" fill="var(--amber)"/>
+          <path d="M255.0,262.0 L257.9,259.2 L260.4,256.3 L262.2,253.4 L263.0,250.4 L262.7,247.3 L261.4,244.1 L259.4,240.9 L257.0,237.6 L254.6,234.3 L252.6,231.1 L251.3,227.9 L251.0,224.8 L251.8,221.8 L253.6,218.9 L256.1,216.0 L259.0,213.2 L261.9,210.4 L264.4,207.5 L266.2,204.6 L267.0,201.6 L266.7,198.5 L265.4,195.3 L263.4,192.1 L261.0,188.8 L258.6,185.5 L256.6,182.3 L255.3,179.1 L255.0,176.0 L255.8,173.0 L257.6,170.1 L260.1,167.2 L263.0,164.4 L265.9,161.6 L268.4,158.7 L270.2,155.8 L271.0,152.8 L270.7,149.7 L269.4,146.5 L267.4,143.3 L265.0,140.0 L262.6,136.7 L260.6,133.5 L259.3,130.3 L259.0,127.2 L259.8,124.2 L261.6,121.3 L264.1,118.4 L267.0,115.6 L269.9,112.8 L272.4,109.9 L274.2,107.0 L275.0,104.0 L274.7,100.9 L273.4,97.7 L271.4,94.5 L269.0,91.2 L266.6,87.9 L264.6,84.7 L263.3,81.5 L263.0,78.4 L263.8,75.4 L265.6,72.5 L268.1,69.6 L271.0,66.8 L273.9,64.0 L276.4,61.1 L278.2,58.2 L279.0,55.2 L278.7,52.1 L277.4,48.9 L275.4,45.7 L273.0,42.4 L270.6,39.1 L268.9,35.9 L268.7,32.8 L269.6,29.8 L271.2,26.9 L273.0,24.0 L274.3,21.0 L275.0,18.0" fill="none" stroke="var(--red)" strokeWidth="3"/>
+          <path d="M275.0,18.0 L281.2,30.5 L266.8,29.4 Z" fill="var(--red)"/>
+          <path d="M362.0,262.0 L364.8,261.1 L367.1,260.1 L368.7,259.0 L369.4,257.9 L368.9,256.7 L367.5,255.4 L365.4,254.0 L362.8,252.6 L360.2,251.2 L358.1,249.8 L356.7,248.5 L356.2,247.3 L356.9,246.2 L358.5,245.1 L360.8,244.1 L363.6,243.2 L366.4,242.3 L368.7,241.3 L370.3,240.2 L371.0,239.1 L370.5,237.9 L369.1,236.6 L367.0,235.2 L364.4,233.8 L361.8,232.4 L359.7,231.0 L358.3,229.7 L357.8,228.5 L358.5,227.4 L360.1,226.3 L362.4,225.3 L365.2,224.4 L368.0,223.5 L370.3,222.5 L371.9,221.4 L372.6,220.3 L372.1,219.1 L370.7,217.8 L368.6,216.4 L366.0,215.0 L363.4,213.6 L361.3,212.2 L359.9,210.9 L359.4,209.7 L360.1,208.6 L361.7,207.5 L364.0,206.5 L366.8,205.6 L369.6,204.7 L371.9,203.7 L373.5,202.6 L374.2,201.5 L373.7,200.3 L372.3,199.0 L370.2,197.6 L367.6,196.2 L365.0,194.8 L362.9,193.4 L361.5,192.1 L361.0,190.9 L361.7,189.8 L363.3,188.7 L365.6,187.7 L368.4,186.8 L371.2,185.9 L373.5,184.9 L375.1,183.8 L375.8,182.7 L375.3,181.5 L373.9,180.2 L371.8,178.8 L369.2,177.4 L366.6,176.0 L364.8,174.7 L364.5,173.4 L365.2,172.3 L366.7,171.3 L368.3,170.2 L369.5,169.1 L370.0,168.0" fill="none" stroke="var(--red)" strokeWidth="3"/>
+          <path d="M370.0,168.0 L376.2,180.6 L361.8,179.3 Z" fill="var(--red)"/>
+          <path d="M382.0,146.0 L385.0,145.0 L387.5,144.0 L389.4,142.8 L390.2,141.3 L390.1,139.7 L388.9,137.8 L387.1,135.7 L384.8,133.6 L382.5,131.5 L380.7,129.4 L379.5,127.5 L379.4,125.9 L380.2,124.4 L382.1,123.2 L384.6,122.2 L387.6,121.2 L390.6,120.2 L393.1,119.2 L395.0,118.0 L395.8,116.5 L395.7,114.9 L394.5,113.0 L392.7,110.9 L390.4,108.8 L388.1,106.7 L386.3,104.6 L385.1,102.7 L385.0,101.1 L385.8,99.6 L387.7,98.4 L390.2,97.4 L393.2,96.4 L396.2,95.4 L398.7,94.4 L400.6,93.2 L401.4,91.7 L401.3,90.1 L400.1,88.2 L398.3,86.1 L396.0,84.0 L393.7,81.9 L391.9,79.8 L390.7,77.9 L390.6,76.3 L391.4,74.8 L393.3,73.6 L395.8,72.6 L398.8,71.6 L401.8,70.6 L404.3,69.6 L406.2,68.4 L407.0,66.9 L406.9,65.3 L405.7,63.4 L403.9,61.3 L401.6,59.2 L399.3,57.1 L397.5,55.0 L396.3,53.1 L396.2,51.5 L397.0,50.0 L398.9,48.8 L401.4,47.8 L404.4,46.8 L407.4,45.8 L409.9,44.8 L411.8,43.6 L412.6,42.1 L412.5,40.5 L411.3,38.6 L409.5,36.5 L407.2,34.4 L404.9,32.3 L403.4,30.3 L403.3,28.6 L404.3,27.2 L406.0,26.0 L407.8,24.8 L409.2,23.5 L410.0,22.0" fill="none" stroke="var(--red)" strokeWidth="3"/>
+          <path d="M410.0,22.0 L414.4,35.3 L400.3,32.1 Z" fill="var(--red)"/>
+          <path d="M386.0,170.0 L384.6,172.7 L383.6,175.2 L383.2,177.2 L383.6,178.7 L384.9,179.5 L386.9,179.8 L389.6,179.6 L392.6,179.2 L395.6,178.8 L398.3,178.6 L400.3,178.9 L401.6,179.7 L402.0,181.2 L401.6,183.2 L400.6,185.7 L399.2,188.4 L397.8,191.1 L396.8,193.6 L396.4,195.6 L396.8,197.1 L398.1,197.9 L400.1,198.2 L402.8,198.0 L405.8,197.6 L408.8,197.2 L411.5,197.0 L413.5,197.3 L414.8,198.1 L415.2,199.6 L414.8,201.6 L413.8,204.1 L412.4,206.8 L411.0,209.5 L410.0,212.0 L409.6,214.0 L410.0,215.5 L411.3,216.3 L413.3,216.6 L416.0,216.4 L419.0,216.0 L422.0,215.6 L424.7,215.4 L426.7,215.7 L428.0,216.5 L428.4,218.0 L428.0,220.0 L427.0,222.5 L425.6,225.2 L424.2,227.9 L423.2,230.4 L422.8,232.4 L423.2,233.9 L424.5,234.7 L426.5,235.0 L429.2,234.8 L432.2,234.4 L435.2,234.0 L437.9,233.8 L439.9,234.1 L441.2,234.9 L441.6,236.4 L441.2,238.4 L440.2,240.9 L438.8,243.6 L437.4,246.3 L436.4,248.8 L436.0,250.8 L436.4,252.3 L437.7,253.1 L439.7,253.4 L442.4,253.2 L445.4,252.8 L448.4,252.4 L450.8,252.4 L452.0,253.3 L452.3,254.8 L452.0,256.8 L451.6,258.8 L451.5,260.6 L452.0,262.0" fill="none" stroke="var(--red)" strokeWidth="3"/>
+          <path d="M452.0,262.0 L439.2,256.4 L450.9,248.1 Z" fill="var(--red)"/>
+          <text x="104" y="40" fontSize="13" fontWeight="700" fill="var(--ink)">1. Sunlight in</text>
+          <text x="104" y="56" fontSize="12" fill="var(--ink-muted)">(short wavelength)</text>
+          <text x="20" y="236" fontSize="12" fill="var(--ink)">2. Surface warms and</text>
+          <text x="20" y="250" fontSize="12" fill="var(--ink)">gives off infrared</text>
+          <text x="284" y="40" fontSize="12" fill="var(--ink)">3. Some infrared</text>
+          <text x="284" y="54" fontSize="12" fill="var(--ink)">escapes to space</text>
+          <text x="420" y="40" fontSize="12" fill="var(--ink)">4. Greenhouse gases absorb</text>
+          <text x="420" y="54" fontSize="12" fill="var(--ink)">and re-emit infrared</text>
+          <text x="462" y="236" fontSize="12" fill="var(--ink)">5. Some comes back down</text>
+          <text x="462" y="250" fontSize="12" fill="var(--ink)">and warms the surface</text>
+        </svg>
+      </Figure>
       <DotPoint id="4.2.1" title="Distinguish between climate and weather" progress={progress} setProgress={setProgress}>
         <p>
           <Term def="The short-term atmospheric conditions at a specific place and time, including temperature, rainfall, wind, and cloud cover. Changes hour to hour.">Weather</Term> is what is happening in the atmosphere right now or over the next few days. It is often unpredictable beyond about two weeks. <Term def="The long-term average pattern of weather conditions typical for a region, calculated over at least 30 years of data.">Climate</Term> is the long-term pattern built from decades of weather records. A handy way to remember: weather is what you wear today; climate is what you keep in your wardrobe.
@@ -349,11 +383,11 @@ function Section2({ progress, setProgress }) {
               return (
                 <g>
                   <line x1={pad.l} y1={pad.t} x2={pad.l} y2={pad.t + H} stroke="var(--border)" strokeWidth={1} />
-                  <line x1={pad.l} y1={zero} x2={pad.l + W} y2={zero} stroke="var(--muted)" strokeWidth={1} strokeDasharray="4 3" />
+                  <line x1={pad.l} y1={zero} x2={pad.l + W} y2={zero} stroke="var(--ink-muted)" strokeWidth={1} strokeDasharray="4 3" />
                   {[-0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2].map(v => (
-                    <text key={v} x={pad.l - 4} y={scaleY(v) + 4} textAnchor="end" fontSize={10} fill="var(--muted)">{v.toFixed(1)}</text>
+                    <text key={v} x={pad.l - 4} y={scaleY(v) + 4} textAnchor="end" fontSize={10} fill="var(--ink-muted)">{v.toFixed(1)}</text>
                   ))}
-                  <text x={12} y={pad.t + H / 2} textAnchor="middle" fontSize={10} fill="var(--muted)" transform={`rotate(-90,12,${pad.t + H / 2})`}>Anomaly (C)</text>
+                  <text x={12} y={pad.t + H / 2} textAnchor="middle" fontSize={10} fill="var(--ink-muted)" transform={`rotate(-90,12,${pad.t + H / 2})`}>Anomaly (°C)</text>
                   {data.map((d, i) => {
                     const x = pad.l + i * (W / data.length) + 4;
                     const col = d.val >= 0 ? "#ef4444" : "#3b82f6";
@@ -372,10 +406,10 @@ function Section2({ progress, setProgress }) {
           </svg>
         </Figure>
         <Callout kind="fact" title="Key data point">
-          The 2010s had a temperature anomaly of about +1.1 C above pre-industrial levels, the warmest decade on record at the time.
+          The 2010s had a temperature anomaly of about +1.1 °C above pre-industrial levels, the warmest decade on record at the time.
         </Callout>
         <QGroup title="Check yourself">
-          <MCQ num={3} question="By approximately how much has global average temperature risen above pre-industrial levels?" options={["0.3 C","1.1 C","2.0 C","3.5 C"]} correct={1} explain="Global average surface temperature has risen approximately 1.1 degrees Celsius above the pre-industrial (1850 to 1900) baseline." />
+          <MCQ num={3} question="By approximately how much has global average temperature risen above pre-industrial levels?" options={["0.3 °C","1.1 °C","2.0 °C","3.5 °C"]} correct={1} explain="Global average surface temperature has risen approximately 1.1 degrees Celsius above the pre-industrial (1850 to 1900) baseline." />
           <WrittenQ num={4} question="Explain why scientists use multiple independent data sets to confirm climate trends." model="If the same trend appears in data sets collected by different organisations using different methods, it is very unlikely to be caused by an error in one data set. Agreement across independent sources provides strong scientific confidence that the observed trend is real." />
         </QGroup>
       </DotPoint>
@@ -385,29 +419,29 @@ function Section2({ progress, setProgress }) {
           The <Term def="The warming of Earth's surface caused by greenhouse gases in the atmosphere absorbing outgoing infrared radiation and re-emitting it back toward the surface.">natural greenhouse effect</Term> is essential for life. Without it, Earth's average surface temperature would be approximately -18 degrees Celsius rather than the current +15 degrees Celsius, a difference of 33 degrees. The Sun emits short-wavelength visible light that passes through the atmosphere and warms Earth's surface. The warmed surface then re-emits energy as longer-wavelength <Term def="Electromagnetic radiation emitted by warm objects, detected as heat.">infrared radiation</Term> directed upward.
         </p>
         <p>
-          <Term def="Gases in the atmosphere, including water vapour, CO2, CH4, N2O, and ozone, that absorb outgoing infrared radiation and re-emit it in all directions, keeping Earth's surface warm.">Greenhouse gases</Term> including water vapour (H2O), carbon dioxide (CO2), methane (CH4), and nitrous oxide (N2O) absorb this outgoing infrared radiation. They then re-emit energy in all directions, including back toward Earth's surface. This is not quite the same as a garden greenhouse: a real greenhouse traps warm air physically, while the atmospheric process involves absorption and re-emission of radiation.
+          <Term def="Gases in the atmosphere, including water vapour, CO₂, CH₄, N₂O, and ozone, that absorb outgoing infrared radiation and re-emit it in all directions, keeping Earth's surface warm.">Greenhouse gases</Term> including water vapour (H₂O), carbon dioxide (CO₂), methane (CH₄), and nitrous oxide (N₂O) absorb this outgoing infrared radiation. They then re-emit energy in all directions, including back toward Earth's surface. This is not quite the same as a garden greenhouse: a real greenhouse traps warm air physically, while the atmospheric process involves absorption and re-emission of radiation.
         </p>
         <Callout kind="key" title="Greenhouse gases at a glance">
-          Water vapour is the most abundant greenhouse gas but acts as a feedback amplifier. CO2 is the main long-lived driver. Methane (CH4) has a warming potential about 28 times that of CO2 over 100 years.
+          Water vapour is the most abundant greenhouse gas but acts as a feedback amplifier. CO₂ is the main long-lived driver. Methane (CH₄) has a warming potential about 28 times that of CO₂ over 100 years.
         </Callout>
         <GreenhouseSimulator />
         <QGroup title="Check yourself">
-          <MCQ num={5} question="What would Earth's average surface temperature be without the natural greenhouse effect?" options={["-18 C","+5 C","+15 C","+33 C"]} correct={0} explain="Without the natural greenhouse effect, Earth would average approximately -18 C rather than the current +15 C." />
+          <MCQ num={5} question="What would Earth's average surface temperature be without the natural greenhouse effect?" options={["-18 °C","+5 °C","+15 °C","+33 °C"]} correct={0} explain="Without the natural greenhouse effect, Earth would average approximately -18 °C rather than the current +15 °C." />
           <WrittenQ num={6} question="Explain in your own words how greenhouse gases warm Earth's surface." model="Greenhouse gases absorb the long-wavelength infrared radiation emitted by Earth's surface, preventing it from escaping directly to space. The gases then re-emit this energy in all directions, including downward toward Earth's surface, keeping it warmer than it would otherwise be." />
         </QGroup>
       </DotPoint>
 
       <DotPoint id="4.2.4" title="Analyse data on global emissions and temperatures to explain the enhanced greenhouse effect" progress={progress} setProgress={setProgress}>
         <p>
-          The <Term def="The intensification of the natural greenhouse warming caused by human activities increasing greenhouse gas concentrations beyond their natural levels.">enhanced greenhouse effect</Term> occurs when human activities raise greenhouse gas concentrations above natural levels. Since 1750, atmospheric CO2 has risen from approximately 280 ppm to over 420 ppm, an increase of about 50 percent, driven mainly by <Term def="The burning of coal, oil, and natural gas, which releases stored carbon as CO2.">fossil fuel combustion</Term>, deforestation, cement production, and agriculture.
+          The <Term def="The intensification of the natural greenhouse warming caused by human activities increasing greenhouse gas concentrations beyond their natural levels.">enhanced greenhouse effect</Term> occurs when human activities raise greenhouse gas concentrations above natural levels. Since 1750, atmospheric CO₂ has risen from approximately 280 ppm to over 420 ppm, an increase of about 50 percent, driven mainly by <Term def="The burning of coal, oil, and natural gas, which releases stored carbon as CO₂.">fossil fuel combustion</Term>, deforestation, cement production, and agriculture.
         </p>
         <p>
-          The impacts extend across climate and ecosystems. More intense and frequent extreme heat events, altered rainfall patterns, accelerating glacier melt, and rising sea levels are all measured consequences. In ecosystems, species ranges are shifting poleward, seasonal events are shifting in timing (<Term def="Changes in the timing of seasonal biological events such as flowering, migration, and breeding, caused by climate change.">phenological shifts</Term>), and mass coral bleaching events are increasing. <Term def="The reduction in ocean pH caused by CO2 dissolving in seawater to form carbonic acid, which harms marine organisms that build calcium carbonate shells.">Ocean acidification</Term> is a separate chemical threat from CO2 dissolving into seawater.
+          The impacts extend across climate and ecosystems. More intense and frequent extreme heat events, altered rainfall patterns, accelerating glacier melt, and rising sea levels are all measured consequences. In ecosystems, species ranges are shifting poleward, seasonal events are shifting in timing (<Term def="Changes in the timing of seasonal biological events such as flowering, migration, and breeding, caused by climate change.">phenological shifts</Term>), and mass coral bleaching events are increasing. <Term def="The reduction in ocean pH caused by CO₂ dissolving in seawater to form carbonic acid, which harms marine organisms that build calcium carbonate shells.">Ocean acidification</Term> is a separate chemical threat from CO₂ dissolving into seawater.
         </p>
         <EmissionsBreakdown />
         <QGroup title="Check yourself">
-          <MCQ num={7} question="By approximately how much has atmospheric CO2 increased since pre-industrial times?" options={["10 percent","50 percent","100 percent","200 percent"]} correct={1} explain="CO2 has risen from about 280 ppm to over 420 ppm, an increase of approximately 50 percent." />
-          <WrittenQ num={8} question="Explain why ocean acidification is a separate concern from warming, even though both are caused by rising CO2." model="Warming affects organisms through thermal stress and habitat change. Acidification directly reduces the concentration of carbonate ions in seawater, chemically preventing shell and skeleton formation in corals, molluscs, and sea urchins. Even if temperatures were controlled, continued CO2 emissions would still acidify the ocean. The two effects harm different sets of organisms through completely different mechanisms." />
+          <MCQ num={7} question="By approximately how much has atmospheric CO2 increased since pre-industrial times?" options={["10 percent","50 percent","100 percent","200 percent"]} correct={1} explain="CO₂ has risen from about 280 ppm to over 420 ppm, an increase of approximately 50 percent." />
+          <WrittenQ num={8} question="Explain why ocean acidification is a separate concern from warming, even though both are caused by rising CO2." model="Warming affects organisms through thermal stress and habitat change. Acidification directly reduces the concentration of carbonate ions in seawater, chemically preventing shell and skeleton formation in corals, molluscs, and sea urchins. Even if temperatures were controlled, continued CO₂ emissions would still acidify the ocean. The two effects harm different sets of organisms through completely different mechanisms." />
         </QGroup>
       </DotPoint>
 
@@ -416,7 +450,7 @@ function Section2({ progress, setProgress }) {
           Reducing emissions requires multiple strategies. <Term def="Energy sources that are naturally replenished, such as solar, wind, and hydro, producing near-zero direct emissions.">Renewable energy</Term> technologies have seen solar PV costs fall over 90 percent since 2010, making it the cheapest source of new electricity generation in most countries. However, solar and wind are <Term def="Energy sources that only generate when the natural resource (sun or wind) is available, not continuously.">intermittent</Term>, requiring battery storage, pumped hydro, or grid interconnection to maintain reliable supply.
         </p>
         <p>
-          <Term def="Technology that captures CO2 from industrial exhaust gases or directly from the air and stores it permanently underground.">Carbon capture and storage (CCS)</Term> can decarbonise heavy industry but is expensive and unproven at large scale. Reforestation sequesters CO2 cheaply and boosts biodiversity, but is slow, requires land, and forests are vulnerable to fire and drought. Improving energy efficiency reduces how much energy is needed in the first place, cutting emissions without requiring new infrastructure.
+          <Term def="Technology that captures CO₂ from industrial exhaust gases or directly from the air and stores it permanently underground.">Carbon capture and storage (CCS)</Term> can decarbonise heavy industry but is expensive and unproven at large scale. Reforestation sequesters CO₂ cheaply and boosts biodiversity, but is slow, requires land, and forests are vulnerable to fire and drought. Improving energy efficiency reduces how much energy is needed in the first place, cutting emissions without requiring new infrastructure.
         </p>
         <Callout kind="tip" title="No single solution is enough">
           Reducing emissions fast enough requires combining renewable energy, efficiency, electrifying transport, better land use, and where necessary, CCS. Each method has genuine trade-offs.
@@ -429,7 +463,7 @@ function Section2({ progress, setProgress }) {
               { name: "Carbon Capture (CCS)", pro: "Can decarbonise hard-to-abate industry like steel and cement.", con: "Very expensive; large-scale geological storage not yet proven reliably." },
               { name: "Reforestation", pro: "Low cost; biodiversity co-benefits; widely deployable.", con: "Slow; land competition; forests can burn, releasing stored carbon." },
             ].map(m => (
-              <div key={m.name} style={{ background: "var(--surface-alt)", borderRadius: 10, padding: 14 }}>
+              <div key={m.name} style={{ background: "var(--bg-2)", borderRadius: 10, padding: 14 }}>
                 <p style={{ fontWeight: 700, marginBottom: 6 }}>{m.name}</p>
                 <p style={{ fontSize: 13, marginBottom: 4 }}><span style={{ color: "#22c55e", fontWeight: 600 }}>Advantage:</span> {m.pro}</p>
                 <p style={{ fontSize: 13, margin: 0 }}><span style={{ color: "#ef4444", fontWeight: 600 }}>Limitation:</span> {m.con}</p>
@@ -444,17 +478,17 @@ function Section2({ progress, setProgress }) {
 
       <DotPoint id="4.2.6" title="Analyse data showing the relationship between industrialisation and the rise in global temperatures" progress={progress} setProgress={setProgress}>
         <p>
-          The <Term def="The period beginning around 1750 in Britain, during which coal-powered machinery and large-scale fossil fuel combustion began, producing a steep rise in CO2 emissions.">Industrial Revolution</Term> began the steep rise in fossil fuel use. Ice core records show CO2 remained between 180 and 280 ppm for the past 800,000 years before 1750. The rapid increase to over 420 ppm today is entirely outside the natural range for at least 800,000 years and coincides precisely with industrial civilisation.
+          The <Term def="The period beginning around 1750 in Britain, during which coal-powered machinery and large-scale fossil fuel combustion began, producing a steep rise in CO₂ emissions.">Industrial Revolution</Term> began the steep rise in fossil fuel use. Ice core records show CO₂ stayed between about 180 and 300 ppm for the 800,000 years before 1750. The rapid increase to over 420 ppm today is entirely outside the natural range for at least 800,000 years and coincides precisely with industrial civilisation.
         </p>
         <p>
-          Global temperature records from NASA, NOAA, the UK Met Office, and the Japanese Meteorological Agency all show the same pattern: stable temperatures from 1850 to roughly 1900, then slow rise, then accelerating warming from the mid-20th century as post-war industrial expansion and fossil fuel use surged. Cumulative CO2 emissions and global mean temperature since 1850 show a very strong, almost straight-line <Term def="A statistical measure of how closely two variables are related. A value close to 1 indicates a very strong positive relationship.">correlation</Term>. Climate models that include only natural forcing factors cannot reproduce the observed warming; adding human emissions does.
+          Global temperature records from NASA, NOAA, the UK Met Office, and the Japan Meteorological Agency all show the same pattern: stable temperatures from 1850 to roughly 1900, then slow rise, then accelerating warming from the mid-20th century as post-war industrial expansion and fossil fuel use surged. Cumulative CO₂ emissions and global mean temperature since 1850 show a very strong, almost straight-line <Term def="A statistical measure of how closely two variables are related. A value close to 1 indicates a very strong positive relationship.">correlation</Term>. Climate models that include only natural forcing factors cannot reproduce the observed warming; adding human emissions does.
         </p>
         <Callout kind="fact" title="Ice core evidence">
-          Antarctic ice cores extend climate records back approximately 800,000 years. Trapped air bubbles preserve ancient atmosphere, allowing scientists to measure past CO2 concentrations and infer temperature from oxygen isotope ratios.
+          Antarctic ice cores extend climate records back approximately 800,000 years. Trapped air bubbles preserve ancient atmosphere, allowing scientists to measure past CO₂ concentrations and infer past temperature from the ratios of hydrogen and oxygen isotopes in the ice itself.
         </Callout>
         <QGroup title="Check yourself">
-          <MCQ num={10} question="Which line of evidence most directly shows that post-industrial CO2 levels are unusual in Earth's recent history?" options={["Coral bleaching records","Ice core data showing CO2 stayed between 180 and 280 ppm for 800,000 years","Weather station temperature records since 1850","Satellite sea level measurements"]} correct={1} explain="Ice core records covering 800,000 years show CO2 remained between 180 and 280 ppm before the Industrial Revolution. The rapid rise to over 420 ppm is entirely outside this natural range." />
-          <WrittenQ num={11} question="Explain why correlation between CO2 and temperature, on its own, does not prove causation, and what additional evidence scientists use to establish a causal link." model="Correlation alone does not prove causation because the relationship might be coincidental or driven by a third factor. Additional evidence includes: the atmospheric physics mechanism by which CO2 absorbs infrared radiation (understood since the 19th century); isotopic analysis showing the CO2 increase is from burning ancient fossil carbon; climate models that only reproduce observed warming when human emissions are included; and the agreement of multiple independent lines of evidence." />
+          <MCQ num={10} question="Which line of evidence most directly shows that post-industrial CO2 levels are unusual in Earth's recent history?" options={["Coral bleaching records","Ice core data showing CO₂ stayed between about 180 and 300 ppm for 800,000 years","Weather station temperature records since 1850","Satellite sea level measurements"]} correct={1} explain="Ice core records covering 800,000 years show CO₂ stayed between about 180 and 300 ppm before the Industrial Revolution. The rapid rise to over 420 ppm is entirely outside this natural range." />
+          <WrittenQ num={11} question="Explain why correlation between CO2 and temperature, on its own, does not prove causation, and what additional evidence scientists use to establish a causal link." model="Correlation alone does not prove causation because the relationship might be coincidental or driven by a third factor. Additional evidence includes: the atmospheric physics mechanism by which CO₂ absorbs infrared radiation (understood since the 19th century); isotopic analysis showing the CO₂ increase is from burning ancient fossil carbon; climate models that only reproduce observed warming when human emissions are included; and the agreement of multiple independent lines of evidence." />
         </QGroup>
       </DotPoint>
     </>
@@ -474,7 +508,7 @@ function SeaLevelRiseModel() {
     <Interactive title="Sea Level Rise Mechanisms" subtitle="Adjust the two main drivers of sea level rise and see how each contributes to the total." takeaway="Sea level rise has two causes: melting land ice adds water to the ocean, while thermal expansion occurs because warmer water takes up more space.">
       <div className="ctrl-row">
         <Slider label="Land ice melt (Gt/yr)" min={0} max={500} step={10} value={landIceMelt} onChange={setLandIceMelt} unit=" Gt/yr" />
-        <Slider label="Ocean warming" min={0} max={2} step={0.1} value={tempRise} onChange={setTempRise} unit=" C" />
+        <Slider label="Ocean warming" min={0} max={2} step={0.1} value={tempRise} onChange={setTempRise} unit=" °C" />
       </div>
       <div className="stat-readout">
         <Stat value={meltContrib} label="Meltwater rise (mm/yr)" />
@@ -497,19 +531,19 @@ function WaterCycleImpact() {
   return (
     <Interactive title="Climate Change and the Water Cycle" subtitle="As global temperature rises, the water cycle intensifies. Explore the impacts." takeaway="Warming intensifies the water cycle: evaporation increases, wet regions receive more intense rainfall, and dry regions face greater drought risk, following the principle that 'wet gets wetter, dry gets drier'.">
       <div className="ctrl-row">
-        <Slider label="Global temperature rise" min={0.5} max={4} step={0.1} value={warming} onChange={setWarming} unit=" C" />
+        <Slider label="Global temperature rise" min={0.5} max={4} step={0.1} value={warming} onChange={setWarming} unit=" °C" />
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 8 }}>
         {[
-          { label: "Water vapour in the air", val: "+" + evapIncrease + "%", col: "#f97316", desc: "Warmer air can hold about 7% more water vapour for each 1 C of warming." },
+          { label: "Water vapour in the air", val: "+" + evapIncrease + "%", col: "#f97316", desc: "Warmer air can hold about 7% more water vapour for each 1 °C of warming." },
           { label: "Heavy rain intensity", val: "+" + wetterIntensity + "%", col: "#3b82f6", desc: "More atmospheric moisture fuels intense storms." },
           { label: "Drought risk (subtropical)", val: "+" + drierRisk + "%", col: "#eab308", desc: "Increased evaporation dries soils in mid-latitudes." },
           { label: "Glacier retreat risk", val: glacierLoss + "%", col: "#06b6d4", desc: "Reduced dry-season river flows downstream." },
         ].map(item => (
-          <div key={item.label} style={{ background: "var(--surface-alt)", borderRadius: 10, padding: 12, borderLeft: `4px solid ${item.col}` }}>
+          <div key={item.label} style={{ background: "var(--bg-2)", borderRadius: 10, padding: 12, borderLeft: `4px solid ${item.col}` }}>
             <p style={{ fontWeight: 700, fontSize: 15, margin: "0 0 2px", color: item.col }}>{item.val}</p>
             <p style={{ fontWeight: 600, fontSize: 12, margin: "0 0 4px" }}>{item.label}</p>
-            <p style={{ fontSize: 12, margin: 0, color: "var(--muted)" }}>{item.desc}</p>
+            <p style={{ fontSize: 12, margin: 0, color: "var(--ink-muted)" }}>{item.desc}</p>
           </div>
         ))}
       </div>
@@ -540,7 +574,7 @@ function Section3({ progress, setProgress }) {
           A defining characteristic is the speed: past natural climate transitions between ice ages and warm periods took thousands of years, while current warming is occurring over decades. The warming is also global, occurring across all continents and ocean basins simultaneously. The pattern of faster warming over land and in polar regions matches the predicted <Term def="The specific spatial and temporal pattern of changes expected from a particular climate forcing, used to identify the cause.">fingerprint</Term> of greenhouse gas forcing, not solar variation or volcanic activity.
         </p>
         <Callout kind="key" title="Four key climate change characteristics">
-          Rising temperatures (global, +1.1 C). Sea level rise (+20 cm since 1900, now 3.7 mm/yr). Declining Arctic sea ice (13% per decade since 1979). More frequent and intense extreme heat events.
+          Rising temperatures (global, +1.1 °C). Sea level rise (+20 cm since 1900, now 3.7 mm/yr). Declining Arctic sea ice (13% per decade since 1979). More frequent and intense extreme heat events.
         </Callout>
         <Interactive title="Climate Change Characteristics Summary" subtitle="Key measurable indicators of current climate change and their observed trends." takeaway="Multiple independent indicators, including rising temperatures, sea level, and declining Arctic ice, all show the same direction of change, providing strong evidence that climate change is real and ongoing.">
           <div style={{ overflowX: "auto" }}>
@@ -548,7 +582,7 @@ function Section3({ progress, setProgress }) {
               <thead><tr><th>Characteristic</th><th>Observed Change</th><th>Rate</th></tr></thead>
               <tbody>
                 {[
-                  ["Global average temperature", "+1.1 C above pre-industrial", "Fastest in past 50 years"],
+                  ["Global average temperature", "+1.1 °C above pre-industrial", "Fastest in past 50 years"],
                   ["Sea level", "+20 cm since 1900", "3.7 mm/yr currently"],
                   ["Arctic sea ice (summer)", "13% decline per decade", "Consistent since 1979"],
                   ["Ocean heat content", "Increasing all basins", "Continuous since 1960s"],
@@ -559,13 +593,13 @@ function Section3({ progress, setProgress }) {
           </div>
         </Interactive>
         <QGroup title="Check yourself">
-          <MCQ num={1} question="What is 'polar amplification' in the context of climate change?" options={["Polar regions cool faster than the tropics","Polar regions warm two to four times faster than the global average","Polar ice acts to amplify storms","Polar oceans absorb most CO2"]} correct={1} explain="Polar amplification describes the phenomenon where polar regions, especially the Arctic, warm two to four times faster than the global average due to feedback mechanisms including ice-albedo feedback." />
+          <MCQ num={1} question="What is 'polar amplification' in the context of climate change?" options={["Polar regions cool faster than the tropics","Polar regions warm two to four times faster than the global average","Polar ice acts to amplify storms","Polar oceans absorb most CO₂"]} correct={1} explain="Polar amplification describes the phenomenon where polar regions, especially the Arctic, warm two to four times faster than the global average due to feedback mechanisms including ice-albedo feedback." />
         </QGroup>
       </DotPoint>
 
       <DotPoint id="4.3.2" title="Investigate and report on the consequences of climate change" progress={progress} setProgress={setProgress}>
         <p>
-          Consequences span natural and human systems. In natural systems, the Greenland Ice Sheet contains enough ice to raise sea levels by approximately 7 metres if completely melted. Mountain glaciers that supply freshwater to rivers used by hundreds of millions of people in Asia and South America are shrinking. <Term def="Permanently frozen ground found in Arctic and sub-Arctic regions. When it thaws, it releases stored carbon as CO2 and methane, accelerating warming.">Permafrost</Term> thawing in Siberia, Alaska, and Canada is destabilising infrastructure and releasing stored carbon.
+          Consequences span natural and human systems. In natural systems, the Greenland Ice Sheet contains enough ice to raise sea levels by approximately 7 metres if completely melted. Mountain glaciers that supply freshwater to rivers used by hundreds of millions of people in Asia and South America are shrinking. <Term def="Permanently frozen ground found in Arctic and sub-Arctic regions. When it thaws, it releases stored carbon as CO₂ and methane, accelerating warming.">Permafrost</Term> thawing in Siberia, Alaska, and Canada is destabilising infrastructure and releasing stored carbon.
         </p>
         <p>
           For human communities, the IPCC estimates sea levels could rise 0.6 to 1.0 metres by 2100 under high-emission scenarios, potentially displacing hundreds of millions of people. Food security is threatened as heat stress and changing rainfall reduce crop yields in many regions. Human health faces increased heat mortality, expanding ranges of disease vectors such as mosquitoes carrying dengue fever and malaria, and air pollution from more intense wildfires.
@@ -576,7 +610,7 @@ function Section3({ progress, setProgress }) {
         </Callout>
         <QGroup title="Check yourself">
           <MCQ num={2} question="Why does melting Arctic sea ice NOT significantly raise global sea levels?" options={["Arctic ice is too small to matter","Floating ice already displaces its equivalent volume of water, so melting it adds no net water","Arctic ice melts too slowly to affect sea levels","The Arctic Ocean absorbs the extra water"]} correct={1} explain="Floating ice already displaces an equivalent volume of ocean water. When it melts, it simply replaces the displaced volume with liquid water of the same mass, causing no net change in sea level." />
-          <WrittenQ num={3} question="Explain why permafrost thawing is described as a 'positive feedback' for climate change." model="Permafrost contains vast amounts of carbon stored for thousands of years. When temperatures rise and it thaws, it releases this carbon as CO2 and methane, which are potent greenhouse gases. This increases greenhouse gas concentrations, which causes further warming, which thaws more permafrost, releasing more carbon. This self-reinforcing cycle is a positive (amplifying) feedback that accelerates climate change." />
+          <WrittenQ num={3} question="Explain why permafrost thawing is described as a 'positive feedback' for climate change." model="Permafrost contains vast amounts of carbon stored for thousands of years. When temperatures rise and it thaws, it releases this carbon as CO₂ and methane, which are potent greenhouse gases. This increases greenhouse gas concentrations, which causes further warming, which thaws more permafrost, releasing more carbon. This self-reinforcing cycle is a positive (amplifying) feedback that accelerates climate change." />
         </QGroup>
       </DotPoint>
 
@@ -589,7 +623,7 @@ function Section3({ progress, setProgress }) {
         </p>
         <WaterCycleImpact />
         <QGroup title="Check yourself">
-          <MCQ num={4} question="What is coral bleaching and what triggers it?" options={["Coral turning white due to paint-like algae covering it","Mass expulsion of zooxanthellae when ocean temperature rises 1 to 2 C above normal for several weeks","Coral dying due to ocean acidification dissolving its skeleton","Coral decolourisation caused by reduced sunlight"]} correct={1} explain="Coral bleaching is the mass expulsion of zooxanthellae from coral tissue triggered by ocean temperatures rising 1 to 2 C above seasonal maxima for several weeks. The coral turns white and loses its main energy source." />
+          <MCQ num={4} question="What is coral bleaching and what triggers it?" options={["Coral turning white due to paint-like algae covering it","Mass expulsion of zooxanthellae when ocean temperature rises 1 to 2 °C above normal for several weeks","Coral dying due to ocean acidification dissolving its skeleton","Coral decolourisation caused by reduced sunlight"]} correct={1} explain="Coral bleaching is the mass expulsion of zooxanthellae from coral tissue triggered by ocean temperatures rising 1 to 2 °C above seasonal maxima for several weeks. The coral turns white and loses its main energy source." />
           <WrittenQ num={5} question="Explain how a prolonged drought caused by climate change could affect multiple levels of a freshwater river ecosystem." model="Reduced river flow lowers water levels and concentrates pollutants. Lower water volume warms faster and holds less dissolved oxygen. Aquatic invertebrates die or decrease, removing a key food source. Fish face reduced food and may not reach upstream breeding habitats. Waterbirds, platypus, and other wildlife dependent on the river face starvation and displacement. Riparian vegetation may die, causing bank erosion and further degrading habitat. These cascading effects can collapse the whole freshwater ecosystem." />
         </QGroup>
       </DotPoint>
@@ -604,7 +638,7 @@ function Section3({ progress, setProgress }) {
         <Callout kind="fact" title="Why satellites beat ground stations">
           A single satellite pass can cover more ground in minutes than thousands of weather stations. Passive microwave sensors can even detect sea ice through clouds, which are often present over polar regions.
         </Callout>
-        <Interactive title="Satellite Climate Monitoring: Key Missions" subtitle="Satellites measure variables that cannot be observed globally from the ground." takeaway="Satellites can continuously monitor the entire planet's temperature, sea level, ice, and CO2 in ways that ground-based stations cannot, making them essential tools for tracking climate change.">
+        <Interactive title="Satellite Climate Monitoring: Key Missions" subtitle="Satellites measure variables that cannot be observed globally from the ground." takeaway="Satellites can continuously monitor the entire planet's temperature, sea level, ice, and CO₂ in ways that ground-based stations cannot, making them essential tools for tracking climate change.">
           <div style={{ overflowX: "auto" }}>
             <table className="data-table" style={{ width: "100%" }}>
               <thead><tr><th>Mission</th><th>Variable</th><th>Use</th></tr></thead>
@@ -614,7 +648,7 @@ function Section3({ progress, setProgress }) {
                   ["Jason-3 / Sentinel-6", "Sea level", "Measures global sea level rise to 1 cm accuracy"],
                   ["MODIS (Terra/Aqua)", "Sea surface temperature", "Daily global SST; coral bleaching alerts"],
                   ["CryoSat-2 (ESA)", "Ice sheet and sea ice thickness", "Monitors Greenland and Antarctic mass changes"],
-                  ["OCO-2 (NASA)", "Atmospheric CO2", "Maps global CO2 sources and sinks"],
+                  ["OCO-2 (NASA)", "Atmospheric CO₂", "Maps global CO₂ sources and sinks"],
                   ["GRACE/GRACE-FO", "Ice mass and groundwater", "Detects ice sheet loss by gravity changes"],
                 ].map(([m, v, u]) => <tr key={m}><td>{m}</td><td>{v}</td><td>{u}</td></tr>)}
               </tbody>
@@ -650,13 +684,13 @@ function PollutionChain() {
           <button key={i} onClick={() => setStep(i)}
             style={{ width: 36, height: 36, borderRadius: "50%", border: `2px solid var(--accent)`,
               background: i <= step ? "var(--accent)" : "var(--surface)",
-              color: i <= step ? "#fff" : "var(--muted)",
+              color: i <= step ? "#fff" : "var(--ink-muted)",
               fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
             {i + 1}
           </button>
         ))}
       </div>
-      <div style={{ background: "var(--surface-alt)", borderRadius: 12, padding: 20, textAlign: "center", minHeight: 120 }}>
+      <div style={{ background: "var(--bg-2)", borderRadius: 12, padding: 20, textAlign: "center", minHeight: 120 }}>
         <div style={{ fontSize: 40, marginBottom: 8 }}>{steps[step].icon}</div>
         <p style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>{steps[step].title}</p>
         <p style={{ margin: 0 }}>{steps[step].desc}</p>
@@ -743,18 +777,42 @@ function Section4({ progress, setProgress }) {
         <p className="lead">From eutrophication to enzyme-powered recycling, science is reshaping how we handle pollution and waste.</p>
       </div>
 
-      <Figure src="img/waste-hierarchy.png" caption="The waste hierarchy, from most preferred (reduce) to least (dispose)." />
+      <Figure caption="The waste hierarchy, from most preferred (reduce, at the top) to least preferred (dispose, at the bottom). Each level up avoids more environmental impact than the level below it." maxWidth={640}>
+        <svg viewBox="0 0 720 324" width="100%" role="img" aria-label="Inverted pyramid of the waste hierarchy: reduce at the wide top, then reuse, recycle, recover energy, and dispose (landfill) at the narrow bottom.">
+          <line x1="22" y1="24" x2="22" y2="294" stroke="var(--ink-muted)" strokeWidth="2.5"/>
+          <path d="M22,306 L15,292 L29,292 Z" fill="var(--ink-muted)"/>
+          <text x="34" y="32" fontSize="12" fontWeight="700" fill="var(--ink-muted)">Most</text>
+          <text x="34" y="46" fontSize="12" fontWeight="700" fill="var(--ink-muted)">preferred</text>
+          <text x="34" y="290" fontSize="12" fontWeight="700" fill="var(--ink-muted)">Least</text>
+          <text x="34" y="304" fontSize="12" fontWeight="700" fill="var(--ink-muted)">preferred</text>
+          <polygon points="100,18 500,18 467,72 133,72" fill="var(--green)"/>
+          <text x="300" y="51" textAnchor="middle" fontSize="18" fontWeight="800" fill="#fff">Reduce</text>
+          <text x="498" y="50" fontSize="14" fill="var(--ink)">Avoid waste: buy and use less</text>
+          <polygon points="133,77 467,77 434,131 166,131" fill="var(--teal)"/>
+          <text x="300" y="110" textAnchor="middle" fontSize="18" fontWeight="800" fill="#fff">Reuse</text>
+          <text x="464" y="109" fontSize="14" fill="var(--ink)">Use again: refill, repair, donate</text>
+          <polygon points="166,136 434,136 401,190 199,190" fill="var(--blue)"/>
+          <text x="300" y="169" textAnchor="middle" fontSize="18" fontWeight="800" fill="#fff">Recycle</text>
+          <text x="432" y="168" fontSize="14" fill="var(--ink)">Reprocess into new products</text>
+          <polygon points="199,195 401,195 368,249 232,249" fill="var(--amber)"/>
+          <text x="300" y="228" textAnchor="middle" fontSize="18" fontWeight="800" fill="#1b1a17">Recover</text>
+          <text x="398" y="227" fontSize="14" fill="var(--ink)">Burn waste to recover energy</text>
+          <polygon points="232,254 368,254 335,308 265,308" fill="var(--red)"/>
+          <text x="300" y="287" textAnchor="middle" fontSize="14" fontWeight="800" fill="#fff">Dispose</text>
+          <text x="366" y="286" fontSize="14" fill="var(--ink)">Landfill: the last resort</text>
+        </svg>
+      </Figure>
       <DotPoint id="4.4.1" title="Describe the causes of environmental pollution and discuss its implications" progress={progress} setProgress={setProgress}>
         <p>
-          <Term def="The introduction of substances into the natural environment at concentrations or rates that cause harmful effects on living organisms, ecosystems, or human health.">Environmental pollution</Term> occurs in air, water, and soil. Air pollution from burning fossil fuels produces <Term def="Sulfur dioxide, a gas produced by burning coal and smelting metals that reacts with water vapour to form acid rain.">sulfur dioxide (SO2)</Term>, nitrogen oxides (NOx), and <Term def="Fine particulate matter smaller than 2.5 micrometres that penetrates deep into the lungs and causes cardiovascular and respiratory disease.">PM2.5</Term>. Water pollution comes from agricultural runoff containing fertilisers and pesticides, industrial discharge of heavy metals, sewage, and plastic waste. Soil contamination results from industrial spills, mining waste, and landfill leachate.
+          <Term def="The introduction of substances into the natural environment at concentrations or rates that cause harmful effects on living organisms, ecosystems, or human health.">Environmental pollution</Term> occurs in air, water, and soil. Air pollution from burning fossil fuels produces <Term def="Sulfur dioxide, a gas produced by burning coal and smelting metals that reacts with water vapour to form acid rain.">sulfur dioxide (SO₂)</Term>, nitrogen oxides (NOx), and <Term def="Fine particulate matter smaller than 2.5 micrometres that penetrates deep into the lungs and causes cardiovascular and respiratory disease.">PM2.5</Term>. Water pollution comes from agricultural runoff containing fertilisers and pesticides, industrial discharge of heavy metals, sewage, and plastic waste. Soil contamination results from industrial spills, mining waste, and landfill leachate.
         </p>
         <p>
-          The implications are wide-ranging. <Term def="The over-enrichment of a water body with nutrients (usually nitrogen and phosphorus from fertiliser runoff), causing algal blooms that deplete oxygen and kill aquatic life.">Eutrophication</Term> of waterways from nitrogen runoff causes algal blooms, oxygen depletion, and fish kills. <Term def="Acidic precipitation formed when SO2 and NOx react with water vapour in the atmosphere to produce sulfuric and nitric acid.">Acid rain</Term> damages forests and acidifies lakes. Heavy metals such as lead and mercury <Term def="The build-up of a substance in an organism faster than it is broken down or removed. When it becomes more concentrated at each higher level of a food chain, this is called biomagnification.">bioaccumulate</Term> in food chains. <Term def="Tiny plastic particles less than 5 mm in diameter, produced by fragmentation of larger plastic items or released directly from cosmetics and synthetic textiles.">Microplastics</Term> are now found in marine organisms at every trophic level.
+          The implications are wide-ranging. <Term def="The over-enrichment of a water body with nutrients (usually nitrogen and phosphorus from fertiliser runoff), causing algal blooms that deplete oxygen and kill aquatic life.">Eutrophication</Term> of waterways from nitrogen runoff causes algal blooms, oxygen depletion, and fish kills. <Term def="Acidic precipitation formed when SO₂ and NOx react with water vapour in the atmosphere to produce sulfuric and nitric acid.">Acid rain</Term> damages forests and acidifies lakes. Heavy metals such as lead and mercury <Term def="The build-up of a substance in an organism faster than it is broken down or removed. When it becomes more concentrated at each higher level of a food chain, this is called biomagnification.">bioaccumulate</Term> in food chains. <Term def="Tiny plastic particles less than 5 mm in diameter, produced by fragmentation of larger plastic items or released directly from cosmetics and synthetic textiles.">Microplastics</Term> are now found in marine organisms at every trophic level.
         </p>
         <PollutionChain />
         <QGroup title="Check yourself">
-          <MCQ num={1} question="What is eutrophication?" options={["Acidification of rainwater by SO2 and NOx","Over-enrichment of water with nutrients causing algal blooms and oxygen depletion","Bioaccumulation of heavy metals in food chains","Particulate matter settling into waterways"]} correct={1} explain="Eutrophication is the over-enrichment of a water body with nutrients, usually from agricultural fertiliser runoff, causing rapid algal growth. When algae die, decomposing bacteria deplete dissolved oxygen, causing fish kills." />
-          <WrittenQ num={2} question="Explain how acid rain forms and describe two types of damage it causes." model="Acid rain forms when SO2 and NOx from burning fossil fuels react with water vapour, oxygen, and other chemicals in the atmosphere to form sulfuric acid and nitric acid. This falls as acidic rain or dry deposition. It damages conifer forests by leaching nutrients from soil and damaging leaf surfaces. It also acidifies lakes and rivers, reducing pH to levels that kill fish and aquatic invertebrates." />
+          <MCQ num={1} question="What is eutrophication?" options={["Acidification of rainwater by SO₂ and NOx","Over-enrichment of water with nutrients causing algal blooms and oxygen depletion","Bioaccumulation of heavy metals in food chains","Particulate matter settling into waterways"]} correct={1} explain="Eutrophication is the over-enrichment of a water body with nutrients, usually from agricultural fertiliser runoff, causing rapid algal growth. When algae die, decomposing bacteria deplete dissolved oxygen, causing fish kills." />
+          <WrittenQ num={2} question="Explain how acid rain forms and describe two types of damage it causes." model="Acid rain forms when SO₂ and NOx from burning fossil fuels react with water vapour, oxygen, and other chemicals in the atmosphere to form sulfuric acid and nitric acid. This falls as acidic rain or dry deposition. It damages conifer forests by leaching nutrients from soil and damaging leaf surfaces. It also acidifies lakes and rivers, reducing pH to levels that kill fish and aquatic invertebrates." />
         </QGroup>
       </DotPoint>
 
@@ -779,7 +837,7 @@ function Section4({ progress, setProgress }) {
               { title: "Plant Harvesting Protocols", icon: "🌱", body: "Rules about seasons, quantities, and methods of gathering ensure plant populations are not depleted and ecosystems remain productive." },
               { title: "Caring for Country", icon: "🗺", body: "The obligation and practice of maintaining the physical and spiritual health of specific Country, aligning with goals of biodiversity conservation and sustainable resource use." },
             ].map(item => (
-              <div key={item.title} style={{ background: "var(--surface-alt)", borderRadius: 10, padding: 14 }}>
+              <div key={item.title} style={{ background: "var(--bg-2)", borderRadius: 10, padding: 14 }}>
                 <p style={{ fontWeight: 700, marginBottom: 6 }}>{item.icon} {item.title}</p>
                 <p style={{ fontSize: 13, margin: 0 }}>{item.body}</p>
               </div>
@@ -833,12 +891,12 @@ function Section4({ progress, setProgress }) {
         <Interactive title="Innovative Recycling: Comparison" subtitle="Four emerging technologies that go beyond conventional mechanical recycling." takeaway="Emerging recycling technologies such as enzymatic and chemical recycling can process materials that conventional mechanical recycling cannot, but they complement rather than replace the higher-priority steps of reducing and reusing.">
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {[
-              { name: "Chemical Recycling (Pyrolysis)", detail: "Heats mixed plastics at 300 to 700 C without oxygen. Breaks polymers into oil and gas. Can handle contaminated, mixed plastics that cannot be mechanically recycled. Products used as fuel or feedstocks for new plastic." },
+              { name: "Chemical Recycling (Pyrolysis)", detail: "Heats mixed plastics at 300 to 700 °C without oxygen. Breaks polymers into oil and gas. Can handle contaminated, mixed plastics that cannot be mechanically recycled. Products used as fuel or feedstocks for new plastic." },
               { name: "Enzymatic Recycling (PETase)", detail: "PETase enzyme discovered 2016 breaks PET back to monomers at near room temperature. Engineered versions are faster. Produces virgin-quality PET monomers with lower energy than pyrolysis." },
               { name: "Urban Mining (E-waste)", detail: "Circuit boards contain gold at 200 to 300 g/tonne versus 1 to 5 g/tonne in best gold ores. Chemical extraction recovers gold, silver, copper, and rare earth elements at higher efficiency than mining primary ores." },
               { name: "Textile-to-Fibre Recycling", detail: "Chemical processes dissolve cotton into cellulose or break polyester back into monomers. This enables fibre-to-fibre recycling of clothing with little quality loss, addressing the fashion industry's large waste problem." },
             ].map(item => (
-              <details key={item.name} style={{ background: "var(--surface-alt)", borderRadius: 10, padding: "10px 14px" }}>
+              <details key={item.name} style={{ background: "var(--bg-2)", borderRadius: 10, padding: "10px 14px" }}>
                 <summary style={{ fontWeight: 700, cursor: "pointer" }}>{item.name}</summary>
                 <p style={{ margin: "8px 0 0", fontSize: 14 }}>{item.detail}</p>
               </details>
@@ -893,15 +951,15 @@ function PlasticPathwayMap() {
           const isActive = active === n.id;
           return (
             <g key={n.id} style={{ cursor: "pointer" }} onClick={() => setActive(active === n.id ? null : n.id)}>
-              <circle cx={cx} cy={cy} r={18} fill={isActive ? "var(--accent)" : "var(--surface-alt)"} stroke="var(--accent)" strokeWidth={2} />
+              <circle cx={cx} cy={cy} r={18} fill={isActive ? "var(--accent)" : "var(--bg-2)"} stroke="var(--accent)" strokeWidth={2} />
               <text x={cx} y={cy + 5} textAnchor="middle" fontSize={14}>{n.icon}</text>
-              <text x={cx} y={cy + 26} textAnchor="middle" fontSize={9} fill="var(--muted)">{n.label.split("\n")[0]}</text>
+              <text x={cx} y={cy + 26} textAnchor="middle" fontSize={9} fill="var(--ink-muted)">{n.label.split("\n")[0]}</text>
             </g>
           );
         })}
       </svg>
       {active !== null && (
-        <div style={{ background: "var(--surface-alt)", borderRadius: 10, padding: 14, marginTop: 8, borderLeft: "4px solid var(--accent)" }}>
+        <div style={{ background: "var(--bg-2)", borderRadius: 10, padding: 14, marginTop: 8, borderLeft: "4px solid var(--accent)" }}>
           <p style={{ fontWeight: 700, marginBottom: 4 }}>{nodes[active].icon} {nodes[active].label.replace("\n", " ")}</p>
           <p style={{ margin: 0, fontSize: 14 }}>{infos[active]}</p>
         </div>
@@ -947,7 +1005,7 @@ function PlasticSolutionAnalyser() {
     </div>
   );
   return (
-    <Interactive title="Marine Plastic: Solution Analyser" subtitle="Select a solution strategy and see how it rates across four sustainability criteria." takeaway="Improving waste management infrastructure scores top marks on both environmental effectiveness and scalability, making it one of the most impactful single strategy for reducing marine plastic pollution.">
+    <Interactive title="Marine Plastic: Solution Analyser" subtitle="Select a solution strategy and see how it rates across four sustainability criteria." takeaway="Improving waste management infrastructure scores top marks on both environmental effectiveness and scalability, making it one of the most impactful single strategies for reducing marine plastic pollution.">
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
         {solutions.map((sol, i) => (
           <button key={i} onClick={() => setSel(i)}
@@ -958,7 +1016,7 @@ function PlasticSolutionAnalyser() {
           </button>
         ))}
       </div>
-      <div style={{ background: "var(--surface-alt)", borderRadius: 10, padding: 14 }}>
+      <div style={{ background: "var(--bg-2)", borderRadius: 10, padding: 14 }}>
         <p style={{ margin: "0 0 12px", fontStyle: "italic", fontSize: 13 }}>{s.note}</p>
         {[["Environmental Effectiveness", s.env], ["Economic Viability", s.eco], ["Social Acceptability", s.soc], ["Scalability", s.scale]].map(([label, val]) => (
           <div key={label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
@@ -989,7 +1047,7 @@ function Section5({ progress, setProgress }) {
           Humans produce approximately 400 million tonnes of plastic each year globally, of which an estimated 8 to 14 million tonnes enters the ocean annually. The primary human activities responsible include single-use plastic production and consumption, inadequate waste management (uncollected plastic, landfill near waterways, stormwater drains), industrial <Term def="Small pre-production plastic pellets about 3 to 5 mm in diameter used as feedstock for manufacturing plastic products. Spilled during transport, they are mistaken for food by marine wildlife.">nurdle</Term> spillage, and the washing of synthetic textiles which releases <Term def="Plastic fibres under 5 mm shed from synthetic clothing during washing, which pass through wastewater treatment and enter waterways.">microplastic fibres</Term> into wastewater.
         </p>
         <p>
-          Once in the ocean, plastics do not biodegrade. Instead they fragment progressively into <Term def="Plastic particles less than 5 mm in diameter formed by the fragmentation of larger plastic items under UV radiation, waves, and abrasion.">microplastics</Term> and <Term def="Plastic particles less than 1 micrometre in diameter, formed by further fragmentation of microplastics.">nanoplastics</Term> under UV radiation, waves, and abrasion. Ocean gyres concentrate floating debris into accumulation zones. The <Term def="A large region of elevated plastic concentration in the North Pacific Ocean, approximately 1.6 million km2, formed by ocean gyres concentrating floating debris.">Great Pacific Garbage Patch</Term> is the most well-known, estimated at approximately 1.6 million km2. Marine animals at all levels are affected: sea turtles mistake bags for jellyfish; seabirds feed plastic to chicks; whales and whale sharks ingest microplastics while filter-feeding. Entanglement in discarded fishing nets and plastic bands injures or kills dolphins, seals, and turtles.
+          Once in the ocean, plastics do not biodegrade. Instead they fragment progressively into <Term def="Plastic particles less than 5 mm in diameter formed by the fragmentation of larger plastic items under UV radiation, waves, and abrasion.">microplastics</Term> and <Term def="Plastic particles less than 1 micrometre in diameter, formed by further fragmentation of microplastics.">nanoplastics</Term> under UV radiation, waves, and abrasion. Ocean gyres concentrate floating debris into accumulation zones. The <Term def="A large region of elevated plastic concentration in the North Pacific Ocean, approximately 1.6 million km², formed by ocean gyres concentrating floating debris.">Great Pacific Garbage Patch</Term> is the most well-known, estimated at approximately 1.6 million km². Marine animals at all levels are affected: sea turtles mistake bags for jellyfish; seabirds feed plastic to chicks; whales and whale sharks ingest microplastics while filter-feeding. Entanglement in discarded fishing nets and plastic bands injures or kills dolphins, seals, and turtles.
         </p>
         <PlasticPathwayMap />
         <p>
@@ -1032,21 +1090,21 @@ mountTopicApp({
     "intergenerational equity": "The principle that the current generation must not use resources at a rate that prevents future generations from meeting their own needs.",
     "circular economy": "An economic model that keeps materials and products in use as long as possible through design for durability, repairability, and recyclability.",
     "waste hierarchy": "A framework ordering waste management strategies from most preferred (reduce) to least preferred (dispose), based on environmental impact.",
-    "greenhouse gas": "A gas that absorbs and re-emits infrared radiation, warming Earth's surface. Includes water vapour, CO2, methane, nitrous oxide, and ozone.",
+    "greenhouse gas": "A gas that absorbs and re-emits infrared radiation, warming Earth's surface. Includes water vapour, CO₂, methane, nitrous oxide, and ozone.",
     "enhanced greenhouse effect": "The intensification of natural greenhouse warming caused by human activities increasing greenhouse gas concentrations beyond their natural levels.",
     "climate": "The long-term average pattern of weather conditions for a region, calculated over at least 30 years.",
     "weather": "The short-term atmospheric conditions at a specific place and time, including temperature, rainfall, wind, and cloud cover.",
     "polar amplification": "The phenomenon where polar regions warm two to four times faster than the global average due to feedback mechanisms.",
     "temperature anomaly": "The difference between a measured temperature and the long-term average (baseline) for that period.",
-    "ocean acidification": "The reduction in ocean pH caused by CO2 dissolving in seawater to form carbonic acid, harming organisms that build calcium carbonate shells.",
+    "ocean acidification": "The reduction in ocean pH caused by CO₂ dissolving in seawater to form carbonic acid, harming organisms that build calcium carbonate shells.",
     "eutrophication": "The over-enrichment of a water body with nutrients (usually nitrogen and phosphorus from fertiliser runoff), causing algal blooms and oxygen depletion.",
     "microplastics": "Plastic particles less than 5 mm in diameter, formed by fragmentation of larger plastics or released directly from cosmetics and synthetic textiles.",
-    "permafrost": "Permanently frozen ground in Arctic and sub-Arctic regions that, when thawed, releases stored carbon as CO2 and methane.",
+    "permafrost": "Permanently frozen ground in Arctic and sub-Arctic regions that, when thawed, releases stored carbon as CO₂ and methane.",
     "zooxanthellae": "Microscopic photosynthetic algae living in coral tissue that provide up to 90% of coral energy and give coral its colour.",
-    "coral bleaching": "Mass expulsion of zooxanthellae from coral tissue when ocean temperature rises 1 to 2 C above seasonal maxima for several weeks, turning coral white.",
+    "coral bleaching": "Mass expulsion of zooxanthellae from coral tissue when ocean temperature rises 1 to 2 °C above seasonal maxima for several weeks, turning coral white.",
     "Indigenous Ecological Knowledge (IEK)": "The detailed, long-term ecological understanding developed by Indigenous peoples through continuous observation and interaction with their environment across generations.",
     "cultural burning": "The practice of using carefully timed, low-intensity fires to manage landscapes, developed and practised by Aboriginal Australians for tens of thousands of years.",
-    "carbon capture and storage (CCS)": "Technology that captures CO2 from industrial exhaust gases or directly from the air and stores it permanently underground in geological formations.",
+    "carbon capture and storage (CCS)": "Technology that captures CO₂ from industrial exhaust gases or directly from the air and stores it permanently underground in geological formations.",
     "urban mining": "The recovery of valuable metals and materials from electronic waste using chemical processes, taking advantage of high metal concentrations in e-waste.",
     "PETase": "An enzyme discovered in 2016 that naturally breaks down PET plastic; engineered versions can enable industrial-scale enzymatic recycling.",
     "drip irrigation": "A method delivering water directly to plant roots through small tubes, reducing evaporation and runoff by up to 50% compared with flood irrigation.",

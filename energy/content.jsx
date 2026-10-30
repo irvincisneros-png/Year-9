@@ -37,10 +37,10 @@ function PendulumSim() {
 
     ctx.clearRect(0, 0, W, H);
     // pivot
-    ctx.fillStyle = "var(--ink, #1a1a2e)";
+    ctx.fillStyle = "#1a1a2e";
     ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI * 2); ctx.fill();
     // rod
-    ctx.strokeStyle = "var(--muted, #6b7280)";
+    ctx.strokeStyle = "#6b7280";
     ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
     // bob with colour by speed
@@ -65,13 +65,13 @@ function PendulumSim() {
       ctx.fillRect(bx, barY, barW, barH);
       ctx.fillStyle = col;
       ctx.fillRect(bx, barY + barH - fillH, barW, fillH);
-      ctx.fillStyle = "var(--ink, #1a1a2e)";
+      ctx.fillStyle = "#1a1a2e";
       ctx.font = "bold 11px sans-serif";
       ctx.textAlign = "center";
       ctx.fillText(label, bx + barW / 2, barY + barH + 14);
       ctx.fillText(label === "Total" ? total.toFixed(1) : label === "KE" ? ke.toFixed(1) : pe.toFixed(1), bx + barW / 2, barY - 4);
     });
-    ctx.fillStyle = "var(--muted, #6b7280)";
+    ctx.fillStyle = "#6b7280";
     ctx.font = "11px sans-serif";
     ctx.textAlign = "left";
     ctx.fillText("J", barX + 3 * 44 + barW + 3, barY - 4);
@@ -114,7 +114,7 @@ function PendulumSim() {
         <Slider label="Starting angle" min={5} max={80} step={1} value={angle} onChange={v => { setAngle(v); if (!running) draw(v * Math.PI / 180, 0); }} unit="deg"/>
         <Slider label="Bob mass" min={0.2} max={3.0} step={0.1} value={mass} onChange={v => { setMass(v); if (!running) draw(stateRef.current.theta, stateRef.current.omega); }} unit=" kg"/>
       </div>
-      <canvas ref={canvasRef} width={380} height={260} style={{ display: "block", margin: "0 auto", borderRadius: 12, background: "var(--surface-2, #f8fafc)" }}/>
+      <canvas ref={canvasRef} width={380} height={260} style={{ display: "block", margin: "0 auto", borderRadius: 12, background: "#f8fafc", width: "100%", maxWidth: 380, height: "auto" }}/>
       <div className="ctrl-row" style={{ marginTop: 8 }}>
         <button className="btn btn-accent" onClick={start} disabled={running}>Start</button>
         <button className="btn btn-ghost" onClick={stop}>Reset</button>
@@ -202,10 +202,10 @@ function EnergySourceSorter() {
 function PowerStationFlow() {
   const [source, setSource] = useState("coal");
   const flows = {
-    coal: { steps: ["Chemical PE (coal burned)", "Thermal energy (steam)", "KE (turbine spins)", "Electrical energy (generator)"], colours: ["#f59e0b","#ef4444","#3b82f6","#8b5cf6"], note: "Three energy transformations. Most energy is lost as heat at each stage." },
+    coal: { steps: ["Chemical PE (coal burned)", "Thermal energy (steam)", "KE (turbine spins)", "Electrical energy (generator)"], colours: ["#f59e0b","#ef4444","#3b82f6","#8b5cf6"], note: "Three energy transformations. Only about a third of the coal's energy ends up as electricity; most is lost as heat, mainly when the used steam is cooled." },
     hydro: { steps: ["Gravitational PE (water at height)", "KE (falling water)", "KE (turbine)", "Electrical energy (generator)"], colours: ["#10b981","#3b82f6","#3b82f6","#8b5cf6"], note: "No combustion, no steam. Water falling directly spins turbines." },
     solar: { steps: ["Radiant energy (sunlight)", "DC electrical energy (PV cell)", "AC electrical energy (inverter)"], colours: ["#f59e0b","#8b5cf6","#8b5cf6"], note: "Only one energy transformation (light to electricity); the inverter just changes DC to AC. No turbine or steam. Most direct path to electricity." },
-    wind: { steps: ["KE (moving air)", "KE (turbine blades)", "Electrical energy (generator)"], colours: ["#06b6d4","#3b82f6","#8b5cf6"], note: "Three steps. Moving air directly drives blades. No combustion or steam." },
+    wind: { steps: ["KE (moving air)", "KE (turbine blades)", "Electrical energy (generator)"], colours: ["#06b6d4","#3b82f6","#8b5cf6"], note: "One energy transformation (kinetic to electrical). Moving air directly drives the blades. No combustion or steam." },
     nuclear: { steps: ["Nuclear binding energy (fission)", "Thermal energy (steam)", "KE (turbine)", "Electrical energy (generator)"], colours: ["#a3e635","#ef4444","#3b82f6","#8b5cf6"], note: "Same turbine-generator step as coal, but heat comes from splitting uranium atoms." },
   };
   const f = flows[source];
@@ -271,8 +271,8 @@ function CircuitBuilder() {
           <rect x="23" y="56" width="10" height="14" rx="2" fill="var(--ink)" opacity="0.3"/>
         </svg>
         <span style={{ fontSize: 12, fontWeight: 700 }}>{label}</span>
-        <span style={{ fontSize: 11, color: "var(--muted)" }}>{voltage.toFixed(1)} V</span>
-        <span style={{ fontSize: 11, color: "var(--muted)" }}>{ic.toFixed(2)} A</span>
+        <span style={{ fontSize: 11, color: "var(--ink-muted)" }}>{voltage.toFixed(1)} V</span>
+        <span style={{ fontSize: 11, color: "var(--ink-muted)" }}>{ic.toFixed(2)} A</span>
       </div>
     );
   }
@@ -293,11 +293,11 @@ function CircuitBuilder() {
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 32, margin: "12px 0" }}>
         <BulbSVG bright={brightness1} label="Bulb 1" voltage={v1} current={i1}/>
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: 11, color: "var(--muted)", marginBottom: 4 }}>Battery</div>
+          <div style={{ fontSize: 11, color: "var(--ink-muted)", marginBottom: 4 }}>Battery</div>
           <div style={{ fontWeight: 800, fontSize: 22, color: "var(--accent-deep)" }}>{battery} V</div>
-          <div style={{ fontSize: 11, color: "var(--muted)", marginTop: 4 }}>Total current</div>
+          <div style={{ fontSize: 11, color: "var(--ink-muted)", marginTop: 4 }}>Total current</div>
           <div style={{ fontWeight: 700, fontSize: 16 }}>{current.toFixed(2)} A</div>
-          <div style={{ fontSize: 11, color: "var(--muted)", marginTop: 2 }}>Total R</div>
+          <div style={{ fontSize: 11, color: "var(--ink-muted)", marginTop: 2 }}>Total R</div>
           <div style={{ fontWeight: 700, fontSize: 14 }}>{rTotal.toFixed(1)} Ω</div>
         </div>
         <BulbSVG bright={brightness2} label="Bulb 2" voltage={v2} current={i2}/>
@@ -355,7 +355,7 @@ function OhmsLawExplorer() {
         <Stat value={rVal.toFixed(1)} label="R (ohms)"/>
         <Stat value={power} label="P = VI (watts)"/>
       </div>
-      <div style={{ textAlign: "center", padding: "8px 0", fontSize: 14, color: "var(--muted)" }}>
+      <div style={{ textAlign: "center", padding: "8px 0", fontSize: 14, color: "var(--ink-muted)" }}>
         V = I x R: {vVal.toFixed(1)} = {iVal.toFixed(2)} x {rVal.toFixed(1)} = {(iVal * rVal).toFixed(1)} V
       </div>
     </Interactive>
@@ -461,13 +461,13 @@ function EnergyTrendsChart() {
             <g key={i}>
               <rect x={bx} y={by} width={bw * 0.7} height={bh} rx="4" fill={`hsl(${hue},70%,55%)`}/>
               <text x={bx + bw * 0.35} y={by - 4} textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--ink)">{v}</text>
-              <text x={bx + bw * 0.35} y={padT + H + 16} textAnchor="middle" fontSize="11" fill="var(--muted)">{data[i].year}</text>
+              <text x={bx + bw * 0.35} y={padT + H + 16} textAnchor="middle" fontSize="11" fill="var(--ink-muted)">{data[i].year}</text>
             </g>
           );
         })}
         <line x1={padL} y1={padT} x2={padL} y2={padT + H} stroke="var(--ink)" strokeWidth="1.5"/>
         <line x1={padL} y1={padT + H} x2={W - padR} y2={padT + H} stroke="var(--ink)" strokeWidth="1.5"/>
-        <text x={padL - 4} y={padT + H / 2} textAnchor="middle" fontSize="10" fill="var(--muted)" transform={`rotate(-90,${padL - 14},${padT + H / 2})`}>{view === "total" ? "EJ" : "GJ"}</text>
+        <text x={padL - 4} y={padT + H / 2} textAnchor="middle" fontSize="10" fill="var(--ink-muted)" transform={`rotate(-90,${padL - 14},${padT + H / 2})`}>{view === "total" ? "EJ" : "GJ"}</text>
       </svg>
       <p className="muted" style={{ marginBottom: 0 }}>Global primary energy more than doubled from 1970 to 2020. Per-person use grew more slowly, showing efficiency gains offset some demand growth.</p>
     </Interactive>
@@ -476,7 +476,7 @@ function EnergyTrendsChart() {
 
 function EnergyCriteriaEval() {
   const sources = ["Solar PV", "Offshore wind", "Pumped hydro", "Nuclear"];
-  const criteria = ["CO2 emissions", "Cost (LCOE)", "Reliability", "Build time", "Australia suitability"];
+  const criteria = ["CO₂ emissions", "Cost (LCOE)", "Reliability", "Build time", "Australia suitability"];
   const scores = {
     "Solar PV":     [5, 5, 2, 5, 5],
     "Offshore wind":[5, 4, 2, 4, 4],
@@ -524,7 +524,23 @@ function Section1({ progress, setProgress }) {
         <p className="lead">No matter how dramatic the explosion or how quiet the glow, the total energy in a closed system stays exactly the same.</p>
       </div>
 
-      <Figure src="img/efficiency.png" caption="Input energy splits into useful output and wasted heat." />
+      <Figure caption="A Sankey diagram for an LED globe: 100 J of electrical energy goes in, 45 J comes out as useful light and 55 J is wasted as heat. The arrow widths add up (45 J + 55 J = 100 J) because energy is conserved." maxWidth={560}>
+        <svg viewBox="0 0 600 360" width="100%" role="img" aria-label="Sankey diagram: 100 joules of electrical energy in, splitting into 45 joules of useful light and 55 joules of wasted heat">
+          <rect x="20" y="40" width="190" height="200" fill="var(--blue)"/>
+          <path d="M209,40 L470,40 L470,130 L209,130 Z" fill="var(--amber)"/>
+          <path d="M470,22 L520,85 L470,148 Z" fill="var(--amber)"/>
+          <path d="M209,130 C330,130 410,190 410,290 L300,290 C300,255 265,240 209,240 Z" fill="var(--red)"/>
+          <path d="M282,290 L428,290 L355,340 Z" fill="var(--red)"/>
+          <text x="115" y="132" textAnchor="middle" fontSize="17" fontWeight="700" fill="#fff">Electrical</text>
+          <text x="115" y="154" textAnchor="middle" fontSize="17" fontWeight="700" fill="#fff">energy in</text>
+          <text x="115" y="180" textAnchor="middle" fontSize="20" fontWeight="800" fill="#fff">100 J</text>
+          <text x="340" y="80" textAnchor="middle" fontSize="16" fontWeight="700" fill="#1b1a17">Useful: light</text>
+          <text x="340" y="104" textAnchor="middle" fontSize="18" fontWeight="800" fill="#1b1a17">45 J</text>
+          <text x="440" y="235" fontSize="16" fontWeight="700" fill="var(--ink)">Wasted: heat</text>
+          <text x="440" y="259" fontSize="18" fontWeight="800" fill="var(--ink)">55 J</text>
+          <text x="20" y="282" fontSize="15" fill="var(--ink-muted)">Efficiency = 45 / 100 x 100 = 45%</text>
+        </svg>
+      </Figure>
       <DotPoint id="1.1.1" title="Conservation of energy and calculations" progress={progress} setProgress={setProgress}>
         <p>The <Term def="Energy cannot be created or destroyed; it can only change form or transfer between objects. Total energy in a closed system is constant.">law of conservation of energy</Term> is one of physics's most powerful ideas. Energy does not pop into existence and it does not vanish. It simply changes form or moves from one object to another.</p>
         <p>A <Term def="A system in which no energy or matter is exchanged with the surroundings.">closed system</Term> is one where nothing leaks in or out. Drop a ball from rest and all the <Term def="Energy stored due to an object's position in a gravitational field. GPE = mgh.">gravitational potential energy (GPE)</Term> converts to <Term def="Energy of a moving object. KE = 0.5 x mass x speed squared.">kinetic energy (KE)</Term> by the time it hits the ground. Even with air resistance, the total energy is still conserved; some just ends up as thermal energy in the air instead of KE in the ball.</p>
@@ -541,7 +557,7 @@ function Section1({ progress, setProgress }) {
       <DotPoint id="1.1.2" title="Energy efficiency in transfers" progress={progress} setProgress={setProgress}>
         <p>In any real energy transfer, some input energy is converted into forms that are not useful for the intended purpose, almost always <Term def="Energy stored in the random motion of particles; commonly called heat.">thermal energy</Term> that disperses into the surroundings. <Term def="The proportion of input energy that becomes useful output energy, expressed as a percentage.">Efficiency</Term> measures how much of the input becomes useful output: Efficiency (%) = (useful energy output / total energy input) x 100.</p>
         <p>An <Term def="A traditional light globe that produces light by heating a thin wire filament to glow.">incandescent globe</Term> converts only about 5% of its electrical input to light; the other 95% becomes waste heat. A modern <Term def="Light-emitting diode: a semiconductor device that produces light very efficiently with minimal heat.">LED</Term> globe converts about 45% to light, making it roughly 9 times more efficient. A petrol engine operates at about 25 to 30% efficiency; an electric motor reaches 85 to 95%.</p>
-        <Callout kind="tip" title="Worked example">A kettle uses 150,000 J of electrical energy. The water gains 135,000 J of thermal energy. Efficiency = (135,000 / 150,000) x 100 = 90%. The remaining 10,000 J escapes through the kettle casing.</Callout>
+        <Callout kind="tip" title="Worked example">A kettle uses 150,000 J of electrical energy. The water gains 135,000 J of thermal energy. Efficiency = (135,000 / 150,000) x 100 = 90%. The remaining 15,000 J is wasted, mostly as heat escaping through the kettle casing and into the air.</Callout>
         <EfficiencyCalc/>
         <QGroup title="Check yourself">
           <MCQ num={3} question="A lamp uses 100 J of electrical energy and produces 8 J of light. What is its efficiency?" options={["8%","80%","92%","0.8%"]} correct={0} explain="Efficiency = (8 / 100) x 100 = 8%."/>
@@ -577,13 +593,13 @@ function Section2({ progress, setProgress }) {
 
       <Figure src="img/sources.png" caption="Renewable sources (sun, wind, water) compared with non-renewable fuels." />
       <DotPoint id="1.2.1" title="Types of energy sources" progress={progress} setProgress={setProgress}>
-        <p>An <Term def="Any store of energy that humans can extract and use to do useful work, generate heat, or produce electricity.">energy source</Term> is classified as <Term def="An energy source formed over millions of years that is consumed faster than it is replenished; once used, it is effectively gone.">non-renewable</Term> or <Term def="An energy source replenished naturally on human timescales; theoretically inexhaustible as long as the natural process driving it continues.">renewable</Term>. The three main <Term def="Coal, petroleum, and natural gas: formed from ancient organisms buried and compressed over hundreds of millions of years.">fossil fuels</Term> are coal, petroleum, and natural gas, all storing <Term def="Energy stored in chemical bonds, released by combustion or other chemical reactions.">chemical potential energy</Term> released by combustion. Renewable sources include solar, wind, hydroelectric, geothermal, tidal, wave, and biomass energy.</p>
+        <p>An <Term def="Any store of energy that humans can extract and use to do useful work, generate heat, or produce electricity.">energy source</Term> is classified as <Term def="An energy source formed over millions of years that is consumed faster than it is replenished; once used, it is effectively gone.">non-renewable</Term> or <Term def="An energy source replenished naturally on human timescales; theoretically inexhaustible as long as the natural process driving it continues.">renewable</Term>. The three main <Term def="Coal, petroleum, and natural gas: formed from the remains of ancient organisms buried and compressed over millions of years.">fossil fuels</Term> are coal, petroleum, and natural gas, all storing <Term def="Energy stored in chemical bonds, released by combustion or other chemical reactions.">chemical potential energy</Term> released by combustion. Renewable sources include solar, wind, hydroelectric, geothermal, tidal, wave, and biomass energy.</p>
         <p>Nuclear energy is non-renewable because it uses finite uranium ore, but it is not a fossil fuel: a tiny mass of fuel releases an enormous amount of energy and produces no direct combustion emissions. Understanding which category each source belongs to helps you evaluate its long-term sustainability.</p>
         <Callout kind="fact" title="Fossil fuels and the Sun">All fossil fuels ultimately trace their energy back to the Sun. Ancient plants and marine organisms captured solar energy through photosynthesis and stored it as chemical energy. Millions of years later, that ancient sunlight is what you release when you burn coal or petrol.</Callout>
         <EnergySourceSorter/>
         <QGroup title="Check yourself">
           <MCQ num={7} question="Which of the following is a renewable energy source?" options={["Natural gas","Nuclear (uranium)","Geothermal","Petroleum"]} correct={2} explain="Geothermal energy is continuously replenished by heat from Earth's interior. The others are either fossil fuels or use finite ore."/>
-          <WrittenQ num={8} question="Explain why biomass is only considered renewable if it is managed sustainably." model="Biomass is renewable if new plants are grown to replace those harvested at the same rate they are consumed. If forests are cleared faster than they regrow, more CO2 is released than is absorbed, so it is not truly renewable in that situation."/>
+          <WrittenQ num={8} question="Explain why biomass is only considered renewable if it is managed sustainably." model="Biomass is renewable if new plants are grown to replace those harvested at the same rate they are consumed. If forests are cleared faster than they regrow, more CO₂ is released than is absorbed, so it is not truly renewable in that situation."/>
         </QGroup>
       </DotPoint>
 
@@ -598,7 +614,7 @@ function Section2({ progress, setProgress }) {
       </DotPoint>
 
       <DotPoint id="1.2.3" title="Advantages and disadvantages of energy sources" progress={progress} setProgress={setProgress}>
-        <p>Choosing an energy source for electricity generation means weighing efficiency, environmental impact, cost, and reliability. The <Term def="Levelised cost of electricity: the average cost per unit of electricity generated over the lifetime of a plant, including all construction, fuel, and operating costs.">LCOE</Term> allows fair comparison of sources with different cost structures. Fossil fuels are reliable and energy-dense but release <Term def="Gases such as CO2 and methane that trap heat in the atmosphere, contributing to global warming.">greenhouse gases</Term> when burned and their supply is finite. Solar and wind are now among the cheapest sources for new electricity in Australia, but they are <Term def="Describes an energy source that only produces energy when natural conditions allow (sun shining or wind blowing), not on demand.">intermittent</Term>.</p>
+        <p>Choosing an energy source for electricity generation means weighing efficiency, environmental impact, cost, and reliability. The <Term def="Levelised cost of electricity: the average cost per unit of electricity generated over the lifetime of a plant, including all construction, fuel, and operating costs.">LCOE</Term> allows fair comparison of sources with different cost structures. Fossil fuels are reliable and energy-dense but release <Term def="Gases such as CO₂ and methane that trap heat in the atmosphere, contributing to global warming.">greenhouse gases</Term> when burned and their supply is finite. Solar and wind are now among the cheapest sources for new electricity in Australia, but they are <Term def="Describes an energy source that only produces energy when natural conditions allow (sun shining or wind blowing), not on demand.">intermittent</Term>.</p>
         <p>Coal emits about 820 gCO2/kWh over its lifecycle; wind and nuclear emit about 11 to 12 gCO2/kWh. Economic factors include capital cost, fuel cost, construction time, and the cost of storage or grid upgrades needed to integrate variable renewables. Nuclear offers reliable baseload power but has very high capital costs, long build times (10 to 20 years), and challenges around radioactive waste management.</p>
         <Callout kind="tip" title="Australia's situation">Australia has some of the best solar and wind resources in the world. Over the past decade, the LCOE of solar PV and wind has fallen dramatically, making them cheaper than new coal or gas for electricity generation. Pumped hydro (like Snowy 2.0) provides storage to smooth the variability of renewables.</Callout>
         <QGroup title="Check yourself">
@@ -622,26 +638,74 @@ function Section3({ progress, setProgress }) {
         <p className="lead">Electricity flows in loops. Understanding voltage, current, and resistance lets you predict and control how any circuit behaves.</p>
       </div>
 
-      <Figure src="img/circuit.png" caption="A simple circuit — battery, switch and globe connected by wires." />
+      <Figure caption="A simple complete circuit drawn with standard symbols: a battery of two cells, a closed switch and a lamp (globe) joined in one loop by wires. The arrows show the direction of conventional current, from the positive terminal around the circuit to the negative terminal." maxWidth={520}>
+        <svg viewBox="-60 0 500 260" width="100%" role="img" aria-label="Circuit diagram: a two-cell battery on the left, a closed switch along the top wire and a lamp on the right, all in one loop. Arrows show conventional current flowing clockwise from the positive terminal.">
+          <g stroke="var(--ink)" strokeWidth="3" fill="none" strokeLinecap="round">
+            <polyline points="80,108 80,40 170,40"/>
+            <polyline points="250,40 360,40 360,108"/>
+            <polyline points="360,152 360,220 80,220 80,152"/>
+            <line x1="170" y1="40" x2="250" y2="40"/>
+            <line x1="60" y1="108" x2="100" y2="108"/>
+            <line x1="70" y1="120" x2="90" y2="120"/>
+            <line x1="80" y1="120" x2="80" y2="128"/>
+            <line x1="60" y1="128" x2="100" y2="128"/>
+            <line x1="70" y1="140" x2="90" y2="140"/>
+            <line x1="80" y1="140" x2="80" y2="152"/>
+            <circle cx="360" cy="130" r="22" fill="var(--card)"/>
+            <line x1="344" y1="114" x2="376" y2="146"/>
+            <line x1="376" y1="114" x2="344" y2="146"/>
+          </g>
+          <circle cx="170" cy="40" r="5" fill="var(--ink)"/>
+          <circle cx="250" cy="40" r="5" fill="var(--ink)"/>
+          <text x="112" y="112" fontSize="20" fontWeight="700" fill="var(--ink)">+</text>
+          <text x="112" y="148" fontSize="22" fontWeight="700" fill="var(--ink)">−</text>
+          <text x="40" y="134" textAnchor="end" fontSize="14" fill="var(--ink)">Battery</text>
+          <text x="40" y="152" textAnchor="end" fontSize="12" fill="var(--ink-muted)">(2 cells)</text>
+          <text x="210" y="26" textAnchor="middle" fontSize="14" fill="var(--ink)">Switch (closed)</text>
+          <text x="394" y="126" fontSize="14" fill="var(--ink)">Lamp</text>
+          <text x="394" y="144" fontSize="12" fill="var(--ink-muted)">(globe)</text>
+          <text x="220" y="246" textAnchor="middle" fontSize="13" fill="var(--ink-muted)">Connecting wire</text>
+          <g fill="var(--accent)">
+            <path d="M120,32 L136,40 L120,48 Z"/>
+            <path d="M300,32 L316,40 L300,48 Z"/>
+            <path d="M352,180 L360,196 L368,180 Z"/>
+            <path d="M236,212 L220,220 L236,228 Z"/>
+          </g>
+          <text x="128" y="66" textAnchor="middle" fontSize="12" fill="var(--accent)">current</text>
+        </svg>
+      </Figure>
       <DotPoint id="1.3.1" title="Elements of a complete circuit" progress={progress} setProgress={setProgress}>
-        <p>An <Term def="A flow of charged particles (electrons) through a conductor.">electric current</Term> needs a complete, unbroken conducting path to flow. Break it anywhere and current stops instantly, everywhere in the circuit. A complete circuit has four essentials: an energy source (battery or power supply), conducting wires, at least one <Term def="A component that converts electrical energy into another form, such as a lamp (light) or motor (kinetic energy).">load</Term>, and usually a switch.</p>
-        <p>A <Term def="A single electrochemical unit that converts chemical potential energy into electrical energy.">cell</Term> is a single unit; a battery is two or more cells joined together. Current flows from the positive terminal, through the external circuit, back to the negative terminal. Inside the battery, chemical reactions push charge from negative to positive, maintaining the <Term def="Potential difference: the energy transferred per unit of charge between two points in a circuit, measured in volts (V).">potential difference</Term> that drives the current.</p>
+        <p>An <Term def="A flow of charged particles (electrons) through a conductor.">electric current</Term> needs a complete, unbroken conducting path to flow. Break it anywhere and current stops instantly, everywhere in the circuit. A complete circuit has four essentials: an energy source (battery or power supply), conducting wires, at least one <Term def="A component that converts electrical energy into another form, such as a lamp (light) or motor (kinetic energy).">load</Term>, and a closed (unbroken) path. Most circuits also include a switch to open and close that path.</p>
+        <p>A <Term def="A single electrochemical unit that converts chemical potential energy into electrical energy.">cell</Term> is a single unit; a battery is two or more cells joined together. By convention, current flows from the positive terminal, through the external circuit, back to the negative terminal (the electrons themselves actually drift the other way, from negative to positive). Inside the battery, chemical reactions push charge from negative to positive, maintaining the <Term def="Potential difference: the energy transferred per unit of charge between two points in a circuit, measured in volts (V).">potential difference</Term> that drives the current.</p>
         <Callout kind="key" title="The four essentials">Energy source, conducting wires, at least one load, and a closed path. Remove any one and current stops.</Callout>
-        <Figure caption="Standard circuit symbols and their functions.">
-          <svg viewBox="0 0 520 100" width="100%" style={{ maxWidth: 520 }}>
-            {[
-              ["Battery", 26, "long/short lines"],
-              ["Switch", 104, "gap in line"],
-              ["Lamp", 182, "circle + X"],
-              ["Resistor", 260, "rectangle"],
-              ["Ammeter", 338, "circle A"],
-              ["Voltmeter", 416, "circle V"],
-            ].map(([name, x]) => (
-              <g key={name} transform={`translate(${x},4)`}>
-                <rect width="72" height="54" rx="8" fill="var(--accent-soft)" stroke="var(--accent-deep)" strokeWidth="1.5"/>
-                <text x="36" y="22" textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--ink)">{name}</text>
-              </g>
-            ))}
+        <Figure caption="Standard circuit symbols. The longer line of a cell is its positive (+) terminal. Ammeters are connected in series; voltmeters are connected in parallel across a component." maxWidth={620}>
+          <svg viewBox="0 0 600 150" width="100%" role="img" aria-label="Seven circuit symbols: cell, battery, open switch, lamp, resistor, ammeter and voltmeter">
+            <g stroke="var(--ink)" strokeWidth="2.5" fill="none" strokeLinecap="round">
+              {/* cell */}
+              <line x1="10" y1="60" x2="38" y2="60"/><line x1="38" y1="38" x2="38" y2="82"/><line x1="48" y1="50" x2="48" y2="70"/><line x1="48" y1="60" x2="76" y2="60"/>
+              {/* battery */}
+              <line x1="96" y1="60" x2="112" y2="60"/><line x1="112" y1="38" x2="112" y2="82"/><line x1="121" y1="50" x2="121" y2="70"/><line x1="121" y1="60" x2="133" y2="60"/><line x1="133" y1="38" x2="133" y2="82"/><line x1="142" y1="50" x2="142" y2="70"/><line x1="142" y1="60" x2="160" y2="60"/>
+              {/* open switch */}
+              <line x1="180" y1="60" x2="200" y2="60"/><line x1="200" y1="60" x2="232" y2="40"/><line x1="236" y1="60" x2="256" y2="60"/>
+              {/* lamp */}
+              <line x1="272" y1="60" x2="288" y2="60"/><circle cx="306" cy="60" r="18"/><line x1="293" y1="47" x2="319" y2="73"/><line x1="319" y1="47" x2="293" y2="73"/><line x1="324" y1="60" x2="340" y2="60"/>
+              {/* resistor */}
+              <line x1="358" y1="60" x2="372" y2="60"/><rect x="372" y="50" width="40" height="20"/><line x1="412" y1="60" x2="426" y2="60"/>
+              {/* ammeter */}
+              <line x1="440" y1="60" x2="452" y2="60"/><circle cx="470" cy="60" r="18"/><line x1="488" y1="60" x2="500" y2="60"/>
+              {/* voltmeter */}
+              <line x1="510" y1="60" x2="522" y2="60"/><circle cx="540" cy="60" r="18"/><line x1="558" y1="60" x2="570" y2="60"/>
+            </g>
+            <circle cx="200" cy="60" r="3" fill="var(--ink)"/><circle cx="236" cy="60" r="3" fill="var(--ink)"/>
+            <text x="30" y="34" fontSize="13" fontWeight="700" fill="var(--ink)">+</text>
+            <text x="470" y="66" textAnchor="middle" fontSize="17" fontWeight="700" fill="var(--ink)">A</text>
+            <text x="540" y="66" textAnchor="middle" fontSize="17" fontWeight="700" fill="var(--ink)">V</text>
+            <g fontSize="13" fontWeight="700" fill="var(--ink)" textAnchor="middle">
+              <text x="43" y="112">Cell</text><text x="128" y="112">Battery</text><text x="218" y="112">Switch</text><text x="306" y="112">Lamp</text><text x="392" y="112">Resistor</text><text x="470" y="112">Ammeter</text><text x="540" y="112">Voltmeter</text>
+            </g>
+            <g fontSize="11" fill="var(--ink-muted)" textAnchor="middle">
+              <text x="43" y="130">energy source</text><text x="128" y="130">2+ cells</text><text x="218" y="130">(open)</text><text x="306" y="130">light globe</text><text x="392" y="130">limits current</text><text x="470" y="130">current</text><text x="540" y="130">voltage</text>
+            </g>
           </svg>
         </Figure>
         <QGroup title="Check yourself">
@@ -652,7 +716,7 @@ function Section3({ progress, setProgress }) {
       <DotPoint id="1.3.2" title="Series and parallel circuits" progress={progress} setProgress={setProgress}>
         <p>In a <Term def="A circuit where all components are connected one after another in a single loop. The same current flows through every component.">series circuit</Term>, there is only one path for current to follow. If any component fails, the entire circuit breaks. Old-style Christmas lights were wired in series. In a <Term def="A circuit where components are on separate branches, each between the same two points. Each branch gets the full supply voltage.">parallel circuit</Term>, current splits between multiple branches. Each branch operates independently; if one fails, the rest keep working. Household wiring is parallel so each appliance receives the full mains voltage and can be switched off independently.</p>
         <p>Key comparison: in series, total resistance adds up (R_total = R1 + R2). In parallel, adding more branches lowers total resistance and increases total current drawn from the battery. This is why plugging more appliances into a household circuit can trip a circuit breaker.</p>
-        <Callout kind="tip" title="Household vs series">Your home is wired in parallel so every appliance gets 230 V and works independently. Series wiring would share voltage and one blown fuse would cut power to everything.</Callout>
+        <Callout kind="tip" title="Household vs series">Your home is wired in parallel so every appliance gets 230 V and works independently. Series wiring would share the voltage between appliances, and switching one appliance off (or one breaking) would cut power to everything.</Callout>
         <CircuitBuilder/>
         <QGroup title="Check yourself">
           <MCQ num={13} question="In a parallel circuit with a 12 V supply, what voltage does each branch receive?" options={["Less than 12 V","12 V divided by the number of branches","12 V","Only the first branch gets 12 V"]} correct={2} explain="In a parallel circuit, every branch is connected directly across the supply terminals, so each branch receives the full supply voltage of 12 V."/>
@@ -721,7 +785,7 @@ function Section4({ progress, setProgress }) {
         <Callout kind="fact" title="The numbers">Replacing 200 halogen lamps with LEDs in a school (8 hours per day, 200 days per year) saves about 16,320 kWh per year and roughly $4,900 at $0.30/kWh, with a payback period of about 3 months on the extra lamp cost.</Callout>
         <QGroup title="Check yourself">
           <MCQ num={20} question="Why is saving energy sometimes called the 'first fuel'?" options={["It was the first fuel humans ever used","Saving a unit of energy is almost always cheaper than generating a new unit","It refers to wood burning","It is the most common fuel globally"]} correct={1} explain="Efficiency gains and demand reduction are called the 'first fuel' because avoiding the need for energy is nearly always cheaper and less polluting than producing it from any source."/>
-          <WrittenQ num={21} question="Compare demand-side management with building a new gas power plant as strategies for addressing peak electricity demand. Consider cost, environmental impact, and implementation time." model="Demand-side management: implemented quickly through smart meters and time-of-use pricing, low cost, minimal environmental impact, reduces peak demand without new infrastructure. New gas plant: takes 3 to 7 years to build, costs hundreds of millions of dollars, emits CO2, but provides reliable dispatchable power. DSM is preferred as a first response; new generation is needed only when demand optimisation cannot meet the remaining gap."/>
+          <WrittenQ num={21} question="Compare demand-side management with building a new gas power plant as strategies for addressing peak electricity demand. Consider cost, environmental impact, and implementation time." model="Demand-side management: implemented quickly through smart meters and time-of-use pricing, low cost, minimal environmental impact, reduces peak demand without new infrastructure. New gas plant: takes 3 to 7 years to build, costs hundreds of millions of dollars, emits CO₂, but provides reliable dispatchable power. DSM is preferred as a first response; new generation is needed only when demand optimisation cannot meet the remaining gap."/>
         </QGroup>
       </DotPoint>
 
@@ -735,7 +799,7 @@ function Section4({ progress, setProgress }) {
       </DotPoint>
 
       <DotPoint id="1.4.3" title="Reasons for developing alternative energy sources" progress={progress} setProgress={setProgress}>
-        <p>Three interconnected reasons drive the development of alternative energy sources. First, <Term def="The situation when an energy resource is used up faster than it is naturally replenished. Fossil fuels are being depleted faster than they formed.">resource depletion</Term>: fossil fuels are finite. As the most accessible deposits are exhausted, extraction becomes more expensive and risky, requiring drilling in deeper water or more remote locations. Second, environmental harm: burning fossil fuels releases <Term def="Carbon dioxide (CO2): a greenhouse gas released when fossil fuels are burned, which accumulates in the atmosphere and drives global warming.">CO2</Term> and other <Term def="Gases that absorb and re-emit infrared radiation, warming Earth's atmosphere. Include CO2, methane, and nitrous oxide.">greenhouse gases</Term> driving climate change, as well as sulfur dioxide and nitrogen oxides causing acid rain and air pollution.</p>
+        <p>Three interconnected reasons drive the development of alternative energy sources. First, <Term def="The situation when an energy resource is used up faster than it is naturally replenished. Fossil fuels are being depleted faster than they formed.">resource depletion</Term>: fossil fuels are finite. As the most accessible deposits are exhausted, extraction becomes more expensive and risky, requiring drilling in deeper water or more remote locations. Second, environmental harm: burning fossil fuels releases <Term def="Carbon dioxide (CO₂): a greenhouse gas released when fossil fuels are burned, which accumulates in the atmosphere and drives global warming.">CO₂</Term> and other <Term def="Gases that absorb and re-emit infrared radiation, warming Earth's atmosphere. Include CO₂, methane, and nitrous oxide.">greenhouse gases</Term> driving climate change, as well as sulfur dioxide and nitrogen oxides causing acid rain and air pollution.</p>
         <p>Third, <Term def="Having reliable access to affordable energy, free from the risk of price volatility or supply disruption caused by dependence on imported fuels.">energy security</Term>: countries that import fossil fuels are vulnerable to price shocks and geopolitical supply disruptions. Domestic renewable resources (sunshine, wind, rivers) are free, abundant, and cannot be embargoed. The <Term def="Intergovernmental Panel on Climate Change: the leading UN body summarising scientific evidence on climate change.">IPCC</Term> has concluded that limiting global warming to 1.5 degrees Celsius requires rapid and deep reductions in fossil fuel use.</p>
         <Callout kind="warn" title="Urgency">The IPCC concluded that limiting global warming to 1.5 degrees Celsius requires near-complete phase-out of unabated fossil fuel use for electricity and heat. Every year of delay makes the required transition faster and more costly.</Callout>
         <QGroup title="Check yourself">
@@ -751,7 +815,7 @@ function Section4({ progress, setProgress }) {
         <EnergyCriteriaEval/>
         <Callout kind="tip" title="Australia as a case study">Australia has world-class solar and wind resources, substantial hydroelectric capacity, and export-oriented fossil fuel industries. Evidence from the CSIRO GenCost report shows that large-scale solar PV and wind are now the cheapest forms of new electricity generation in Australia, a complete reversal from 10 years ago when new gas was cheapest.</Callout>
         <QGroup title="Check yourself">
-          <MCQ num={25} question="What does LCOE stand for, and what does it measure?" options={["Lowest Carbon Output Equivalent; the emissions per kWh","Levelised Cost of Electricity; average cost per unit of electricity generated over a plant's lifetime","Local Cost of Energy; what households pay per kWh on their bill","Lifecycle CO2 Estimate; grams of CO2 per kWh"]} correct={1} explain="LCOE stands for Levelised Cost of Electricity. It measures the average cost per unit of electricity generated over the plant's lifetime, including all capital, fuel, and operating costs."/>
+          <MCQ num={25} question="What does LCOE stand for, and what does it measure?" options={["Lowest Carbon Output Equivalent; the emissions per kWh","Levelised Cost of Electricity; average cost per unit of electricity generated over a plant's lifetime","Local Cost of Energy; what households pay per kWh on their bill","Lifecycle CO₂ Estimate; grams of CO₂ per kWh"]} correct={1} explain="LCOE stands for Levelised Cost of Electricity. It measures the average cost per unit of electricity generated over the plant's lifetime, including all capital, fuel, and operating costs."/>
           <WrittenQ num={26} question="Explain why a combination of multiple alternative energy sources is generally a more robust strategy than relying on just one." model="No single source is ideal across all criteria. Solar only generates during the day; wind may be calm for days. Combining solar, wind, and dispatchable storage (pumped hydro or batteries) means when one source is unavailable, others compensate. This improves overall grid reliability, reduces risk from technical failures, and provides cost stability. A diverse portfolio is more resilient than depending on a single technology."/>
         </QGroup>
       </DotPoint>
@@ -800,7 +864,7 @@ mountTopicApp({
     "power (P)": "Rate of energy transformation. P = V x I. Measured in watts (W).",
     "kilowatt-hour (kWh)": "Energy used by a 1 kW device running for one hour. 1 kWh = 3.6 MJ.",
     "energy rating label": "Australian label showing star rating and annual kWh for household appliances.",
-    "greenhouse gas": "A gas such as CO2 or methane that traps heat in the atmosphere, contributing to climate change.",
+    "greenhouse gas": "A gas such as CO₂ or methane that traps heat in the atmosphere, contributing to climate change.",
     "energy security": "Reliable access to affordable energy, free from vulnerability to supply disruption or price shocks.",
     "demand-side management": "Shifting large electricity loads to off-peak times using pricing signals, reducing peak demand.",
   },

@@ -135,11 +135,11 @@ function BondVisualiser() {
       label: "Ionic: NaCl",
       desc: "The sodium atom (1 outer electron) transfers that electron to chlorine (7 outer electrons). Each ion now has a full outer shell. Opposite charges attract, forming a crystal lattice.",
       colours: ["#7c3aed","#16a34a"],
-      labels: ["Na+", "Cl-"],
+      labels: ["Na⁺", "Cl⁻"],
       arrow: true,
     },
     covalent: {
-      label: "Covalent: H2O",
+      label: "Covalent: H₂O",
       desc: "Oxygen shares one electron pair with each hydrogen. Both shared pairs count for each atom, giving oxygen 8 outer electrons and each hydrogen 2 (matching helium).",
       colours: ["#2563eb","#e11d48","#e11d48"],
       labels: ["O", "H", "H"],
@@ -149,7 +149,7 @@ function BondVisualiser() {
       label: "Metallic: Copper",
       desc: "Positive copper ions sit in a regular lattice. Outer electrons are delocalised, forming a 'sea' of free electrons. This sea holds the lattice together and makes copper an excellent conductor.",
       colours: ["#d97706","#d97706","#d97706","#d97706"],
-      labels: ["Cu+", "Cu+", "Cu+", "Cu+"],
+      labels: ["Cu⁺", "Cu⁺", "Cu⁺", "Cu⁺"],
       arrow: false,
     },
   };
@@ -171,8 +171,8 @@ function BondVisualiser() {
             <text x={270} y={68} textAnchor="middle" dominantBaseline="middle" fontSize="16" fontWeight="700" fill="#fff">Cl</text>
             <text x={270} y={88} textAnchor="middle" fontSize="11" fill="#fff">2,8,7</text>
             <circle cx={270} cy={34} r={7} fill="#fbbf24" stroke="#fff" strokeWidth="2"/>
-            <text x={90} y={118} textAnchor="middle" fontSize="13" fill="var(--ink)">Na+</text>
-            <text x={270} y={118} textAnchor="middle" fontSize="13" fill="var(--ink)">Cl-</text>
+            <text x={90} y={118} textAnchor="middle" fontSize="13" fill="var(--ink)">Na⁺</text>
+            <text x={270} y={118} textAnchor="middle" fontSize="13" fill="var(--ink)">Cl⁻</text>
             <text x={180} y={118} textAnchor="middle" fontSize="11" fill="var(--ink-muted)">electron transferred</text>
           </>}
           {type === "covalent" && <>
@@ -192,7 +192,7 @@ function BondVisualiser() {
               <circle key={i} cx={cx} cy={cy} r={22} fill="#d97706" opacity={0.9}/>
             ))}
             {[[80,50],[180,50],[280,50],[80,110],[180,110],[280,110]].map(([cx,cy],i) => (
-              <text key={i} x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize="13" fontWeight="700" fill="#fff">Cu+</text>
+              <text key={i} x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize="13" fontWeight="700" fill="#fff">Cu⁺</text>
             ))}
             {[50,110,170,230,290,130,195,255,145,245].map((x,i) => (
               <circle key={i} cx={x} cy={20 + (i%3)*40} r={4} fill="#fbbf24" opacity={0.9}/>
@@ -211,13 +211,13 @@ function BondVisualiser() {
    ============================================================ */
 function FractionColumn() {
   const fractions = [
-    { name: "Refinery gas (LPG)", bp: "Below 40  °C", chain: "C1 to C4", use: "Cooking, plastics", y: 12, height: 22, colour: "#e11d48" },
-    { name: "Petrol",            bp: "40 to 175  °C",  chain: "C5 to C10", use: "Car fuel",         y: 36, height: 26, colour: "#f97316" },
-    { name: "Naphtha",           bp: "40 to 180  °C",  chain: "C5 to C10", use: "Chemical feedstock", y: 64, height: 20, colour: "#eab308" },
-    { name: "Kerosene",          bp: "175 to 325  °C", chain: "C10 to C16", use: "Aviation fuel",    y: 86, height: 24, colour: "#84cc16" },
-    { name: "Diesel",            bp: "250 to 350  °C", chain: "C14 to C20", use: "Trucks, trains",   y: 112, height: 24, colour: "#22d3ee" },
-    { name: "Fuel oil",          bp: "350 to 500  °C", chain: "C20 to C50", use: "Ships, boilers",   y: 138, height: 24, colour: "#6366f1" },
-    { name: "Bitumen",           bp: "Above 500  °C",  chain: "Above C70", use: "Road surfaces",     y: 164, height: 28, colour: "#374151" },
+    { name: "Refinery gas (LPG)", bp: "Below 40 °C", chain: "C₁ to C₄", use: "Cooking, plastics", y: 12, height: 22, colour: "#e11d48" },
+    { name: "Petrol",            bp: "40 to 175 °C",  chain: "C₅ to C₁₀", use: "Car fuel",         y: 36, height: 26, colour: "#f97316" },
+    { name: "Naphtha",           bp: "40 to 180 °C",  chain: "C₅ to C₁₀", use: "Chemical feedstock", y: 64, height: 20, colour: "#eab308" },
+    { name: "Kerosene",          bp: "175 to 325 °C", chain: "C₁₀ to C₁₆", use: "Aviation fuel",    y: 86, height: 24, colour: "#84cc16" },
+    { name: "Diesel",            bp: "250 to 350 °C", chain: "C₁₄ to C₂₀", use: "Trucks, trains",   y: 112, height: 24, colour: "#22d3ee" },
+    { name: "Fuel oil",          bp: "350 to 500 °C", chain: "C₂₀ to C₅₀", use: "Ships, boilers",   y: 138, height: 24, colour: "#6366f1" },
+    { name: "Bitumen",           bp: "Above 500 °C",  chain: "Above C₇₀", use: "Road surfaces",     y: 164, height: 28, colour: "#374151" },
   ];
   const [sel, setSel] = useState(null);
   return (
@@ -277,12 +277,13 @@ function AlkaneBuilder() {
   ];
   const [n, setN] = useState(1);
   const al = alkanes[n - 1];
-  const formula = `C${n}H${2*n+2}`;
+  const sub = v => String(v).split("").map(c => "₀₁₂₃₄₅₆₇₈₉"[+c]).join("");
+  const formula = `C${n > 1 ? sub(n) : ""}H${sub(2*n+2)}`;
   const bpMin = -161, bpMax = 126;
   const pct = (al.bp - bpMin) / (bpMax - bpMin);
   const cx = 20 + pct * 280;
   return (
-    <Interactive title="Alkane Builder" subtitle="Use the slider to build alkanes from C1 (methane) to C8 (octane) and watch the formula, boiling point and state change." takeaway="As alkane chain length increases, boiling point rises and state changes from gas to liquid because larger molecules have stronger intermolecular forces.">
+    <Interactive title="Alkane Builder" subtitle="Use the slider to build alkanes from C₁ (methane) to C₈ (octane) and watch the formula, boiling point and state change." takeaway="As alkane chain length increases, boiling point rises and state changes from gas to liquid because larger molecules have stronger intermolecular forces.">
       <Slider label="Carbon atoms (n)" min={1} max={8} step={1} value={n} onChange={v => setN(v)} unit=""/>
       <div className="stat-readout">
         <Stat value={al.name} label="IUPAC name"/>
@@ -486,7 +487,7 @@ function Section31({ progress, setProgress }) {
 
       <DotPoint id="3.1.2" title="Products produced from Australian minerals and resources" progress={progress} setProgress={setProgress}>
         <p>Raw minerals are rarely useful as dug from the ground. They must pass through a chain of chemical and physical steps before they become the steel in a building or the aluminium in a can. Iron ore, for example, is <Term def="The chemical removal of oxygen from an ore using carbon or hydrogen at high temperatures.">smelted</Term> with <Term def="A nearly pure form of carbon made by heating coal without air; used as a reducing agent in blast furnaces.">coke</Term> and limestone in a blast furnace at temperatures above 1500 degrees Celsius to produce molten iron, which is then refined to produce steel.</p>
-        <p>Bauxite follows a different path. First the <Term def="A process that dissolves aluminium oxide from bauxite using hot sodium hydroxide solution, leaving impurities behind.">Bayer process</Term> purifies it into alumina (aluminium oxide, Al2O3). Then electrolysis, using enormous amounts of electricity, reduces alumina to aluminium metal. Because this second step is so energy-hungry, recycling aluminium cans saves about 95% of the energy compared with making aluminium from scratch.</p>
+        <p>Bauxite follows a different path. First the <Term def="A process that dissolves aluminium oxide from bauxite using hot sodium hydroxide solution, leaving impurities behind.">Bayer process</Term> purifies it into alumina (aluminium oxide, Al₂O₃). Then electrolysis, using enormous amounts of electricity, reduces alumina to aluminium metal. Because this second step is so energy-hungry, recycling aluminium cans saves about 95% of the energy compared with making aluminium from scratch.</p>
         <p>Lithium is processed into <Term def="A lithium compound used to make the cathodes of lithium-ion batteries.">lithium hydroxide</Term> or lithium carbonate, exported to battery manufacturers, and ends up in the phone in your pocket. Every step from mine to product involves chemistry you are learning in this course.</p>
         <Callout kind="fact" title="Energy saving">Recycling aluminium uses about 95% less energy than producing aluminium from bauxite. Recycling a single can saves enough energy to run a TV for about 3 hours.</Callout>
         <QGroup title="Check yourself">
@@ -521,11 +522,11 @@ function Section31({ progress, setProgress }) {
 
       <DotPoint id="3.1.4" title="Environmental impact of extracting and using a named resource" progress={progress} setProgress={setProgress}>
         <p>Extracting minerals causes impacts at every scale. <Term def="Mining that removes the surface layer of soil and rock to expose ore below.">Open-cut mining</Term> destroys local habitat, removes soil and vegetation, and leaves behind huge volumes of <Term def="The waste rock and crushed material remaining after the valuable ore has been extracted.">tailings</Term>. When sulfide minerals in exposed rock react with water and oxygen, they produce sulfuric acid, creating <Term def="The flow of acidic, metal-contaminated water from exposed mine waste that leaches into streams and groundwater.">acid mine drainage</Term>, which poisons local waterways.</p>
-        <p>The use of extracted resources also has consequences. Burning coal releases <Term def="A greenhouse gas produced by burning fossil fuels; a major driver of climate change.">carbon dioxide</Term> and sulfur dioxide. Steel production accounts for approximately 7 to 9 percent of global CO2 emissions. Aluminium smelting, if powered by coal-fired electricity, has a very large carbon footprint. These downstream impacts extend the environmental assessment far beyond the mine gate. In Australia, mining companies must legally rehabilitate mined land after closure, restoring topsoil and replanting native vegetation, though full ecological recovery takes decades.</p>
+        <p>The use of extracted resources also has consequences. Burning coal releases <Term def="A greenhouse gas produced by burning fossil fuels; a major driver of climate change.">carbon dioxide</Term> and sulfur dioxide. Steel production accounts for approximately 7 to 9 percent of global CO₂ emissions. Aluminium smelting, if powered by coal-fired electricity, has a very large carbon footprint. These downstream impacts extend the environmental assessment far beyond the mine gate. In Australia, mining companies must legally rehabilitate mined land after closure, restoring topsoil and replanting native vegetation, though full ecological recovery takes decades.</p>
         <Callout kind="warn" title="Life cycle thinking">Assessing only extraction impacts misses the full picture. A complete evaluation covers raw material extraction, processing, use, and disposal or recycling. This is called a life cycle approach.</Callout>
         <QGroup title="Check yourself">
           <MCQ num={6} question="What is acid mine drainage?" options={["Water used to cool blast furnace equipment","Acidic, metal-contaminated water formed when sulfide minerals in exposed rock react with water and oxygen","Rainwater that collects in open-cut mine pits","The wastewater from aluminium smelting"]} correct={1} explain="Acid mine drainage forms when sulfide minerals oxidise in air and water, producing sulfuric acid that dissolves heavy metals from surrounding rock and flows into waterways."/>
-          <WrittenQ num={7} question="Evaluate whether the environmental cost of coal mining and use outweighs the economic benefit. Use evidence from both sides." model="Economic benefits include export income, jobs, taxes, and energy generation. Environmental costs include habitat destruction from open-cut mining, acid mine drainage, large CO2 and SO2 emissions from combustion, and contribution to climate change. Both are real and significant. The weight given to each depends on values and time frame, but the accumulating environmental damage and international pressure to reduce emissions suggest the costs are becoming harder to justify economically in the long term."/>
+          <WrittenQ num={7} question="Evaluate whether the environmental cost of coal mining and use outweighs the economic benefit. Use evidence from both sides." model="Economic benefits include export income, jobs, taxes, and energy generation. Environmental costs include habitat destruction from open-cut mining, acid mine drainage, large CO₂ and SO₂ emissions from combustion, and contribution to climate change. Both are real and significant. The weight given to each depends on values and time frame, but the accumulating environmental damage and international pressure to reduce emissions suggest the costs are becoming harder to justify economically in the long term."/>
         </QGroup>
       </DotPoint>
     </>
@@ -544,7 +545,69 @@ function Section32({ progress, setProgress }) {
         <p className="lead">Valency, noble gas configurations and three types of chemical bond explain the properties of every material from table salt to diamond.</p>
       </div>
 
-      <Figure src="img/bonding.png" caption="Atoms share or transfer electrons to form chemical bonds." />
+      <Figure caption="Two ways atoms bond to reach a full outer shell. Left: in a covalent bond two non-metal atoms share a pair of electrons. Right: in an ionic bond a metal atom (sodium) transfers its outer electron to a non-metal atom (chlorine), forming oppositely charged ions." maxWidth={640}>
+        <svg viewBox="0 0 620 240" width="100%" role="img" aria-label="Electron shell diagrams. Covalent: two hydrogen atoms share a pair of electrons. Ionic: sodium, with electrons 2,8,1, gives its one outer electron to chlorine, 2,8,7, forming Na plus (2,8) and Cl minus (2,8,8).">
+          <line x1="250" y1="20" x2="250" y2="230" stroke="var(--border)" strokeWidth="1.5"/>
+          <circle cx="95" cy="125" r="38" fill="none" stroke="var(--ink-muted)" strokeWidth="1.5" strokeDasharray="4 3"/>
+          <circle cx="95" cy="125" r="12" fill="var(--teal)"/>
+          <text x="95" y="130" textAnchor="middle" fontSize="13" fontWeight="700" fill="#fff">H</text>
+          <circle cx="155" cy="125" r="38" fill="none" stroke="var(--ink-muted)" strokeWidth="1.5" strokeDasharray="4 3"/>
+          <circle cx="155" cy="125" r="12" fill="var(--teal)"/>
+          <text x="155" y="130" textAnchor="middle" fontSize="13" fontWeight="700" fill="#fff">H</text>
+          <circle cx="125" cy="115" r="5" fill="var(--amber)" stroke="var(--ink)" strokeWidth="1"/>
+          <circle cx="125" cy="135" r="5" fill="var(--amber)" stroke="var(--ink)" strokeWidth="1"/>
+          <circle cx="330" cy="125" r="16" fill="none" stroke="var(--ink-muted)" strokeWidth="1.2"/>
+          <circle cx="520" cy="125" r="16" fill="none" stroke="var(--ink-muted)" strokeWidth="1.2"/>
+          <circle cx="330" cy="125" r="30" fill="none" stroke="var(--ink-muted)" strokeWidth="1.2"/>
+          <circle cx="520" cy="125" r="30" fill="none" stroke="var(--ink-muted)" strokeWidth="1.2"/>
+          <circle cx="330" cy="125" r="44" fill="none" stroke="var(--ink-muted)" strokeWidth="1.2"/>
+          <circle cx="520" cy="125" r="44" fill="none" stroke="var(--ink-muted)" strokeWidth="1.2"/>
+          <circle cx="330" cy="125" r="10" fill="var(--purple)"/>
+          <text x="330" y="129" textAnchor="middle" fontSize="10" fontWeight="700" fill="#fff">Na</text>
+          <circle cx="520" cy="125" r="10" fill="var(--green)"/>
+          <text x="520" y="129" textAnchor="middle" fontSize="10" fontWeight="700" fill="#fff">Cl</text>
+          <circle cx="330.0" cy="141.0" r="4.5" fill="var(--ink)"/>
+          <circle cx="330.0" cy="109.0" r="4.5" fill="var(--ink)"/>
+          <circle cx="357.7" cy="136.5" r="4.5" fill="var(--ink)"/>
+          <circle cx="341.5" cy="152.7" r="4.5" fill="var(--ink)"/>
+          <circle cx="318.5" cy="152.7" r="4.5" fill="var(--ink)"/>
+          <circle cx="302.3" cy="136.5" r="4.5" fill="var(--ink)"/>
+          <circle cx="302.3" cy="113.5" r="4.5" fill="var(--ink)"/>
+          <circle cx="318.5" cy="97.3" r="4.5" fill="var(--ink)"/>
+          <circle cx="341.5" cy="97.3" r="4.5" fill="var(--ink)"/>
+          <circle cx="357.7" cy="113.5" r="4.5" fill="var(--ink)"/>
+          <circle cx="520.0" cy="141.0" r="4.5" fill="var(--ink)"/>
+          <circle cx="520.0" cy="109.0" r="4.5" fill="var(--ink)"/>
+          <circle cx="547.7" cy="136.5" r="4.5" fill="var(--ink)"/>
+          <circle cx="531.5" cy="152.7" r="4.5" fill="var(--ink)"/>
+          <circle cx="508.5" cy="152.7" r="4.5" fill="var(--ink)"/>
+          <circle cx="492.3" cy="136.5" r="4.5" fill="var(--ink)"/>
+          <circle cx="492.3" cy="113.5" r="4.5" fill="var(--ink)"/>
+          <circle cx="508.5" cy="97.3" r="4.5" fill="var(--ink)"/>
+          <circle cx="531.5" cy="97.3" r="4.5" fill="var(--ink)"/>
+          <circle cx="547.7" cy="113.5" r="4.5" fill="var(--ink)"/>
+          <circle cx="374" cy="125" r="5.5" fill="var(--red)" stroke="var(--ink)" strokeWidth="1"/>
+          <circle cx="564.0" cy="125.0" r="4.5" fill="var(--ink)"/>
+          <circle cx="551.1" cy="156.1" r="4.5" fill="var(--ink)"/>
+          <circle cx="520.0" cy="169.0" r="4.5" fill="var(--ink)"/>
+          <circle cx="488.9" cy="156.1" r="4.5" fill="var(--ink)"/>
+          <circle cx="488.9" cy="93.9" r="4.5" fill="var(--ink)"/>
+          <circle cx="520.0" cy="81.0" r="4.5" fill="var(--ink)"/>
+          <circle cx="551.1" cy="93.9" r="4.5" fill="var(--ink)"/>
+          <circle cx="476" cy="125" r="5.5" fill="none" stroke="var(--red)" strokeWidth="2" strokeDasharray="3 2"/>
+          <path d="M382,119 Q425.0,75 466,117" fill="none" stroke="var(--red)" strokeWidth="2.5"/>
+          <path d="M470,123 L456,119 L465,108 Z" fill="var(--red)"/>
+          <text x="125" y="30" textAnchor="middle" fontSize="15" fontWeight="800" fill="var(--ink)">Sharing (covalent): H₂</text>
+          <text x="125" y="196" textAnchor="middle" fontSize="12" fill="var(--ink)">The two atoms share a pair</text>
+          <text x="125" y="212" textAnchor="middle" fontSize="12" fill="var(--ink)">of electrons (yellow), so each</text>
+          <text x="125" y="228" textAnchor="middle" fontSize="12" fill="var(--ink)">H has 2, like helium.</text>
+          <text x="425" y="30" textAnchor="middle" fontSize="15" fontWeight="800" fill="var(--ink)">Transfer (ionic): NaCl</text>
+          <text x="425" y="66" textAnchor="middle" fontSize="12" fill="var(--red)">1 electron moves</text>
+          <text x="330" y="196" textAnchor="middle" fontSize="12" fill="var(--ink)">Na 2,8,1 → Na⁺ 2,8</text>
+          <text x="520" y="196" textAnchor="middle" fontSize="12" fill="var(--ink)">Cl 2,8,7 → Cl⁻ 2,8,8</text>
+          <text x="425" y="222" textAnchor="middle" fontSize="12" fill="var(--ink)">The oppositely charged ions attract: an ionic bond.</text>
+        </svg>
+      </Figure>
       <DotPoint id="3.2.1" title="Valency and electron configuration" progress={progress} setProgress={setProgress}>
         <p>The <Term def="The number of electrons an atom must gain, lose or share to reach a stable (full outer shell) electron configuration.">valency</Term> of an element tells you how many electrons it needs to gain, lose or share to become stable. Stability means reaching a full outer shell, matching the electron arrangement of a noble gas. This is called the <Term def="The tendency of atoms to seek 8 electrons in their outer shell, matching noble gas configurations.">octet rule</Term> (or the duet rule for hydrogen, which needs only 2 electrons to match helium).</p>
         <p>Valency is directly linked to an element's group in the periodic table. Group 1 elements (like sodium) have one outer electron and a valency of 1. Group 17 elements (like chlorine) have seven outer electrons and also a valency of 1, but they gain rather than lose electrons. Carbon, in Group 14, has four outer electrons and a valency of 4. It shares all four to form covalent bonds with other atoms.</p>
@@ -576,10 +639,10 @@ function Section32({ progress, setProgress }) {
 
       <DotPoint id="3.2.2" title="Noble gas configuration and chemical bonding" progress={progress} setProgress={setProgress}>
         <p>Noble gases (Group 18: helium, neon, argon, krypton, xenon and radon) are almost completely unreactive. Their outer electron shells are already full, helium with 2 electrons and all others with 8. This complete arrangement is the most stable possible for any element. Because they are already stable, noble gases have virtually no tendency to gain, lose or share electrons, which is why they rarely form compounds under normal conditions.</p>
-        <p>When other atoms bond, they rearrange their electrons to reach these same <Term def="An electron arrangement identical to that of a noble gas, with a completely filled outer electron shell.">noble gas configurations</Term>. Sodium (configuration 2, 8, 1) loses its one outer electron to become Na+ with the configuration 2, 8 (matching neon). Chlorine (2, 8, 7) gains that electron to become Cl- with configuration 2, 8, 8 (matching argon). In covalent bonding, atoms share electrons rather than transfer them, but each atom counts the shared electrons as its own, giving the same stable full-shell result.</p>
+        <p>When other atoms bond, they rearrange their electrons to reach these same <Term def="An electron arrangement identical to that of a noble gas, with a completely filled outer electron shell.">noble gas configurations</Term>. Sodium (configuration 2, 8, 1) loses its one outer electron to become Na⁺ with the configuration 2, 8 (matching neon). Chlorine (2, 8, 7) gains that electron to become Cl⁻ with configuration 2, 8, 8 (matching argon). In covalent bonding, atoms share electrons rather than transfer them, but each atom counts the shared electrons as its own, giving the same stable full-shell result.</p>
         <Callout kind="key" title="Key idea">All chemical bonding is driven by atoms trying to reach the stable, full-shell electron arrangement of a noble gas.</Callout>
         <QGroup title="Check yourself">
-          <MCQ num={2} question="When sodium bonds with chlorine, the resulting Na+ ion has the same electron configuration as which noble gas?" options={["Helium","Neon","Argon","Krypton"]} correct={1} explain="Na+ has 10 electrons arranged as 2, 8. Neon also has 10 electrons in a 2, 8 arrangement. Na+ matches neon."/>
+          <MCQ num={2} question="When sodium bonds with chlorine, the resulting Na+ ion has the same electron configuration as which noble gas?" options={["Helium","Neon","Argon","Krypton"]} correct={1} explain="Na⁺ has 10 electrons arranged as 2, 8. Neon also has 10 electrons in a 2, 8 arrangement. Na⁺ matches neon."/>
         </QGroup>
       </DotPoint>
 
@@ -600,8 +663,8 @@ function Section32({ progress, setProgress }) {
               <tbody>
                 {[
                   ["Ionic","Metal + non-metal","Transferred","NaCl, MgO","High melting point; conducts when dissolved"],
-                  ["Covalent (molecular)","Non-metal + non-metal","Shared","H2O, CO2, CH4","Low melting point; poor conductor"],
-                  ["Covalent (network)","Non-metal + non-metal","Shared throughout","Diamond, SiO2","Very high melting point; very hard"],
+                  ["Covalent (molecular)","Non-metal + non-metal","Shared","H₂O, CO₂, CH₄","Low melting point; poor conductor"],
+                  ["Covalent (network)","Non-metal + non-metal","Shared throughout","Diamond, SiO₂","Very high melting point; very hard"],
                   ["Metallic","Metal + metal","Delocalised (sea)","Cu, Fe, Al","Conducts; malleable; ductile"],
                 ].map(row => (
                   <tr key={row[0]} style={{ borderBottom: "1px solid var(--border)" }}>
@@ -619,9 +682,9 @@ function Section32({ progress, setProgress }) {
       </DotPoint>
 
       <DotPoint id="3.2.4" title="Formation of cations and anions" progress={progress} setProgress={setProgress}>
-        <p>When atoms undergo ionic bonding, they form charged particles called <Term def="Charged atoms or groups of atoms formed by gaining or losing electrons.">ions</Term>. A <Term def="A positively charged ion formed when an atom loses one or more electrons.">cation</Term> forms when an atom loses electrons. Because electrons carry negative charge, removing them leaves more protons than electrons, giving a net positive charge. Metal atoms typically form cations. Sodium (11 protons, 11 electrons) loses one electron to become Na+ with 11 protons and 10 electrons.</p>
-        <p>An <Term def="A negatively charged ion formed when an atom gains one or more electrons.">anion</Term> forms when an atom gains electrons. Extra electrons mean more negative charge than protons, giving a net negative charge. Non-metal atoms typically form anions. Chlorine (17 protons, 17 electrons) gains one electron to become Cl- with 17 protons and 18 electrons.</p>
-        <p><Term def="A diagram using dots and crosses to represent outer-shell electrons, showing which electrons are transferred in ionic bonding.">Dot-and-cross diagrams</Term> are models that make this process visible. They show which electrons belong to which atom and how the charges on the resulting ions arise from the electron transfers. The key point is that the positive charge on Na+ comes not from gaining protons, but from losing electrons.</p>
+        <p>When atoms undergo ionic bonding, they form charged particles called <Term def="Charged atoms or groups of atoms formed by gaining or losing electrons.">ions</Term>. A <Term def="A positively charged ion formed when an atom loses one or more electrons.">cation</Term> forms when an atom loses electrons. Because electrons carry negative charge, removing them leaves more protons than electrons, giving a net positive charge. Metal atoms typically form cations. Sodium (11 protons, 11 electrons) loses one electron to become Na⁺ with 11 protons and 10 electrons.</p>
+        <p>An <Term def="A negatively charged ion formed when an atom gains one or more electrons.">anion</Term> forms when an atom gains electrons. Extra electrons mean more negative charge than protons, giving a net negative charge. Non-metal atoms typically form anions. Chlorine (17 protons, 17 electrons) gains one electron to become Cl⁻ with 17 protons and 18 electrons.</p>
+        <p><Term def="A diagram using dots and crosses to represent outer-shell electrons, showing which electrons are transferred in ionic bonding.">Dot-and-cross diagrams</Term> are models that make this process visible. They show which electrons belong to which atom and how the charges on the resulting ions arise from the electron transfers. The key point is that the positive charge on Na⁺ comes not from gaining protons, but from losing electrons.</p>
         <Figure caption="Cation and anion formation showing proton and electron counts, resulting charge and noble gas configuration achieved.">
           <div className="data-table" style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem" }}>
@@ -635,7 +698,7 @@ function Section32({ progress, setProgress }) {
                 <th style={{ padding: "5px 8px" }}>Charge</th>
               </tr></thead>
               <tbody>
-                {[["Na","11","11","Loses 1","Na+","10","+1"],["Mg","12","12","Loses 2","Mg2+","10","+2"],["Al","13","13","Loses 3","Al3+","10","+3"],["Cl","17","17","Gains 1","Cl-","18","-1"],["O","8","8","Gains 2","O2-","10","-2"],["N","7","7","Gains 3","N3-","10","-3"]].map(row => (
+                {[["Na","11","11","Loses 1","Na⁺","10","+1"],["Mg","12","12","Loses 2","Mg²⁺","10","+2"],["Al","13","13","Loses 3","Al³⁺","10","+3"],["Cl","17","17","Gains 1","Cl⁻","18","-1"],["O","8","8","Gains 2","O²⁻","10","-2"],["N","7","7","Gains 3","N³⁻","10","-3"]].map(row => (
                   <tr key={row[0]} style={{ borderBottom: "1px solid var(--border)" }}>
                     {row.map((cell, i) => <td key={i} style={{ padding: "4px 8px", textAlign: "center" }}>{cell}</td>)}
                   </tr>
@@ -645,37 +708,37 @@ function Section32({ progress, setProgress }) {
           </div>
         </Figure>
         <QGroup title="Check yourself">
-          <MCQ num={5} question="A magnesium atom has 12 protons and 12 electrons. How many electrons does the Mg2+ ion have?" options={["14","12","10","8"]} correct={2} explain="Mg2+ loses 2 electrons: 12 minus 2 equals 10 electrons. The ion still has 12 protons, giving a net charge of plus 2."/>
+          <MCQ num={5} question="A magnesium atom has 12 protons and 12 electrons. How many electrons does the Mg2+ ion have?" options={["14","12","10","8"]} correct={2} explain="Mg²⁺ loses 2 electrons: 12 minus 2 equals 10 electrons. The ion still has 12 protons, giving a net charge of plus 2."/>
         </QGroup>
       </DotPoint>
 
       <DotPoint id="3.2.5" title="Diatomic elements" progress={progress} setProgress={setProgress}>
-        <p>Most elements exist as single atoms at standard conditions, but seven non-metals are only stable as pairs. These <Term def="Molecules consisting of exactly two atoms of the same element bonded by a covalent bond.">diatomic elements</Term> are hydrogen (H2), nitrogen (N2), oxygen (O2), fluorine (F2), chlorine (Cl2), bromine (Br2) and iodine (I2). A handy mnemonic is "Have No Fear Of Ice Cold Bears" for H, N, F, O, I, Cl, Br.</p>
-        <p>Each pair shares electron pairs so both atoms achieve a full outer shell. Nitrogen (N2) forms a triple bond (three shared pairs), making it exceptionally stable and unreactive. This is why nitrogen makes up 78% of the atmosphere but rarely takes part in reactions under normal conditions. Recognising diatomic elements is essential for writing correct chemical equations: when oxygen is involved, write O2, not O, or your equations will not balance.</p>
-        <Callout kind="tip" title="Mnemonic">Have No Fear Of Ice Cold Bears: H2, N2, F2, O2, I2, Cl2, Br2. Learn this list and you will never forget a diatomic element.</Callout>
+        <p>Under standard conditions, seven non-metal elements exist as molecules made of two atoms joined together. These <Term def="Molecules consisting of exactly two atoms of the same element bonded by a covalent bond.">diatomic elements</Term> are hydrogen (H₂), nitrogen (N₂), oxygen (O₂), fluorine (F₂), chlorine (Cl₂), bromine (Br₂) and iodine (I₂). A handy mnemonic is "Have No Fear Of Ice Cold Bears" for H, N, F, O, I, Cl, Br.</p>
+        <p>Each pair shares electron pairs so both atoms achieve a full outer shell. Nitrogen (N₂) forms a triple bond (three shared pairs), making it exceptionally stable and unreactive. This is why nitrogen makes up 78% of the atmosphere but rarely takes part in reactions under normal conditions. Recognising diatomic elements is essential for writing correct chemical equations: when oxygen is involved, write O₂, not O, or your equations will not balance.</p>
+        <Callout kind="tip" title="Mnemonic">Have No Fear Of Ice Cold Bears: H₂, N₂, F₂, O₂, I₂, Cl₂, Br₂. Learn this list and you will never forget a diatomic element.</Callout>
         <MatchBuckets
           items={[
-            { id: "h2", label: "H2 (hydrogen)", bucket: "diatomic" },
+            { id: "h2", label: "H₂ (hydrogen)", bucket: "diatomic" },
             { id: "na", label: "Na (sodium)",   bucket: "monatomic" },
-            { id: "o2", label: "O2 (oxygen)",   bucket: "diatomic" },
+            { id: "o2", label: "O₂ (oxygen)",   bucket: "diatomic" },
             { id: "fe", label: "Fe (iron)",     bucket: "monatomic" },
-            { id: "cl", label: "Cl2 (chlorine)", bucket: "diatomic" },
+            { id: "cl", label: "Cl₂ (chlorine)", bucket: "diatomic" },
             { id: "cu", label: "Cu (copper)",   bucket: "monatomic" },
-            { id: "n2", label: "N2 (nitrogen)", bucket: "diatomic" },
+            { id: "n2", label: "N₂ (nitrogen)", bucket: "diatomic" },
           ]}
           buckets={[
             { id: "diatomic",  label: "Diatomic element" },
-            { id: "monatomic", label: "Monatomic element" },
+            { id: "monatomic", label: "Not diatomic (written as one symbol)" },
           ]}
         />
         <QGroup title="Check yourself">
-          <MCQ num={6} question="Which of the following is the correct formula for chlorine gas?" options={["Cl","Cl2","2Cl","Cl3"]} correct={1} explain="Chlorine is a diatomic element. Its correct formula is Cl2, showing two chlorine atoms bonded together."/>
+          <MCQ num={6} question="Which of the following is the correct formula for chlorine gas?" options={["Cl","Cl₂","2Cl","Cl₃"]} correct={1} explain="Chlorine is a diatomic element. Its correct formula is Cl₂, showing two chlorine atoms bonded together."/>
         </QGroup>
       </DotPoint>
 
       <DotPoint id="3.2.6" title="Chemical formulas of ionic compounds and covalent molecules" progress={progress} setProgress={setProgress}>
         <p>A <Term def="A representation using element symbols and subscript numbers showing the types and ratios of atoms in a substance.">chemical formula</Term> tells you what atoms are in a substance and in what ratio. For ionic compounds, you must balance the charges of each ion so the overall compound is electrically neutral. The <Term def="A method for finding the formula of an ionic compound by swapping the charge numbers of each ion to become the subscript of the other.">cross-over rule</Term> makes this straightforward: write the charge of each ion as the subscript of the other, then simplify.</p>
-        <p>For example, calcium (Ca2+) and chloride (Cl-): swap to get CaCl2. Check: +2 + 2(-1) = 0. For aluminium oxide: Al3+ and O2-, swap to get Al2O3. Check: 2(+3) + 3(-2) = 0. For covalent molecules, the formula reflects how many atoms share electrons to satisfy each element's valency. Water (H2O) has two hydrogen atoms (valency 1) and one oxygen atom (valency 2). For <Term def="Charged groups of atoms that act as a single unit in a formula, such as sulfate (SO42-) and nitrate (NO3-).">polyatomic ions</Term> like nitrate (NO3-), use brackets when more than one group is needed: calcium nitrate is Ca(NO3)2.</p>
+        <p>For example, calcium (Ca²⁺) and chloride (Cl⁻): swap to get CaCl₂. Check: +2 + 2(-1) = 0. For aluminium oxide: Al³⁺ and O²⁻, swap to get Al₂O₃. Check: 2(+3) + 3(-2) = 0. For covalent molecules, the formula reflects how many atoms share electrons to satisfy each element's valency. Water (H₂O) has two hydrogen atoms (valency 1) and one oxygen atom (valency 2). For <Term def="Charged groups of atoms that act as a single unit in a formula, such as sulfate (SO₄²⁻) and nitrate (NO₃⁻).">polyatomic ions</Term> like nitrate (NO₃⁻), use brackets when more than one group is needed: calcium nitrate is Ca(NO₃)₂.</p>
         <Callout kind="key" title="Cross-over rule">To find an ionic formula: write the charge of the cation as the subscript of the anion, and the charge of the anion as the subscript of the cation. Simplify if both subscripts share a common factor. Always check that charges sum to zero.</Callout>
         <Figure caption="Applying the cross-over rule to derive common ionic compound formulas.">
           <div className="data-table" style={{ overflowX: "auto" }}>
@@ -688,7 +751,7 @@ function Section32({ progress, setProgress }) {
                 <th style={{ padding: "5px 8px" }}>Type</th>
               </tr></thead>
               <tbody>
-                {[["Sodium chloride","Na+ (+1)","Cl- (-1)","NaCl","Ionic"],["Magnesium oxide","Mg2+ (+2)","O2- (-2)","MgO","Ionic"],["Calcium chloride","Ca2+ (+2)","Cl- (-1)","CaCl2","Ionic"],["Aluminium oxide","Al3+ (+3)","O2- (-2)","Al2O3","Ionic"],["Water","H (val. 1)","O (val. 2)","H2O","Covalent"],["Carbon dioxide","C (val. 4)","O (val. 2)","CO2","Covalent"],["Ammonia","N (val. 3)","H (val. 1)","NH3","Covalent"]].map(row => (
+                {[["Sodium chloride","Na⁺ (+1)","Cl⁻ (-1)","NaCl","Ionic"],["Magnesium oxide","Mg²⁺ (+2)","O²⁻ (-2)","MgO","Ionic"],["Calcium chloride","Ca²⁺ (+2)","Cl⁻ (-1)","CaCl₂","Ionic"],["Aluminium oxide","Al³⁺ (+3)","O²⁻ (-2)","Al₂O₃","Ionic"],["Water","H (val. 1)","O (val. 2)","H₂O","Covalent"],["Carbon dioxide","C (val. 4)","O (val. 2)","CO₂","Covalent"],["Ammonia","N (val. 3)","H (val. 1)","NH₃","Covalent"]].map(row => (
                   <tr key={row[0]} style={{ borderBottom: "1px solid var(--border)" }}>
                     {row.map((cell, i) => <td key={i} style={{ padding: "4px 8px", textAlign: i === 0 ? "left" : "center" }}>{cell}</td>)}
                   </tr>
@@ -698,7 +761,7 @@ function Section32({ progress, setProgress }) {
           </div>
         </Figure>
         <QGroup title="Check yourself">
-          <MCQ num={7} question="Using the cross-over rule, what is the formula for the ionic compound formed between aluminium (Al3+) and oxide (O2-)?" options={["AlO","Al2O3","Al3O2","AlO3"]} correct={1} explain="Al3+ has charge +3 and O2- has charge -2. Cross over: Al2O3. Check: 2(+3) + 3(-2) = +6 - 6 = 0."/>
+          <MCQ num={7} question="Using the cross-over rule, what is the formula for the ionic compound formed between aluminium (Al3+) and oxide (O2-)?" options={["AlO","Al₂O₃","Al₃O₂","AlO₃"]} correct={1} explain="Al³⁺ has charge +3 and O²⁻ has charge -2. Cross over: Al₂O₃. Check: 2(+3) + 3(-2) = +6 - 6 = 0."/>
         </QGroup>
       </DotPoint>
 
@@ -727,11 +790,11 @@ function Section33({ progress, setProgress }) {
       </div>
 
       <DotPoint id="3.3.1" title="Organic vs inorganic compounds" progress={progress} setProgress={setProgress}>
-        <p>Modern chemistry defines <Term def="Compounds that contain carbon atoms bonded to hydrogen (C-H bonds), often also bonded to oxygen, nitrogen and other elements.">organic compounds</Term> as those containing carbon bonded to hydrogen. The carbon skeleton can chain, branch and ring in countless ways because carbon has a valency of 4. This structural flexibility explains why over 60 million organic compounds are known. By contrast, <Term def="Compounds that generally do not contain C-H bonds; includes minerals, salts, oxides and most acids.">inorganic compounds</Term> do not contain C-H bonds. Sodium chloride, iron oxide, and water are all inorganic.</p>
-        <p>A few carbon-containing compounds are classified as inorganic because they lack C-H bonds: carbon dioxide (CO2), carbon monoxide (CO) and carbonates are treated as inorganic by convention. All living organisms are built from organic molecules, and so are most fuels and plastics, making organic chemistry central to understanding both life and modern materials.</p>
+        <p>Modern chemistry defines <Term def="Compounds that contain carbon atoms bonded to hydrogen (C-H bonds), often also bonded to oxygen, nitrogen and other elements.">organic compounds</Term> as those containing carbon bonded to hydrogen. The carbon skeleton can chain, branch and ring in countless ways because carbon has a valency of 4. This structural flexibility explains why many millions of organic compounds are known. By contrast, <Term def="Compounds that generally do not contain C-H bonds; includes minerals, salts, oxides and most acids.">inorganic compounds</Term> do not contain C-H bonds. Sodium chloride, iron oxide, and water are all inorganic.</p>
+        <p>A few carbon-containing compounds are classified as inorganic because they lack C-H bonds: carbon dioxide (CO₂), carbon monoxide (CO) and carbonates are treated as inorganic by convention. All living organisms are built from organic molecules, and so are most fuels and plastics, making organic chemistry central to understanding both life and modern materials.</p>
         <Callout kind="fact" title="Why so many organic compounds?">Carbon's valency of 4 lets it chain to itself in straight lines, branches, and rings of almost any length. No other element matches this versatility, which is why life is carbon-based.</Callout>
         <QGroup title="Check yourself">
-          <MCQ num={1} question="Which of the following is classified as an organic compound?" options={["NaCl","CO2","CH4","H2O"]} correct={2} explain="CH4 (methane) contains C-H bonds, making it organic. CO2 has no C-H bonds and is classified as inorganic by convention."/>
+          <MCQ num={1} question="Which of the following is classified as an organic compound?" options={["NaCl","CO₂","CH₄","H₂O"]} correct={2} explain="CH₄ (methane) contains C-H bonds, making it organic. CO₂ has no C-H bonds and is classified as inorganic by convention."/>
         </QGroup>
       </DotPoint>
 
@@ -746,7 +809,7 @@ function Section33({ progress, setProgress }) {
 
       <DotPoint id="3.3.3" title="IUPAC naming of organic compounds" progress={progress} setProgress={setProgress}>
         <p><Term def="The International Union of Pure and Applied Chemistry, which developed the systematic naming rules for chemical compounds used worldwide.">IUPAC</Term> developed a universal naming system so every organic compound has one unique, internationally recognised name. Without it, the same compound might have dozens of trivial names in different countries, causing confusion in science.</p>
-        <p>IUPAC names combine a <Term def="A word fragment indicating the number of carbon atoms in the longest chain: meth=1, eth=2, prop=3, but=4, pent=5, hex=6, hept=7, oct=8.">carbon-count prefix</Term> with a family suffix: "-ane" for <Term def="Hydrocarbons with only single carbon-carbon bonds; general formula CnH(2n+2).">alkanes</Term>, "-ene" for <Term def="Hydrocarbons containing at least one carbon-carbon double bond.">alkenes</Term>, and "-ol" for alcohols. So the alkane with three carbons is propane (prop- + -ane), the two-carbon alcohol is ethanol (eth- + -anol). These rules work internationally for anyone who knows them.</p>
+        <p>IUPAC names combine a <Term def="A word fragment indicating the number of carbon atoms in the longest chain: meth=1, eth=2, prop=3, but=4, pent=5, hex=6, hept=7, oct=8.">carbon-count prefix</Term> with a family suffix: "-ane" for <Term def="Hydrocarbons with only single carbon-carbon bonds; general formula CₙH₂ₙ₊₂.">alkanes</Term>, "-ene" for <Term def="Hydrocarbons containing at least one carbon-carbon double bond.">alkenes</Term>, and "-ol" for alcohols. So the alkane with three carbons is propane (prop- + -ane), the two-carbon alcohol is ethanol (eth- + -anol). These rules work internationally for anyone who knows them.</p>
         <Figure caption="IUPAC naming: carbon-count prefixes and family suffixes for simple organic compounds.">
           <div className="data-table" style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem" }}>
@@ -757,7 +820,7 @@ function Section33({ progress, setProgress }) {
                 <th style={{ padding: "5px 8px", textAlign: "left" }}>Common use</th>
               </tr></thead>
               <tbody>
-                {[["Methane","CH4","Alkane","Natural gas, heating"],["Ethane","C2H6","Alkane","Natural gas component; makes ethene"],["Propane","C3H8","Alkane","BBQ gas"],["Butane","C4H10","Alkane","Lighter fuel"],["Ethene","C2H4","Alkene","Plastics feedstock"],["Methanol","CH3OH","Alcohol","Solvent, antifreeze"],["Ethanol","C2H5OH","Alcohol","Beverages, sanitiser"]].map(row => (
+                {[["Methane","CH₄","Alkane","Natural gas, heating"],["Ethane","C₂H₆","Alkane","Natural gas component; makes ethene"],["Propane","C₃H₈","Alkane","BBQ gas"],["Butane","C₄H₁₀","Alkane","Lighter fuel"],["Ethene","C₂H₄","Alkene","Plastics feedstock"],["Methanol","CH₃OH","Alcohol","Solvent, antifreeze"],["Ethanol","C₂H₅OH","Alcohol","Beverages, sanitiser"]].map(row => (
                   <tr key={row[0]} style={{ borderBottom: "1px solid var(--border)" }}>
                     {row.map((cell, i) => <td key={i} style={{ padding: "4px 8px", textAlign: i === 0 || i === 3 ? "left" : "center" }}>{cell}</td>)}
                   </tr>
@@ -767,22 +830,22 @@ function Section33({ progress, setProgress }) {
           </div>
         </Figure>
         <QGroup title="Check yourself">
-          <MCQ num={3} question="What is the IUPAC name for a 4-carbon alkane (C4H10)?" options={["Butene","Propane","Butane","Pentane"]} correct={2} explain="4 carbons = but-; single bonds only = -ane; so butane (C4H10)."/>
+          <MCQ num={3} question="What is the IUPAC name for a 4-carbon alkane (C4H10)?" options={["Butene","Propane","Butane","Pentane"]} correct={2} explain="4 carbons = but-; single bonds only = -ane; so butane (C₄H₁₀)."/>
         </QGroup>
       </DotPoint>
 
-      <DotPoint id="3.3.4" title="Structures of simple alkanes C1 to C8" progress={progress} setProgress={setProgress}>
-        <p>Alkanes are a <Term def="A family of organic compounds with the same general formula and similar chemical properties, where each member differs by one CH2 unit.">homologous series</Term> following the general formula CnH(2n+2). All carbon-carbon bonds are single, and each carbon forms exactly four bonds. As chain length increases by one CH2 unit, boiling point rises because larger molecules have stronger <Term def="Weak attractive forces between molecules that arise from temporary uneven distribution of electrons; stronger in larger molecules.">London dispersion forces</Term> between them. Methane to butane are gases at 25 degrees Celsius; pentane upwards are liquids.</p>
-        <p>From butane (C4H10) onward, alkanes can also be <Term def="Molecules with the same molecular formula but different arrangements of atoms, giving different structures and slightly different properties.">structural isomers</Term>. n-Butane has a straight chain while isobutane has a branched structure. Both are C4H10 but isobutane's more compact shape means slightly weaker intermolecular forces and a lower boiling point.</p>
+      <DotPoint id="3.3.4" title="Structures of simple alkanes C₁ to C₈" progress={progress} setProgress={setProgress}>
+        <p>Alkanes are a <Term def="A family of organic compounds with the same general formula and similar chemical properties, where each member differs by one CH₂ unit.">homologous series</Term> following the general formula CₙH₂ₙ₊₂. All carbon-carbon bonds are single, and each carbon forms exactly four bonds. As chain length increases by one CH₂ unit, boiling point rises because larger molecules have stronger <Term def="Weak attractive forces between molecules that arise from temporary uneven distribution of electrons; stronger in larger molecules.">London dispersion forces</Term> between them. Methane to butane are gases at 25 degrees Celsius; pentane upwards are liquids.</p>
+        <p>From butane (C₄H₁₀) onward, alkanes can also be <Term def="Molecules with the same molecular formula but different arrangements of atoms, giving different structures and slightly different properties.">structural isomers</Term>. n-Butane has a straight chain while isobutane has a branched structure. Both are C₄H₁₀ but isobutane's more compact shape means slightly weaker intermolecular forces and a lower boiling point.</p>
         <AlkaneBuilder/>
         <QGroup title="Check yourself">
-          <MCQ num={4} question="Using the general formula CnH(2n+2), how many hydrogen atoms are in octane (C8H18)?" options={["16","18","20","10"]} correct={1} explain="For n=8: H = 2(8)+2 = 18. Octane is C8H18 with 18 hydrogen atoms."/>
+          <MCQ num={4} question="Using the general formula CnH(2n+2), how many hydrogen atoms are in octane (C8H18)?" options={["16","18","20","10"]} correct={1} explain="For n=8: H = 2(8)+2 = 18. Octane is C₈H₁₈ with 18 hydrogen atoms."/>
         </QGroup>
       </DotPoint>
 
       <DotPoint id="3.3.5" title="Complete and incomplete combustion of hydrocarbons" progress={progress} setProgress={setProgress}>
-        <p><Term def="The chemical reaction between a fuel and oxygen that releases energy as heat and light.">Combustion</Term> of a hydrocarbon in a plentiful oxygen supply produces only carbon dioxide and water. This is <Term def="Combustion in excess oxygen; produces only CO2 and H2O; releases maximum energy.">complete combustion</Term> and it releases the maximum possible energy from the fuel. The complete combustion of methane is: CH4 + 2O2 produces CO2 + 2H2O. Complete combustion gives a blue flame in a Bunsen burner or gas stove.</p>
-        <p>When oxygen is limited, <Term def="Combustion in a restricted oxygen supply; produces carbon monoxide (CO) and/or soot (C) as well as water; releases less energy.">incomplete combustion</Term> occurs. Instead of all carbon becoming CO2, some becomes <Term def="A colourless, odourless, highly toxic gas that prevents oxygen transport in the blood by binding to haemoglobin 200 times more strongly than oxygen.">carbon monoxide (CO)</Term> or solid carbon (soot). Incomplete combustion releases less energy, produces a yellow or orange flame, and deposits black soot. Carbon monoxide is particularly dangerous: it is colourless, odourless, and binds to haemoglobin 200 times more strongly than oxygen, preventing oxygen delivery to cells.</p>
+        <p><Term def="The chemical reaction between a fuel and oxygen that releases energy as heat and light.">Combustion</Term> of a hydrocarbon in a plentiful oxygen supply produces only carbon dioxide and water. This is <Term def="Combustion in excess oxygen; produces only CO₂ and H₂O; releases maximum energy.">complete combustion</Term> and it releases the maximum possible energy from the fuel. The complete combustion of methane is: CH₄ + 2O2 produces CO₂ + 2H2O. Complete combustion gives a blue flame in a Bunsen burner or gas stove.</p>
+        <p>When oxygen is limited, <Term def="Combustion in a restricted oxygen supply; produces carbon monoxide (CO) and/or soot (C) as well as water; releases less energy.">incomplete combustion</Term> occurs. Instead of all carbon becoming CO₂, some becomes <Term def="A colourless, odourless, highly toxic gas that prevents oxygen transport in the blood by binding to haemoglobin 200 times more strongly than oxygen.">carbon monoxide (CO)</Term> or solid carbon (soot). Incomplete combustion releases less energy, produces a yellow or orange flame, and deposits black soot. Carbon monoxide is particularly dangerous: it is colourless, odourless, and binds to haemoglobin 200 times more strongly than oxygen, preventing oxygen delivery to cells.</p>
         <Figure caption="Comparison of complete and incomplete combustion: oxygen supply, products, energy and safety.">
           <div className="data-table" style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem" }}>
@@ -792,7 +855,7 @@ function Section33({ progress, setProgress }) {
                 <th style={{ padding: "5px 8px" }}>Incomplete combustion</th>
               </tr></thead>
               <tbody>
-                {[["Oxygen supply","Plentiful","Limited"],["Carbon products","CO2 only","CO and/or soot (C)"],["Hydrogen products","H2O","H2O"],["Energy released","Maximum","Less than maximum"],["Flame colour","Blue","Yellow/orange"],["Safety concern","CO2 (greenhouse gas)","CO (toxic); soot (air pollution)"]].map(row => (
+                {[["Oxygen supply","Plentiful","Limited"],["Carbon products","CO₂ only","CO and/or soot (C)"],["Hydrogen products","H₂O","H₂O"],["Energy released","Maximum","Less than maximum"],["Flame colour","Blue","Yellow/orange"],["Safety concern","CO₂ (greenhouse gas)","CO (toxic); soot (air pollution)"]].map(row => (
                   <tr key={row[0]} style={{ borderBottom: "1px solid var(--border)" }}>
                     {row.map((cell, i) => <td key={i} style={{ padding: "4px 8px", textAlign: "center" }}>{cell}</td>)}
                   </tr>
@@ -803,8 +866,8 @@ function Section33({ progress, setProgress }) {
         </Figure>
         <Callout kind="warn" title="Carbon monoxide danger">An unflued gas heater in a small, poorly ventilated room can accumulate CO to dangerous levels as oxygen in the room is consumed and combustion becomes increasingly incomplete. Always ensure adequate ventilation.</Callout>
         <QGroup title="Check yourself">
-          <MCQ num={5} question="What are the only products of the complete combustion of a hydrocarbon?" options={["Carbon monoxide and water","Carbon dioxide and water","Carbon and water","Carbon monoxide and carbon dioxide"]} correct={1} explain="Complete combustion (in excess oxygen) oxidises all carbon to CO2 and all hydrogen to H2O. No CO or soot is produced."/>
-          <WrittenQ num={6} question="Write a balanced chemical equation for the complete combustion of propane (C3H8) and explain how you know it is balanced." model="Balanced equation: C3H8 + 5O2 produces 3CO2 + 4H2O. Check: C: 3=3; H: 8=8; O: 10=10. The equation is balanced because the number of each type of atom is the same on both sides."/>
+          <MCQ num={5} question="What are the only products of the complete combustion of a hydrocarbon?" options={["Carbon monoxide and water","Carbon dioxide and water","Carbon and water","Carbon monoxide and carbon dioxide"]} correct={1} explain="Complete combustion (in excess oxygen) oxidises all carbon to CO₂ and all hydrogen to H₂O. No CO or soot is produced."/>
+          <WrittenQ num={6} question="Write a balanced chemical equation for the complete combustion of propane (C3H8) and explain how you know it is balanced." model="Balanced equation: C₃H₈ + 5O2 produces 3CO2 + 4H2O. Check: C: 3=3; H: 8=8; O: 10=10. The equation is balanced because the number of each type of atom is the same on both sides."/>
         </QGroup>
       </DotPoint>
 
@@ -830,7 +893,7 @@ function Section33({ progress, setProgress }) {
           </svg>
         </Figure>
         <QGroup title="Check yourself">
-          <MCQ num={7} question="Why is natural gas sometimes called a 'transition fuel'?" options={["It can be converted directly into solar energy","It produces less CO2 per unit of energy than coal or oil, making it a bridging fuel while renewable capacity is built","It is a renewable resource","It produces no greenhouse gases at all"]} correct={1} explain="Natural gas (methane) releases less CO2 per unit of energy than coal or oil when burned, but it is still a fossil fuel. It is a short-term bridge while renewable energy capacity is developed."/>
+          <MCQ num={7} question="Why is natural gas sometimes called a 'transition fuel'?" options={["It can be converted directly into solar energy","It produces less CO₂ per unit of energy than coal or oil, making it a bridging fuel while renewable capacity is built","It is a renewable resource","It produces no greenhouse gases at all"]} correct={1} explain="Natural gas (methane) releases less CO₂ per unit of energy than coal or oil when burned, but it is still a fossil fuel. It is a short-term bridge while renewable energy capacity is developed."/>
         </QGroup>
       </DotPoint>
     </>
@@ -851,11 +914,11 @@ function Section34({ progress, setProgress }) {
 
       <Figure src="img/polymers.png" caption="Many small monomers join into a long polymer chain." />
       <DotPoint id="3.4.1" title="Raw materials for polymer production" progress={progress} setProgress={setProgress}>
-        <p>A <Term def="A large molecule made of many repeating smaller units (monomers) joined by covalent bonds.">polymer</Term> is a giant molecule built from thousands of small, identical (or similar) units called <Term def="The small, reactive molecules that join together to form a polymer chain.">monomers</Term>. Most synthetic polymers come from monomers derived from crude oil. Cracking of petroleum produces reactive alkenes, especially <Term def="The simplest alkene, CH2=CH2, used as the monomer for polyethylene.">ethene</Term>, which polymerises to make polyethylene (PE), one of the world's most-used plastics. Propene becomes polypropylene (PP), vinyl chloride becomes PVC, and styrene becomes polystyrene.</p>
+        <p>A <Term def="A large molecule made of many repeating smaller units (monomers) joined by covalent bonds.">polymer</Term> is a giant molecule built from thousands of small, identical (or similar) units called <Term def="The small, reactive molecules that join together to form a polymer chain.">monomers</Term>. Most synthetic polymers come from monomers derived from crude oil. Cracking of petroleum produces reactive alkenes, especially <Term def="The simplest alkene, CH₂=CH₂, used as the monomer for polyethylene.">ethene</Term>, which polymerises to make polyethylene (PE), one of the world's most-used plastics. Propene becomes polypropylene (PP), vinyl chloride becomes PVC, and styrene becomes polystyrene.</p>
         <p>Not all polymers come from petroleum. Natural polymers have always existed in living organisms: <Term def="A natural polymer of glucose forming the structural material in plant cell walls.">cellulose</Term>, starch, proteins, DNA and natural rubber are all biological polymers. Bio-based synthetic polymers are a growing category. <Term def="Polylactic acid: a bio-based, potentially compostable polymer made from lactic acid derived from fermenting plant sugars.">PLA (polylactic acid)</Term> is made from sugarcane or corn starch. As society moves away from petroleum dependency, these renewable monomers offer lower-carbon alternatives.</p>
         <Callout kind="key" title="Key idea">A polymer is named by adding "poly-" to the monomer name: ethene becomes polyethylene, propene becomes polypropylene, styrene becomes polystyrene.</Callout>
         <QGroup title="Check yourself">
-          <MCQ num={1} question="What is the monomer used to make polyethylene?" options={["Propene","Ethene","Styrene","Vinyl chloride"]} correct={1} explain="Polyethylene is made by polymerising ethene (CH2=CH2). The name confirms this: poly + ethene = polyethylene."/>
+          <MCQ num={1} question="What is the monomer used to make polyethylene?" options={["Propene","Ethene","Styrene","Vinyl chloride"]} correct={1} explain="Polyethylene is made by polymerising ethene (CH₂=CH₂). The name confirms this: poly + ethene = polyethylene."/>
         </QGroup>
       </DotPoint>
 
@@ -883,7 +946,7 @@ function Section34({ progress, setProgress }) {
         <p>PLA is marketed as biodegradable, but only under <Term def="Industrial composting conditions: sustained temperatures above 58 degrees Celsius with high humidity and specific microbial populations.">industrial composting</Term> conditions (above 58 degrees Celsius). In home compost bins, normal soil or seawater, PLA degrades very slowly. Labelling a material "biodegradable" without specifying the conditions needed can mislead consumers and policy makers.</p>
         <Callout kind="key" title="Biodegradation needs conditions">PLA will not biodegrade usefully in landfill, cold soil or seawater. It needs an industrial composting facility. Always ask: biodegradable WHERE and HOW FAST?</Callout>
         <QGroup title="Check yourself">
-          <MCQ num={4} question="Why does a synthetic plastic bag show little or no mass loss when buried in moist soil for 4 weeks?" options={["It is too wet in the soil","Soil microorganisms do not have the enzymes needed to break down the long carbon-chain polymer backbone","It is too cold for any reaction","The bag floats to the surface"]} correct={1} explain="Synthetic plastics like LDPE have a long carbon-chain backbone with no sites that microbial enzymes can attack. Without microbial degradation, negligible mass is lost in a short period."/>
+          <MCQ num={4} question="Why does a synthetic plastic bag show little or no mass loss when buried in moist soil for 4 weeks?" options={["It is too wet in the soil","Soil microorganisms do not have the enzymes needed to break down the long carbon-chain polymer backbone","It is too cold for any reaction","The bag floats to the surface"]} correct={1} explain="Synthetic plastics like LDPE have a long carbon-chain backbone with almost no sites that common soil microbes' enzymes can attack. Without microbial degradation, negligible mass is lost in a short period."/>
         </QGroup>
       </DotPoint>
 
@@ -894,7 +957,7 @@ function Section34({ progress, setProgress }) {
           <svg viewBox="0 0 560 80" width="100%" style={{ maxWidth: 560 }}>
             {[
               { x: 20,  w: 60,  label: "Ocean water", sub: "Low conc.", colour: "#bfdbfe" },
-              { x: 110, w: 70,  label: "Phytoplankton", sub: "Higher", colour: "#93c5fd" },
+              { x: 110, w: 70,  label: "Zooplankton", sub: "Higher", colour: "#93c5fd" },
               { x: 210, w: 80,  label: "Small fish", sub: "Higher still", colour: "#60a5fa" },
               { x: 320, w: 90,  label: "Large fish", sub: "Much higher", colour: "#2563eb" },
               { x: 440, w: 100, label: "Apex predator", sub: "Highest", colour: "#1e40af" },
@@ -947,7 +1010,7 @@ function Section35({ progress, setProgress }) {
                   ["PLA","PET plastic","Bio-based; potentially compostable","Needs industrial composting; land and water for crops"],
                   ["Recycled polyester","Virgin polyester","Reduces oil use; diverts plastic waste","Still releases microplastic fibres in washing"],
                   ["Cotton fabric","Synthetic fleece","Biodegradable; renewable","High water and pesticide use"],
-                  ["Bamboo products","Timber and plastic","Rapid growth; sequesters CO2","Processing chemicals; transport emissions"],
+                  ["Bamboo products","Timber and plastic","Rapid growth; sequesters CO₂","Processing chemicals; transport emissions"],
                   ["Glass (reusable)","Single-use plastic","Infinitely recyclable; no microplastics","Heavier; more energy to manufacture"],
                   ["Aluminium (reusable)","Single-use plastic","Highly recyclable; durable","Energy-intensive primary production"],
                 ].map(row => (
@@ -995,17 +1058,17 @@ mountTopicApp({
     "metallic bond": "A bond in metals where positive metal ions are held together by a surrounding sea of delocalised (mobile) electrons.",
     "cation": "A positively charged ion formed when an atom loses one or more electrons.",
     "anion": "A negatively charged ion formed when an atom gains one or more electrons.",
-    "diatomic molecule": "A molecule consisting of exactly two atoms of the same element bonded by a covalent bond; e.g. H2, N2, O2.",
+    "diatomic molecule": "A molecule consisting of exactly two atoms of the same element bonded by a covalent bond; e.g. H₂, N₂, O₂.",
     "cross-over rule": "A method for finding the formula of an ionic compound: swap the charge numbers of each ion to become the subscripts of the other, then simplify.",
     "crystal lattice": "A regular three-dimensional arrangement of ions or atoms held together by electrostatic forces.",
     "organic compound": "A compound containing carbon atoms bonded to hydrogen (C-H bonds), often also bonded to other elements.",
     "hydrocarbon": "A compound containing only carbon and hydrogen atoms.",
     "crude oil": "A complex mixture of hydrocarbons formed from ancient marine organisms over millions of years.",
     "fractional distillation": "An industrial process that separates crude oil into fractions based on their different boiling points in a tall fractionating column.",
-    "alkane": "A hydrocarbon with only single carbon-carbon bonds; follows the general formula CnH(2n+2).",
+    "alkane": "A hydrocarbon with only single carbon-carbon bonds; follows the general formula CₙH₂ₙ₊₂.",
     "IUPAC": "The International Union of Pure and Applied Chemistry, which develops systematic naming rules for chemical compounds.",
-    "complete combustion": "Combustion in excess oxygen producing only CO2 and H2O; releases maximum energy.",
-    "incomplete combustion": "Combustion in restricted oxygen producing CO and/or soot as well as H2O; releases less energy.",
+    "complete combustion": "Combustion in excess oxygen producing only CO₂ and H₂O; releases maximum energy.",
+    "incomplete combustion": "Combustion in restricted oxygen producing CO and/or soot as well as H₂O; releases less energy.",
     "carbon monoxide": "A colourless, odourless, highly toxic gas produced by incomplete combustion; binds to haemoglobin preventing oxygen transport.",
     "polymer": "A large molecule made of many repeating smaller units (monomers) joined by covalent bonds.",
     "monomer": "The small, reactive molecule that joins with many others to form a polymer chain.",

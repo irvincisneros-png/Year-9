@@ -67,7 +67,12 @@ function HerdImmunity() {
     }
   }, /*#__PURE__*/React.createElement("label", {
     style: {
-      fontSize: 13
+      fontSize: 13,
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      gap: 4,
+      maxWidth: "100%"
     }
   }, "Disease:", /*#__PURE__*/React.createElement("select", {
     value: disease,
@@ -76,10 +81,12 @@ function HerdImmunity() {
     },
     style: {
       marginLeft: 6,
+      maxWidth: "100%",
       padding: "4px 8px",
       borderRadius: 6,
       border: "1px solid var(--border)",
       background: "var(--bg-elev)",
+      color: "var(--ink)",
       fontFamily: "inherit"
     }
   }, Object.entries(diseases).map(function (_ref) {

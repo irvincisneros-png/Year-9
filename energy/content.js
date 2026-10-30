@@ -66,12 +66,12 @@ function PendulumSim() {
     var total = ke + pe;
     ctx.clearRect(0, 0, W, H);
     // pivot
-    ctx.fillStyle = "var(--ink, #1a1a2e)";
+    ctx.fillStyle = "#1a1a2e";
     ctx.beginPath();
     ctx.arc(cx, cy, 6, 0, Math.PI * 2);
     ctx.fill();
     // rod
-    ctx.strokeStyle = "var(--muted, #6b7280)";
+    ctx.strokeStyle = "#6b7280";
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(cx, cy);
@@ -108,13 +108,13 @@ function PendulumSim() {
       ctx.fillRect(bx, barY, barW, barH);
       ctx.fillStyle = col;
       ctx.fillRect(bx, barY + barH - fillH, barW, fillH);
-      ctx.fillStyle = "var(--ink, #1a1a2e)";
+      ctx.fillStyle = "#1a1a2e";
       ctx.font = "bold 11px sans-serif";
       ctx.textAlign = "center";
       ctx.fillText(label, bx + barW / 2, barY + barH + 14);
       ctx.fillText(label === "Total" ? total.toFixed(1) : label === "KE" ? ke.toFixed(1) : pe.toFixed(1), bx + barW / 2, barY - 4);
     });
-    ctx.fillStyle = "var(--muted, #6b7280)";
+    ctx.fillStyle = "#6b7280";
     ctx.font = "11px sans-serif";
     ctx.textAlign = "left";
     ctx.fillText("J", barX + 3 * 44 + barW + 3, barY - 4);
@@ -193,7 +193,10 @@ function PendulumSim() {
       display: "block",
       margin: "0 auto",
       borderRadius: 12,
-      background: "var(--surface-2, #f8fafc)"
+      background: "#f8fafc",
+      width: "100%",
+      maxWidth: 380,
+      height: "auto"
     }
   }), /*#__PURE__*/React.createElement("div", {
     className: "ctrl-row",
@@ -427,7 +430,7 @@ function PowerStationFlow() {
     coal: {
       steps: ["Chemical PE (coal burned)", "Thermal energy (steam)", "KE (turbine spins)", "Electrical energy (generator)"],
       colours: ["#f59e0b", "#ef4444", "#3b82f6", "#8b5cf6"],
-      note: "Three energy transformations. Most energy is lost as heat at each stage."
+      note: "Three energy transformations. Only about a third of the coal's energy ends up as electricity; most is lost as heat, mainly when the used steam is cooled."
     },
     hydro: {
       steps: ["Gravitational PE (water at height)", "KE (falling water)", "KE (turbine)", "Electrical energy (generator)"],
@@ -442,7 +445,7 @@ function PowerStationFlow() {
     wind: {
       steps: ["KE (moving air)", "KE (turbine blades)", "Electrical energy (generator)"],
       colours: ["#06b6d4", "#3b82f6", "#8b5cf6"],
-      note: "Three steps. Moving air directly drives blades. No combustion or steam."
+      note: "One energy transformation (kinetic to electrical). Moving air directly drives the blades. No combustion or steam."
     },
     nuclear: {
       steps: ["Nuclear binding energy (fission)", "Thermal energy (steam)", "KE (turbine)", "Electrical energy (generator)"],
@@ -618,12 +621,12 @@ function CircuitBuilder() {
     }, label), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 11,
-        color: "var(--muted)"
+        color: "var(--ink-muted)"
       }
     }, voltage.toFixed(1), " V"), /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 11,
-        color: "var(--muted)"
+        color: "var(--ink-muted)"
       }
     }, ic.toFixed(2), " A"));
   }
@@ -700,7 +703,7 @@ function CircuitBuilder() {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "var(--muted)",
+      color: "var(--ink-muted)",
       marginBottom: 4
     }
   }, "Battery"), /*#__PURE__*/React.createElement("div", {
@@ -712,7 +715,7 @@ function CircuitBuilder() {
   }, battery, " V"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "var(--muted)",
+      color: "var(--ink-muted)",
       marginTop: 4
     }
   }, "Total current"), /*#__PURE__*/React.createElement("div", {
@@ -723,7 +726,7 @@ function CircuitBuilder() {
   }, current.toFixed(2), " A"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: "var(--muted)",
+      color: "var(--ink-muted)",
       marginTop: 2
     }
   }, "Total R"), /*#__PURE__*/React.createElement("div", {
@@ -860,7 +863,7 @@ function OhmsLawExplorer() {
       textAlign: "center",
       padding: "8px 0",
       fontSize: 14,
-      color: "var(--muted)"
+      color: "var(--ink-muted)"
     }
   }, "V = I x R: ", vVal.toFixed(1), " = ", iVal.toFixed(2), " x ", rVal.toFixed(1), " = ", (iVal * rVal).toFixed(1), " V"));
 }
@@ -1124,7 +1127,7 @@ function EnergyTrendsChart() {
       y: padT + H + 16,
       textAnchor: "middle",
       fontSize: "11",
-      fill: "var(--muted)"
+      fill: "var(--ink-muted)"
     }, data[i].year));
   }), /*#__PURE__*/React.createElement("line", {
     x1: padL,
@@ -1145,7 +1148,7 @@ function EnergyTrendsChart() {
     y: padT + H / 2,
     textAnchor: "middle",
     fontSize: "10",
-    fill: "var(--muted)",
+    fill: "var(--ink-muted)",
     transform: "rotate(-90,".concat(padL - 14, ",").concat(padT + H / 2, ")")
   }, view === "total" ? "EJ" : "GJ")), /*#__PURE__*/React.createElement("p", {
     className: "muted",
@@ -1156,7 +1159,7 @@ function EnergyTrendsChart() {
 }
 function EnergyCriteriaEval() {
   var sources = ["Solar PV", "Offshore wind", "Pumped hydro", "Nuclear"];
-  var criteria = ["CO2 emissions", "Cost (LCOE)", "Reliability", "Build time", "Australia suitability"];
+  var criteria = ["CO₂ emissions", "Cost (LCOE)", "Reliability", "Build time", "Australia suitability"];
   var scores = {
     "Solar PV": [5, 5, 2, 5, 5],
     "Offshore wind": [5, 4, 2, 4, 4],
@@ -1251,9 +1254,84 @@ function Section1(_ref4) {
   }, "1.1 Law of conservation of energy"), /*#__PURE__*/React.createElement("h1", null, "Energy is never created or destroyed"), /*#__PURE__*/React.createElement("p", {
     className: "lead"
   }, "No matter how dramatic the explosion or how quiet the glow, the total energy in a closed system stays exactly the same.")), /*#__PURE__*/React.createElement(Figure, {
-    src: "img/efficiency.png",
-    caption: "Input energy splits into useful output and wasted heat."
-  }), /*#__PURE__*/React.createElement(DotPoint, {
+    caption: "A Sankey diagram for an LED globe: 100 J of electrical energy goes in, 45 J comes out as useful light and 55 J is wasted as heat. The arrow widths add up (45 J + 55 J = 100 J) because energy is conserved.",
+    maxWidth: 560
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 600 360",
+    width: "100%",
+    role: "img",
+    "aria-label": "Sankey diagram: 100 joules of electrical energy in, splitting into 45 joules of useful light and 55 joules of wasted heat"
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "20",
+    y: "40",
+    width: "190",
+    height: "200",
+    fill: "var(--blue)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M209,40 L470,40 L470,130 L209,130 Z",
+    fill: "var(--amber)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M470,22 L520,85 L470,148 Z",
+    fill: "var(--amber)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M209,130 C330,130 410,190 410,290 L300,290 C300,255 265,240 209,240 Z",
+    fill: "var(--red)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M282,290 L428,290 L355,340 Z",
+    fill: "var(--red)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "115",
+    y: "132",
+    textAnchor: "middle",
+    fontSize: "17",
+    fontWeight: "700",
+    fill: "#fff"
+  }, "Electrical"), /*#__PURE__*/React.createElement("text", {
+    x: "115",
+    y: "154",
+    textAnchor: "middle",
+    fontSize: "17",
+    fontWeight: "700",
+    fill: "#fff"
+  }, "energy in"), /*#__PURE__*/React.createElement("text", {
+    x: "115",
+    y: "180",
+    textAnchor: "middle",
+    fontSize: "20",
+    fontWeight: "800",
+    fill: "#fff"
+  }, "100 J"), /*#__PURE__*/React.createElement("text", {
+    x: "340",
+    y: "80",
+    textAnchor: "middle",
+    fontSize: "16",
+    fontWeight: "700",
+    fill: "#1b1a17"
+  }, "Useful: light"), /*#__PURE__*/React.createElement("text", {
+    x: "340",
+    y: "104",
+    textAnchor: "middle",
+    fontSize: "18",
+    fontWeight: "800",
+    fill: "#1b1a17"
+  }, "45 J"), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "235",
+    fontSize: "16",
+    fontWeight: "700",
+    fill: "var(--ink)"
+  }, "Wasted: heat"), /*#__PURE__*/React.createElement("text", {
+    x: "440",
+    y: "259",
+    fontSize: "18",
+    fontWeight: "800",
+    fill: "var(--ink)"
+  }, "55 J"), /*#__PURE__*/React.createElement("text", {
+    x: "20",
+    y: "282",
+    fontSize: "15",
+    fill: "var(--ink-muted)"
+  }, "Efficiency = 45 / 100 x 100 = 45%"))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "1.1.1",
     title: "Conservation of energy and calculations",
     progress: progress,
@@ -1300,7 +1378,7 @@ function Section1(_ref4) {
   }, "LED"), " globe converts about 45% to light, making it roughly 9 times more efficient. A petrol engine operates at about 25 to 30% efficiency; an electric motor reaches 85 to 95%."), /*#__PURE__*/React.createElement(Callout, {
     kind: "tip",
     title: "Worked example"
-  }, "A kettle uses 150,000 J of electrical energy. The water gains 135,000 J of thermal energy. Efficiency = (135,000 / 150,000) x 100 = 90%. The remaining 10,000 J escapes through the kettle casing."), /*#__PURE__*/React.createElement(EfficiencyCalc, null), /*#__PURE__*/React.createElement(QGroup, {
+  }, "A kettle uses 150,000 J of electrical energy. The water gains 135,000 J of thermal energy. Efficiency = (135,000 / 150,000) x 100 = 90%. The remaining 15,000 J is wasted, mostly as heat escaping through the kettle casing and into the air."), /*#__PURE__*/React.createElement(EfficiencyCalc, null), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 3,
@@ -1373,7 +1451,7 @@ function Section2(_ref5) {
   }, "non-renewable"), " or ", /*#__PURE__*/React.createElement(Term, {
     def: "An energy source replenished naturally on human timescales; theoretically inexhaustible as long as the natural process driving it continues."
   }, "renewable"), ". The three main ", /*#__PURE__*/React.createElement(Term, {
-    def: "Coal, petroleum, and natural gas: formed from ancient organisms buried and compressed over hundreds of millions of years."
+    def: "Coal, petroleum, and natural gas: formed from the remains of ancient organisms buried and compressed over millions of years."
   }, "fossil fuels"), " are coal, petroleum, and natural gas, all storing ", /*#__PURE__*/React.createElement(Term, {
     def: "Energy stored in chemical bonds, released by combustion or other chemical reactions."
   }, "chemical potential energy"), " released by combustion. Renewable sources include solar, wind, hydroelectric, geothermal, tidal, wave, and biomass energy."), /*#__PURE__*/React.createElement("p", null, "Nuclear energy is non-renewable because it uses finite uranium ore, but it is not a fossil fuel: a tiny mass of fuel releases an enormous amount of energy and produces no direct combustion emissions. Understanding which category each source belongs to helps you evaluate its long-term sustainability."), /*#__PURE__*/React.createElement(Callout, {
@@ -1390,7 +1468,7 @@ function Section2(_ref5) {
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 8,
     question: "Explain why biomass is only considered renewable if it is managed sustainably.",
-    model: "Biomass is renewable if new plants are grown to replace those harvested at the same rate they are consumed. If forests are cleared faster than they regrow, more CO2 is released than is absorbed, so it is not truly renewable in that situation."
+    model: "Biomass is renewable if new plants are grown to replace those harvested at the same rate they are consumed. If forests are cleared faster than they regrow, more CO\u2082 is released than is absorbed, so it is not truly renewable in that situation."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "1.2.2",
     title: "Producing electrical energy from different sources",
@@ -1421,7 +1499,7 @@ function Section2(_ref5) {
   }, /*#__PURE__*/React.createElement("p", null, "Choosing an energy source for electricity generation means weighing efficiency, environmental impact, cost, and reliability. The ", /*#__PURE__*/React.createElement(Term, {
     def: "Levelised cost of electricity: the average cost per unit of electricity generated over the lifetime of a plant, including all construction, fuel, and operating costs."
   }, "LCOE"), " allows fair comparison of sources with different cost structures. Fossil fuels are reliable and energy-dense but release ", /*#__PURE__*/React.createElement(Term, {
-    def: "Gases such as CO2 and methane that trap heat in the atmosphere, contributing to global warming."
+    def: "Gases such as CO\u2082 and methane that trap heat in the atmosphere, contributing to global warming."
   }, "greenhouse gases"), " when burned and their supply is finite. Solar and wind are now among the cheapest sources for new electricity in Australia, but they are ", /*#__PURE__*/React.createElement(Term, {
     def: "Describes an energy source that only produces energy when natural conditions allow (sun shining or wind blowing), not on demand."
   }, "intermittent"), "."), /*#__PURE__*/React.createElement("p", null, "Coal emits about 820 gCO2/kWh over its lifecycle; wind and nuclear emit about 11 to 12 gCO2/kWh. Economic factors include capital cost, fuel cost, construction time, and the cost of storage or grid upgrades needed to integrate variable renewables. Nuclear offers reliable baseload power but has very high capital costs, long build times (10 to 20 years), and challenges around radioactive waste management."), /*#__PURE__*/React.createElement(Callout, {
@@ -1455,9 +1533,147 @@ function Section3(_ref6) {
   }, "1.3 Electrical energy"), /*#__PURE__*/React.createElement("h1", null, "Circuits, current, and Ohm's law"), /*#__PURE__*/React.createElement("p", {
     className: "lead"
   }, "Electricity flows in loops. Understanding voltage, current, and resistance lets you predict and control how any circuit behaves.")), /*#__PURE__*/React.createElement(Figure, {
-    src: "img/circuit.png",
-    caption: "A simple circuit \u2014 battery, switch and globe connected by wires."
-  }), /*#__PURE__*/React.createElement(DotPoint, {
+    caption: "A simple complete circuit drawn with standard symbols: a battery of two cells, a closed switch and a lamp (globe) joined in one loop by wires. The arrows show the direction of conventional current, from the positive terminal around the circuit to the negative terminal.",
+    maxWidth: 520
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "-60 0 500 260",
+    width: "100%",
+    role: "img",
+    "aria-label": "Circuit diagram: a two-cell battery on the left, a closed switch along the top wire and a lamp on the right, all in one loop. Arrows show conventional current flowing clockwise from the positive terminal."
+  }, /*#__PURE__*/React.createElement("g", {
+    stroke: "var(--ink)",
+    strokeWidth: "3",
+    fill: "none",
+    strokeLinecap: "round"
+  }, /*#__PURE__*/React.createElement("polyline", {
+    points: "80,108 80,40 170,40"
+  }), /*#__PURE__*/React.createElement("polyline", {
+    points: "250,40 360,40 360,108"
+  }), /*#__PURE__*/React.createElement("polyline", {
+    points: "360,152 360,220 80,220 80,152"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "170",
+    y1: "40",
+    x2: "250",
+    y2: "40"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "60",
+    y1: "108",
+    x2: "100",
+    y2: "108"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "70",
+    y1: "120",
+    x2: "90",
+    y2: "120"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "80",
+    y1: "120",
+    x2: "80",
+    y2: "128"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "60",
+    y1: "128",
+    x2: "100",
+    y2: "128"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "70",
+    y1: "140",
+    x2: "90",
+    y2: "140"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "80",
+    y1: "140",
+    x2: "80",
+    y2: "152"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "360",
+    cy: "130",
+    r: "22",
+    fill: "var(--card)"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "344",
+    y1: "114",
+    x2: "376",
+    y2: "146"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "376",
+    y1: "114",
+    x2: "344",
+    y2: "146"
+  })), /*#__PURE__*/React.createElement("circle", {
+    cx: "170",
+    cy: "40",
+    r: "5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "250",
+    cy: "40",
+    r: "5",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "112",
+    y: "112",
+    fontSize: "20",
+    fontWeight: "700",
+    fill: "var(--ink)"
+  }, "+"), /*#__PURE__*/React.createElement("text", {
+    x: "112",
+    y: "148",
+    fontSize: "22",
+    fontWeight: "700",
+    fill: "var(--ink)"
+  }, "\u2212"), /*#__PURE__*/React.createElement("text", {
+    x: "40",
+    y: "134",
+    textAnchor: "end",
+    fontSize: "14",
+    fill: "var(--ink)"
+  }, "Battery"), /*#__PURE__*/React.createElement("text", {
+    x: "40",
+    y: "152",
+    textAnchor: "end",
+    fontSize: "12",
+    fill: "var(--ink-muted)"
+  }, "(2 cells)"), /*#__PURE__*/React.createElement("text", {
+    x: "210",
+    y: "26",
+    textAnchor: "middle",
+    fontSize: "14",
+    fill: "var(--ink)"
+  }, "Switch (closed)"), /*#__PURE__*/React.createElement("text", {
+    x: "394",
+    y: "126",
+    fontSize: "14",
+    fill: "var(--ink)"
+  }, "Lamp"), /*#__PURE__*/React.createElement("text", {
+    x: "394",
+    y: "144",
+    fontSize: "12",
+    fill: "var(--ink-muted)"
+  }, "(globe)"), /*#__PURE__*/React.createElement("text", {
+    x: "220",
+    y: "246",
+    textAnchor: "middle",
+    fontSize: "13",
+    fill: "var(--ink-muted)"
+  }, "Connecting wire"), /*#__PURE__*/React.createElement("g", {
+    fill: "var(--accent)"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M120,32 L136,40 L120,48 Z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M300,32 L316,40 L300,48 Z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M352,180 L360,196 L368,180 Z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M236,212 L220,220 L236,228 Z"
+  })), /*#__PURE__*/React.createElement("text", {
+    x: "128",
+    y: "66",
+    textAnchor: "middle",
+    fontSize: "12",
+    fill: "var(--accent)"
+  }, "current"))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "1.3.1",
     title: "Elements of a complete circuit",
     progress: progress,
@@ -1466,44 +1682,245 @@ function Section3(_ref6) {
     def: "A flow of charged particles (electrons) through a conductor."
   }, "electric current"), " needs a complete, unbroken conducting path to flow. Break it anywhere and current stops instantly, everywhere in the circuit. A complete circuit has four essentials: an energy source (battery or power supply), conducting wires, at least one ", /*#__PURE__*/React.createElement(Term, {
     def: "A component that converts electrical energy into another form, such as a lamp (light) or motor (kinetic energy)."
-  }, "load"), ", and usually a switch."), /*#__PURE__*/React.createElement("p", null, "A ", /*#__PURE__*/React.createElement(Term, {
+  }, "load"), ", and a closed (unbroken) path. Most circuits also include a switch to open and close that path."), /*#__PURE__*/React.createElement("p", null, "A ", /*#__PURE__*/React.createElement(Term, {
     def: "A single electrochemical unit that converts chemical potential energy into electrical energy."
-  }, "cell"), " is a single unit; a battery is two or more cells joined together. Current flows from the positive terminal, through the external circuit, back to the negative terminal. Inside the battery, chemical reactions push charge from negative to positive, maintaining the ", /*#__PURE__*/React.createElement(Term, {
+  }, "cell"), " is a single unit; a battery is two or more cells joined together. By convention, current flows from the positive terminal, through the external circuit, back to the negative terminal (the electrons themselves actually drift the other way, from negative to positive). Inside the battery, chemical reactions push charge from negative to positive, maintaining the ", /*#__PURE__*/React.createElement(Term, {
     def: "Potential difference: the energy transferred per unit of charge between two points in a circuit, measured in volts (V)."
   }, "potential difference"), " that drives the current."), /*#__PURE__*/React.createElement(Callout, {
     kind: "key",
     title: "The four essentials"
   }, "Energy source, conducting wires, at least one load, and a closed path. Remove any one and current stops."), /*#__PURE__*/React.createElement(Figure, {
-    caption: "Standard circuit symbols and their functions."
+    caption: "Standard circuit symbols. The longer line of a cell is its positive (+) terminal. Ammeters are connected in series; voltmeters are connected in parallel across a component.",
+    maxWidth: 620
   }, /*#__PURE__*/React.createElement("svg", {
-    viewBox: "0 0 520 100",
+    viewBox: "0 0 600 150",
     width: "100%",
-    style: {
-      maxWidth: 520
-    }
-  }, [["Battery", 26, "long/short lines"], ["Switch", 104, "gap in line"], ["Lamp", 182, "circle + X"], ["Resistor", 260, "rectangle"], ["Ammeter", 338, "circle A"], ["Voltmeter", 416, "circle V"]].map(function (_ref7) {
-    var _ref8 = _slicedToArray(_ref7, 2),
-      name = _ref8[0],
-      x = _ref8[1];
-    return /*#__PURE__*/React.createElement("g", {
-      key: name,
-      transform: "translate(".concat(x, ",4)")
-    }, /*#__PURE__*/React.createElement("rect", {
-      width: "72",
-      height: "54",
-      rx: "8",
-      fill: "var(--accent-soft)",
-      stroke: "var(--accent-deep)",
-      strokeWidth: "1.5"
-    }), /*#__PURE__*/React.createElement("text", {
-      x: "36",
-      y: "22",
-      textAnchor: "middle",
-      fontSize: "11",
-      fontWeight: "700",
-      fill: "var(--ink)"
-    }, name));
-  }))), /*#__PURE__*/React.createElement(QGroup, {
+    role: "img",
+    "aria-label": "Seven circuit symbols: cell, battery, open switch, lamp, resistor, ammeter and voltmeter"
+  }, /*#__PURE__*/React.createElement("g", {
+    stroke: "var(--ink)",
+    strokeWidth: "2.5",
+    fill: "none",
+    strokeLinecap: "round"
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: "10",
+    y1: "60",
+    x2: "38",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "38",
+    y1: "38",
+    x2: "38",
+    y2: "82"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "48",
+    y1: "50",
+    x2: "48",
+    y2: "70"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "48",
+    y1: "60",
+    x2: "76",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "96",
+    y1: "60",
+    x2: "112",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "112",
+    y1: "38",
+    x2: "112",
+    y2: "82"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "121",
+    y1: "50",
+    x2: "121",
+    y2: "70"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "121",
+    y1: "60",
+    x2: "133",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "133",
+    y1: "38",
+    x2: "133",
+    y2: "82"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "142",
+    y1: "50",
+    x2: "142",
+    y2: "70"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "142",
+    y1: "60",
+    x2: "160",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "180",
+    y1: "60",
+    x2: "200",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "200",
+    y1: "60",
+    x2: "232",
+    y2: "40"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "236",
+    y1: "60",
+    x2: "256",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "272",
+    y1: "60",
+    x2: "288",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "306",
+    cy: "60",
+    r: "18"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "293",
+    y1: "47",
+    x2: "319",
+    y2: "73"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "319",
+    y1: "47",
+    x2: "293",
+    y2: "73"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "324",
+    y1: "60",
+    x2: "340",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "358",
+    y1: "60",
+    x2: "372",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: "372",
+    y: "50",
+    width: "40",
+    height: "20"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "412",
+    y1: "60",
+    x2: "426",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "440",
+    y1: "60",
+    x2: "452",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "470",
+    cy: "60",
+    r: "18"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "488",
+    y1: "60",
+    x2: "500",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "510",
+    y1: "60",
+    x2: "522",
+    y2: "60"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "540",
+    cy: "60",
+    r: "18"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "558",
+    y1: "60",
+    x2: "570",
+    y2: "60"
+  })), /*#__PURE__*/React.createElement("circle", {
+    cx: "200",
+    cy: "60",
+    r: "3",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "236",
+    cy: "60",
+    r: "3",
+    fill: "var(--ink)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "30",
+    y: "34",
+    fontSize: "13",
+    fontWeight: "700",
+    fill: "var(--ink)"
+  }, "+"), /*#__PURE__*/React.createElement("text", {
+    x: "470",
+    y: "66",
+    textAnchor: "middle",
+    fontSize: "17",
+    fontWeight: "700",
+    fill: "var(--ink)"
+  }, "A"), /*#__PURE__*/React.createElement("text", {
+    x: "540",
+    y: "66",
+    textAnchor: "middle",
+    fontSize: "17",
+    fontWeight: "700",
+    fill: "var(--ink)"
+  }, "V"), /*#__PURE__*/React.createElement("g", {
+    fontSize: "13",
+    fontWeight: "700",
+    fill: "var(--ink)",
+    textAnchor: "middle"
+  }, /*#__PURE__*/React.createElement("text", {
+    x: "43",
+    y: "112"
+  }, "Cell"), /*#__PURE__*/React.createElement("text", {
+    x: "128",
+    y: "112"
+  }, "Battery"), /*#__PURE__*/React.createElement("text", {
+    x: "218",
+    y: "112"
+  }, "Switch"), /*#__PURE__*/React.createElement("text", {
+    x: "306",
+    y: "112"
+  }, "Lamp"), /*#__PURE__*/React.createElement("text", {
+    x: "392",
+    y: "112"
+  }, "Resistor"), /*#__PURE__*/React.createElement("text", {
+    x: "470",
+    y: "112"
+  }, "Ammeter"), /*#__PURE__*/React.createElement("text", {
+    x: "540",
+    y: "112"
+  }, "Voltmeter")), /*#__PURE__*/React.createElement("g", {
+    fontSize: "11",
+    fill: "var(--ink-muted)",
+    textAnchor: "middle"
+  }, /*#__PURE__*/React.createElement("text", {
+    x: "43",
+    y: "130"
+  }, "energy source"), /*#__PURE__*/React.createElement("text", {
+    x: "128",
+    y: "130"
+  }, "2+ cells"), /*#__PURE__*/React.createElement("text", {
+    x: "218",
+    y: "130"
+  }, "(open)"), /*#__PURE__*/React.createElement("text", {
+    x: "306",
+    y: "130"
+  }, "light globe"), /*#__PURE__*/React.createElement("text", {
+    x: "392",
+    y: "130"
+  }, "limits current"), /*#__PURE__*/React.createElement("text", {
+    x: "470",
+    y: "130"
+  }, "current"), /*#__PURE__*/React.createElement("text", {
+    x: "540",
+    y: "130"
+  }, "voltage")))), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 12,
@@ -1523,7 +1940,7 @@ function Section3(_ref6) {
   }, "parallel circuit"), ", current splits between multiple branches. Each branch operates independently; if one fails, the rest keep working. Household wiring is parallel so each appliance receives the full mains voltage and can be switched off independently."), /*#__PURE__*/React.createElement("p", null, "Key comparison: in series, total resistance adds up (R_total = R1 + R2). In parallel, adding more branches lowers total resistance and increases total current drawn from the battery. This is why plugging more appliances into a household circuit can trip a circuit breaker."), /*#__PURE__*/React.createElement(Callout, {
     kind: "tip",
     title: "Household vs series"
-  }, "Your home is wired in parallel so every appliance gets 230 V and works independently. Series wiring would share voltage and one blown fuse would cut power to everything."), /*#__PURE__*/React.createElement(CircuitBuilder, null), /*#__PURE__*/React.createElement(QGroup, {
+  }, "Your home is wired in parallel so every appliance gets 230 V and works independently. Series wiring would share the voltage between appliances, and switching one appliance off (or one breaking) would cut power to everything."), /*#__PURE__*/React.createElement(CircuitBuilder, null), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 13,
@@ -1622,9 +2039,9 @@ function Section3(_ref6) {
 /* ============================================================
    SECTION 4: Global Future Energy Needs and Energy in Context
    ============================================================ */
-function Section4(_ref9) {
-  var progress = _ref9.progress,
-    setProgress = _ref9.setProgress;
+function Section4(_ref7) {
+  var progress = _ref7.progress,
+    setProgress = _ref7.setProgress;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "topic-head"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1659,7 +2076,7 @@ function Section4(_ref9) {
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 21,
     question: "Compare demand-side management with building a new gas power plant as strategies for addressing peak electricity demand. Consider cost, environmental impact, and implementation time.",
-    model: "Demand-side management: implemented quickly through smart meters and time-of-use pricing, low cost, minimal environmental impact, reduces peak demand without new infrastructure. New gas plant: takes 3 to 7 years to build, costs hundreds of millions of dollars, emits CO2, but provides reliable dispatchable power. DSM is preferred as a first response; new generation is needed only when demand optimisation cannot meet the remaining gap."
+    model: "Demand-side management: implemented quickly through smart meters and time-of-use pricing, low cost, minimal environmental impact, reduces peak demand without new infrastructure. New gas plant: takes 3 to 7 years to build, costs hundreds of millions of dollars, emits CO\u2082, but provides reliable dispatchable power. DSM is preferred as a first response; new generation is needed only when demand optimisation cannot meet the remaining gap."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "1.4.2",
     title: "Past trends and future energy demand",
@@ -1687,9 +2104,9 @@ function Section4(_ref9) {
   }, /*#__PURE__*/React.createElement("p", null, "Three interconnected reasons drive the development of alternative energy sources. First, ", /*#__PURE__*/React.createElement(Term, {
     def: "The situation when an energy resource is used up faster than it is naturally replenished. Fossil fuels are being depleted faster than they formed."
   }, "resource depletion"), ": fossil fuels are finite. As the most accessible deposits are exhausted, extraction becomes more expensive and risky, requiring drilling in deeper water or more remote locations. Second, environmental harm: burning fossil fuels releases ", /*#__PURE__*/React.createElement(Term, {
-    def: "Carbon dioxide (CO2): a greenhouse gas released when fossil fuels are burned, which accumulates in the atmosphere and drives global warming."
-  }, "CO2"), " and other ", /*#__PURE__*/React.createElement(Term, {
-    def: "Gases that absorb and re-emit infrared radiation, warming Earth's atmosphere. Include CO2, methane, and nitrous oxide."
+    def: "Carbon dioxide (CO\u2082): a greenhouse gas released when fossil fuels are burned, which accumulates in the atmosphere and drives global warming."
+  }, "CO\u2082"), " and other ", /*#__PURE__*/React.createElement(Term, {
+    def: "Gases that absorb and re-emit infrared radiation, warming Earth's atmosphere. Include CO\u2082, methane, and nitrous oxide."
   }, "greenhouse gases"), " driving climate change, as well as sulfur dioxide and nitrogen oxides causing acid rain and air pollution."), /*#__PURE__*/React.createElement("p", null, "Third, ", /*#__PURE__*/React.createElement(Term, {
     def: "Having reliable access to affordable energy, free from the risk of price volatility or supply disruption caused by dependence on imported fuels."
   }, "energy security"), ": countries that import fossil fuels are vulnerable to price shocks and geopolitical supply disruptions. Domestic renewable resources (sunshine, wind, rivers) are free, abundant, and cannot be embargoed. The ", /*#__PURE__*/React.createElement(Term, {
@@ -1731,7 +2148,7 @@ function Section4(_ref9) {
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 25,
     question: "What does LCOE stand for, and what does it measure?",
-    options: ["Lowest Carbon Output Equivalent; the emissions per kWh", "Levelised Cost of Electricity; average cost per unit of electricity generated over a plant's lifetime", "Local Cost of Energy; what households pay per kWh on their bill", "Lifecycle CO2 Estimate; grams of CO2 per kWh"],
+    options: ["Lowest Carbon Output Equivalent; the emissions per kWh", "Levelised Cost of Electricity; average cost per unit of electricity generated over a plant's lifetime", "Local Cost of Energy; what households pay per kWh on their bill", "Lifecycle CO₂ Estimate; grams of CO₂ per kWh"],
     correct: 1,
     explain: "LCOE stands for Levelised Cost of Electricity. It measures the average cost per unit of electricity generated over the plant's lifetime, including all capital, fuel, and operating costs."
   }), /*#__PURE__*/React.createElement(WrittenQ, {
@@ -1782,7 +2199,7 @@ mountTopicApp({
     "power (P)": "Rate of energy transformation. P = V x I. Measured in watts (W).",
     "kilowatt-hour (kWh)": "Energy used by a 1 kW device running for one hour. 1 kWh = 3.6 MJ.",
     "energy rating label": "Australian label showing star rating and annual kWh for household appliances.",
-    "greenhouse gas": "A gas such as CO2 or methane that traps heat in the atmosphere, contributing to climate change.",
+    "greenhouse gas": "A gas such as CO₂ or methane that traps heat in the atmosphere, contributing to climate change.",
     "energy security": "Reliable access to affordable energy, free from vulnerability to supply disruption or price shocks.",
     "demand-side management": "Shifting large electricity loads to off-peak times using pricing signals, reducing peak demand."
   },

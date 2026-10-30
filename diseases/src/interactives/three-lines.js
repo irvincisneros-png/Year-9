@@ -79,7 +79,7 @@ function ThreeLines() {
   return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "grid",
-      gridTemplateColumns: "200px 1fr",
+      gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
       gap: 16
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("svg", {

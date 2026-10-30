@@ -23,8 +23,8 @@ function HerdImmunity() {
   return (
     <div>
       <div style={{display:"flex",gap:12,flexWrap:"wrap",alignItems:"center",marginBottom:12}}>
-        <label style={{fontSize:13}}>Disease:
-          <select value={disease} onChange={e=>setDisease(e.target.value)} style={{marginLeft:6,padding:"4px 8px",borderRadius:6,border:"1px solid var(--border)",background:"var(--bg-elev)",fontFamily:"inherit"}}>
+        <label style={{fontSize:13,display:"flex",flexWrap:"wrap",alignItems:"center",gap:4,maxWidth:"100%"}}>Disease:
+          <select value={disease} onChange={e=>setDisease(e.target.value)} style={{marginLeft:6,maxWidth:"100%",padding:"4px 8px",borderRadius:6,border:"1px solid var(--border)",background:"var(--bg-elev)",color:"var(--ink)",fontFamily:"inherit"}}>
             {Object.entries(diseases).map(([k,v]) => <option key={k} value={k}>{v.name} (R₀ ≈ {v.r0}, needs {v.thresh}%)</option>)}
           </select>
         </label>

@@ -45,7 +45,7 @@ function FeedbackLoopSim() {
 
   return (
     <div>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,alignItems:"start"}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:20,alignItems:"start"}}>
         <div>
           <label style={{display:"block",fontSize:13,fontWeight:500,marginBottom:6}}>Ambient temperature: <strong>{ambient}°C</strong></label>
           <input type="range" min="-10" max="45" step="1" value={ambient} onChange={e => setAmbient(+e.target.value)} style={{width:"100%"}} />
@@ -81,7 +81,7 @@ function FeedbackLoopSim() {
 
       <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",height:150,marginTop:16,background:"var(--bg-elev)",borderRadius:8,border:"1px solid var(--border)"}}>
         {/* safe zone */}
-        <rect x="0" y={y(37.5)} width={W} height={y(35.5) - y(37.5)} fill="var(--emerald-soft)" opacity="0.7"/>
+        <rect x="0" y={y(37.5)} width={W} height={y(36) - y(37.5)} fill="var(--emerald-soft)" opacity="0.7"/>
         {/* set point */}
         <line x1="0" x2={W} y1={y(37)} y2={y(37)} stroke="var(--emerald)" strokeWidth="1" strokeDasharray="4 4" opacity="0.6"/>
         {/* danger lines */}
@@ -90,7 +90,7 @@ function FeedbackLoopSim() {
         <path d={path} fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinejoin="round"/>
         <text x="6" y={y(37) - 4} fontSize="10" fill="var(--emerald)" fontFamily="var(--font-mono)">set 37°C</text>
         <text x="6" y={y(35) - 4} fontSize="9" fill="#dc2626" fontFamily="var(--font-mono)">hypothermia</text>
-        <text x="6" y={y(40) - 4} fontSize="9" fill="#dc2626" fontFamily="var(--font-mono)">enzymes denature</text>
+        <text x="6" y={y(40) - 4} fontSize="9" fill="#dc2626" fontFamily="var(--font-mono)">heat stroke</text>
       </svg>
       <div style={{fontSize:12,color:"var(--ink-muted)",marginTop:6}}>Try: drop ambient to −5°C and watch the body defend 37°C. Now turn homeostasis OFF — see how fast cells would be in trouble.</div>
     </div>

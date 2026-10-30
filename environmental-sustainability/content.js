@@ -95,7 +95,7 @@ function PillarsExplorer() {
     }, p.icon), p.label);
   })), sel && /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "var(--surface-alt)",
+      background: "var(--bg-2)",
       borderRadius: 12,
       padding: 18,
       border: "2px solid ".concat(sel.colour)
@@ -205,7 +205,7 @@ function SolutionEvaluator() {
     }, value, "/5")), /*#__PURE__*/React.createElement("div", {
       style: {
         height: 14,
-        background: "var(--surface-alt)",
+        background: "var(--bg-2)",
         borderRadius: 7,
         overflow: "hidden"
       }
@@ -220,7 +220,7 @@ function SolutionEvaluator() {
     })), /*#__PURE__*/React.createElement("p", {
       style: {
         fontSize: 13,
-        color: "var(--muted)",
+        color: "var(--ink-muted)",
         marginTop: 4
       }
     }, note));
@@ -354,7 +354,7 @@ function Section1(_ref2) {
 function WeatherClimateSorter() {
   var items = [{
     id: "a",
-    label: "It is 34 degrees in Sydney today",
+    label: "It is 34 °C in Sydney today",
     bucket: "weather"
   }, {
     id: "b",
@@ -405,12 +405,12 @@ function GreenhouseSimulator() {
   var col = anomaly > 0.5 ? "#ef4444" : anomaly > 0 ? "#f59e0b" : "#22c55e";
   return /*#__PURE__*/React.createElement(Interactive, {
     title: "Greenhouse Effect Simulator",
-    subtitle: "Drag the CO2 slider and see how atmospheric concentration affects surface temperature.",
-    takeaway: "Increasing CO2 above the pre-industrial level of 280 ppm enhances the natural greenhouse effect and raises Earth's surface temperature above its natural baseline."
+    subtitle: "Drag the CO\u2082 slider and see how atmospheric concentration affects surface temperature.",
+    takeaway: "Increasing CO\u2082 above the pre-industrial level of 280 ppm enhances the natural greenhouse effect and raises Earth's surface temperature above its natural baseline."
   }, /*#__PURE__*/React.createElement("div", {
     className: "ctrl-row"
   }, /*#__PURE__*/React.createElement(Slider, {
-    label: "Atmospheric CO2",
+    label: "Atmospheric CO\u2082",
     min: 180,
     max: 560,
     step: 10,
@@ -421,16 +421,16 @@ function GreenhouseSimulator() {
     className: "stat-readout"
   }, /*#__PURE__*/React.createElement(Stat, {
     value: co2Level,
-    label: "CO2 (ppm)"
+    label: "CO\u2082 (ppm)"
   }), /*#__PURE__*/React.createElement(Stat, {
     value: surfaceTemp,
-    label: "Surface Temp (C)"
+    label: "Surface Temp (\xB0C)"
   }), /*#__PURE__*/React.createElement(Stat, {
     value: anomaly > 0 ? "+" + anomaly : anomaly,
-    label: "Anomaly vs +15 C"
+    label: "Anomaly vs +15 \xB0C"
   })), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "var(--surface-alt)",
+      background: "var(--bg-2)",
       borderRadius: 10,
       padding: 12,
       marginTop: 8
@@ -440,7 +440,7 @@ function GreenhouseSimulator() {
       margin: 0,
       fontSize: 14
     }
-  }, "Pre-industrial CO2 was ", /*#__PURE__*/React.createElement("strong", null, "280 ppm"), ". Without any greenhouse effect Earth would be ", /*#__PURE__*/React.createElement("strong", null, "-18 C"), ". The natural greenhouse effect adds ", /*#__PURE__*/React.createElement("strong", null, "+33 C"), " of warming. Each additional 280 ppm above baseline adds roughly ", /*#__PURE__*/React.createElement("strong", null, "+2.5 C"), " of enhanced warming in this model."), co2Level > 280 && /*#__PURE__*/React.createElement("p", {
+  }, "Pre-industrial CO\u2082 was ", /*#__PURE__*/React.createElement("strong", null, "280 ppm"), ". Without any greenhouse effect Earth would be ", /*#__PURE__*/React.createElement("strong", null, "-18 \xB0C"), ". The natural greenhouse effect adds ", /*#__PURE__*/React.createElement("strong", null, "+33 \xB0C"), " of warming. Each additional 280 ppm above baseline adds roughly ", /*#__PURE__*/React.createElement("strong", null, "+2.5 \xB0C"), " of enhanced warming in this model."), co2Level > 280 && /*#__PURE__*/React.createElement("p", {
     style: {
       margin: "8px 0 0",
       fontSize: 14,
@@ -612,9 +612,191 @@ function Section2(_ref3) {
   }, "4.2 Climate Science"), /*#__PURE__*/React.createElement("h1", null, "Climate Science and the Greenhouse Effect"), /*#__PURE__*/React.createElement("p", {
     className: "lead"
   }, "From daily weather to centuries of warming, the atmosphere shapes life on Earth.")), /*#__PURE__*/React.createElement(Figure, {
-    src: "img/greenhouse.png",
-    caption: "Greenhouse gases trap some of the heat radiating from Earth."
-  }), /*#__PURE__*/React.createElement(DotPoint, {
+    caption: "The natural greenhouse effect. Sunlight (mostly short-wavelength visible light) passes through the atmosphere and warms Earth's surface. The warm surface gives off longer-wavelength infrared radiation. Some escapes to space, but greenhouse gases absorb some and re-emit it in all directions, including back down to the surface, keeping Earth about 33 \xB0C warmer than it would otherwise be.",
+    maxWidth: 620
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 640 320",
+    width: "100%",
+    role: "img",
+    "aria-label": "Diagram of the greenhouse effect: sunlight passes through the atmosphere to the surface; the surface emits infrared; some infrared escapes to space; greenhouse gases absorb some infrared and re-emit it, partly back down to the surface."
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "0",
+    y: "95",
+    width: "640",
+    height: "115",
+    fill: "var(--blue-soft)"
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: "0",
+    y: "262",
+    width: "640",
+    height: "58",
+    fill: "var(--green)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "630",
+    y: "22",
+    textAnchor: "end",
+    fontSize: "14",
+    fill: "var(--ink-muted)"
+  }, "Space"), /*#__PURE__*/React.createElement("text", {
+    x: "630",
+    y: "160",
+    textAnchor: "end",
+    fontSize: "13",
+    fontWeight: "700",
+    fill: "#34589c"
+  }, "Atmosphere with"), /*#__PURE__*/React.createElement("text", {
+    x: "630",
+    y: "176",
+    textAnchor: "end",
+    fontSize: "13",
+    fontWeight: "700",
+    fill: "#34589c"
+  }, "greenhouse gases"), /*#__PURE__*/React.createElement("text", {
+    x: "630",
+    y: "194",
+    textAnchor: "end",
+    fontSize: "12",
+    fill: "#34589c"
+  }, "(CO\u2082, H\u2082O, CH\u2084, N\u2082O)"), /*#__PURE__*/React.createElement("text", {
+    x: "20",
+    y: "298",
+    fontSize: "15",
+    fontWeight: "700",
+    fill: "#fff"
+  }, "Earth's surface"), /*#__PURE__*/React.createElement("g", {
+    fill: "#4b7bc9",
+    opacity: "0.75"
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: "120",
+    cy: "150",
+    r: "5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "185",
+    cy: "118",
+    r: "5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "220",
+    cy: "190",
+    r: "5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "318",
+    cy: "128",
+    r: "5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "376",
+    cy: "158",
+    r: "8"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "470",
+    cy: "122",
+    r: "5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "545",
+    cy: "112",
+    r: "5"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "60",
+    cy: "190",
+    r: "5"
+  })), /*#__PURE__*/React.createElement("circle", {
+    cx: "62",
+    cy: "48",
+    r: "32",
+    fill: "var(--amber)"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "98",
+    y1: "74",
+    x2: "209",
+    y2: "246",
+    stroke: "var(--amber)",
+    strokeWidth: "6"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M215.0,258.0 L196.2,248.6 L214.5,237.0 Z",
+    fill: "var(--amber)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M255.0,262.0 L257.9,259.2 L260.4,256.3 L262.2,253.4 L263.0,250.4 L262.7,247.3 L261.4,244.1 L259.4,240.9 L257.0,237.6 L254.6,234.3 L252.6,231.1 L251.3,227.9 L251.0,224.8 L251.8,221.8 L253.6,218.9 L256.1,216.0 L259.0,213.2 L261.9,210.4 L264.4,207.5 L266.2,204.6 L267.0,201.6 L266.7,198.5 L265.4,195.3 L263.4,192.1 L261.0,188.8 L258.6,185.5 L256.6,182.3 L255.3,179.1 L255.0,176.0 L255.8,173.0 L257.6,170.1 L260.1,167.2 L263.0,164.4 L265.9,161.6 L268.4,158.7 L270.2,155.8 L271.0,152.8 L270.7,149.7 L269.4,146.5 L267.4,143.3 L265.0,140.0 L262.6,136.7 L260.6,133.5 L259.3,130.3 L259.0,127.2 L259.8,124.2 L261.6,121.3 L264.1,118.4 L267.0,115.6 L269.9,112.8 L272.4,109.9 L274.2,107.0 L275.0,104.0 L274.7,100.9 L273.4,97.7 L271.4,94.5 L269.0,91.2 L266.6,87.9 L264.6,84.7 L263.3,81.5 L263.0,78.4 L263.8,75.4 L265.6,72.5 L268.1,69.6 L271.0,66.8 L273.9,64.0 L276.4,61.1 L278.2,58.2 L279.0,55.2 L278.7,52.1 L277.4,48.9 L275.4,45.7 L273.0,42.4 L270.6,39.1 L268.9,35.9 L268.7,32.8 L269.6,29.8 L271.2,26.9 L273.0,24.0 L274.3,21.0 L275.0,18.0",
+    fill: "none",
+    stroke: "var(--red)",
+    strokeWidth: "3"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M275.0,18.0 L281.2,30.5 L266.8,29.4 Z",
+    fill: "var(--red)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M362.0,262.0 L364.8,261.1 L367.1,260.1 L368.7,259.0 L369.4,257.9 L368.9,256.7 L367.5,255.4 L365.4,254.0 L362.8,252.6 L360.2,251.2 L358.1,249.8 L356.7,248.5 L356.2,247.3 L356.9,246.2 L358.5,245.1 L360.8,244.1 L363.6,243.2 L366.4,242.3 L368.7,241.3 L370.3,240.2 L371.0,239.1 L370.5,237.9 L369.1,236.6 L367.0,235.2 L364.4,233.8 L361.8,232.4 L359.7,231.0 L358.3,229.7 L357.8,228.5 L358.5,227.4 L360.1,226.3 L362.4,225.3 L365.2,224.4 L368.0,223.5 L370.3,222.5 L371.9,221.4 L372.6,220.3 L372.1,219.1 L370.7,217.8 L368.6,216.4 L366.0,215.0 L363.4,213.6 L361.3,212.2 L359.9,210.9 L359.4,209.7 L360.1,208.6 L361.7,207.5 L364.0,206.5 L366.8,205.6 L369.6,204.7 L371.9,203.7 L373.5,202.6 L374.2,201.5 L373.7,200.3 L372.3,199.0 L370.2,197.6 L367.6,196.2 L365.0,194.8 L362.9,193.4 L361.5,192.1 L361.0,190.9 L361.7,189.8 L363.3,188.7 L365.6,187.7 L368.4,186.8 L371.2,185.9 L373.5,184.9 L375.1,183.8 L375.8,182.7 L375.3,181.5 L373.9,180.2 L371.8,178.8 L369.2,177.4 L366.6,176.0 L364.8,174.7 L364.5,173.4 L365.2,172.3 L366.7,171.3 L368.3,170.2 L369.5,169.1 L370.0,168.0",
+    fill: "none",
+    stroke: "var(--red)",
+    strokeWidth: "3"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M370.0,168.0 L376.2,180.6 L361.8,179.3 Z",
+    fill: "var(--red)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M382.0,146.0 L385.0,145.0 L387.5,144.0 L389.4,142.8 L390.2,141.3 L390.1,139.7 L388.9,137.8 L387.1,135.7 L384.8,133.6 L382.5,131.5 L380.7,129.4 L379.5,127.5 L379.4,125.9 L380.2,124.4 L382.1,123.2 L384.6,122.2 L387.6,121.2 L390.6,120.2 L393.1,119.2 L395.0,118.0 L395.8,116.5 L395.7,114.9 L394.5,113.0 L392.7,110.9 L390.4,108.8 L388.1,106.7 L386.3,104.6 L385.1,102.7 L385.0,101.1 L385.8,99.6 L387.7,98.4 L390.2,97.4 L393.2,96.4 L396.2,95.4 L398.7,94.4 L400.6,93.2 L401.4,91.7 L401.3,90.1 L400.1,88.2 L398.3,86.1 L396.0,84.0 L393.7,81.9 L391.9,79.8 L390.7,77.9 L390.6,76.3 L391.4,74.8 L393.3,73.6 L395.8,72.6 L398.8,71.6 L401.8,70.6 L404.3,69.6 L406.2,68.4 L407.0,66.9 L406.9,65.3 L405.7,63.4 L403.9,61.3 L401.6,59.2 L399.3,57.1 L397.5,55.0 L396.3,53.1 L396.2,51.5 L397.0,50.0 L398.9,48.8 L401.4,47.8 L404.4,46.8 L407.4,45.8 L409.9,44.8 L411.8,43.6 L412.6,42.1 L412.5,40.5 L411.3,38.6 L409.5,36.5 L407.2,34.4 L404.9,32.3 L403.4,30.3 L403.3,28.6 L404.3,27.2 L406.0,26.0 L407.8,24.8 L409.2,23.5 L410.0,22.0",
+    fill: "none",
+    stroke: "var(--red)",
+    strokeWidth: "3"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M410.0,22.0 L414.4,35.3 L400.3,32.1 Z",
+    fill: "var(--red)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M386.0,170.0 L384.6,172.7 L383.6,175.2 L383.2,177.2 L383.6,178.7 L384.9,179.5 L386.9,179.8 L389.6,179.6 L392.6,179.2 L395.6,178.8 L398.3,178.6 L400.3,178.9 L401.6,179.7 L402.0,181.2 L401.6,183.2 L400.6,185.7 L399.2,188.4 L397.8,191.1 L396.8,193.6 L396.4,195.6 L396.8,197.1 L398.1,197.9 L400.1,198.2 L402.8,198.0 L405.8,197.6 L408.8,197.2 L411.5,197.0 L413.5,197.3 L414.8,198.1 L415.2,199.6 L414.8,201.6 L413.8,204.1 L412.4,206.8 L411.0,209.5 L410.0,212.0 L409.6,214.0 L410.0,215.5 L411.3,216.3 L413.3,216.6 L416.0,216.4 L419.0,216.0 L422.0,215.6 L424.7,215.4 L426.7,215.7 L428.0,216.5 L428.4,218.0 L428.0,220.0 L427.0,222.5 L425.6,225.2 L424.2,227.9 L423.2,230.4 L422.8,232.4 L423.2,233.9 L424.5,234.7 L426.5,235.0 L429.2,234.8 L432.2,234.4 L435.2,234.0 L437.9,233.8 L439.9,234.1 L441.2,234.9 L441.6,236.4 L441.2,238.4 L440.2,240.9 L438.8,243.6 L437.4,246.3 L436.4,248.8 L436.0,250.8 L436.4,252.3 L437.7,253.1 L439.7,253.4 L442.4,253.2 L445.4,252.8 L448.4,252.4 L450.8,252.4 L452.0,253.3 L452.3,254.8 L452.0,256.8 L451.6,258.8 L451.5,260.6 L452.0,262.0",
+    fill: "none",
+    stroke: "var(--red)",
+    strokeWidth: "3"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M452.0,262.0 L439.2,256.4 L450.9,248.1 Z",
+    fill: "var(--red)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "104",
+    y: "40",
+    fontSize: "13",
+    fontWeight: "700",
+    fill: "var(--ink)"
+  }, "1. Sunlight in"), /*#__PURE__*/React.createElement("text", {
+    x: "104",
+    y: "56",
+    fontSize: "12",
+    fill: "var(--ink-muted)"
+  }, "(short wavelength)"), /*#__PURE__*/React.createElement("text", {
+    x: "20",
+    y: "236",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "2. Surface warms and"), /*#__PURE__*/React.createElement("text", {
+    x: "20",
+    y: "250",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "gives off infrared"), /*#__PURE__*/React.createElement("text", {
+    x: "284",
+    y: "40",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "3. Some infrared"), /*#__PURE__*/React.createElement("text", {
+    x: "284",
+    y: "54",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "escapes to space"), /*#__PURE__*/React.createElement("text", {
+    x: "420",
+    y: "40",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "4. Greenhouse gases absorb"), /*#__PURE__*/React.createElement("text", {
+    x: "420",
+    y: "54",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "and re-emit infrared"), /*#__PURE__*/React.createElement("text", {
+    x: "462",
+    y: "236",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "5. Some comes back down"), /*#__PURE__*/React.createElement("text", {
+    x: "462",
+    y: "250",
+    fontSize: "12",
+    fill: "var(--ink)"
+  }, "and warms the surface"))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "4.2.1",
     title: "Distinguish between climate and weather",
     progress: progress,
@@ -708,7 +890,7 @@ function Section2(_ref3) {
       y1: zero,
       x2: pad.l + W,
       y2: zero,
-      stroke: "var(--muted)",
+      stroke: "var(--ink-muted)",
       strokeWidth: 1,
       strokeDasharray: "4 3"
     }), [-0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2].map(function (v) {
@@ -718,16 +900,16 @@ function Section2(_ref3) {
         y: scaleY(v) + 4,
         textAnchor: "end",
         fontSize: 10,
-        fill: "var(--muted)"
+        fill: "var(--ink-muted)"
       }, v.toFixed(1));
     }), /*#__PURE__*/React.createElement("text", {
       x: 12,
       y: pad.t + H / 2,
       textAnchor: "middle",
       fontSize: 10,
-      fill: "var(--muted)",
+      fill: "var(--ink-muted)",
       transform: "rotate(-90,12,".concat(pad.t + H / 2, ")")
-    }, "Anomaly (C)"), data.map(function (d, i) {
+    }, "Anomaly (\xB0C)"), data.map(function (d, i) {
       var x = pad.l + i * (W / data.length) + 4;
       var col = d.val >= 0 ? "#ef4444" : "#3b82f6";
       var barH = Math.abs(d.val) / (maxV - minV) * H;
@@ -753,12 +935,12 @@ function Section2(_ref3) {
   }())), /*#__PURE__*/React.createElement(Callout, {
     kind: "fact",
     title: "Key data point"
-  }, "The 2010s had a temperature anomaly of about +1.1 C above pre-industrial levels, the warmest decade on record at the time."), /*#__PURE__*/React.createElement(QGroup, {
+  }, "The 2010s had a temperature anomaly of about +1.1 \xB0C above pre-industrial levels, the warmest decade on record at the time."), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 3,
     question: "By approximately how much has global average temperature risen above pre-industrial levels?",
-    options: ["0.3 C", "1.1 C", "2.0 C", "3.5 C"],
+    options: ["0.3 °C", "1.1 °C", "2.0 °C", "3.5 °C"],
     correct: 1,
     explain: "Global average surface temperature has risen approximately 1.1 degrees Celsius above the pre-industrial (1850 to 1900) baseline."
   }), /*#__PURE__*/React.createElement(WrittenQ, {
@@ -775,18 +957,18 @@ function Section2(_ref3) {
   }, "natural greenhouse effect"), " is essential for life. Without it, Earth's average surface temperature would be approximately -18 degrees Celsius rather than the current +15 degrees Celsius, a difference of 33 degrees. The Sun emits short-wavelength visible light that passes through the atmosphere and warms Earth's surface. The warmed surface then re-emits energy as longer-wavelength ", /*#__PURE__*/React.createElement(Term, {
     def: "Electromagnetic radiation emitted by warm objects, detected as heat."
   }, "infrared radiation"), " directed upward."), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Term, {
-    def: "Gases in the atmosphere, including water vapour, CO2, CH4, N2O, and ozone, that absorb outgoing infrared radiation and re-emit it in all directions, keeping Earth's surface warm."
-  }, "Greenhouse gases"), " including water vapour (H2O), carbon dioxide (CO2), methane (CH4), and nitrous oxide (N2O) absorb this outgoing infrared radiation. They then re-emit energy in all directions, including back toward Earth's surface. This is not quite the same as a garden greenhouse: a real greenhouse traps warm air physically, while the atmospheric process involves absorption and re-emission of radiation."), /*#__PURE__*/React.createElement(Callout, {
+    def: "Gases in the atmosphere, including water vapour, CO\u2082, CH\u2084, N\u2082O, and ozone, that absorb outgoing infrared radiation and re-emit it in all directions, keeping Earth's surface warm."
+  }, "Greenhouse gases"), " including water vapour (H\u2082O), carbon dioxide (CO\u2082), methane (CH\u2084), and nitrous oxide (N\u2082O) absorb this outgoing infrared radiation. They then re-emit energy in all directions, including back toward Earth's surface. This is not quite the same as a garden greenhouse: a real greenhouse traps warm air physically, while the atmospheric process involves absorption and re-emission of radiation."), /*#__PURE__*/React.createElement(Callout, {
     kind: "key",
     title: "Greenhouse gases at a glance"
-  }, "Water vapour is the most abundant greenhouse gas but acts as a feedback amplifier. CO2 is the main long-lived driver. Methane (CH4) has a warming potential about 28 times that of CO2 over 100 years."), /*#__PURE__*/React.createElement(GreenhouseSimulator, null), /*#__PURE__*/React.createElement(QGroup, {
+  }, "Water vapour is the most abundant greenhouse gas but acts as a feedback amplifier. CO\u2082 is the main long-lived driver. Methane (CH\u2084) has a warming potential about 28 times that of CO\u2082 over 100 years."), /*#__PURE__*/React.createElement(GreenhouseSimulator, null), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 5,
     question: "What would Earth's average surface temperature be without the natural greenhouse effect?",
-    options: ["-18 C", "+5 C", "+15 C", "+33 C"],
+    options: ["-18 °C", "+5 °C", "+15 °C", "+33 °C"],
     correct: 0,
-    explain: "Without the natural greenhouse effect, Earth would average approximately -18 C rather than the current +15 C."
+    explain: "Without the natural greenhouse effect, Earth would average approximately -18 \xB0C rather than the current +15 \xB0C."
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 6,
     question: "Explain in your own words how greenhouse gases warm Earth's surface.",
@@ -798,24 +980,24 @@ function Section2(_ref3) {
     setProgress: setProgress
   }, /*#__PURE__*/React.createElement("p", null, "The ", /*#__PURE__*/React.createElement(Term, {
     def: "The intensification of the natural greenhouse warming caused by human activities increasing greenhouse gas concentrations beyond their natural levels."
-  }, "enhanced greenhouse effect"), " occurs when human activities raise greenhouse gas concentrations above natural levels. Since 1750, atmospheric CO2 has risen from approximately 280 ppm to over 420 ppm, an increase of about 50 percent, driven mainly by ", /*#__PURE__*/React.createElement(Term, {
-    def: "The burning of coal, oil, and natural gas, which releases stored carbon as CO2."
+  }, "enhanced greenhouse effect"), " occurs when human activities raise greenhouse gas concentrations above natural levels. Since 1750, atmospheric CO\u2082 has risen from approximately 280 ppm to over 420 ppm, an increase of about 50 percent, driven mainly by ", /*#__PURE__*/React.createElement(Term, {
+    def: "The burning of coal, oil, and natural gas, which releases stored carbon as CO\u2082."
   }, "fossil fuel combustion"), ", deforestation, cement production, and agriculture."), /*#__PURE__*/React.createElement("p", null, "The impacts extend across climate and ecosystems. More intense and frequent extreme heat events, altered rainfall patterns, accelerating glacier melt, and rising sea levels are all measured consequences. In ecosystems, species ranges are shifting poleward, seasonal events are shifting in timing (", /*#__PURE__*/React.createElement(Term, {
     def: "Changes in the timing of seasonal biological events such as flowering, migration, and breeding, caused by climate change."
   }, "phenological shifts"), "), and mass coral bleaching events are increasing. ", /*#__PURE__*/React.createElement(Term, {
-    def: "The reduction in ocean pH caused by CO2 dissolving in seawater to form carbonic acid, which harms marine organisms that build calcium carbonate shells."
-  }, "Ocean acidification"), " is a separate chemical threat from CO2 dissolving into seawater."), /*#__PURE__*/React.createElement(EmissionsBreakdown, null), /*#__PURE__*/React.createElement(QGroup, {
+    def: "The reduction in ocean pH caused by CO\u2082 dissolving in seawater to form carbonic acid, which harms marine organisms that build calcium carbonate shells."
+  }, "Ocean acidification"), " is a separate chemical threat from CO\u2082 dissolving into seawater."), /*#__PURE__*/React.createElement(EmissionsBreakdown, null), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 7,
     question: "By approximately how much has atmospheric CO2 increased since pre-industrial times?",
     options: ["10 percent", "50 percent", "100 percent", "200 percent"],
     correct: 1,
-    explain: "CO2 has risen from about 280 ppm to over 420 ppm, an increase of approximately 50 percent."
+    explain: "CO\u2082 has risen from about 280 ppm to over 420 ppm, an increase of approximately 50 percent."
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 8,
     question: "Explain why ocean acidification is a separate concern from warming, even though both are caused by rising CO2.",
-    model: "Warming affects organisms through thermal stress and habitat change. Acidification directly reduces the concentration of carbonate ions in seawater, chemically preventing shell and skeleton formation in corals, molluscs, and sea urchins. Even if temperatures were controlled, continued CO2 emissions would still acidify the ocean. The two effects harm different sets of organisms through completely different mechanisms."
+    model: "Warming affects organisms through thermal stress and habitat change. Acidification directly reduces the concentration of carbonate ions in seawater, chemically preventing shell and skeleton formation in corals, molluscs, and sea urchins. Even if temperatures were controlled, continued CO\u2082 emissions would still acidify the ocean. The two effects harm different sets of organisms through completely different mechanisms."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "4.2.5",
     title: "Identify the advantages and limitations of methods used to reduce greenhouse gas emissions",
@@ -826,8 +1008,8 @@ function Section2(_ref3) {
   }, "Renewable energy"), " technologies have seen solar PV costs fall over 90 percent since 2010, making it the cheapest source of new electricity generation in most countries. However, solar and wind are ", /*#__PURE__*/React.createElement(Term, {
     def: "Energy sources that only generate when the natural resource (sun or wind) is available, not continuously."
   }, "intermittent"), ", requiring battery storage, pumped hydro, or grid interconnection to maintain reliable supply."), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Term, {
-    def: "Technology that captures CO2 from industrial exhaust gases or directly from the air and stores it permanently underground."
-  }, "Carbon capture and storage (CCS)"), " can decarbonise heavy industry but is expensive and unproven at large scale. Reforestation sequesters CO2 cheaply and boosts biodiversity, but is slow, requires land, and forests are vulnerable to fire and drought. Improving energy efficiency reduces how much energy is needed in the first place, cutting emissions without requiring new infrastructure."), /*#__PURE__*/React.createElement(Callout, {
+    def: "Technology that captures CO\u2082 from industrial exhaust gases or directly from the air and stores it permanently underground."
+  }, "Carbon capture and storage (CCS)"), " can decarbonise heavy industry but is expensive and unproven at large scale. Reforestation sequesters CO\u2082 cheaply and boosts biodiversity, but is slow, requires land, and forests are vulnerable to fire and drought. Improving energy efficiency reduces how much energy is needed in the first place, cutting emissions without requiring new infrastructure."), /*#__PURE__*/React.createElement(Callout, {
     kind: "tip",
     title: "No single solution is enough"
   }, "Reducing emissions fast enough requires combining renewable energy, efficiency, electrifying transport, better land use, and where necessary, CCS. Each method has genuine trade-offs."), /*#__PURE__*/React.createElement(Interactive, {
@@ -859,7 +1041,7 @@ function Section2(_ref3) {
     return /*#__PURE__*/React.createElement("div", {
       key: m.name,
       style: {
-        background: "var(--surface-alt)",
+        background: "var(--bg-2)",
         borderRadius: 10,
         padding: 14
       }
@@ -903,24 +1085,24 @@ function Section2(_ref3) {
     progress: progress,
     setProgress: setProgress
   }, /*#__PURE__*/React.createElement("p", null, "The ", /*#__PURE__*/React.createElement(Term, {
-    def: "The period beginning around 1750 in Britain, during which coal-powered machinery and large-scale fossil fuel combustion began, producing a steep rise in CO2 emissions."
-  }, "Industrial Revolution"), " began the steep rise in fossil fuel use. Ice core records show CO2 remained between 180 and 280 ppm for the past 800,000 years before 1750. The rapid increase to over 420 ppm today is entirely outside the natural range for at least 800,000 years and coincides precisely with industrial civilisation."), /*#__PURE__*/React.createElement("p", null, "Global temperature records from NASA, NOAA, the UK Met Office, and the Japanese Meteorological Agency all show the same pattern: stable temperatures from 1850 to roughly 1900, then slow rise, then accelerating warming from the mid-20th century as post-war industrial expansion and fossil fuel use surged. Cumulative CO2 emissions and global mean temperature since 1850 show a very strong, almost straight-line ", /*#__PURE__*/React.createElement(Term, {
+    def: "The period beginning around 1750 in Britain, during which coal-powered machinery and large-scale fossil fuel combustion began, producing a steep rise in CO\u2082 emissions."
+  }, "Industrial Revolution"), " began the steep rise in fossil fuel use. Ice core records show CO\u2082 stayed between about 180 and 300 ppm for the 800,000 years before 1750. The rapid increase to over 420 ppm today is entirely outside the natural range for at least 800,000 years and coincides precisely with industrial civilisation."), /*#__PURE__*/React.createElement("p", null, "Global temperature records from NASA, NOAA, the UK Met Office, and the Japan Meteorological Agency all show the same pattern: stable temperatures from 1850 to roughly 1900, then slow rise, then accelerating warming from the mid-20th century as post-war industrial expansion and fossil fuel use surged. Cumulative CO\u2082 emissions and global mean temperature since 1850 show a very strong, almost straight-line ", /*#__PURE__*/React.createElement(Term, {
     def: "A statistical measure of how closely two variables are related. A value close to 1 indicates a very strong positive relationship."
   }, "correlation"), ". Climate models that include only natural forcing factors cannot reproduce the observed warming; adding human emissions does."), /*#__PURE__*/React.createElement(Callout, {
     kind: "fact",
     title: "Ice core evidence"
-  }, "Antarctic ice cores extend climate records back approximately 800,000 years. Trapped air bubbles preserve ancient atmosphere, allowing scientists to measure past CO2 concentrations and infer temperature from oxygen isotope ratios."), /*#__PURE__*/React.createElement(QGroup, {
+  }, "Antarctic ice cores extend climate records back approximately 800,000 years. Trapped air bubbles preserve ancient atmosphere, allowing scientists to measure past CO\u2082 concentrations and infer past temperature from the ratios of hydrogen and oxygen isotopes in the ice itself."), /*#__PURE__*/React.createElement(QGroup, {
     title: "Check yourself"
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 10,
     question: "Which line of evidence most directly shows that post-industrial CO2 levels are unusual in Earth's recent history?",
-    options: ["Coral bleaching records", "Ice core data showing CO2 stayed between 180 and 280 ppm for 800,000 years", "Weather station temperature records since 1850", "Satellite sea level measurements"],
+    options: ["Coral bleaching records", "Ice core data showing CO₂ stayed between about 180 and 300 ppm for 800,000 years", "Weather station temperature records since 1850", "Satellite sea level measurements"],
     correct: 1,
-    explain: "Ice core records covering 800,000 years show CO2 remained between 180 and 280 ppm before the Industrial Revolution. The rapid rise to over 420 ppm is entirely outside this natural range."
+    explain: "Ice core records covering 800,000 years show CO\u2082 stayed between about 180 and 300 ppm before the Industrial Revolution. The rapid rise to over 420 ppm is entirely outside this natural range."
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 11,
     question: "Explain why correlation between CO2 and temperature, on its own, does not prove causation, and what additional evidence scientists use to establish a causal link.",
-    model: "Correlation alone does not prove causation because the relationship might be coincidental or driven by a third factor. Additional evidence includes: the atmospheric physics mechanism by which CO2 absorbs infrared radiation (understood since the 19th century); isotopic analysis showing the CO2 increase is from burning ancient fossil carbon; climate models that only reproduce observed warming when human emissions are included; and the agreement of multiple independent lines of evidence."
+    model: "Correlation alone does not prove causation because the relationship might be coincidental or driven by a third factor. Additional evidence includes: the atmospheric physics mechanism by which CO\u2082 absorbs infrared radiation (understood since the 19th century); isotopic analysis showing the CO\u2082 increase is from burning ancient fossil carbon; climate models that only reproduce observed warming when human emissions are included; and the agreement of multiple independent lines of evidence."
   }))));
 }
 
@@ -960,7 +1142,7 @@ function SeaLevelRiseModel() {
     step: 0.1,
     value: tempRise,
     onChange: setTempRise,
-    unit: " C"
+    unit: " \xB0C"
   })), /*#__PURE__*/React.createElement("div", {
     className: "stat-readout"
   }, /*#__PURE__*/React.createElement(Stat, {
@@ -1002,7 +1184,7 @@ function WaterCycleImpact() {
     step: 0.1,
     value: warming,
     onChange: setWarming,
-    unit: " C"
+    unit: " \xB0C"
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "grid",
@@ -1014,7 +1196,7 @@ function WaterCycleImpact() {
     label: "Water vapour in the air",
     val: "+" + evapIncrease + "%",
     col: "#f97316",
-    desc: "Warmer air can hold about 7% more water vapour for each 1 C of warming."
+    desc: "Warmer air can hold about 7% more water vapour for each 1 °C of warming."
   }, {
     label: "Heavy rain intensity",
     val: "+" + wetterIntensity + "%",
@@ -1034,7 +1216,7 @@ function WaterCycleImpact() {
     return /*#__PURE__*/React.createElement("div", {
       key: item.label,
       style: {
-        background: "var(--surface-alt)",
+        background: "var(--bg-2)",
         borderRadius: 10,
         padding: 12,
         borderLeft: "4px solid ".concat(item.col)
@@ -1056,7 +1238,7 @@ function WaterCycleImpact() {
       style: {
         fontSize: 12,
         margin: 0,
-        color: "var(--muted)"
+        color: "var(--ink-muted)"
       }
     }, item.desc));
   })), /*#__PURE__*/React.createElement("p", {
@@ -1092,7 +1274,7 @@ function Section3(_ref4) {
   }, "fingerprint"), " of greenhouse gas forcing, not solar variation or volcanic activity."), /*#__PURE__*/React.createElement(Callout, {
     kind: "key",
     title: "Four key climate change characteristics"
-  }, "Rising temperatures (global, +1.1 C). Sea level rise (+20 cm since 1900, now 3.7 mm/yr). Declining Arctic sea ice (13% per decade since 1979). More frequent and intense extreme heat events."), /*#__PURE__*/React.createElement(Interactive, {
+  }, "Rising temperatures (global, +1.1 \xB0C). Sea level rise (+20 cm since 1900, now 3.7 mm/yr). Declining Arctic sea ice (13% per decade since 1979). More frequent and intense extreme heat events."), /*#__PURE__*/React.createElement(Interactive, {
     title: "Climate Change Characteristics Summary",
     subtitle: "Key measurable indicators of current climate change and their observed trends.",
     takeaway: "Multiple independent indicators, including rising temperatures, sea level, and declining Arctic ice, all show the same direction of change, providing strong evidence that climate change is real and ongoing."
@@ -1105,7 +1287,7 @@ function Section3(_ref4) {
     style: {
       width: "100%"
     }
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Characteristic"), /*#__PURE__*/React.createElement("th", null, "Observed Change"), /*#__PURE__*/React.createElement("th", null, "Rate"))), /*#__PURE__*/React.createElement("tbody", null, [["Global average temperature", "+1.1 C above pre-industrial", "Fastest in past 50 years"], ["Sea level", "+20 cm since 1900", "3.7 mm/yr currently"], ["Arctic sea ice (summer)", "13% decline per decade", "Consistent since 1979"], ["Ocean heat content", "Increasing all basins", "Continuous since 1960s"], ["Extreme heat events", "More frequent, hotter", "Increasing in most regions since 1950 (IPCC)"]].map(function (_ref5) {
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Characteristic"), /*#__PURE__*/React.createElement("th", null, "Observed Change"), /*#__PURE__*/React.createElement("th", null, "Rate"))), /*#__PURE__*/React.createElement("tbody", null, [["Global average temperature", "+1.1 °C above pre-industrial", "Fastest in past 50 years"], ["Sea level", "+20 cm since 1900", "3.7 mm/yr currently"], ["Arctic sea ice (summer)", "13% decline per decade", "Consistent since 1979"], ["Ocean heat content", "Increasing all basins", "Continuous since 1960s"], ["Extreme heat events", "More frequent, hotter", "Increasing in most regions since 1950 (IPCC)"]].map(function (_ref5) {
     var _ref6 = _slicedToArray(_ref5, 3),
       c = _ref6[0],
       o = _ref6[1],
@@ -1118,7 +1300,7 @@ function Section3(_ref4) {
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 1,
     question: "What is 'polar amplification' in the context of climate change?",
-    options: ["Polar regions cool faster than the tropics", "Polar regions warm two to four times faster than the global average", "Polar ice acts to amplify storms", "Polar oceans absorb most CO2"],
+    options: ["Polar regions cool faster than the tropics", "Polar regions warm two to four times faster than the global average", "Polar ice acts to amplify storms", "Polar oceans absorb most CO₂"],
     correct: 1,
     explain: "Polar amplification describes the phenomenon where polar regions, especially the Arctic, warm two to four times faster than the global average due to feedback mechanisms including ice-albedo feedback."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
@@ -1127,7 +1309,7 @@ function Section3(_ref4) {
     progress: progress,
     setProgress: setProgress
   }, /*#__PURE__*/React.createElement("p", null, "Consequences span natural and human systems. In natural systems, the Greenland Ice Sheet contains enough ice to raise sea levels by approximately 7 metres if completely melted. Mountain glaciers that supply freshwater to rivers used by hundreds of millions of people in Asia and South America are shrinking. ", /*#__PURE__*/React.createElement(Term, {
-    def: "Permanently frozen ground found in Arctic and sub-Arctic regions. When it thaws, it releases stored carbon as CO2 and methane, accelerating warming."
+    def: "Permanently frozen ground found in Arctic and sub-Arctic regions. When it thaws, it releases stored carbon as CO\u2082 and methane, accelerating warming."
   }, "Permafrost"), " thawing in Siberia, Alaska, and Canada is destabilising infrastructure and releasing stored carbon."), /*#__PURE__*/React.createElement("p", null, "For human communities, the IPCC estimates sea levels could rise 0.6 to 1.0 metres by 2100 under high-emission scenarios, potentially displacing hundreds of millions of people. Food security is threatened as heat stress and changing rainfall reduce crop yields in many regions. Human health faces increased heat mortality, expanding ranges of disease vectors such as mosquitoes carrying dengue fever and malaria, and air pollution from more intense wildfires."), /*#__PURE__*/React.createElement(SeaLevelRiseModel, null), /*#__PURE__*/React.createElement(Callout, {
     kind: "warn",
     title: "Floating vs land ice"
@@ -1142,7 +1324,7 @@ function Section3(_ref4) {
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 3,
     question: "Explain why permafrost thawing is described as a 'positive feedback' for climate change.",
-    model: "Permafrost contains vast amounts of carbon stored for thousands of years. When temperatures rise and it thaws, it releases this carbon as CO2 and methane, which are potent greenhouse gases. This increases greenhouse gas concentrations, which causes further warming, which thaws more permafrost, releasing more carbon. This self-reinforcing cycle is a positive (amplifying) feedback that accelerates climate change."
+    model: "Permafrost contains vast amounts of carbon stored for thousands of years. When temperatures rise and it thaws, it releases this carbon as CO\u2082 and methane, which are potent greenhouse gases. This increases greenhouse gas concentrations, which causes further warming, which thaws more permafrost, releasing more carbon. This self-reinforcing cycle is a positive (amplifying) feedback that accelerates climate change."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "4.3.3",
     title: "Investigate the effects of climate change on the water cycle and ecosystems",
@@ -1159,9 +1341,9 @@ function Section3(_ref4) {
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 4,
     question: "What is coral bleaching and what triggers it?",
-    options: ["Coral turning white due to paint-like algae covering it", "Mass expulsion of zooxanthellae when ocean temperature rises 1 to 2 C above normal for several weeks", "Coral dying due to ocean acidification dissolving its skeleton", "Coral decolourisation caused by reduced sunlight"],
+    options: ["Coral turning white due to paint-like algae covering it", "Mass expulsion of zooxanthellae when ocean temperature rises 1 to 2 °C above normal for several weeks", "Coral dying due to ocean acidification dissolving its skeleton", "Coral decolourisation caused by reduced sunlight"],
     correct: 1,
-    explain: "Coral bleaching is the mass expulsion of zooxanthellae from coral tissue triggered by ocean temperatures rising 1 to 2 C above seasonal maxima for several weeks. The coral turns white and loses its main energy source."
+    explain: "Coral bleaching is the mass expulsion of zooxanthellae from coral tissue triggered by ocean temperatures rising 1 to 2 \xB0C above seasonal maxima for several weeks. The coral turns white and loses its main energy source."
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 5,
     question: "Explain how a prolonged drought caused by climate change could affect multiple levels of a freshwater river ecosystem.",
@@ -1183,7 +1365,7 @@ function Section3(_ref4) {
   }, "A single satellite pass can cover more ground in minutes than thousands of weather stations. Passive microwave sensors can even detect sea ice through clouds, which are often present over polar regions."), /*#__PURE__*/React.createElement(Interactive, {
     title: "Satellite Climate Monitoring: Key Missions",
     subtitle: "Satellites measure variables that cannot be observed globally from the ground.",
-    takeaway: "Satellites can continuously monitor the entire planet's temperature, sea level, ice, and CO2 in ways that ground-based stations cannot, making them essential tools for tracking climate change."
+    takeaway: "Satellites can continuously monitor the entire planet's temperature, sea level, ice, and CO\u2082 in ways that ground-based stations cannot, making them essential tools for tracking climate change."
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       overflowX: "auto"
@@ -1193,7 +1375,7 @@ function Section3(_ref4) {
     style: {
       width: "100%"
     }
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Mission"), /*#__PURE__*/React.createElement("th", null, "Variable"), /*#__PURE__*/React.createElement("th", null, "Use"))), /*#__PURE__*/React.createElement("tbody", null, [["Landsat series (NASA/USGS)", "Forest and land cover", "Tracks deforestation globally since 1972"], ["Jason-3 / Sentinel-6", "Sea level", "Measures global sea level rise to 1 cm accuracy"], ["MODIS (Terra/Aqua)", "Sea surface temperature", "Daily global SST; coral bleaching alerts"], ["CryoSat-2 (ESA)", "Ice sheet and sea ice thickness", "Monitors Greenland and Antarctic mass changes"], ["OCO-2 (NASA)", "Atmospheric CO2", "Maps global CO2 sources and sinks"], ["GRACE/GRACE-FO", "Ice mass and groundwater", "Detects ice sheet loss by gravity changes"]].map(function (_ref7) {
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Mission"), /*#__PURE__*/React.createElement("th", null, "Variable"), /*#__PURE__*/React.createElement("th", null, "Use"))), /*#__PURE__*/React.createElement("tbody", null, [["Landsat series (NASA/USGS)", "Forest and land cover", "Tracks deforestation globally since 1972"], ["Jason-3 / Sentinel-6", "Sea level", "Measures global sea level rise to 1 cm accuracy"], ["MODIS (Terra/Aqua)", "Sea surface temperature", "Daily global SST; coral bleaching alerts"], ["CryoSat-2 (ESA)", "Ice sheet and sea ice thickness", "Monitors Greenland and Antarctic mass changes"], ["OCO-2 (NASA)", "Atmospheric CO₂", "Maps global CO₂ sources and sinks"], ["GRACE/GRACE-FO", "Ice mass and groundwater", "Detects ice sheet loss by gravity changes"]].map(function (_ref7) {
     var _ref8 = _slicedToArray(_ref7, 3),
       m = _ref8[0],
       v = _ref8[1],
@@ -1273,7 +1455,7 @@ function PollutionChain() {
         borderRadius: "50%",
         border: "2px solid var(--accent)",
         background: i <= step ? "var(--accent)" : "var(--surface)",
-        color: i <= step ? "#fff" : "var(--muted)",
+        color: i <= step ? "#fff" : "var(--ink-muted)",
         fontWeight: 700,
         fontSize: 14,
         cursor: "pointer"
@@ -1281,7 +1463,7 @@ function PollutionChain() {
     }, i + 1);
   })), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "var(--surface-alt)",
+      background: "var(--bg-2)",
       borderRadius: 12,
       padding: 20,
       textAlign: "center",
@@ -1480,9 +1662,123 @@ function Section4(_ref9) {
   }, "4.4 Alternative Resource Use and Recycling"), /*#__PURE__*/React.createElement("h1", null, "Pollution, Resources, and Recycling"), /*#__PURE__*/React.createElement("p", {
     className: "lead"
   }, "From eutrophication to enzyme-powered recycling, science is reshaping how we handle pollution and waste.")), /*#__PURE__*/React.createElement(Figure, {
-    src: "img/waste-hierarchy.png",
-    caption: "The waste hierarchy, from most preferred (reduce) to least (dispose)."
-  }), /*#__PURE__*/React.createElement(DotPoint, {
+    caption: "The waste hierarchy, from most preferred (reduce, at the top) to least preferred (dispose, at the bottom). Each level up avoids more environmental impact than the level below it.",
+    maxWidth: 640
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 720 324",
+    width: "100%",
+    role: "img",
+    "aria-label": "Inverted pyramid of the waste hierarchy: reduce at the wide top, then reuse, recycle, recover energy, and dispose (landfill) at the narrow bottom."
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: "22",
+    y1: "24",
+    x2: "22",
+    y2: "294",
+    stroke: "var(--ink-muted)",
+    strokeWidth: "2.5"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M22,306 L15,292 L29,292 Z",
+    fill: "var(--ink-muted)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "34",
+    y: "32",
+    fontSize: "12",
+    fontWeight: "700",
+    fill: "var(--ink-muted)"
+  }, "Most"), /*#__PURE__*/React.createElement("text", {
+    x: "34",
+    y: "46",
+    fontSize: "12",
+    fontWeight: "700",
+    fill: "var(--ink-muted)"
+  }, "preferred"), /*#__PURE__*/React.createElement("text", {
+    x: "34",
+    y: "290",
+    fontSize: "12",
+    fontWeight: "700",
+    fill: "var(--ink-muted)"
+  }, "Least"), /*#__PURE__*/React.createElement("text", {
+    x: "34",
+    y: "304",
+    fontSize: "12",
+    fontWeight: "700",
+    fill: "var(--ink-muted)"
+  }, "preferred"), /*#__PURE__*/React.createElement("polygon", {
+    points: "100,18 500,18 467,72 133,72",
+    fill: "var(--green)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "300",
+    y: "51",
+    textAnchor: "middle",
+    fontSize: "18",
+    fontWeight: "800",
+    fill: "#fff"
+  }, "Reduce"), /*#__PURE__*/React.createElement("text", {
+    x: "498",
+    y: "50",
+    fontSize: "14",
+    fill: "var(--ink)"
+  }, "Avoid waste: buy and use less"), /*#__PURE__*/React.createElement("polygon", {
+    points: "133,77 467,77 434,131 166,131",
+    fill: "var(--teal)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "300",
+    y: "110",
+    textAnchor: "middle",
+    fontSize: "18",
+    fontWeight: "800",
+    fill: "#fff"
+  }, "Reuse"), /*#__PURE__*/React.createElement("text", {
+    x: "464",
+    y: "109",
+    fontSize: "14",
+    fill: "var(--ink)"
+  }, "Use again: refill, repair, donate"), /*#__PURE__*/React.createElement("polygon", {
+    points: "166,136 434,136 401,190 199,190",
+    fill: "var(--blue)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "300",
+    y: "169",
+    textAnchor: "middle",
+    fontSize: "18",
+    fontWeight: "800",
+    fill: "#fff"
+  }, "Recycle"), /*#__PURE__*/React.createElement("text", {
+    x: "432",
+    y: "168",
+    fontSize: "14",
+    fill: "var(--ink)"
+  }, "Reprocess into new products"), /*#__PURE__*/React.createElement("polygon", {
+    points: "199,195 401,195 368,249 232,249",
+    fill: "var(--amber)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "300",
+    y: "228",
+    textAnchor: "middle",
+    fontSize: "18",
+    fontWeight: "800",
+    fill: "#1b1a17"
+  }, "Recover"), /*#__PURE__*/React.createElement("text", {
+    x: "398",
+    y: "227",
+    fontSize: "14",
+    fill: "var(--ink)"
+  }, "Burn waste to recover energy"), /*#__PURE__*/React.createElement("polygon", {
+    points: "232,254 368,254 335,308 265,308",
+    fill: "var(--red)"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "300",
+    y: "287",
+    textAnchor: "middle",
+    fontSize: "14",
+    fontWeight: "800",
+    fill: "#fff"
+  }, "Dispose"), /*#__PURE__*/React.createElement("text", {
+    x: "366",
+    y: "286",
+    fontSize: "14",
+    fill: "var(--ink)"
+  }, "Landfill: the last resort"))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "4.4.1",
     title: "Describe the causes of environmental pollution and discuss its implications",
     progress: progress,
@@ -1491,12 +1787,12 @@ function Section4(_ref9) {
     def: "The introduction of substances into the natural environment at concentrations or rates that cause harmful effects on living organisms, ecosystems, or human health."
   }, "Environmental pollution"), " occurs in air, water, and soil. Air pollution from burning fossil fuels produces ", /*#__PURE__*/React.createElement(Term, {
     def: "Sulfur dioxide, a gas produced by burning coal and smelting metals that reacts with water vapour to form acid rain."
-  }, "sulfur dioxide (SO2)"), ", nitrogen oxides (NOx), and ", /*#__PURE__*/React.createElement(Term, {
+  }, "sulfur dioxide (SO\u2082)"), ", nitrogen oxides (NOx), and ", /*#__PURE__*/React.createElement(Term, {
     def: "Fine particulate matter smaller than 2.5 micrometres that penetrates deep into the lungs and causes cardiovascular and respiratory disease."
   }, "PM2.5"), ". Water pollution comes from agricultural runoff containing fertilisers and pesticides, industrial discharge of heavy metals, sewage, and plastic waste. Soil contamination results from industrial spills, mining waste, and landfill leachate."), /*#__PURE__*/React.createElement("p", null, "The implications are wide-ranging. ", /*#__PURE__*/React.createElement(Term, {
     def: "The over-enrichment of a water body with nutrients (usually nitrogen and phosphorus from fertiliser runoff), causing algal blooms that deplete oxygen and kill aquatic life."
   }, "Eutrophication"), " of waterways from nitrogen runoff causes algal blooms, oxygen depletion, and fish kills. ", /*#__PURE__*/React.createElement(Term, {
-    def: "Acidic precipitation formed when SO2 and NOx react with water vapour in the atmosphere to produce sulfuric and nitric acid."
+    def: "Acidic precipitation formed when SO\u2082 and NOx react with water vapour in the atmosphere to produce sulfuric and nitric acid."
   }, "Acid rain"), " damages forests and acidifies lakes. Heavy metals such as lead and mercury ", /*#__PURE__*/React.createElement(Term, {
     def: "The build-up of a substance in an organism faster than it is broken down or removed. When it becomes more concentrated at each higher level of a food chain, this is called biomagnification."
   }, "bioaccumulate"), " in food chains. ", /*#__PURE__*/React.createElement(Term, {
@@ -1506,13 +1802,13 @@ function Section4(_ref9) {
   }, /*#__PURE__*/React.createElement(MCQ, {
     num: 1,
     question: "What is eutrophication?",
-    options: ["Acidification of rainwater by SO2 and NOx", "Over-enrichment of water with nutrients causing algal blooms and oxygen depletion", "Bioaccumulation of heavy metals in food chains", "Particulate matter settling into waterways"],
+    options: ["Acidification of rainwater by SO₂ and NOx", "Over-enrichment of water with nutrients causing algal blooms and oxygen depletion", "Bioaccumulation of heavy metals in food chains", "Particulate matter settling into waterways"],
     correct: 1,
     explain: "Eutrophication is the over-enrichment of a water body with nutrients, usually from agricultural fertiliser runoff, causing rapid algal growth. When algae die, decomposing bacteria deplete dissolved oxygen, causing fish kills."
   }), /*#__PURE__*/React.createElement(WrittenQ, {
     num: 2,
     question: "Explain how acid rain forms and describe two types of damage it causes.",
-    model: "Acid rain forms when SO2 and NOx from burning fossil fuels react with water vapour, oxygen, and other chemicals in the atmosphere to form sulfuric acid and nitric acid. This falls as acidic rain or dry deposition. It damages conifer forests by leaching nutrients from soil and damaging leaf surfaces. It also acidifies lakes and rivers, reducing pH to levels that kill fish and aquatic invertebrates."
+    model: "Acid rain forms when SO\u2082 and NOx from burning fossil fuels react with water vapour, oxygen, and other chemicals in the atmosphere to form sulfuric acid and nitric acid. This falls as acidic rain or dry deposition. It damages conifer forests by leaching nutrients from soil and damaging leaf surfaces. It also acidifies lakes and rivers, reducing pH to levels that kill fish and aquatic invertebrates."
   }))), /*#__PURE__*/React.createElement(DotPoint, {
     id: "4.4.2",
     title: "Research how Aboriginal and Torres Strait Islander Peoples have developed sustainable harvesting practices",
@@ -1556,7 +1852,7 @@ function Section4(_ref9) {
     return /*#__PURE__*/React.createElement("div", {
       key: item.title,
       style: {
-        background: "var(--surface-alt)",
+        background: "var(--bg-2)",
         borderRadius: 10,
         padding: 14
       }
@@ -1655,7 +1951,7 @@ function Section4(_ref9) {
     }
   }, [{
     name: "Chemical Recycling (Pyrolysis)",
-    detail: "Heats mixed plastics at 300 to 700 C without oxygen. Breaks polymers into oil and gas. Can handle contaminated, mixed plastics that cannot be mechanically recycled. Products used as fuel or feedstocks for new plastic."
+    detail: "Heats mixed plastics at 300 to 700 °C without oxygen. Breaks polymers into oil and gas. Can handle contaminated, mixed plastics that cannot be mechanically recycled. Products used as fuel or feedstocks for new plastic."
   }, {
     name: "Enzymatic Recycling (PETase)",
     detail: "PETase enzyme discovered 2016 breaks PET back to monomers at near room temperature. Engineered versions are faster. Produces virgin-quality PET monomers with lower energy than pyrolysis."
@@ -1669,7 +1965,7 @@ function Section4(_ref9) {
     return /*#__PURE__*/React.createElement("details", {
       key: item.name,
       style: {
-        background: "var(--surface-alt)",
+        background: "var(--bg-2)",
         borderRadius: 10,
         padding: "10px 14px"
       }
@@ -1801,7 +2097,7 @@ function PlasticPathwayMap() {
       cx: cx,
       cy: cy,
       r: 18,
-      fill: isActive ? "var(--accent)" : "var(--surface-alt)",
+      fill: isActive ? "var(--accent)" : "var(--bg-2)",
       stroke: "var(--accent)",
       strokeWidth: 2
     }), /*#__PURE__*/React.createElement("text", {
@@ -1814,11 +2110,11 @@ function PlasticPathwayMap() {
       y: cy + 26,
       textAnchor: "middle",
       fontSize: 9,
-      fill: "var(--muted)"
+      fill: "var(--ink-muted)"
     }, n.label.split("\n")[0]));
   })), active !== null && /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "var(--surface-alt)",
+      background: "var(--bg-2)",
       borderRadius: 10,
       padding: 14,
       marginTop: 8,
@@ -1907,7 +2203,7 @@ function PlasticSolutionAnalyser() {
   return /*#__PURE__*/React.createElement(Interactive, {
     title: "Marine Plastic: Solution Analyser",
     subtitle: "Select a solution strategy and see how it rates across four sustainability criteria.",
-    takeaway: "Improving waste management infrastructure scores top marks on both environmental effectiveness and scalability, making it one of the most impactful single strategy for reducing marine plastic pollution."
+    takeaway: "Improving waste management infrastructure scores top marks on both environmental effectiveness and scalability, making it one of the most impactful single strategies for reducing marine plastic pollution."
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
@@ -1934,7 +2230,7 @@ function PlasticSolutionAnalyser() {
     }, sol.name);
   })), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "var(--surface-alt)",
+      background: "var(--bg-2)",
       borderRadius: 10,
       padding: 14
     }
@@ -1996,8 +2292,8 @@ function Section5(_ref13) {
   }, "microplastics"), " and ", /*#__PURE__*/React.createElement(Term, {
     def: "Plastic particles less than 1 micrometre in diameter, formed by further fragmentation of microplastics."
   }, "nanoplastics"), " under UV radiation, waves, and abrasion. Ocean gyres concentrate floating debris into accumulation zones. The ", /*#__PURE__*/React.createElement(Term, {
-    def: "A large region of elevated plastic concentration in the North Pacific Ocean, approximately 1.6 million km2, formed by ocean gyres concentrating floating debris."
-  }, "Great Pacific Garbage Patch"), " is the most well-known, estimated at approximately 1.6 million km2. Marine animals at all levels are affected: sea turtles mistake bags for jellyfish; seabirds feed plastic to chicks; whales and whale sharks ingest microplastics while filter-feeding. Entanglement in discarded fishing nets and plastic bands injures or kills dolphins, seals, and turtles."), /*#__PURE__*/React.createElement(PlasticPathwayMap, null), /*#__PURE__*/React.createElement("p", null, "Scientists have established the link through multiple lines of evidence. Chemical analysis of plastic debris identifies polymer type, manufacturing additives, and geographic origin. Beach and ocean surveys by organisations such as CSIRO document quantities and types of plastic. Ingestion studies on seabirds, fish, and marine mammals demonstrate direct transfer from environment to wildlife tissue. Mass balance modelling estimates global plastic flows."), /*#__PURE__*/React.createElement("p", null, "Addressing marine plastic pollution requires action at multiple points: reducing single-use plastic production; improving waste collection globally; redesigning plastics to be more recyclable; ", /*#__PURE__*/React.createElement(Term, {
+    def: "A large region of elevated plastic concentration in the North Pacific Ocean, approximately 1.6 million km\xB2, formed by ocean gyres concentrating floating debris."
+  }, "Great Pacific Garbage Patch"), " is the most well-known, estimated at approximately 1.6 million km\xB2. Marine animals at all levels are affected: sea turtles mistake bags for jellyfish; seabirds feed plastic to chicks; whales and whale sharks ingest microplastics while filter-feeding. Entanglement in discarded fishing nets and plastic bands injures or kills dolphins, seals, and turtles."), /*#__PURE__*/React.createElement(PlasticPathwayMap, null), /*#__PURE__*/React.createElement("p", null, "Scientists have established the link through multiple lines of evidence. Chemical analysis of plastic debris identifies polymer type, manufacturing additives, and geographic origin. Beach and ocean surveys by organisations such as CSIRO document quantities and types of plastic. Ingestion studies on seabirds, fish, and marine mammals demonstrate direct transfer from environment to wildlife tissue. Mass balance modelling estimates global plastic flows."), /*#__PURE__*/React.createElement("p", null, "Addressing marine plastic pollution requires action at multiple points: reducing single-use plastic production; improving waste collection globally; redesigning plastics to be more recyclable; ", /*#__PURE__*/React.createElement(Term, {
     def: "A policy framework making manufacturers financially responsible for the end-of-life collection and recycling of their products, incentivising better design."
   }, "extended producer responsibility (EPR)"), " schemes; and international agreements for coordinated global action."), /*#__PURE__*/React.createElement(PlasticSolutionAnalyser, null), /*#__PURE__*/React.createElement(Callout, {
     kind: "key",
@@ -2046,21 +2342,21 @@ mountTopicApp({
     "intergenerational equity": "The principle that the current generation must not use resources at a rate that prevents future generations from meeting their own needs.",
     "circular economy": "An economic model that keeps materials and products in use as long as possible through design for durability, repairability, and recyclability.",
     "waste hierarchy": "A framework ordering waste management strategies from most preferred (reduce) to least preferred (dispose), based on environmental impact.",
-    "greenhouse gas": "A gas that absorbs and re-emits infrared radiation, warming Earth's surface. Includes water vapour, CO2, methane, nitrous oxide, and ozone.",
+    "greenhouse gas": "A gas that absorbs and re-emits infrared radiation, warming Earth's surface. Includes water vapour, CO₂, methane, nitrous oxide, and ozone.",
     "enhanced greenhouse effect": "The intensification of natural greenhouse warming caused by human activities increasing greenhouse gas concentrations beyond their natural levels.",
     "climate": "The long-term average pattern of weather conditions for a region, calculated over at least 30 years.",
     "weather": "The short-term atmospheric conditions at a specific place and time, including temperature, rainfall, wind, and cloud cover.",
     "polar amplification": "The phenomenon where polar regions warm two to four times faster than the global average due to feedback mechanisms.",
     "temperature anomaly": "The difference between a measured temperature and the long-term average (baseline) for that period.",
-    "ocean acidification": "The reduction in ocean pH caused by CO2 dissolving in seawater to form carbonic acid, harming organisms that build calcium carbonate shells.",
+    "ocean acidification": "The reduction in ocean pH caused by CO₂ dissolving in seawater to form carbonic acid, harming organisms that build calcium carbonate shells.",
     "eutrophication": "The over-enrichment of a water body with nutrients (usually nitrogen and phosphorus from fertiliser runoff), causing algal blooms and oxygen depletion.",
     "microplastics": "Plastic particles less than 5 mm in diameter, formed by fragmentation of larger plastics or released directly from cosmetics and synthetic textiles.",
-    "permafrost": "Permanently frozen ground in Arctic and sub-Arctic regions that, when thawed, releases stored carbon as CO2 and methane.",
+    "permafrost": "Permanently frozen ground in Arctic and sub-Arctic regions that, when thawed, releases stored carbon as CO₂ and methane.",
     "zooxanthellae": "Microscopic photosynthetic algae living in coral tissue that provide up to 90% of coral energy and give coral its colour.",
-    "coral bleaching": "Mass expulsion of zooxanthellae from coral tissue when ocean temperature rises 1 to 2 C above seasonal maxima for several weeks, turning coral white.",
+    "coral bleaching": "Mass expulsion of zooxanthellae from coral tissue when ocean temperature rises 1 to 2 °C above seasonal maxima for several weeks, turning coral white.",
     "Indigenous Ecological Knowledge (IEK)": "The detailed, long-term ecological understanding developed by Indigenous peoples through continuous observation and interaction with their environment across generations.",
     "cultural burning": "The practice of using carefully timed, low-intensity fires to manage landscapes, developed and practised by Aboriginal Australians for tens of thousands of years.",
-    "carbon capture and storage (CCS)": "Technology that captures CO2 from industrial exhaust gases or directly from the air and stores it permanently underground in geological formations.",
+    "carbon capture and storage (CCS)": "Technology that captures CO₂ from industrial exhaust gases or directly from the air and stores it permanently underground in geological formations.",
     "urban mining": "The recovery of valuable metals and materials from electronic waste using chemical processes, taking advantage of high metal concentrations in e-waste.",
     "PETase": "An enzyme discovered in 2016 that naturally breaks down PET plastic; engineered versions can enable industrial-scale enzymatic recycling.",
     "drip irrigation": "A method delivering water directly to plant roots through small tubes, reducing evaporation and runoff by up to 50% compared with flood irrigation.",
