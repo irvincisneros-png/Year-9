@@ -187,6 +187,9 @@ function Topic21({ progress, setProgress }) {
         <h3>Worked example: blood glucose</h3>
         <p>After a meal, blood glucose rises. The pancreas (endocrine) releases <strong>insulin</strong>, telling cells to absorb glucose. Between meals, glucose drops; the pancreas releases <strong>glucagon</strong>, telling the liver to release stored glucose. The two hormones act as opposites, holding glucose in a safe range.</p>
 
+        <h3>Worked example: body temperature</h3>
+        <p>Temperature receptors in the skin and brain send nerve impulses to the hypothalamus, which acts as the control centre. If you are too hot, it signals sweat glands to release sweat and skin blood vessels to widen (vasodilation). If you are too cold, it triggers shivering and narrows skin blood vessels (vasoconstriction). Over longer periods, hormones such as thyroxine adjust how much heat your cells produce.</p>
+
         <Figure num="2.6" src="images/raw-08.jpg" alt="Thermoregulation diagram showing too hot and too cold responses meeting at set point" caption="Thermoregulation — two negative-feedback branches that both aim at the same 37 °C set point. Too hot: sweat + vasodilation. Too cold: shiver + vasoconstriction." />
 
         <Questions title="2.1.5">

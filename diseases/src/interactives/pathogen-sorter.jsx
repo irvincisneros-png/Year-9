@@ -32,6 +32,9 @@ function PathogenSorter() {
   const score = Object.values(feedback).filter(Boolean).length;
   const total = Object.keys(placed).length;
 
+  // Enter / Space act like a click, so cards and buckets work from the keyboard
+  const onKey = (fn) => (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } };
+
   const Bucket = ({ cat, label, color }) => {
     const inBucket = diseases.filter(d => placed[d.id] === cat);
     return (
@@ -39,6 +42,10 @@ function PathogenSorter() {
         onDragOver={e => e.preventDefault()}
         onDrop={() => drop(cat)}
         onClick={() => drop(cat)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={onKey(() => drop(cat))}
+        aria-label={`${label}${dragging ? ": place the selected card here" : ""}`}
         style={{
           flex:1,
           minHeight:180,
@@ -78,6 +85,10 @@ function PathogenSorter() {
             onDragStart={() => setDragging(d.id)}
             onDragEnd={() => setDragging(null)}
             onClick={() => setDragging(dragging === d.id ? null : d.id)}
+            role="button"
+            tabIndex={0}
+            aria-pressed={dragging === d.id}
+            onKeyDown={onKey(() => setDragging(dragging === d.id ? null : d.id))}
             style={{
               padding:"8px 12px",
               background: dragging === d.id ? "var(--accent)" : "var(--bg-elev)",
@@ -101,7 +112,7 @@ function PathogenSorter() {
       </div>
       <div style={{marginTop:12,display:"flex",gap:8,alignItems:"center"}}>
         <button className="btn ghost" onClick={reset}>Reset</button>
-        <span style={{fontSize:12,color:"var(--ink-muted)"}}>Drag a card into a bucket, or click a card then click a bucket. Mobile-friendly.</span>
+        <span style={{fontSize:12,color:"var(--ink-muted)"}}>Drag a card into a bucket, or tap (or press Enter on) a card, then a bucket.</span>
       </div>
       {Object.keys(placed).length > 0 && (
         <details style={{marginTop:12}}>

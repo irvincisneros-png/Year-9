@@ -102,6 +102,16 @@ function PathogenSorter() {
   };
   var score = Object.values(feedback).filter(Boolean).length;
   var total = Object.keys(placed).length;
+
+  // Enter / Space act like a click, so cards and buckets work from the keyboard
+  var onKey = function onKey(fn) {
+    return function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        fn();
+      }
+    };
+  };
   var Bucket = function Bucket(_ref) {
     var cat = _ref.cat,
       label = _ref.label,
@@ -119,6 +129,12 @@ function PathogenSorter() {
       onClick: function onClick() {
         return drop(cat);
       },
+      role: "button",
+      tabIndex: 0,
+      onKeyDown: onKey(function () {
+        return drop(cat);
+      }),
+      "aria-label": "".concat(label).concat(dragging ? ": place the selected card here" : ""),
       style: {
         flex: 1,
         minHeight: 180,
@@ -176,6 +192,12 @@ function PathogenSorter() {
       onClick: function onClick() {
         return setDragging(dragging === d.id ? null : d.id);
       },
+      role: "button",
+      tabIndex: 0,
+      "aria-pressed": dragging === d.id,
+      onKeyDown: onKey(function () {
+        return setDragging(dragging === d.id ? null : d.id);
+      }),
       style: {
         padding: "8px 12px",
         background: dragging === d.id ? "var(--accent)" : "var(--bg-elev)",
@@ -221,7 +243,7 @@ function PathogenSorter() {
       fontSize: 12,
       color: "var(--ink-muted)"
     }
-  }, "Drag a card into a bucket, or click a card then click a bucket. Mobile-friendly.")), Object.keys(placed).length > 0 && /*#__PURE__*/React.createElement("details", {
+  }, "Drag a card into a bucket, or tap (or press Enter on) a card, then a bucket.")), Object.keys(placed).length > 0 && /*#__PURE__*/React.createElement("details", {
     style: {
       marginTop: 12
     }

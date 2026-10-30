@@ -21,6 +21,13 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function SpreadSim() {
   var GRID = 12;
   var total = GRID * GRID;
+  // Each infected person meets CONTACTS random people per round and stays
+  // infectious for SICK_ROUNDS rounds, then recovers (immune). So one case
+  // infects about 3 x 2 = 6 others in a fully susceptible group (R0 ~ 6),
+  // which gives a herd-immunity threshold of about 1 - 1/6 = 83%.
+  var CONTACTS = 3,
+    SICK_ROUNDS = 2,
+    ROUNDS = 12;
   var _useState = useState(0),
     _useState2 = _slicedToArray(_useState, 2),
     vaxRate = _useState2[0],
@@ -48,7 +55,8 @@ function SpreadSim() {
     }, function () {
       return {
         state: "s",
-        vax: false
+        vax: false,
+        days: 0
       };
     });
     var shuffled = _toConsumableArray(Array(total).keys()).sort(function () {
@@ -74,18 +82,26 @@ function SpreadSim() {
       var next = prev.map(function (p) {
         return _objectSpread({}, p);
       });
-      // each infected person contacts a random neighbor-ish
       prev.forEach(function (p, i) {
         if (p.state !== "i") return;
-        // pick a random partner
-        var partnerI = Math.floor(Math.random() * total);
-        if (partnerI === i) return;
-        var partner = next[partnerI];
-        if (partner.state !== "s") return;
-        if (partner.vax) return;
-        // hygiene reduces transmission
-        if (Math.random() < hygiene / 100) return;
-        partner.state = "i";
+        // each infected person meets a few random people this round
+        for (var c = 0; c < CONTACTS; c++) {
+          var partnerI = Math.floor(Math.random() * total);
+          if (partnerI === i) continue;
+          var partner = next[partnerI];
+          if (partner.state !== "s" || partner.vax) continue;
+          // hygiene reduces transmission
+          if (Math.random() < hygiene / 100) continue;
+          partner.state = "i";
+          partner.days = 0;
+          partner.isNew = true;
+        }
+        // after SICK_ROUNDS rounds the person recovers and is immune
+        next[i].days = p.days + 1;
+        if (next[i].days >= SICK_ROUNDS) next[i].state = "r";
+      });
+      next.forEach(function (p) {
+        delete p.isNew;
       });
       return next;
     });
@@ -103,11 +119,21 @@ function SpreadSim() {
     };
   }, [running, doStep]);
   useEffect(function () {
-    if (step >= 8) setRunning(false);
+    if (step >= ROUNDS) setRunning(false);
   }, [step]);
   var infected = (people === null || people === void 0 ? void 0 : people.filter(function (p) {
     return p.state === "i";
   }).length) || 0;
+  var everInfected = (people === null || people === void 0 ? void 0 : people.filter(function (p) {
+    return p.state !== "s";
+  }).length) || 0;
+  var unvaxTotal = (people === null || people === void 0 ? void 0 : people.filter(function (p) {
+    return !p.vax;
+  }).length) || 0;
+  var over = step >= ROUNDS || people && step > 0 && infected === 0;
+  useEffect(function () {
+    if (over) setRunning(false);
+  }, [over]);
   var vaxCount = (people === null || people === void 0 ? void 0 : people.filter(function (p) {
     return p.vax;
   }).length) || 0;
@@ -175,11 +201,11 @@ function SpreadSim() {
         return !r;
       });
     },
-    disabled: step >= 8
+    disabled: over
   }, running ? "Pause" : "Play"), /*#__PURE__*/React.createElement("button", {
     className: "btn ghost",
     onClick: doStep,
-    disabled: step >= 8 || running
+    disabled: over || running
   }, "Step")), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 14,
@@ -187,11 +213,15 @@ function SpreadSim() {
       display: "grid",
       gap: 4
     }
-  }, /*#__PURE__*/React.createElement("div", null, "Round: ", /*#__PURE__*/React.createElement("strong", null, step, "/8")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", null, "Round: ", /*#__PURE__*/React.createElement("strong", null, step, "/", ROUNDS), people && step > 0 && infected === 0 ? " · outbreak over" : ""), /*#__PURE__*/React.createElement("div", {
     style: {
       color: "#dc2626"
     }
-  }, "Infected: ", /*#__PURE__*/React.createElement("strong", null, infected), " (", pctInfected, "%)"), /*#__PURE__*/React.createElement("div", {
+  }, "Infected now: ", /*#__PURE__*/React.createElement("strong", null, infected), " (", pctInfected, "%)"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: "#2563eb"
+    }
+  }, "Caught it so far: ", /*#__PURE__*/React.createElement("strong", null, everInfected), " of ", unvaxTotal, " unvaccinated"), /*#__PURE__*/React.createElement("div", {
     style: {
       color: "var(--emerald)"
     }
@@ -209,6 +239,7 @@ function SpreadSim() {
     var bg = "#d6d3cc";
     if (p.vax) bg = "#059669";
     if (p.state === "i") bg = "#dc2626";
+    if (p.state === "r") bg = "#93c5fd";
     return /*#__PURE__*/React.createElement("div", {
       key: i,
       style: {
@@ -252,6 +283,16 @@ function SpreadSim() {
       display: "inline-block",
       width: 10,
       height: 10,
+      background: "#93c5fd",
+      borderRadius: 2,
+      marginRight: 4,
+      verticalAlign: "middle"
+    }
+  }), "Recovered (immune)"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-block",
+      width: 10,
+      height: 10,
       background: "#059669",
       borderRadius: 2,
       marginRight: 4,
@@ -267,8 +308,8 @@ function SpreadSim() {
       border: "1px solid var(--border)",
       borderRadius: 8
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Try it:"), " run the sim at 0% vax, then at 70%, then at 95%. Notice how even unvaccinated people are protected at high vax rates \u2014 that's ", /*#__PURE__*/React.createElement(G, {
+  }, /*#__PURE__*/React.createElement("strong", null, "Try it:"), " run the sim at 0% vax, then at 50%, then at 90%. In this model one case infects about 6 others, so above roughly 83% vaccinated the outbreak usually fizzles out after a few cases and most unvaccinated people never catch it. That's ", /*#__PURE__*/React.createElement(G, {
     term: "herd immunity"
-  }, "herd immunity"), ". This is the same idea as the NaOH cup practical, but we can run it many times."));
+  }, "herd immunity"), ". Measles is far more contagious (one case infects 12\u201318 people), which is why it needs about 95%. Results vary a little each run, just like real outbreaks. This is the same idea as the NaOH cup practical, but we can run it many times."));
 }
 window.SpreadSim = SpreadSim;

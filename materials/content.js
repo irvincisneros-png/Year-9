@@ -48,7 +48,7 @@ function ResourceExplorer() {
     name: "Copper",
     location: "SA, Qld",
     product: "Wiring + pipes",
-    prod: 0.96,
+    prod: 0.8,
     unit: "Mt/yr",
     colour: "#b45309",
     fact: "Copper has been used by humans for over 10,000 years."
@@ -1926,10 +1926,10 @@ function Section32(_ref6) {
     setProgress: setProgress
   }, /*#__PURE__*/React.createElement("p", null, "Most elements exist as single atoms at standard conditions, but seven non-metals are only stable as pairs. These ", /*#__PURE__*/React.createElement(Term, {
     def: "Molecules consisting of exactly two atoms of the same element bonded by a covalent bond."
-  }, "diatomic elements"), " are hydrogen (H2), nitrogen (N2), oxygen (O2), fluorine (F2), chlorine (Cl2), bromine (Br2) and iodine (I2). A handy mnemonic is \"Have No Fear Of Ice Cold Beer\" for H, N, F, O, I, Cl, Br."), /*#__PURE__*/React.createElement("p", null, "Each pair shares electron pairs so both atoms achieve a full outer shell. Nitrogen (N2) forms a triple bond (three shared pairs), making it exceptionally stable and unreactive. This is why nitrogen makes up 78% of the atmosphere but rarely takes part in reactions under normal conditions. Recognising diatomic elements is essential for writing correct chemical equations: when oxygen is involved, write O2, not O, or your equations will not balance."), /*#__PURE__*/React.createElement(Callout, {
+  }, "diatomic elements"), " are hydrogen (H2), nitrogen (N2), oxygen (O2), fluorine (F2), chlorine (Cl2), bromine (Br2) and iodine (I2). A handy mnemonic is \"Have No Fear Of Ice Cold Bears\" for H, N, F, O, I, Cl, Br."), /*#__PURE__*/React.createElement("p", null, "Each pair shares electron pairs so both atoms achieve a full outer shell. Nitrogen (N2) forms a triple bond (three shared pairs), making it exceptionally stable and unreactive. This is why nitrogen makes up 78% of the atmosphere but rarely takes part in reactions under normal conditions. Recognising diatomic elements is essential for writing correct chemical equations: when oxygen is involved, write O2, not O, or your equations will not balance."), /*#__PURE__*/React.createElement(Callout, {
     kind: "tip",
     title: "Mnemonic"
-  }, "Have No Fear Of Ice Cold Beer: H2, N2, F2, O2, I2, Cl2, Br2. Learn this list and you will never forget a diatomic element."), /*#__PURE__*/React.createElement(MatchBuckets, {
+  }, "Have No Fear Of Ice Cold Bears: H2, N2, F2, O2, I2, Cl2, Br2. Learn this list and you will never forget a diatomic element."), /*#__PURE__*/React.createElement(MatchBuckets, {
     items: [{
       id: "h2",
       label: "H2 (hydrogen)",

@@ -10,7 +10,7 @@ function ResourceExplorer() {
     { name: "Iron ore", location: "Pilbara, WA", product: "Steel", prod: 895, unit: "Mt/yr", colour: "#b45309", fact: "Australia exports more iron ore than any other nation on Earth." },
     { name: "Bauxite", location: "Qld, NT, WA", product: "Aluminium", prod: 101, unit: "Mt/yr", colour: "#92400e", fact: "Bauxite must be refined twice before it becomes aluminium metal." },
     { name: "Coal", location: "NSW, Qld", product: "Electricity + steel", prod: 480, unit: "Mt/yr", colour: "#374151", fact: "Coal is a finite fossil fuel, formed from plant material that was buried about 300 million years ago." },
-    { name: "Copper", location: "SA, Qld", product: "Wiring + pipes", prod: 0.96, unit: "Mt/yr", colour: "#b45309", fact: "Copper has been used by humans for over 10,000 years." },
+    { name: "Copper", location: "SA, Qld", product: "Wiring + pipes", prod: 0.8, unit: "Mt/yr", colour: "#b45309", fact: "Copper has been used by humans for over 10,000 years." },
     { name: "Lithium", location: "WA", product: "EV batteries", prod: 0.09, unit: "Mt/yr", colour: "#6d28d9", fact: "Lithium demand is surging due to electric vehicles and phones." },
     { name: "Gold", location: "WA, Vic, NSW", product: "Electronics + jewellery", prod: 320, unit: "t/yr", mt: 0.00032, colour: "#d97706", fact: "Gold is an excellent electrical conductor and resists corrosion." },
   ];
@@ -650,9 +650,9 @@ function Section32({ progress, setProgress }) {
       </DotPoint>
 
       <DotPoint id="3.2.5" title="Diatomic elements" progress={progress} setProgress={setProgress}>
-        <p>Most elements exist as single atoms at standard conditions, but seven non-metals are only stable as pairs. These <Term def="Molecules consisting of exactly two atoms of the same element bonded by a covalent bond.">diatomic elements</Term> are hydrogen (H2), nitrogen (N2), oxygen (O2), fluorine (F2), chlorine (Cl2), bromine (Br2) and iodine (I2). A handy mnemonic is "Have No Fear Of Ice Cold Beer" for H, N, F, O, I, Cl, Br.</p>
+        <p>Most elements exist as single atoms at standard conditions, but seven non-metals are only stable as pairs. These <Term def="Molecules consisting of exactly two atoms of the same element bonded by a covalent bond.">diatomic elements</Term> are hydrogen (H2), nitrogen (N2), oxygen (O2), fluorine (F2), chlorine (Cl2), bromine (Br2) and iodine (I2). A handy mnemonic is "Have No Fear Of Ice Cold Bears" for H, N, F, O, I, Cl, Br.</p>
         <p>Each pair shares electron pairs so both atoms achieve a full outer shell. Nitrogen (N2) forms a triple bond (three shared pairs), making it exceptionally stable and unreactive. This is why nitrogen makes up 78% of the atmosphere but rarely takes part in reactions under normal conditions. Recognising diatomic elements is essential for writing correct chemical equations: when oxygen is involved, write O2, not O, or your equations will not balance.</p>
-        <Callout kind="tip" title="Mnemonic">Have No Fear Of Ice Cold Beer: H2, N2, F2, O2, I2, Cl2, Br2. Learn this list and you will never forget a diatomic element.</Callout>
+        <Callout kind="tip" title="Mnemonic">Have No Fear Of Ice Cold Bears: H2, N2, F2, O2, I2, Cl2, Br2. Learn this list and you will never forget a diatomic element.</Callout>
         <MatchBuckets
           items={[
             { id: "h2", label: "H2 (hydrogen)", bucket: "diatomic" },
